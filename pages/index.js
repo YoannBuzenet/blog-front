@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect } from "react/cjs/react.production.min";
 import Test from "../components/Test";
-import { getAllPosts } from "../services/api/Post";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
