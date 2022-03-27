@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getAllPosts } from "../services/api/Post";
+import { getAllPosts } from "../services/api/post";
 
 const Test = () => {
   useEffect(() => {
