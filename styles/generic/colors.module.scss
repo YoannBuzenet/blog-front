@@ -1,0 +1,68 @@
+// Nextjs css variables
+
+$main-bg-color100: #0d47a1;
+$main-bg-color90: #1565c0;
+$main-bg-color80: #1976d2;
+$main-bg-color70: #1e88e5;
+$main-bg-color60: #2196f3;
+$main-bg-color50: #42a5f5;
+$main-bg-color40: #64b5f6;
+$main-bg-color30: #90caf9;
+$main-bg-color20: #bbdefb;
+$main-bg-color10: #e3f2fd;
+
+$green-bg-color100: #008000;
+$green-bg-color90: #00b300;
+$green-bg-color80: #00e600;
+$green-bg-color70: #1aff1a;
+$green-bg-color60: #33ff33;
+$green-bg-color50: #66ff66;
+$green-bg-color40: #99ff99;
+$green-bg-color30: #b3ffb3;
+$green-bg-color20: #ccffcc;
+$green-bg-color10: #e6ffe6;
+
+$main-bg-color2: #ff5f1f;
+
+$main-bg-color3: blue;
+
+$main-primary-contrast: #ece4e4;
+
+$grey: #f4f0ec;
+
+$wysiwyg-light-grey: rgba(92, 91, 91, 0.698);
+$wysiwyg-strong-grey: #000;
+
+:export {
+  mainBGcolor100: $main-bg-color100;
+  mainBGcolor90: $main-bg-color90;
+  mainBGcolor80: $main-bg-color80;
+  mainBGcolor70: $main-bg-color70;
+  mainBGcolor60: $main-bg-color60;
+  mainBGcolor50: $main-bg-color50;
+  mainBGcolor40: $main-bg-color40;
+  mainBGcolor30: $main-bg-color30;
+  mainBGcolor20: $main-bg-color20;
+  mainBGcolor10: $main-bg-color10;
+
+  greenBGcolor100: $green-bg-color100;
+  greenBGcolor90: $green-bg-color90;
+  greenBGcolor80: $green-bg-color80;
+  greenBGcolor70: $green-bg-color70;
+  greenBGcolor60: $green-bg-color60;
+  greenBGcolor50: $green-bg-color50;
+  greenBGcolor40: $green-bg-color40;
+  greenBGcolor30: $green-bg-color30;
+  greenBGcolor20: $green-bg-color20;
+  greenBGcolor10: $green-bg-color10;
+
+  mainBGcolor2: $main-bg-color2;
+
+  mainBGcolor3: $main-bg-color3;
+
+  mainPrimaryContrast: $main-primary-contrast;
+  grey: $grey;
+
+  wysiwygLightGrey: $wysiwyg-light-grey;
+  wysiwygStrongGrey: $wysiwyg-strong-grey;
+}
