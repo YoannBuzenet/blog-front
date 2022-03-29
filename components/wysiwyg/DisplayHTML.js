@@ -1,4 +1,4 @@
-import { serialize } from "../../../services/react-slate";
+import { serialize } from "../../services/react-slate";
 
 const DisplayHTML = ({ slateText }) => {
   function createMarkup() {
