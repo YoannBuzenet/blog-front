@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import Test from "../components/Test";
-import styles from "../styles/Home.module.css";
 
 // export async function getServerSideProps({ req }) {
 //   const resp = await axios.get(routes.api.webStructure.hardcoded.home);
