@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - var(--height-nav-bar));
+}
+.subLayoutLeft {
+  width: 70%;
+}
+
+.subLayoutRight {
+  width: 30%;
+  padding: 20px;
+  background-color: var(--grey);
+  box-shadow: 1px 1px 5px black;
+}

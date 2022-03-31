@@ -1,0 +1,29 @@
+.container {
+  background-color: var(--main-primary-contrast);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+.containerDragging {
+  cursor: grab;
+}
+.subcontainer {
+  background-color: var(--main-primary-contrast);
+  border-radius: var(--border-radius);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.generic {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+.isOver {
+  background-color: var(--main-bg-color70);
+}
+
+.isNotOver {
+}

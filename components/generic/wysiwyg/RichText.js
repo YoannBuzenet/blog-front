@@ -8,17 +8,17 @@ import {
   Element as SlateElement,
 } from "slate";
 import { withHistory } from "slate-history";
-import Format_bold from "../../assets/svg/format_bold/baseline.svg";
-import Format_italic from "../../assets/svg/format_italic/baseline.svg";
-import Format_underline from "../../assets/svg/format_underlined/baseline.svg";
-import Code from "../../assets/svg/code/baseline.svg";
-import Looks_one from "../../assets/svg/looks_one/baseline.svg";
-import Looks_two from "../../assets/svg/looks_two/baseline.svg";
-import Format_quote from "../../assets/svg/format_quote/baseline.svg";
-import Format_list_numbered from "../../assets/svg/format_list_numbered/baseline.svg";
-import Format_list_bulleted from "../../assets/svg/format_list_bulleted/baseline.svg";
+import Format_bold from "../../../assets/svg/format_bold/baseline.svg";
+import Format_italic from "../../../assets/svg/format_italic/baseline.svg";
+import Format_underline from "../../../assets/svg/format_underlined/baseline.svg";
+import Code from "../../../assets/svg/code/baseline.svg";
+import Looks_one from "../../../assets/svg/looks_one/baseline.svg";
+import Looks_two from "../../../assets/svg/looks_two/baseline.svg";
+import Format_quote from "../../../assets/svg/format_quote/baseline.svg";
+import Format_list_numbered from "../../../assets/svg/format_list_numbered/baseline.svg";
+import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/baseline.svg";
 import { Button, Toolbar } from "./components/components";
-import colorsVariable from "../../styles/generic/colors.module.scss";
+import colorsVariable from "../../../styles/generic/colors.module.scss";
 
 const HOTKEYS = {
   "mod+b": "bold",

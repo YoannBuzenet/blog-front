@@ -1,0 +1,19 @@
+.globalContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.leftContainer {
+  width: 10%;
+}
+
+.rightContainer {
+  width: 90%;
+  position: relative;
+  padding-top: var(--height-nav-bar);
+}
+
+.mainComponent {
+  padding: 20px;
+}
