@@ -1,4 +1,4 @@
-import Layout from "../../components/back_office/Layouts/Layout";
+import Layout from "../../components/back_office/layouts/BackOfficeLayout";
 import LayoutContentPage from "../../components/back_office/layouts/SubLayout";
 import axios from "axios";
 import { useState, useContext } from "react";
@@ -7,23 +7,24 @@ import RichTextExample from "../../components/generic/wysiwyg/RichText";
 import SimpleField from "../../components/back_office/pages/contentPage/SimpleField";
 import SubLayoutContentPage from "../../components/back_office/pages/contentPage/SubLayoutContentPage";
 import { getSession } from "next-auth/react";
+import { capitalizeFirstLetter } from "../../services/utils";
 
 export async function getServerSideProps({ req, query }) {
   // Auth check
-  const session = await getSession({ req });
-  if (session) {
-    // Signed in
-    console.log("Session", JSON.stringify(session, null, 2));
-  } else {
-    // Not Signed in
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-      props: {},
-    };
-  }
+  // const session = await getSession({ req });
+  // if (session) {
+  //   // Signed in
+  //   console.log("Session", JSON.stringify(session, null, 2));
+  // } else {
+  //   // Not Signed in
+  //   return {
+  //     redirect: {
+  //       destination: "/login",
+  //       permanent: false,
+  //     },
+  //     props: {},
+  //   };
+  // }
 
   const page = { ok: "ok" };
 
@@ -39,13 +40,6 @@ const PostPage = ({ page }) => {
   const handleChangePage = (value, field) => {
     setHasStateChanged(true);
     setPageState({ ...pageState, [field]: value });
-  };
-
-  const styleCompo = {
-    classic_back: {
-      explainationParagraph: style.explainationParagraph,
-      fieldContainer: style.fieldContainer,
-    },
   };
 
   return (

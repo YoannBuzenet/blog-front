@@ -1,0 +1,12 @@
+.givGreenAnimation {
+  animation: changeSaveButtonColor 1s ease-in 1s infinite alternate;
+}
+
+@keyframes changeSaveButtonColor {
+  from {
+    background-color: var(--green-bg-color90);
+  }
+  to {
+    background-color: var(--green-bg-color60);
+  }
+}
