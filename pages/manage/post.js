@@ -1,5 +1,5 @@
 import BackOfficeLayout from "../../components/back_office/layouts/BackOfficeLayout";
-import SubLayout from "../../components/back_office/layouts/SubLayout";
+import SubLayoutRight from "../../components/back_office/layouts/SubLayoutRight";
 import axios from "axios";
 import { useState, useContext } from "react";
 import style from "../../styles/back_office/pages/onePage.module.css";
@@ -80,7 +80,7 @@ const PostPage = ({ page }) => {
 
   return (
     <BackOfficeLayout>
-      <SubLayout
+      <SubLayoutRight
         CompoToRender={SubLayoutContentPage}
         pageState={pageState}
         setPageState={setPageState}
@@ -122,7 +122,7 @@ const PostPage = ({ page }) => {
             </div>
           )}
         </div>
-      </SubLayout>
+      </SubLayoutRight>
     </BackOfficeLayout>
   );
 };

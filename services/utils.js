@@ -54,6 +54,9 @@ function JSONStringifyAllProps(object) {
 }
 
 function capitalizeFirstLetter(string) {
+  if (!string) {
+    return "String received as Undefined in capitalizeFirstLetter()";
+  }
   return string?.charAt(0)?.toUpperCase() + string?.slice(1);
 }
 
