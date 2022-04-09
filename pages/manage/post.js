@@ -1,5 +1,5 @@
-import Layout from "../../components/back_office/layouts/BackOfficeLayout";
-import LayoutContentPage from "../../components/back_office/layouts/SubLayout";
+import BackOfficeLayout from "../../components/back_office/layouts/BackOfficeLayout";
+import SubLayout from "../../components/back_office/layouts/SubLayout";
 import axios from "axios";
 import { useState, useContext } from "react";
 import style from "../../styles/back_office/pages/onePage.module.css";
@@ -26,7 +26,43 @@ export async function getServerSideProps({ req, query }) {
   //   };
   // }
 
-  const page = { ok: "ok" };
+  const page = {
+    primaryContentField: [
+      {
+        type: "paragraph",
+        children: [
+          { text: "This is editable " },
+          { text: "rich", bold: true },
+          { text: " text, " },
+          { text: "much", italic: true },
+          { text: " better than a " },
+          { text: "<textarea>", code: true },
+          { text: "!" },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          {
+            text: "Since it's rich text, you can do things like turn a selection of text ",
+          },
+          { text: "bold", bold: true },
+          {
+            text: ", or add a semantically rendered block quote in the middle of the page, like this:",
+          },
+        ],
+      },
+      {
+        type: "block-quote",
+        children: [{ text: "A wise quote." }],
+      },
+      {
+        type: "paragraph",
+        align: "center",
+        children: [{ text: "Try it out for yourself!" }],
+      },
+    ],
+  };
 
   return { props: { page } };
 }
@@ -43,8 +79,8 @@ const PostPage = ({ page }) => {
   };
 
   return (
-    <Layout>
-      <LayoutContentPage
+    <BackOfficeLayout>
+      <SubLayout
         CompoToRender={SubLayoutContentPage}
         pageState={pageState}
         setPageState={setPageState}
@@ -64,7 +100,7 @@ const PostPage = ({ page }) => {
               </div>
 
               <div>
-                <SimpleField
+                {/* <SimpleField
                   value={pageState.metaDescription}
                   setValue={handleChangePage}
                   title="Ceci est la description qui s'affiche sur Google lorsque votre site apparait dans les résultats."
@@ -75,7 +111,7 @@ const PostPage = ({ page }) => {
                   setValue={handleChangePage}
                   title="Le titre de votre page, qui apparait sur l'onglet de votre navigateur."
                   field="title"
-                />
+                /> */}
               </div>
             </div>
           )}
@@ -86,8 +122,8 @@ const PostPage = ({ page }) => {
             </div>
           )}
         </div>
-      </LayoutContentPage>
-    </Layout>
+      </SubLayout>
+    </BackOfficeLayout>
   );
 };
 
