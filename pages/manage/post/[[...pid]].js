@@ -1,13 +1,14 @@
-import BackOfficeLayout from "../../components/back_office/layouts/BackOfficeLayout";
-import SubLayoutRight from "../../components/back_office/layouts/SubLayoutRight";
+import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
+import SubLayoutRight from "../../../components/back_office/layouts/SubLayoutRight";
 import axios from "axios";
 import { useState, useContext } from "react";
-import style from "../../styles/back_office/pages/onePage.module.css";
-import RichTextExample from "../../components/generic/wysiwyg/RichText";
-import SimpleField from "../../components/back_office/pages/contentPage/SimpleField";
-import SubLayoutContentPage from "../../components/back_office/pages/contentPage/SubLayoutContentPage";
+import style from "../../../styles/back_office/pages/onePage.module.css";
+import RichTextExample from "../../../components/generic/wysiwyg/RichText";
+import SimpleField from "../../../components/back_office/pages/contentPage/SimpleField";
+import SubLayoutContentPage from "../../../components/back_office/pages/contentPage/SubLayoutContentPage";
 import { getSession } from "next-auth/react";
-import { capitalizeFirstLetter } from "../../services/utils";
+import { capitalizeFirstLetter } from "../../../services/utils";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ req, query }) {
   // Auth check
@@ -27,7 +28,7 @@ export async function getServerSideProps({ req, query }) {
   // }
 
   const page = {
-    primaryContentField: [
+    mainContent: [
       {
         type: "paragraph",
         children: [
@@ -68,6 +69,9 @@ export async function getServerSideProps({ req, query }) {
 }
 
 const PostPage = ({ page }) => {
+  // is creation ?
+  const router = useRouter();
+
   const [pageState, setPageState] = useState({ ...page });
   const [hasStateChanged, setHasStateChanged] = useState(false);
 
@@ -93,9 +97,9 @@ const PostPage = ({ page }) => {
               <h1>{capitalizeFirstLetter(page?.name)}</h1>
               <div>
                 <RichTextExample
-                  value={pageState.primaryContentField}
+                  value={pageState.mainContent}
                   setValue={handleChangePage}
-                  field="primaryContentField"
+                  field="mainContent"
                 />
               </div>
 
