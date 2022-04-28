@@ -71,11 +71,21 @@ export async function getServerSideProps({ req, query }) {
 const PostPage = ({ page }) => {
   // is creation ?
   const router = useRouter();
+  const { pid } = router.query;
+  console.log("kk", pid);
+
+  const isCreation = pid !== undefined;
+  let postId;
+  if (!isCreation) {
+    // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
+    postId = pid?.[0];
+  }
 
   const [pageState, setPageState] = useState({ ...page });
   const [hasStateChanged, setHasStateChanged] = useState(false);
 
   console.log("page state", pageState);
+  console.log("is creation ?", isCreation);
 
   const handleChangePage = (value, field) => {
     setHasStateChanged(true);
