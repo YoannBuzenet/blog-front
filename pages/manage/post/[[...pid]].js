@@ -100,6 +100,7 @@ const PostPage = ({ page }) => {
         setPageState={setPageState}
         hasStateChanged={hasStateChanged}
         setHasStateChanged={setHasStateChanged}
+        isCreation={isCreation}
       >
         <div className="contentPageContainer">
           {page && (

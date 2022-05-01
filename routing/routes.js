@@ -4,7 +4,16 @@ export const buildCompleteURL = (url) => {
 
 export const routes = {
   api: {
-    entities: {},
+    entities: {
+      page: {
+        put: {
+          build: (idPage) => `TODO`,
+        },
+        post: {
+          build: () => `TODO`,
+        },
+      },
+    },
     auth: {
       login: {
         // Not implemented yet in back-end

@@ -12,18 +12,22 @@ const SubLayoutContentPage = ({
   setHasStateChanged,
   pageState,
   setPageState,
+  isCreation,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  // TO DO Later : allow POST for new pages
+  // TO DO NEXT STEP : allow POST for new pages
+  // TO DO GENRE MAINTENANT
   const savePage = async () => {
-    const url = routes.api.entities.page.put.build(pageState.id);
+    const httpVerb = isCreation ? "post" : "put";
+
+    const url = routes.api.entities.page?.[httpVerb].build(pageState.id);
 
     const objectToSend = JSONStringifyAllProps(pageState);
 
     setIsLoading(true);
     try {
-      const serverResp = await axios.put(url, objectToSend, {});
+      const serverResp = await axios?.[httpVerb](url, objectToSend, {});
       setHasStateChanged(false);
       window.onbeforeunload = () => {};
       toast.success("La page a bien été sauvegardée.");
@@ -58,7 +62,6 @@ const SubLayoutContentPage = ({
       <div>
         <BasicButton
           text="Sauvegarder"
-          handleClick={() => console.log("click!")}
           color={hasStateChanged ? "primary" : "secondary"}
           isDisabled={!hasStateChanged}
           handleClick={savePage}
