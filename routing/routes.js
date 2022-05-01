@@ -5,12 +5,12 @@ export const buildCompleteURL = (url) => {
 export const routes = {
   api: {
     entities: {
-      page: {
+      post: {
         put: {
-          build: (idPage) => `TODO`,
+          build: (idPost) => buildCompleteURL(`/api/entities/posts/${idPost}`),
         },
         post: {
-          build: () => `TODO`,
+          build: () => buildCompleteURL(`/api/entities/posts`),
         },
       },
     },

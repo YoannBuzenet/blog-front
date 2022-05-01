@@ -16,12 +16,10 @@ const SubLayoutContentPage = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  // TO DO NEXT STEP : allow POST for new pages
-  // TO DO GENRE MAINTENANT
   const savePage = async () => {
     const httpVerb = isCreation ? "post" : "put";
 
-    const url = routes.api.entities.page?.[httpVerb].build(pageState.id);
+    const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
 
     const objectToSend = JSONStringifyAllProps(pageState);
 
