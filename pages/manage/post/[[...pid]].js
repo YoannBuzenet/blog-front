@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, query }) {
   // }
 
   const page = {
-    mainContent: [
+    content: [
       {
         type: "paragraph",
         children: [
@@ -63,6 +63,28 @@ export async function getServerSideProps({ req, query }) {
         children: [{ text: "Try it out for yourself!" }],
       },
     ],
+    title: [
+      {
+        type: "paragraph",
+        align: "center",
+        children: [{ text: "title" }],
+      },
+    ],
+    metaDescription: [
+      {
+        type: "paragraph",
+        align: "center",
+        children: [{ text: "metaDescription" }],
+      },
+    ],
+    shortDescription: [
+      {
+        type: "paragraph",
+        align: "center",
+        children: [{ text: "shortDescription" }],
+      },
+    ],
+    UserId: 1,
   };
 
   return { props: { page } };
@@ -108,14 +130,14 @@ const PostPage = ({ page }) => {
               <h1>{capitalizeFirstLetter(page?.name)}</h1>
               <div>
                 <RichTextExample
-                  value={pageState.mainContent}
+                  value={pageState.content}
                   setValue={handleChangePage}
                   field="mainContent"
                 />
               </div>
 
               <div>
-                {/* <SimpleField
+                <SimpleField
                   value={pageState.metaDescription}
                   setValue={handleChangePage}
                   title="Ceci est la description qui s'affiche sur Google lorsque votre site apparait dans les résultats."
@@ -126,7 +148,13 @@ const PostPage = ({ page }) => {
                   setValue={handleChangePage}
                   title="Le titre de votre page, qui apparait sur l'onglet de votre navigateur."
                   field="title"
-                /> */}
+                />
+                <SimpleField
+                  value={pageState.shortDescription}
+                  setValue={handleChangePage}
+                  title="short description"
+                  field="title"
+                />
               </div>
             </div>
           )}
