@@ -13,6 +13,7 @@ const SubLayoutContentPage = ({
   pageState,
   setPageState,
   isCreation,
+  setIsCreation,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,9 +27,19 @@ const SubLayoutContentPage = ({
     setIsLoading(true);
     try {
       const serverResp = await axios?.[httpVerb](url, objectToSend, {});
+      console.log("serverResp", serverResp);
+
+      setPageState({ ...pageState, id: serverResp.id });
+
       setHasStateChanged(false);
+
+      // Removing the alert window function
       window.onbeforeunload = () => {};
+
       toast.success("La page a bien été sauvegardée.");
+
+      // Passing in edit mode
+      setIsCreation("false");
     } catch (error) {
       toast.error(
         "ERREUR - La page n'a pu être sauvegardée. Merci de réessayer ultérieurement. Pensez à copier-coller vos modifications dans un fichier en attendant, pour ne pas les perdre !"

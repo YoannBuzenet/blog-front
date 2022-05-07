@@ -94,9 +94,9 @@ const PostPage = ({ page }) => {
   // is creation ?
   const router = useRouter();
   const { pid } = router.query;
-  console.log("kk", pid);
 
-  const isCreation = pid !== undefined;
+  const [isCreation, setIsCreation] = useState(pid !== undefined);
+
   let postId;
   if (!isCreation) {
     // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
@@ -123,6 +123,7 @@ const PostPage = ({ page }) => {
         hasStateChanged={hasStateChanged}
         setHasStateChanged={setHasStateChanged}
         isCreation={isCreation}
+        setIsCreation={setIsCreation}
       >
         <div className="contentPageContainer">
           {page && (
