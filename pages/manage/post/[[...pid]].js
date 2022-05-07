@@ -95,7 +95,9 @@ const PostPage = ({ page }) => {
   const router = useRouter();
   const { pid } = router.query;
 
-  const [isCreation, setIsCreation] = useState(pid !== undefined);
+  console.log("pid !== undefined", pid === undefined);
+
+  const [isCreation, setIsCreation] = useState(pid === undefined);
 
   let postId;
   if (!isCreation) {

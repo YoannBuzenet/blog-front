@@ -3,7 +3,10 @@ import SwitchWithLabel from "../../../generic/Switch/index";
 import BasicButton from "../../../generic/Buttons/Button";
 import React, { useEffect, useState } from "react";
 import { routes } from "../../../../routing/routes";
-import { JSONStringifyAllProps } from "../../../../services/utils";
+import {
+  JSONParseAllProps,
+  JSONStringifyAllProps,
+} from "../../../../services/utils";
 import { toast } from "react-toastify";
 import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
 
@@ -17,9 +20,12 @@ const SubLayoutContentPage = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const savePage = async () => {
-    const httpVerb = isCreation ? "post" : "put";
+  console.log("is creation from sublayout", isCreation);
 
+  const httpVerb = isCreation ? "post" : "put";
+  console.log("http verb", httpVerb);
+
+  const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
 
     const objectToSend = JSONStringifyAllProps(pageState);
@@ -27,9 +33,11 @@ const SubLayoutContentPage = ({
     setIsLoading(true);
     try {
       const serverResp = await axios?.[httpVerb](url, objectToSend, {});
+      const servRespParsed = JSONParseAllProps(serverResp);
       console.log("serverResp", serverResp);
+      console.log("servRespParsed", servRespParsed);
 
-      setPageState({ ...pageState, id: serverResp.id });
+      setPageState(servRespParsed.data);
 
       setHasStateChanged(false);
 
@@ -39,7 +47,7 @@ const SubLayoutContentPage = ({
       toast.success("La page a bien été sauvegardée.");
 
       // Passing in edit mode
-      setIsCreation("false");
+      setIsCreation(false);
     } catch (error) {
       toast.error(
         "ERREUR - La page n'a pu être sauvegardée. Merci de réessayer ultérieurement. Pensez à copier-coller vos modifications dans un fichier en attendant, pour ne pas les perdre !"
