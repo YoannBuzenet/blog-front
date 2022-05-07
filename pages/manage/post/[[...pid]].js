@@ -135,7 +135,7 @@ const PostPage = ({ page }) => {
                 <RichTextExample
                   value={pageState.content}
                   setValue={handleChangePage}
-                  field="mainContent"
+                  field="content"
                 />
               </div>
 
@@ -156,7 +156,7 @@ const PostPage = ({ page }) => {
                   value={pageState.shortDescription}
                   setValue={handleChangePage}
                   title="short description"
-                  field="title"
+                  field="shortDescription"
                 />
               </div>
             </div>
