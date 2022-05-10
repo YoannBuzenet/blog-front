@@ -10,7 +10,7 @@ import { getSession } from "next-auth/react";
 import { capitalizeFirstLetter } from "../../../services/utils";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps({ req, query }) {
+export async function getServerSideProps({ req, query, params }) {
   // Auth check
   // const session = await getSession({ req });
   // if (session) {
@@ -26,6 +26,11 @@ export async function getServerSideProps({ req, query }) {
   //     props: {},
   //   };
   // }
+
+  const { pid } = params;
+  console.log("pid !== undefined", pid === undefined);
+
+  const isCreationInit = pid === undefined;
 
   const page = {
     content: [
@@ -87,17 +92,17 @@ export async function getServerSideProps({ req, query }) {
     UserId: 1,
   };
 
-  return { props: { page } };
+  return { props: { page, isCreationInit } };
 }
 
-const PostPage = ({ page }) => {
+const PostPage = ({ page, isCreationInit }) => {
   // is creation ?
   const router = useRouter();
   const { pid } = router.query;
 
-  console.log("pid !== undefined", pid === undefined);
+  // si pid est défini, il est une array
 
-  const [isCreation, setIsCreation] = useState(pid === undefined);
+  const [isCreation, setIsCreation] = useState(isCreationInit);
 
   let postId;
   if (!isCreation) {
