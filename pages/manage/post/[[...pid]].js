@@ -9,6 +9,7 @@ import SubLayoutContentPage from "../../../components/back_office/pages/contentP
 import { getSession } from "next-auth/react";
 import { capitalizeFirstLetter } from "../../../services/utils";
 import { useRouter } from "next/router";
+import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -32,65 +33,16 @@ export async function getServerSideProps({ req, query, params }) {
 
   const isCreationInit = pid === undefined;
 
-  const page = {
-    content: [
-      {
-        type: "paragraph",
-        children: [
-          { text: "This is editable " },
-          { text: "rich", bold: true },
-          { text: " text, " },
-          { text: "much", italic: true },
-          { text: " better than a " },
-          { text: "<textarea>", code: true },
-          { text: "!" },
-        ],
-      },
-      {
-        type: "paragraph",
-        children: [
-          {
-            text: "Since it's rich text, you can do things like turn a selection of text ",
-          },
-          { text: "bold", bold: true },
-          {
-            text: ", or add a semantically rendered block quote in the middle of the page, like this:",
-          },
-        ],
-      },
-      {
-        type: "block-quote",
-        children: [{ text: "A wise quote." }],
-      },
-      {
-        type: "paragraph",
-        align: "center",
-        children: [{ text: "Try it out for yourself!" }],
-      },
-    ],
-    title: [
-      {
-        type: "paragraph",
-        align: "center",
-        children: [{ text: "title" }],
-      },
-    ],
-    metaDescription: [
-      {
-        type: "paragraph",
-        align: "center",
-        children: [{ text: "metaDescription" }],
-      },
-    ],
-    shortDescription: [
-      {
-        type: "paragraph",
-        align: "center",
-        children: [{ text: "shortDescription" }],
-      },
-    ],
-    UserId: 1,
-  };
+  let page = {};
+
+  if (isCreationInit) {
+    page = createBlankPage();
+  } else {
+    // TODO Yoann
+    // fetch API et tout mettre en props
+  }
+
+  page.UserId = 1;
 
   return { props: { page, isCreationInit } };
 }
