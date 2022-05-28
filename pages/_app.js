@@ -16,6 +16,10 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  console.log(
+    `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
+  );
+
   return (
     <ThemeProvider theme={customMUITheme}>
       <SessionProvider session={session}>

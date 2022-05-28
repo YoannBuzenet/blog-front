@@ -7,9 +7,13 @@ import RichTextExample from "../../../components/generic/wysiwyg/RichText";
 import SimpleField from "../../../components/back_office/pages/contentPage/SimpleField";
 import SubLayoutContentPage from "../../../components/back_office/pages/contentPage/SubLayoutContentPage";
 import { getSession } from "next-auth/react";
-import { capitalizeFirstLetter } from "../../../services/utils";
+import {
+  capitalizeFirstLetter,
+  JSONParseAllProps,
+} from "../../../services/utils";
 import { useRouter } from "next/router";
 import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
+import { getOnePost } from "../../../services/api/Post";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -38,8 +42,8 @@ export async function getServerSideProps({ req, query, params }) {
   if (isCreationInit) {
     page = createBlankPage();
   } else {
-    // TODO Yoann
-    // fetch API et tout mettre en props
+    const jsonPage = await getOnePost(pid);
+    page = JSONParseAllProps(jsonPage);
   }
 
   page.UserId = 1;
