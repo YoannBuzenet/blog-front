@@ -1,8 +1,6 @@
 ### TODO <br/>
 
-- Sauvegarder un post chargé
-- Vérifier création/edition + sauvegarde et recharge
-- Gerer le cas où un non existantest chargé (try/catch, passer en creation true)
+- Gerer le cas où un non existant est chargé (try/catch, passer en creation true)
 
 ### Plus tard
 
