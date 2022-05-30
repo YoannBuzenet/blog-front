@@ -42,10 +42,17 @@ export async function getServerSideProps({ req, query, params }) {
   if (isCreationInit) {
     page = createBlankPage();
   } else {
-    const jsonPage = await getOnePost(pid);
-    page = JSONParseAllProps(jsonPage);
+    try {
+      const jsonPage = await getOnePost(pid);
+      page = JSONParseAllProps(jsonPage);
+    } catch (e) {
+      console.log("Error while loading the post :" + e);
+      page = createBlankPage();
+      isCreationInit = true;
+    }
   }
 
+  // TODO avoir le vrai user ID quand on aura des users !
   page.UserId = 1;
 
   return { props: { page, isCreationInit } };
