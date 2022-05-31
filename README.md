@@ -1,7 +1,6 @@
 ### TODO
 
-- Affichage des X derniers posts
-- Affichage d'un post
+- Page next qui chope le post en détail
 
 ### Un peu plus tard
 
