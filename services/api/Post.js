@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (limit = 10, sort = "createdAt") => {
   const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?limit=${limit}&sort=${sort}`
   );
 
   return resp.data;
