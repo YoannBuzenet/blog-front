@@ -1,4 +1,14 @@
-function JSONParseAllProps(objectToParse, objectToReturn = {}) {
+function JSONParseAllProps(objectToParse) {
+  let objectToReturn;
+  if (Array.isArray(objectToParse)) {
+    objectToReturn = [];
+    for (const item of objectToParse) {
+      objectToReturn = [JSONParseAllProps(item), ...objectToReturn];
+    }
+  } else {
+    objectToReturn = {};
+  }
+
   for (const prop in objectToParse) {
     if (typeof objectToParse[prop] === "string") {
       try {

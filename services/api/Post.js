@@ -1,11 +1,14 @@
 import axios from "axios";
+import { JSONParseAllProps } from "../utils";
 
 export const getAllPosts = async (limit = 10, sort = "createdAt") => {
   const resp = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?limit=${limit}&sort=${sort}`
   );
 
-  return resp.data;
+  const parsedResp = JSONParseAllProps(resp.data);
+
+  return parsedResp;
 };
 
 export const getOnePost = async (id) => {
