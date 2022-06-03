@@ -16,7 +16,6 @@ export const getOnePost = async (id) => {
   return resp.data;
 };
 
-// TODO - check que c'est la bonne URL
 export const savePost = async (post) => {
   const resp = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,

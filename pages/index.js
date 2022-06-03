@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import PostPeek from "../components/posts/PostPeek";
 import Test from "../components/Test";
 import { getAllPosts } from "../services/api/post";
 import styles from "../styles/Home.module.css";
@@ -22,7 +23,7 @@ export default function Home({ pageData }) {
       <main className={styles.main}>
         <h1 className={styles.title}>Le blog</h1>
         {pageData.map((post, index) => (
-          <p key={index}>{post.title}</p>
+          <PostPeek post={post} key={index} />
         ))}
       </main>
 
