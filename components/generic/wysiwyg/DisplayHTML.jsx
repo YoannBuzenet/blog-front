@@ -10,7 +10,6 @@ const DisplayHTML = ({ slateText }) => {
   }
 
   const content = createMarkup();
-  console.log("test", content);
 
   return <div className="wysiwygDisplay" dangerouslySetInnerHTML={content} />;
 };

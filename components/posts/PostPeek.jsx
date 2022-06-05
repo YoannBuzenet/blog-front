@@ -1,4 +1,5 @@
 import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
+import { format } from "date-fns";
 
 const PostPeek = ({ post }) => {
   console.log("mon post", post);
@@ -23,7 +24,7 @@ const PostPeek = ({ post }) => {
       <p>Content</p>
       <DisplayHTML slateText={post.content} />
       <p>CreatedAt</p>
-      <p>{post.createdAt} </p>
+      <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
     </>
   );
 };

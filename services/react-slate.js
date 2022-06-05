@@ -2,7 +2,6 @@ import escapeHtml from "escape-html";
 import { Text } from "slate";
 
 const serialize = (node) => {
-  console.log("le node", node);
   if (Text.isText(node)) {
     let string = escapeHtml(node.text);
     if (node.bold) {
