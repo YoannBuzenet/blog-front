@@ -1,8 +1,8 @@
 ### TODO
 
-- Petit compo pour la home qui doit rendre en html le react-slate reçu ! (something like PostShortDescriptionRenderer qui reçoit le post et dangerouslyInnerHTML des éléments tout en ne montrant qu'une partie avec 'voir plus' etc...)
 - Page d'accueil qui présente les posts
 - Page next qui chope le post en détail et le présente viteuf
+- Mettre le title, short description et content non null en DB/dans le WYSIWYG
 
 ### Un peu plus tard
 
