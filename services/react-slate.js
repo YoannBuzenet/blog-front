@@ -20,7 +20,9 @@ const serialize = (node) => {
     return string;
   }
 
-  const children = node?.children?.map((n) => serialize(n)).join("");
+  const children =
+    Array.isArray(node?.children) && // On mets une securité, sinon ça throw quand c'est pas au format Slate (array d'objets)
+    node?.children?.map((n) => serialize(n)).join("");
 
   switch (node.type) {
     case "block-quote":
