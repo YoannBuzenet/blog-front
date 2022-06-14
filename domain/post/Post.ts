@@ -28,71 +28,80 @@ export class Post {
 }
 
 class PostBuilder {
-  private _id: string;
-  private _name: string;
-  private _profession: Profession;
-  private _theme: Theme;
-  private _modules: Module[];
-  private _themeParameters: ThemeParameterWebsite[];
-  private _expiresAt: string;
+  private _id: number;
+  private _title: slateContentObject[];
+  private _shortDescription: slateContentObject[];
+  private _metaDescription: slateContentObject[];
+  private _content: slateContentObject[];
+  private _userId: number;
+  private _createdAt: string;
+  private _updatedAt: string;
 
-  name(): string;
-  name(name: string): this;
-  name(name?: string) {
-    if (!name) return this._name;
-    this._name = name;
-    return this;
-  }
-
-  id(): string;
-  id(id: string): this;
-  id(id?: string) {
+  id(): number;
+  id(id: number): this;
+  id(id?: number) {
     if (!id) return this._id;
     this._id = id;
     return this;
   }
 
-  profession(): Profession;
-  profession(profession: Profession): this;
-  profession(profession?: Profession) {
-    if (!profession) return this._profession;
-    this._profession = profession;
+  title(): slateContentObject[];
+  title(title: slateContentObject[]): this;
+  title(title?: slateContentObject[]) {
+    if (!title) return this._title;
+    this._title = title;
     return this;
   }
 
-  theme(): Theme;
-  theme(theme: Theme): this;
-  theme(theme?: Theme) {
-    if (!theme) return this._theme;
-    this._theme = theme;
+  shortDescription(): slateContentObject[];
+  shortDescription(shortDescription: slateContentObject[]): this;
+  shortDescription(shortDescription?: slateContentObject[]) {
+    if (!shortDescription) return this._shortDescription;
+    this._shortDescription = shortDescription;
     return this;
   }
 
-  modules(): Module[];
-  modules(modules: Module[]): this;
-  modules(modules?: Module[]) {
-    if (!modules) return this._modules;
-    this._modules = modules;
+  metaDescription(): slateContentObject[];
+  metaDescription(metaDescription: slateContentObject[]): this;
+  metaDescription(metaDescription?: slateContentObject[]) {
+    if (!metaDescription) return this._metaDescription;
+    this._metaDescription = metaDescription;
     return this;
   }
 
-  themeParameters(): ThemeParameterWebsite[];
-  themeParameters(themeParameters: ThemeParameterWebsite[]): this;
-  themeParameters(themeParameters?: ThemeParameterWebsite[]) {
-    if (!themeParameters) return this._themeParameters;
-    this._themeParameters = themeParameters;
+  content(): slateContentObject[];
+  content(content: slateContentObject[]): this;
+  content(content?: slateContentObject[]) {
+    if (!content) return this._content;
+    this._content = content;
     return this;
   }
 
-  expiresAt(): string;
-  expiresAt(expiresAt: string): this;
-  expiresAt(expiresAt?: string) {
-    if (!expiresAt) return this._expiresAt;
-    this._expiresAt = expiresAt;
+  userId(): number;
+  userId(userId: number): this;
+  userId(userId?: number) {
+    if (!userId) return this._userId;
+    this._userId = userId;
     return this;
   }
 
-  build(): Website {
-    return new Website(this);
+  createdAt(): string;
+  createdAt(createdAt: string): this;
+  createdAt(createdAt?: string) {
+    if (!createdAt) return this._createdAt;
+    this._createdAt = createdAt;
+    return this;
+  }
+
+  updatedAt(): string;
+  updatedAt(updatedAt: string): this;
+  updatedAt(updatedAt?: string) {
+    if (!updatedAt) return this._updatedAt;
+    this._updatedAt = updatedAt;
+    return this;
+  }
+
+  build(): Post {
+    return new Post(this);
   }
 }
