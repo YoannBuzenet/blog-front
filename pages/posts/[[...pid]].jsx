@@ -10,15 +10,23 @@ export async function getServerSideProps({ req, query, params }) {
   // TODO : gérer si 0 article correspond
   // Demander le post par le nom pour SEO purpose ?
   const jsonPost = await getOnePost(pid);
-  const post = JSONParseAllProps(jsonPost);
+  const postParsed = JSONParseAllProps(jsonPost);
 
-  return { props: { post } };
+  return { props: { postParsed } };
 }
 
-const onePost = ({ post }) => {
-  //TODO -> passer l'objet en Post
+const onePost = ({ postParsed }) => {
+  const post = Post.builder()
+    .id(postParsed.id)
+    .title(postParsed.title)
+    .metaDescription(postParsed.metaDescription)
+    .shortDescription(postParsed.shortDescription)
+    .content(postParsed.content)
+    .userId(postParsed.UserId)
+    .createdAt(postParsed.createdAt)
+    .updatedAt(postParsed.updatedAt)
+    .build();
 
-  console.log("post reçu", post);
   return (
     <div className="container">
       <h1 className={genericTextStyle.title}>
