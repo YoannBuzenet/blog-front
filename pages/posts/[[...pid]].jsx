@@ -2,6 +2,7 @@ import DisplayHTML from "../../components/generic/wysiwyg/DisplayHTML";
 import { getOnePost } from "../../services/api/Post";
 import { JSONParseAllProps } from "../../services/utils";
 import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
+import { Post } from "../../domain/post/Post";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -14,7 +15,9 @@ export async function getServerSideProps({ req, query, params }) {
   return { props: { post } };
 }
 
-const Post = ({ post }) => {
+const onePost = ({ post }) => {
+  //TODO -> passer l'objet en Post
+
   console.log("post reçu", post);
   return (
     <div className="container">
@@ -31,4 +34,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default onePost;

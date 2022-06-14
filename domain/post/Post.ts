@@ -16,10 +16,38 @@ export class Post {
 
   constructor(builder: PostBuilder) {
     this._id = builder.id();
+    this._title = builder.title();
+    this._shortDescription = builder.shortDescription();
+    this._metaDescription = builder.metaDescription();
+    this._content = builder.content();
+    this._userId = builder.userId();
+    this._createdAt = builder.createdAt();
+    this._updatedAt = builder.updatedAt();
   }
 
   get id() {
     return this._id;
+  }
+  get title() {
+    return this._title;
+  }
+  get metaDescription() {
+    return this._metaDescription;
+  }
+  get shortDescription() {
+    return this._shortDescription;
+  }
+  get content() {
+    return this._content;
+  }
+  get userId() {
+    return this._userId;
+  }
+  get createdAt() {
+    return this._createdAt;
+  }
+  get updatedAt() {
+    return this._updatedAt;
   }
 
   static builder(): PostBuilder {
