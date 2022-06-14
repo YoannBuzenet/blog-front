@@ -21,10 +21,12 @@ const Post = ({ post }) => {
       <h1 className={genericTextStyle.title}>
         <DisplayHTML slateText={post?.title} />
       </h1>
-      <p className={genericTextStyle.articleDescription}>
+      <div className={genericTextStyle.articleDescription}>
         <DisplayHTML slateText={post?.shortDescription} />
-      </p>
-      <p>Ceci est le contenu du Post</p>
+      </div>
+      <div className={genericTextStyle.content}>
+        <DisplayHTML slateText={post?.content} />
+      </div>
     </div>
   );
 };
