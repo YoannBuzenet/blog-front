@@ -1,8 +1,9 @@
 ### TODO
 
-- Page d'accueil qui présente les posts
-- Page next qui chope le post en détail et le présente viteuf
+- Créer une classe pour le post et l'exporter
+- Instancier les objets quand on les reçoit du back
 - Mettre le title, short description et content non null en DB/dans le WYSIWYG
+- Mettre du style sur la page du post et sur la home
 
 ### Un peu plus tard
 
