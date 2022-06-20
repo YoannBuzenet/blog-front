@@ -9,3 +9,14 @@
   height: var(--height-nav-bar);
   border-bottom: 1px solid rgb(235, 232, 232);
 }
+
+.navBarDisplay {
+  display: flex;
+  height: 100%;
+}
+
+.navBarDisplay > div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
