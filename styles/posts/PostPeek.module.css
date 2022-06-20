@@ -1,4 +1,5 @@
 .post {
   margin: 20px 10px;
   width: 250px;
+  cursor: pointer;
 }
