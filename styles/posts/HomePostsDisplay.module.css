@@ -1,0 +1,11 @@
+.firstLine {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.secondLine {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}

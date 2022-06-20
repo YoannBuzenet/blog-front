@@ -1,5 +1,6 @@
 import Head from "next/head";
 import NavBar from "../components/Navbar/NavBar";
+import HomePostsDisplay from "../components/posts/HomePostsDisplay";
 import PostPeek from "../components/posts/PostPeek";
 import { getAllPosts } from "../services/api/post";
 import styles from "../styles/Home.module.css";
@@ -7,10 +8,10 @@ import styles from "../styles/Home.module.css";
 export async function getServerSideProps({ req }) {
   const resp = await getAllPosts();
 
-  return { props: { pageData: resp } };
+  return { props: { posts: resp } };
 }
 
-export default function Home({ pageData }) {
+export default function Home({ posts }) {
   return (
     <div className="container">
       <Head>
@@ -21,10 +22,7 @@ export default function Home({ pageData }) {
       <NavBar />
 
       <main className="main belowNavbar">
-        <h1 className="title">Le blog</h1>
-        {pageData.map((post, index) => (
-          <PostPeek post={post} key={index} />
-        ))}
+        <HomePostsDisplay posts={posts} />
       </main>
 
       <footer className="footer"></footer>
