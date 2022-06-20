@@ -31,7 +31,7 @@ const onePost = ({ postParsed }) => {
   return (
     <>
       <NavBar />
-      <div className="container">
+      <div className="container belowNavbar">
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />
         </h1>

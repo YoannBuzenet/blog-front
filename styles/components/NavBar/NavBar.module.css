@@ -1,8 +1,11 @@
+@import "/styles/generic/globals.scss";
+
 .navBarContainer {
   position: fixed;
+  background-color: white;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  background-color: aliceblue;
+  height: var(--height-nav-bar);
+  border-bottom: 1px solid rgb(235, 232, 232);
 }

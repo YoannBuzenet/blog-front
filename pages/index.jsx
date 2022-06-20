@@ -20,7 +20,7 @@ export default function Home({ pageData }) {
       </Head>
       <NavBar />
 
-      <main className="main">
+      <main className="main belowNavbar">
         <h1 className="title">Le blog</h1>
         {pageData.map((post, index) => (
           <PostPeek post={post} key={index} />

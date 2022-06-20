@@ -1,6 +1,6 @@
 :root {
   --border-radius: 5px;
-  --height-nav-bar: 53px;
+  --height-nav-bar: 50px;
 }
 
 html,
@@ -54,6 +54,10 @@ div.activeMenu {
 .container {
   max-width: 60%;
   margin: auto;
+}
+
+.belowNavbar {
+  margin-top: var(--height-nav-bar);
 }
 
 .title a:hover,
