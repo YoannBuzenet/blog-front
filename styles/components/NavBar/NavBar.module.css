@@ -13,10 +13,16 @@
 .navBarDisplay {
   display: flex;
   height: 100%;
+  width: var(--general-container-width);
+  margin: auto;
 }
 
 .navBarDisplay > div {
   width: 50%;
   display: flex;
   align-items: center;
+}
+
+.rightPart {
+  justify-content: flex-end;
 }

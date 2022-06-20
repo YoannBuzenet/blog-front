@@ -7,7 +7,7 @@ const NavBar = () => {
         <div>
           <p>Navbar</p>
         </div>
-        <div>
+        <div className={style.rightPart}>
           <p>Menu</p>
         </div>
       </div>

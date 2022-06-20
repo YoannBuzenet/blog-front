@@ -1,6 +1,8 @@
 :root {
   --border-radius: 5px;
   --height-nav-bar: 50px;
+  --general-container-width: 60%;
+  --page-container-width: 80%;
 }
 
 html,
@@ -17,6 +19,16 @@ p {
   box-sizing: border-box;
 }
 
+p,
+span {
+  font-size: 1.6rem;
+}
+
+.wysiwygDisplay p,
+.wysiwygDisplay span {
+  font-size: inherit;
+}
+
 .globalPadding {
   padding: 20px;
 }
@@ -27,7 +39,7 @@ div.activeMenu {
 
 // Content in pages
 .contentPageContainer {
-  width: 80%;
+  width: var(--page-container-width);
   margin: 0 auto;
 }
 
@@ -52,12 +64,12 @@ div.activeMenu {
 }
 
 .container {
-  max-width: 60%;
+  max-width: var(--general-container-width);
   margin: auto;
 }
 
 .belowNavbar {
-  margin-top: var(--height-nav-bar);
+  margin-top: calc(var(--height-nav-bar) + 20px);
 }
 
 .title a:hover,
