@@ -3,6 +3,10 @@
   justify-content: space-evenly;
 }
 
+.firstLine p {
+  font-size: 1.6rem;
+}
+
 .secondLine {
   width: 100%;
   display: flex;

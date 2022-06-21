@@ -1,5 +1,7 @@
 import PostPeek from "./PostPeek";
 import style from "../../styles/posts/HomePostsDisplay.module.css";
+import HomeMainPost from "./HomeMainPost";
+import HomeSecondPost from "./HomeSecondPost";
 
 // Display custom pour la homepage
 const HomePostsDisplay = ({ posts }) => {
@@ -8,9 +10,9 @@ const HomePostsDisplay = ({ posts }) => {
       <div className={style.firstLine}>
         {posts.map((post, index) => {
           if (index === 0) {
-            return <p>Post 1</p>;
+            return <HomeMainPost post={post} />;
           } else if (index === 1 || index === 2) {
-            return <p>Post n°{index}</p>;
+            return <HomeSecondPost index={index} post={post} />;
           }
         })}
       </div>
