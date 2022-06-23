@@ -2,6 +2,7 @@ import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 import { format } from "date-fns";
 import style from "../../styles/posts/PostPeek.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const PostPeek = ({ post }) => {
   console.log("mon post", post);
@@ -12,7 +13,13 @@ const PostPeek = ({ post }) => {
   return (
     <Link href={`/posts/${post.id}`} passHref>
       <div className={style.post}>
-        <img src="https://via.placeholder.com/100" />
+        <div style={{ position: "relative", height: "100%", width: "100%" }}>
+          <Image
+            src="https://via.placeholder.com/350.png"
+            alt="Landscape picture"
+            layout="fill"
+          />
+        </div>
         <DisplayHTML slateText={post.title} />
         <p>Short description</p>
         <DisplayHTML slateText={post.shortDescription} />
