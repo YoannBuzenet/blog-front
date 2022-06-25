@@ -1,6 +1,7 @@
 .firstLine {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin: 2rem 0;
 }
 
 .firstLine p {

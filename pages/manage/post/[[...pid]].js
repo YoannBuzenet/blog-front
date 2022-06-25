@@ -35,7 +35,7 @@ export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
   console.log("pid !== undefined", pid === undefined);
 
-  const isCreationInit = pid === undefined;
+  let isCreationInit = pid === undefined;
 
   let page = {};
 

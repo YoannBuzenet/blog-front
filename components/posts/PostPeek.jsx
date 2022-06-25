@@ -13,11 +13,12 @@ const PostPeek = ({ post }) => {
   return (
     <Link href={`/posts/${post.id}`} passHref>
       <div className={style.post}>
-        <div style={{ position: "relative", height: "100%", width: "100%" }}>
+        <div>
           <Image
             src="https://via.placeholder.com/350.png"
             alt="Landscape picture"
-            layout="fill"
+            width={"350px"}
+            height={"250px"}
           />
         </div>
         <DisplayHTML slateText={post.title} />
