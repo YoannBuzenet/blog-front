@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import style from "../../styles/posts/HomeMainPost.module.css";
+import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 
 const HomeMainPost = ({ post }) => {
   return (
@@ -15,7 +16,9 @@ const HomeMainPost = ({ post }) => {
               height={"200px"}
             />
           </div>
-          <p>Main Post</p>
+          <div className={style.articleDescription}>
+            <DisplayHTML slateText={post?.shortDescription} />
+          </div>
         </div>
       </Link>
     </div>
