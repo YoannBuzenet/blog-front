@@ -11,6 +11,7 @@ export class Post {
   private readonly _metaDescription: slateContentObject[];
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
+  private readonly _isScoop: boolean;
   private readonly _createdAt: string;
   private readonly _updatedAt: string;
 
@@ -43,6 +44,9 @@ export class Post {
   get userId() {
     return this._userId;
   }
+  get isScoop() {
+    return this._isScoop;
+  }
   get createdAt() {
     return this._createdAt;
   }
@@ -62,6 +66,7 @@ class PostBuilder {
   private _metaDescription: slateContentObject[];
   private _content: slateContentObject[];
   private _userId: number;
+  private _isScoop: boolean;
   private _createdAt: string;
   private _updatedAt: string;
 
@@ -110,6 +115,14 @@ class PostBuilder {
   userId(userId?: number) {
     if (!userId) return this._userId;
     this._userId = userId;
+    return this;
+  }
+
+  isScoop(): boolean;
+  isScoop(isScoop: boolean): this;
+  isScoop(isScoop?: boolean) {
+    if (!isScoop) return this._isScoop;
+    this._isScoop = isScoop;
     return this;
   }
 
