@@ -1,9 +1,23 @@
 .wysiwygDisplay p,
 .wysiwygDisplay span {
   font-size: inherit;
+  line-height: 2.8rem;
 }
 
 .wysiwygDisplay p {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+}
+
+.articleDescription .wysiwygDisplay p {
+  line-height: 3rem;
+}
+
+.wysiwygDisplay pre {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  display: inline;
+  background-color: var(--black-075);
+  border-radius: var(--border-radius);
 }

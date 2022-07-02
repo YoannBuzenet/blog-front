@@ -46,7 +46,9 @@ const onePost = ({ postParsed }) => {
             height={"350px"}
           />
         </div>
-        <div className={genericTextStyle.articleDescription}>
+        <div
+          className={`${genericTextStyle.articleDescription} articleDescription`}
+        >
           <DisplayHTML slateText={post?.shortDescription} />
         </div>
         <div className={genericTextStyle.content}>

@@ -1,11 +1,17 @@
 .title {
-  text-transform: capitalize;
+  margin-top: 10rem;
+  margin-bottom: 6rem;
   font-family: "The Antiqua B", Georgia, Droid-serif, serif;
   font-size: 5.4rem;
   line-height: 1.11;
   font-weight: 500;
   color: #2a303b;
   -webkit-font-smoothing: antialiased;
+}
+
+.titleScoop {
+  text-align: center;
+  font-size: 8rem;
 }
 
 .articleDescription {
@@ -17,6 +23,10 @@
   margin-bottom: 0;
   margin: 1.6rem 0;
   color: #2a303b;
+}
+
+.articleDescriptionScoop {
+  font-weight: 600;
 }
 
 .content {
