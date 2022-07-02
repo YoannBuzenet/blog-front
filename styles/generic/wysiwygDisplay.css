@@ -1,0 +1,9 @@
+.wysiwygDisplay p,
+.wysiwygDisplay span {
+  font-size: inherit;
+}
+
+.wysiwygDisplay p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

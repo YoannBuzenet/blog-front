@@ -4,7 +4,7 @@ import style from "../../styles/components/NavBar/NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.navBarContainer}>
-      <div className={style.navBarDisplay}>
+      <div className={`${style.navBarDisplay} container`}>
         <div>
           <p>
             <Link href="/">Home</Link>
