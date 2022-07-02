@@ -17,7 +17,7 @@ const HomeSecondPost = ({ post, index }) => {
             />
           </div>
           <div className={style.articleDescription}>
-            <DisplayHTML slateText={post?.shortDescription} />
+            <DisplayHTML slateText={post?.title} />
           </div>
         </div>
       </Link>

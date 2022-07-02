@@ -24,3 +24,10 @@
   color: #383f4e;
   font-family: "The Antiqua B", Georgia, Droid-serif, serif;
 }
+
+/* On screens that are 768px or less*/
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+}

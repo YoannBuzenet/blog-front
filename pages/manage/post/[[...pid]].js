@@ -13,7 +13,7 @@ import {
 } from "../../../services/utils";
 import { useRouter } from "next/router";
 import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
-import { getOnePost } from "../../../services/api/Post";
+import { getOnePost } from "../../../services/api/post";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check

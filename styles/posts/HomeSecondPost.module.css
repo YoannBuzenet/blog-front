@@ -7,4 +7,9 @@
 }
 
 .articleDescription {
+  margin-top: 2rem;
+}
+
+.articleDescription p {
+  font-size: 2rem;
 }

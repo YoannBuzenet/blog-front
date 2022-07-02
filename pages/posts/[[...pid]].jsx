@@ -1,9 +1,12 @@
 import DisplayHTML from "../../components/generic/wysiwyg/DisplayHTML";
-import { getOnePost } from "../../services/api/Post";
+import { getOnePost } from "../../services/api/post";
 import { JSONParseAllProps } from "../../services/utils";
 import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../domain/post/Post";
 import NavBar from "../../components/Navbar/NavBar";
+import style from "../../styles/posts/PostPage.module.css";
+import Image from "next/image";
+import Footer from "../../components/Footer/Footer";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -35,6 +38,14 @@ const onePost = ({ postParsed }) => {
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />
         </h1>
+        <div className={style.imageContainer}>
+          <Image
+            src="https://via.placeholder.com/350.png"
+            alt="Landscape picture"
+            width={"700px"}
+            height={"350px"}
+          />
+        </div>
         <div className={genericTextStyle.articleDescription}>
           <DisplayHTML slateText={post?.shortDescription} />
         </div>
@@ -42,6 +53,7 @@ const onePost = ({ postParsed }) => {
           <DisplayHTML slateText={post?.content} />
         </div>
       </div>
+      <Footer />
     </>
   );
 };
