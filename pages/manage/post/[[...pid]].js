@@ -77,6 +77,16 @@ const PostPage = ({ page, isCreationInit }) => {
   const [hasStateChanged, setHasStateChanged] = useState(false);
 
   console.log("page state", pageState);
+  console.log("page sate stringifié", JSON.stringify(pageState.content));
+  console.log(
+    "pageState.metaDescription stringifié",
+    JSON.stringify(pageState.metaDescription)
+  );
+  console.log("pageState.title stringifié", JSON.stringify(pageState.title));
+  console.log(
+    "shortDescription stringifié",
+    JSON.stringify(pageState.shortDescription)
+  );
   console.log("is creation ?", isCreation);
 
   const handleChangePage = (value, field) => {

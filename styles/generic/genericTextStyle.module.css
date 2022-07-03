@@ -3,10 +3,14 @@
   margin-bottom: 6rem;
   font-family: "The Antiqua B", Georgia, Droid-serif, serif;
   font-size: 5.4rem;
-  line-height: 1.11;
   font-weight: 500;
   color: #2a303b;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Par le biais du WYSIWYG, les h1 encapsulent des <p> */
+h1.title p {
+  line-height: 0.9;
 }
 
 .titleScoop {

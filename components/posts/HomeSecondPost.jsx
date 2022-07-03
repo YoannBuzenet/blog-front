@@ -8,7 +8,7 @@ const HomeSecondPost = ({ post, index }) => {
     <div className={style.container}>
       <Link href={`/posts/${post.id}`} passHref>
         <div>
-          <div>
+          <div className={style.imageContainer}>
             <Image
               src="https://via.placeholder.com/350.png"
               alt="Landscape picture"

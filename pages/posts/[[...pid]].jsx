@@ -26,6 +26,7 @@ const onePost = ({ postParsed }) => {
     .metaDescription(postParsed.metaDescription)
     .shortDescription(postParsed.shortDescription)
     .content(postParsed.content)
+    .isScoop(postParsed.isScoop)
     .userId(postParsed.UserId)
     .createdAt(postParsed.createdAt)
     .updatedAt(postParsed.updatedAt)
