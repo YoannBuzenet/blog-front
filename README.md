@@ -1,11 +1,15 @@
 ### TODO
 
+- Trouver la prochaine étape
 - Quand on aura les vraies images, bien sizer les images sur la home
 
 ### Un peu plus tard
 
+- Gestion des images (serveur, UI, lib pour gérer les images VS un tru à la mano)
 - Users
 - Levels d'accès
+- Tags
+- Menu
 
 ### Plus tard
 
