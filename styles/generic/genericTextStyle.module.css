@@ -8,11 +8,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Par le biais du WYSIWYG, les h1 encapsulent des <p> */
-h1.title p {
-  line-height: 0.9;
-}
-
 .titleScoop {
   text-align: center;
   font-size: 8rem;

@@ -1,6 +1,7 @@
 .container {
   min-width: 250px;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .imageContainer {

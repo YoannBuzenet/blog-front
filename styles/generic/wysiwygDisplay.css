@@ -8,7 +8,14 @@
   margin-top: 1rem;
 }
 
+/* Par le biais du WYSIWYG, les h1 encapsulent des <p> */
+h1 .wysiwygDisplay p {
+  line-height: 0.9;
+}
+
 .articleDescription .wysiwygDisplay p {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
   line-height: 3rem;
 }
 

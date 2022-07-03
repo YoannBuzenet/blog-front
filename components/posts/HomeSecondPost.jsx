@@ -12,7 +12,7 @@ const HomeSecondPost = ({ post, index }) => {
             <Image
               src="https://via.placeholder.com/350.png"
               alt="Landscape picture"
-              width={"200px"}
+              width={"250px"}
               height={"150px"}
             />
           </div>
