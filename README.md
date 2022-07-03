@@ -10,6 +10,9 @@
 - Levels d'accès
 - Tags
 - Menu
+- Remplir le footer
+- Commentaires !
+- Gérer le multi langues  
 
 ### Plus tard
 
