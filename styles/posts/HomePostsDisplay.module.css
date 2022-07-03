@@ -14,3 +14,10 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+
+/* On screens that are 768px or less*/
+@media screen and (max-width: 768px) {
+  .firstLine {
+    flex-direction: column;
+  }
+}

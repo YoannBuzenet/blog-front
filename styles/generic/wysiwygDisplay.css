@@ -28,3 +28,11 @@ h1 .wysiwygDisplay p {
   background-color: var(--black-075);
   border-radius: var(--border-radius);
 }
+
+/* On screens that are 768px or less*/
+@media screen and (max-width: 768px) {
+  .articleDescription .wysiwygDisplay p {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+}
