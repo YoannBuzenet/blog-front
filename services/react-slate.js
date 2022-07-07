@@ -49,4 +49,10 @@ function wrapJSONArrayReactSlate(arrayOfObjectsReactSlate) {
   return { children: arrayOfObjectsReactSlate };
 }
 
-export { serialize, wrapJSONArrayReactSlate };
+function calculateLengthOfSimpleField(simpleFieldObject) {
+  const stringToCheck = simpleFieldObject?.[0]?.children?.[0]?.text;
+  console.log("ok", stringToCheck.length);
+  return stringToCheck.length;
+}
+
+export { serialize, wrapJSONArrayReactSlate, calculateLengthOfSimpleField };

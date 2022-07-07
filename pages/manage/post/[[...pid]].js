@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/router";
 import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
 import { getOnePost } from "../../../services/api/post";
+import { calculateLengthOfSimpleField } from "../../../services/react-slate";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -94,6 +95,8 @@ const PostPage = ({ page, isCreationInit }) => {
     setPageState({ ...pageState, [field]: value });
   };
 
+  const showError = calculateLengthOfSimpleField(pageState.title) === 0;
+
   return (
     <BackOfficeLayout>
       <SubLayoutRight
@@ -129,7 +132,7 @@ const PostPage = ({ page, isCreationInit }) => {
                   setValue={handleChangePage}
                   title="Le titre de votre page, qui apparait sur l'onglet de votre navigateur."
                   field="title"
-                  showError={true}
+                  showError={showError}
                 />
                 <SimpleField
                   value={pageState.shortDescription}

@@ -9,6 +9,7 @@ import {
 } from "../../../../services/utils";
 import { toast } from "react-toastify";
 import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
+import { calculateLengthOfSimpleField } from "../../../../services/react-slate";
 
 const SubLayoutContentPage = ({
   hasStateChanged,
@@ -24,6 +25,7 @@ const SubLayoutContentPage = ({
 
   const httpVerb = isCreation ? "post" : "put";
   console.log("http verb", httpVerb);
+  const isErrorName = calculateLengthOfSimpleField(pageState.title) === 0;
 
   const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
@@ -80,7 +82,7 @@ const SubLayoutContentPage = ({
         <BasicButton
           text="Sauvegarder"
           color={hasStateChanged ? "primary" : "secondary"}
-          isDisabled={!hasStateChanged && pageState.title.length > 0}
+          isDisabled={!hasStateChanged || isErrorName}
           handleClick={savePage}
           isLoading={isLoading}
           iconToDisplay="save"
