@@ -98,6 +98,9 @@
 .wysiwyg_container.plainText {
   padding: 1rem;
 }
+.wysiwyg_container.plainText.isError {
+  border: 3px solid red;
+}
 
 .wysiwygDisplay {
   blockquote {

@@ -1,7 +1,11 @@
 ### TODO
 
-- Trouver la prochaine étape
+- Back : créer un article sur un title au lieu d'un nombre
+- Back : renvoyer une erreur parsable par le front sur l'endpoint post
+- Indiquer la langue dans WYS
+- Checker les props des modeles Post(langue, urlVO, etc), Image(choses à retirer, credits à add)
 - Quand on aura les vraies images, bien sizer les images sur la home
+- Créer une fonction de gestion des erreurs et message d'erreur (à la isValid de courtage) qui renvoie le bon string à afficher en fonction du type d'erreur
 
 ### Un peu plus tard
 
@@ -12,7 +16,7 @@
 - Menu
 - Remplir le footer
 - Commentaires !
-- Gérer le multi langues  
+- Gérer le multi langues
 
 ### Plus tard
 

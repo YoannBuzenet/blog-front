@@ -108,7 +108,7 @@ const PostPage = ({ page, isCreationInit }) => {
         <div className="contentPageContainer">
           {page && (
             <div>
-              <h1>{capitalizeFirstLetter(page?.name)}</h1>
+              <h1>{capitalizeFirstLetter(pageState?.name)}</h1>
               <div>
                 <RichTextExample
                   value={pageState.content}
@@ -129,6 +129,7 @@ const PostPage = ({ page, isCreationInit }) => {
                   setValue={handleChangePage}
                   title="Le titre de votre page, qui apparait sur l'onglet de votre navigateur."
                   field="title"
+                  showError={true}
                 />
                 <SimpleField
                   value={pageState.shortDescription}

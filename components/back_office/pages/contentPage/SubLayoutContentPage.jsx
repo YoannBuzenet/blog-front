@@ -80,7 +80,7 @@ const SubLayoutContentPage = ({
         <BasicButton
           text="Sauvegarder"
           color={hasStateChanged ? "primary" : "secondary"}
-          isDisabled={!hasStateChanged}
+          isDisabled={!hasStateChanged && pageState.title.length > 0}
           handleClick={savePage}
           isLoading={isLoading}
           iconToDisplay="save"
