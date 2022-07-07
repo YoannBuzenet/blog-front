@@ -1,7 +1,5 @@
 ### TODO
 
-- Back : créer un article sur un title au lieu d'un nombre
-- Back : renvoyer une erreur parsable par le front sur l'endpoint post
 - Indiquer la langue dans WYS
 - Checker les props des modeles Post(langue, urlVO, etc), Image(choses à retirer, credits à add)
 - Quand on aura les vraies images, bien sizer les images sur la home
