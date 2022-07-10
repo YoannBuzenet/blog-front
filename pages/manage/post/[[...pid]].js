@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
 import { getOnePost } from "../../../services/api/post";
 import { calculateLengthOfSimpleField } from "../../../services/react-slate";
+import ImageManager from "../../../module/image-manager";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check

@@ -1,6 +1,6 @@
 import React from "react";
 
 export default React.createContext({
-  isDisplayedImageManager: {},
+  isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},
 });

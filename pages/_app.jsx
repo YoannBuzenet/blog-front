@@ -16,6 +16,7 @@ import { customMUITheme } from "../styles/Mui/theme";
 import { ToastContainer, toast } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
+import ImageManagerContainer from "../module/image-manager-container";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -23,15 +24,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   );
 
   return (
-    <ThemeProvider theme={customMUITheme}>
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
-        <ToastContainer
-          position={toast.POSITION.TOP_CENTER}
-          autoClose={10000}
-        />
-      </SessionProvider>
-    </ThemeProvider>
+    <ImageManagerContainer>
+      <ThemeProvider theme={customMUITheme}>
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+          <ToastContainer
+            position={toast.POSITION.TOP_CENTER}
+            autoClose={10000}
+          />
+        </SessionProvider>
+      </ThemeProvider>
+    </ImageManagerContainer>
   );
 }
 

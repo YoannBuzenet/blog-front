@@ -20,6 +20,7 @@ import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/basel
 import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
+import { useImageManager } from "../../../module/hooks/hooks";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -30,14 +31,18 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const handleClickImageModule = (e) => {
-  console.log("prout");
+const handleClickImageModule = (e, ok, ok2) => {
+  console.log("e", e);
+  console.log("e", ok);
+  console.log("e", ok2);
 };
 
 const RichText = ({ value, setValue, field }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  const { isDisplayedImageManager, setIsDisplayedImageManager } =
+    useImageManager();
 
   return (
     <div
@@ -96,7 +101,13 @@ const RichText = ({ value, setValue, field }) => {
             title="Créer une liste à puce"
           />
           <CustomButton
-            handleClick={handleClickImageModule}
+            handleClick={(e) =>
+              handleClickImageModule(
+                e,
+                isDisplayedImageManager,
+                setIsDisplayedImageManager
+              )
+            }
             SvgIcon={Image_SVG}
             title="Images"
           />
