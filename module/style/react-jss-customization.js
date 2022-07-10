@@ -44,7 +44,8 @@ export const useCustomizedStyle = () =>
     closeButton: {
       position: "absolute",
       cursor: "pointer",
-      right: "32px",
+      top: "0px",
+      right: "0px",
       width: "32px",
       height: "32px",
       opacity: "0.3",

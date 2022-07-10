@@ -12,21 +12,23 @@ const ImageManager = () => {
   console.log("pouet", classes.imageContainer);
 
   return (
-    <div className={classes.imageContainer}>
+    <>
       {!isDisplayedImageManager && (
-        <>
-          <div className={classes.imageManagerContainer}>
-            <p>LA</p>
-            <div className={classes.closeButtonContainer}>
-              <div
-                onClick={() => console.log("ok")}
-                className={classes.closeButton}
-              ></div>
+        <div className={classes.imageContainer}>
+          <>
+            <div className={classes.imageManagerContainer}>
+              <p>LA</p>
+              <div className={classes.closeButtonContainer}>
+                <div
+                  onClick={() => setIsDisplayedImageManager(false)}
+                  className={classes.closeButton}
+                ></div>
+              </div>
             </div>
-          </div>
-        </>
+          </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
