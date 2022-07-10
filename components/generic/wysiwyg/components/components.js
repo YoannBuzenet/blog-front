@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from "react";
 import ReactDOM from "react-dom";
 import { css, cx } from "@emotion/css";

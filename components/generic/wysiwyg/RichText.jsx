@@ -17,6 +17,7 @@ import Looks_two from "../../../assets/svg/looks_two/baseline.svg";
 import Format_quote from "../../../assets/svg/format_quote/baseline.svg";
 import Format_list_numbered from "../../../assets/svg/format_list_numbered/baseline.svg";
 import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/baseline.svg";
+import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
 
@@ -28,6 +29,10 @@ const HOTKEYS = {
 };
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
+
+const handleClickImageModule = (e) => {
+  console.log("prout");
+};
 
 const RichText = ({ value, setValue, field }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
@@ -89,6 +94,11 @@ const RichText = ({ value, setValue, field }) => {
             format="bulleted-list"
             SvgIcon={Format_list_bulleted}
             title="Créer une liste à puce"
+          />
+          <CustomButton
+            handleClick={handleClickImageModule}
+            SvgIcon={Image_SVG}
+            title="Images"
           />
         </Toolbar>
         <Editable
@@ -249,5 +259,11 @@ const MarkButton = ({ format, SvgIcon, title }) => {
     </Button>
   );
 };
-
+const CustomButton = ({ handleClick, SvgIcon, title }) => {
+  return (
+    <Button onMouseDown={handleClick} title={title}>
+      <SvgIcon fill={colorsVariable.wysiwygLightGrey} />
+    </Button>
+  );
+};
 export default RichText;
