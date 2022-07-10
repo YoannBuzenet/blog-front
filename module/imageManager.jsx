@@ -1,23 +1,27 @@
 import { useContext } from "react";
 import ImageManagerContext from "./contexts/index";
-import { customizeStyle } from "./style/react-jss-customization";
+import { useCustomizedStyle } from "./style/react-jss-customization";
 
 // Lui va recevoir masse props overwritable
 const ImageManager = () => {
   const { isDisplayedImageManager, setIsDisplayedImageManager } =
     useContext(ImageManagerContext);
 
-  const classes = customizeStyle();
+  const classes = useCustomizedStyle()();
+
+  console.log("pouet", classes.imageContainer);
 
   return (
-    <div className={classes.myButton}>
-      {isDisplayedImageManager && <p>OK</p>}
-      {!isDisplayedImageManager && <p>PAS OK</p>}
+    <div className={classes.imageContainer}>
+      {!isDisplayedImageManager && (
+        <div className={classes.imageManagerContainer}>LA</div>
+      )}
     </div>
   );
 };
 
 export default ImageManager;
+// Faire marcher le css in js
 // Fenetre de base avec selecteur Upload / Gallerie
 //
 //

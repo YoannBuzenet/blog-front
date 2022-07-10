@@ -16,7 +16,7 @@ import { customMUITheme } from "../styles/Mui/theme";
 import { ToastContainer, toast } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
-import ImageManagerContainer from "../module/image-manager-container";
+import ImageManagerContainer from "../module/imageManagerContainer";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
