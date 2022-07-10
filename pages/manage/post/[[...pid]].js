@@ -120,7 +120,7 @@ const PostPage = ({ page, isCreationInit }) => {
                   field="content"
                 />
               </div>
-
+              <ImageManager />
               <div>
                 <SimpleField
                   value={pageState.metaDescription}
