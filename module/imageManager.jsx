@@ -15,6 +15,7 @@ const ImageManager = () => {
     <div className={classes.imageContainer}>
       {!isDisplayedImageManager && (
         <>
+          <a href="#" className={classes.closeButton}></a>
           <div className={classes.imageManagerContainer}>LA</div>
         </>
       )}
