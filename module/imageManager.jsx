@@ -14,14 +14,16 @@ const ImageManager = () => {
   return (
     <div className={classes.imageContainer}>
       {!isDisplayedImageManager && (
-        <div className={classes.imageManagerContainer}>LA</div>
+        <>
+          <div className={classes.imageManagerContainer}>LA</div>
+        </>
       )}
     </div>
   );
 };
 
 export default ImageManager;
-// Faire marcher le css in js
+// Comment intégrer des SVG ou Image ou CSS pour un module qui doit marcher sans webpack ?
 // Fenetre de base avec selecteur Upload / Gallerie
 //
 //

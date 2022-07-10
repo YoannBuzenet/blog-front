@@ -35,6 +35,12 @@ export const useCustomizedStyle = () =>
       width: "70%",
       height: "80%",
       borderRadius: "5px",
+      padding: "20px",
       backgroundColor: "red",
+    },
+    svg: {
+      zIndex: 10001,
+      //   color: "black",
+      fill: "black",
     },
   });
