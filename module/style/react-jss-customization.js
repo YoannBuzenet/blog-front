@@ -38,8 +38,12 @@ export const useCustomizedStyle = () =>
       padding: "20px",
       backgroundColor: "red",
     },
+    closeButtonContainer: {
+      position: "relative",
+    },
     closeButton: {
       position: "absolute",
+      cursor: "pointer",
       right: "32px",
       width: "32px",
       height: "32px",
