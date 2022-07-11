@@ -17,12 +17,35 @@ const ImageManager = () => {
         <div className={classes.imageContainer}>
           <>
             <div className={classes.imageManagerContainer}>
-              <p>LA</p>
-              <div className={classes.closeButtonContainer}>
-                <div
-                  onClick={() => setIsDisplayedImageManager(false)}
-                  className={classes.closeButton}
-                ></div>
+              <div className={classes.imageManagerContainer__top}>
+                <div className={classes.imageManagerContainer__top__left}></div>
+                <div className={classes.imageManagerContainer__top__right}>
+                  <div className={classes.closeButtonContainer}>
+                    <div
+                      onClick={() => setIsDisplayedImageManager(false)}
+                      className={classes.closeButton}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.imageManagerContainer__body}>
+                <div className={classes.imageManagerContainer__body__left}>
+                  <div
+                    className={
+                      classes.imageManagerContainer__body__left__titles
+                    }
+                  >
+                    <div>
+                      <p>Upload</p>
+                    </div>
+                    <div>
+                      <p>Galleries</p>
+                    </div>
+                  </div>
+                </div>
+                <div className={classes.imageManagerContainer__body__right}>
+                  <p>LA</p>
+                </div>
               </div>
             </div>
           </>

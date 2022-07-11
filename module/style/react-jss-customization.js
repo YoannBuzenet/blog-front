@@ -16,18 +16,6 @@ export const useCustomizedStyle = () =>
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "rgba(0, 0, 0, .4)",
-
-      //   margin: {
-      //     // jss-expand gives more readable syntax
-      //     top: 5, // jss-default-unit makes this 5px
-      //     right: 0,
-      //     bottom: 0,
-      //     left: "1rem",
-      //   },
-      //   "& span": {
-      //     // jss-nested applies this to a child span
-      //     fontWeight: "bold", // jss-camel-case turns this into 'font-weight'
-      //   },
     },
     imageManagerContainer: {
       position: "absolute",
@@ -36,7 +24,33 @@ export const useCustomizedStyle = () =>
       height: "80%",
       borderRadius: "5px",
       padding: "20px",
-      backgroundColor: "red",
+      backgroundColor: "rgba(242, 241, 239, 1)",
+    },
+    imageManagerContainer__top: {
+      display: "flex",
+      justifyContent: "center",
+    },
+    imageManagerContainer__top__left: { width: "50%" },
+    imageManagerContainer__top__right: {
+      width: "50%",
+    },
+    imageManagerContainer__body: {
+      display: "flex",
+      justifyContent: "center",
+      height: "100%",
+    },
+    imageManagerContainer__body__left: {
+      width: "20%",
+      borderRight: "1px solid black",
+    },
+    imageManagerContainer__body__right: {
+      width: "80%",
+    },
+    imageManagerContainer__body__left__titles: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
     closeButtonContainer: {
       position: "relative",
