@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ImageManagerContext from "./contexts/index";
 import { useCustomizedStyle } from "./style/react-jss-customization";
 
@@ -7,9 +7,9 @@ const ImageManager = () => {
   const { isDisplayedImageManager, setIsDisplayedImageManager } =
     useContext(ImageManagerContext);
 
-  const classes = useCustomizedStyle()();
+  const [screenDisplayed, setScreenDisplayed] = useState("upload");
 
-  console.log("pouet", classes.imageContainer);
+  const classes = useCustomizedStyle()();
 
   return (
     <>

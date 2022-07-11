@@ -47,10 +47,15 @@ export const useCustomizedStyle = () =>
       width: "80%",
     },
     imageManagerContainer__body__left__titles: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
+      marginTop: 20,
+      "& p": {
+        marginLeft: "30%",
+        marginTop: "10px",
+        cursor: "pointer",
+      },
+      "& p:hover": {
+        textDecoration: "underline",
+      },
     },
     closeButtonContainer: {
       position: "relative",
