@@ -35,16 +35,17 @@ const ImageManager = () => {
                       classes.imageManagerContainer__body__left__titles
                     }
                   >
-                    <div>
+                    <div onClick={() => setScreenDisplayed("upload")}>
                       <p>Upload</p>
                     </div>
-                    <div>
+                    <div onClick={() => setScreenDisplayed("gallery")}>
                       <p>Galleries</p>
                     </div>
                   </div>
                 </div>
                 <div className={classes.imageManagerContainer__body__right}>
-                  <p>LA</p>
+                  {screenDisplayed === "upload" && <p>Upload screen</p>}
+                  {screenDisplayed === "gallery" && <p>Galleries screen</p>}
                 </div>
               </div>
             </div>
