@@ -10,9 +10,9 @@ const HomePostsDisplay = ({ posts }) => {
       <div className={style.firstLine}>
         {posts.map((post, index) => {
           if (index === 0) {
-            return <HomeMainPost post={post} />;
+            return <HomeMainPost post={post} key={index} />;
           } else if (index === 1 || index === 2) {
-            return <HomeSecondPost index={index} post={post} />;
+            return <HomeSecondPost index={index} post={post} key={index} />;
           }
         })}
       </div>

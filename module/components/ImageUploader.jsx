@@ -1,7 +1,16 @@
+import { useCustomizedStyle } from "../style/imageUploader.js";
+
 const ImageUploader = () => {
+  const classes = useCustomizedStyle()();
   return (
     <>
       <p>Upload screen</p>
+      <div>
+        <div className={classes.uploadBtnWrapper}>
+          <button className={classes.btn}>Upload a file</button>
+          <input type="file" name="myfile" />
+        </div>
+      </div>
     </>
   );
 };
