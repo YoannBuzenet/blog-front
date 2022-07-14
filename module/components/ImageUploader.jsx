@@ -66,7 +66,10 @@ export default ImageUploader;
 //
 //
 //
-// L'image uploader empeche l'image uploadée d'être trop grande (une résolution max !)
+// L'image uploader empeche l'image uploadée d'être trop grande à l'initialisation (une résolution max !)
 // L'image uploader permet d'afficher le resizer une fois le fichier choisi
-// L'image uploader permet d'afficher le bouton Upload
+// L'image uploader permet de forcer une size précise de l'image
+// L'image uploader permet de zoom/rotate
+// L'image uploader permet upload le fichier et envoie les informations à l'endpoint back
 // L'image uploader permet d'executer la fonction de callBack sur succes d'upload
+// Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200
