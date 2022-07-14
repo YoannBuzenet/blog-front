@@ -66,7 +66,6 @@ export default ImageUploader;
 //
 //
 //
-// Le display des boutons et de la zone de droite doit faire propre
 // L'image uploader permet de forcer une size précise de l'image
 // L'image uploader permet de zoom/rotate
 // L'image uploader permet upload le fichier et envoie les informations à l'endpoint back

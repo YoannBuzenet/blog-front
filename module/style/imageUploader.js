@@ -5,10 +5,13 @@ import { createUseStyles } from "react-jss";
 export const useCustomizedStyle = () =>
   createUseStyles({
     uploaded: {
-      height: "10%",
+      height: "25%",
       overflow: "scroll",
       display: "flex",
       justifyContent: "space-between",
+      "& input::-webkit-file-upload-button, & button": {
+        margin: "20px 0",
+      },
     },
     nonUploaded: {
       display: "flex",
