@@ -40,14 +40,14 @@ export const useCustomizedStyle = () =>
       height: "100%",
     },
     imageManagerContainer__body__left: {
-      width: "20%",
-
+      width: "15%",
+      height: "75%",
+      borderRight: "1px solid black",
       position: "fixed",
     },
     imageManagerContainer__body__right: {
       marginLeft: "20%",
       paddingLeft: "10px",
-      borderLeft: "1px solid black",
       display: "flex",
       justifyContent: "center",
     },
