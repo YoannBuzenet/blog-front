@@ -14,7 +14,7 @@ const ImageUploader = () => {
   };
 
   return (
-    <>
+    <div>
       <p>Upload screen</p>
       {documentUploaded && <CropImage src={documentUploaded} />}
       <div
@@ -33,7 +33,7 @@ const ImageUploader = () => {
           <button>UPLOAD</button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

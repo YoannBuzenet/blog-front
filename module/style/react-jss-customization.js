@@ -36,16 +36,20 @@ export const useCustomizedStyle = () =>
       width: "50%",
     },
     imageManagerContainer__body: {
-      display: "flex",
-      justifyContent: "center",
+      position: "relative",
       height: "100%",
     },
     imageManagerContainer__body__left: {
       width: "20%",
-      borderRight: "1px solid black",
+
+      position: "fixed",
     },
     imageManagerContainer__body__right: {
-      width: "80%",
+      marginLeft: "20%",
+      paddingLeft: "10px",
+      borderLeft: "1px solid black",
+      display: "flex",
+      justifyContent: "center",
     },
     imageManagerContainer__body__left__titles: {
       marginTop: 20,
