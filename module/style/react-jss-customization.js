@@ -6,10 +6,10 @@ import { createUseStyles } from "react-jss";
 export const useCustomizedStyle = () =>
   createUseStyles({
     imageContainer: {
-      position: "absolute",
+      position: "fixed",
       zIndex: 9999,
       top: 0,
-      bottom: 0,
+      height: "100vh",
       left: 0,
       right: 0,
       display: "flex",
@@ -25,6 +25,7 @@ export const useCustomizedStyle = () =>
       borderRadius: "5px",
       padding: "20px",
       backgroundColor: "rgba(242, 241, 239, 1)",
+      overflow: "scroll",
     },
     imageManagerContainer__top: {
       display: "flex",

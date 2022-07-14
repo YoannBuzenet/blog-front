@@ -20,7 +20,7 @@ const ImageUploader = () => {
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
       >
-        <div>
+        <div className={classes.inputContainer}>
           <input
             type="file"
             name="myfile"
@@ -29,7 +29,7 @@ const ImageUploader = () => {
             accept="image/png, image/jpeg"
           />
         </div>
-        <div>
+        <div className={classes.inputContainer}>
           <button>UPLOAD</button>
         </div>
       </div>
@@ -72,4 +72,4 @@ export default ImageUploader;
 // L'image uploader permet de zoom/rotate
 // L'image uploader permet upload le fichier et envoie les informations à l'endpoint back
 // L'image uploader permet d'executer la fonction de callBack sur succes d'upload
-// Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200
+// Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200 (mettre le snippet sur github pour aider)

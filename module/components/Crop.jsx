@@ -6,7 +6,7 @@ function CropImage({ src }) {
   console.log("crop", crop);
   return (
     <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
-      <img src={src} />
+      <img src={src} height={500} />
     </ReactCrop>
   );
 }
