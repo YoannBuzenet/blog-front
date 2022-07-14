@@ -2,10 +2,11 @@ import { useState } from "react";
 import ImageManagerContext from "./contexts/index";
 import ImageManager from "./imageManager";
 
-const ImageManagerContainer = ({ children }) => {
+const ImageManagerContainer = ({ children, aspectRatio }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
   const context = {
+    cropProperties: { aspectRatio },
     isDisplayedImageManager,
     setIsDisplayedImageManager,
   };
