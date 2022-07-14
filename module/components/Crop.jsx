@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactCrop from "react-image-crop";
 
-function Crop({ src }) {
+function CropImage({ src }) {
   const [crop, setCrop] = useState();
   return (
     <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
@@ -10,4 +10,4 @@ function Crop({ src }) {
   );
 }
 
-export default Crop;
+export default CropImage;

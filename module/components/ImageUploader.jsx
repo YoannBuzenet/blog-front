@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCustomizedStyle } from "../style/imageUploader.js";
+import CropImage from "./Crop.jsx";
 
 const ImageUploader = () => {
   const classes = useCustomizedStyle()();
@@ -15,11 +16,7 @@ const ImageUploader = () => {
   return (
     <>
       <p>Upload screen</p>
-      {documentUploaded && (
-        <div>
-          <img src={documentUploaded} />
-        </div>
-      )}
+      {documentUploaded && <CropImage src={documentUploaded} />}
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
       >
@@ -31,6 +28,9 @@ const ImageUploader = () => {
             onChange={handleChange}
             accept="image/png, image/jpeg"
           />
+        </div>
+        <div>
+          <button>UPLOAD</button>
         </div>
       </div>
     </>
