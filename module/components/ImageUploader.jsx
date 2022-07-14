@@ -15,7 +15,6 @@ const ImageUploader = () => {
 
   return (
     <div>
-      <p>Upload screen</p>
       {documentUploaded && <CropImage src={documentUploaded} />}
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
@@ -29,9 +28,11 @@ const ImageUploader = () => {
             accept="image/png, image/jpeg"
           />
         </div>
-        <div className={classes.inputContainer}>
-          <button>UPLOAD</button>
-        </div>
+        {documentUploaded && (
+          <div className={classes.inputContainer}>
+            <button className="customFileInput">UPLOAD</button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -7,6 +7,9 @@
 
 input.customFileInput::-webkit-file-upload-button {
   position: absolute;
+}
+input.customFileInput::-webkit-file-upload-button,
+button.customFileInput {
   padding: 20px 40px;
   background-color: peru;
   border: none;
@@ -20,7 +23,8 @@ input.customFileInput::-webkit-file-upload-button {
   font-size: 16px;
 }
 
-input.customFileInput::-webkit-file-upload-button:hover {
+input.customFileInput::-webkit-file-upload-button:hover,
+button.customFileInput:hover {
   background-color: #bd6e1f;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
