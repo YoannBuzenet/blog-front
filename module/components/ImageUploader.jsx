@@ -65,9 +65,7 @@ export default ImageUploader;
 //
 //
 //
-//
-// L'image uploader empeche l'image uploadée d'être trop grande à l'initialisation (une résolution max !)
-// L'image uploader permet d'afficher le resizer une fois le fichier choisi
+// Le display des boutons et de la zone de droite doit faire propre
 // L'image uploader permet de forcer une size précise de l'image
 // L'image uploader permet de zoom/rotate
 // L'image uploader permet upload le fichier et envoie les informations à l'endpoint back
