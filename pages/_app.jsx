@@ -18,6 +18,7 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
 import ImageManagerContainer from "../module/imageManagerContainer";
 import "react-image-crop/dist/ReactCrop.css";
+import "../module/style/style.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
