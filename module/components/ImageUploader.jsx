@@ -66,7 +66,6 @@ export default ImageUploader;
 //
 //
 //
-// L'image uploader permet de zoom/rotate
 // L'image uploader peut empecher d'upload si le crop n'a pas été fait (utiliser le callback de crop)
 // L'image uploader permet upload le fichier et envoie les informations à l'endpoint back
 // L'image uploader permet d'executer la fonction de callBack sur succes d'upload
