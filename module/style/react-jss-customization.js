@@ -47,6 +47,7 @@ export const useCustomizedStyle = () =>
     },
     imageManagerContainer__body__right: {
       marginLeft: "20%",
+      height: "100%",
       paddingLeft: "10px",
       display: "flex",
       justifyContent: "center",

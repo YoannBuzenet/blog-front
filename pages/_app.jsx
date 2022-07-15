@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   );
 
   return (
-    <ImageManagerContainer aspectRatio={2}>
+    <ImageManagerContainer cropAspectRatio={2}>
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
           <Component {...pageProps} />

@@ -66,9 +66,8 @@ export default ImageUploader;
 //
 //
 //
-// L'image uploader permet de forcer une size précise de l'image
-// L'image uploader permet si possible de ne pas lock la size
 // L'image uploader permet de zoom/rotate
+// L'image uploader peut empecher d'upload si le crop n'a pas été fait (utiliser le callback de crop)
 // L'image uploader permet upload le fichier et envoie les informations à l'endpoint back
 // L'image uploader permet d'executer la fonction de callBack sur succes d'upload
 // Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200 (mettre le snippet sur github pour aider)

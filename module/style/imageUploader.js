@@ -5,7 +5,6 @@ import { createUseStyles } from "react-jss";
 export const useCustomizedStyle = () =>
   createUseStyles({
     uploaded: {
-      height: "25%",
       overflow: "scroll",
       display: "flex",
       justifyContent: "space-between",
