@@ -3,8 +3,7 @@ import ReactCrop from "react-image-crop";
 import { useCustomizedStyle } from "../style/crop.js";
 import ImageManagerContext from "../contexts/index";
 
-function CropImage({ src }) {
-  const [crop, setCrop] = useState();
+function CropImage({ src, crop, setCrop }) {
   const { cropProperties } = useContext(ImageManagerContext);
 
   console.log("crop", crop);

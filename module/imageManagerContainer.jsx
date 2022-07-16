@@ -22,6 +22,9 @@ const ImageManagerContainer = ({
   cropRuleOfThirds,
   cropCircularCrop,
   urlUpload,
+  axiosHeaders,
+  onSuccessUpload,
+  onFailureupload,
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -45,7 +48,12 @@ const ImageManagerContainer = ({
       cropRuleOfThirds,
       cropCircularCrop,
     },
-    urlUpload,
+    uploadProperties: {
+      urlUpload,
+      axiosHeaders,
+      onSuccessUpload,
+      onFailureupload,
+    },
     isDisplayedImageManager,
     setIsDisplayedImageManager,
   };

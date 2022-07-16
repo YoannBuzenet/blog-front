@@ -7,8 +7,9 @@ import axios from "axios";
 const ImageUploader = () => {
   const classes = useCustomizedStyle()();
   const [documentUploaded, setDocumentUploaded] = useState(null);
+  const [crop, setCrop] = useState();
 
-  const { urlUpload } = useContext(ImageManagerContext);
+  const { uploadProperties } = useContext(ImageManagerContext);
 
   const handleChange = (event) => {
     const { target } = event;
@@ -18,16 +19,39 @@ const ImageUploader = () => {
   };
 
   const handleUpload = async (event) => {
+    // crop format example
+    // height: 173.25559997558594
+    // unit: "px"
+    // width: 346.5111999511719
+    // x: 139.39031982421875
+    // y: 37.63502502441406
+
     try {
-      const resp = await axios.post(urlUpload, "data", "config");
+      const resp = await axios.post(
+        uploadProperties.urlUpload,
+        crop,
+        uploadProperties.axiosHeaders
+      );
+
+      // Success callback function if defined
+      if (uploadProperties.onSuccessUpload) {
+        uploadProperties.onSuccessUpload(resp);
+      }
     } catch (e) {
-      console.log("Error while uploading picture. Error :", e);
+      // Failure callback function if defined
+      if (uploadProperties.onFailureupload) {
+        uploadProperties.onFailureupload(e);
+      } else {
+        console.log("Error while uploading picture. Error :", e);
+      }
     }
   };
 
   return (
     <div>
-      {documentUploaded && <CropImage src={documentUploaded} />}
+      {documentUploaded && (
+        <CropImage src={documentUploaded} crop={crop} setCrop={setCrop} />
+      )}
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
       >
@@ -80,11 +104,6 @@ export default ImageUploader;
 //
 //
 //
-// L'image uploader permet d'upload le fichier
-// -> permet un override de la config axios
-// -> envoie les informations à l'endpoint back
-// -> url en props qui recevra l'image avec les data du post
-// L'image uploader permet d'executer la fonction de callBack sur succes d'upload
 // Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200 (mettre le snippet sur github pour aider)
 // On passe sur la gallery (multi/mono select, pagination)
 // On peut choisir les modes à activer sur l'image manager
