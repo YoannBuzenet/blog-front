@@ -21,6 +21,7 @@ const ImageManagerContainer = ({
   cropRenderSelectionAddon,
   cropRuleOfThirds,
   cropCircularCrop,
+  urlUpload,
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -44,6 +45,7 @@ const ImageManagerContainer = ({
       cropRuleOfThirds,
       cropCircularCrop,
     },
+    urlUpload,
     isDisplayedImageManager,
     setIsDisplayedImageManager,
   };
