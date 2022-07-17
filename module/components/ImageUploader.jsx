@@ -93,36 +93,44 @@ const ImageUploader = () => {
         <div className={classes.fieldContainer}>
           {documentUploaded &&
             uploadProperties.imageFields.map((name, index) => (
-              <label key={index} htmlFor={name}>
-                {name}
+              <div key={index}>
+                <div>
+                  <label htmlFor={name}>{name}</label>
+                </div>
                 <input
                   id={name}
                   value={fields?.[name]}
                   onChange={(e) => handleChangeFields(e, name)}
                 />
-              </label>
+              </div>
             ))}
         </div>
-        <div className={classes.inputContainer}>
-          <input
-            type="file"
-            name="myfile"
-            className="customFileInput"
-            onChange={handleChange}
-            accept="image/png, image/jpeg"
-          />
-        </div>
-        {documentUploaded && (
+        <div className={classes.allInputs}>
           <div className={classes.inputContainer}>
-            <button
-              className="customFileInput"
-              onClick={handleUpload}
-              disabled={isUploadButtonDisabled()}
-            >
-              UPLOAD
-            </button>
+            <label htmlFor="uploadButton" className="customFileInput">
+              CHOOSE A FILE
+            </label>
+            <input
+              type="file"
+              name="myfile"
+              className="inputFile"
+              onChange={handleChange}
+              accept="image/png, image/jpeg"
+              id="uploadButton"
+            />
           </div>
-        )}
+          {documentUploaded && (
+            <div className={classes.inputContainer}>
+              <button
+                className="customFileInput"
+                onClick={handleUpload}
+                disabled={isUploadButtonDisabled()}
+              >
+                UPLOAD
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -151,8 +159,9 @@ export default ImageUploader;
 //
 //
 //
-//
+// NEXT
 // CSS des champs
+//
 //
 // Endpoint back
 // Gestion image avec les data de crop

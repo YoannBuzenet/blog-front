@@ -6,11 +6,6 @@ export const useCustomizedStyle = () =>
   createUseStyles({
     uploaded: {
       overflow: "scroll",
-      display: "flex",
-      justifyContent: "space-between",
-      "& input::-webkit-file-upload-button, & button": {
-        margin: "20px 0",
-      },
     },
     nonUploaded: {
       display: "flex",
@@ -18,7 +13,17 @@ export const useCustomizedStyle = () =>
       alignItems: "center",
       height: "100%",
     },
+    allInputs: {
+      display: "flex",
+      justifyContent: "space-between",
+      "& input::-webkit-file-upload-button, & button": {
+        margin: "20px 0",
+      },
+    },
     inputContainer: {
       position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
