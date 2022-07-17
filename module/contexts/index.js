@@ -25,6 +25,7 @@ export default React.createContext({
     axiosHeaders: {},
     onSuccessUpload: null,
     onFailureupload: null,
+    imageFields: ["name"],
   },
   isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},

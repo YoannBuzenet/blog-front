@@ -25,6 +25,7 @@ const ImageManagerContainer = ({
   axiosHeaders,
   onSuccessUpload,
   onFailureupload,
+  imageFields = ["name"],
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -53,6 +54,7 @@ const ImageManagerContainer = ({
       axiosHeaders,
       onSuccessUpload,
       onFailureupload,
+      imageFields,
     },
     isDisplayedImageManager,
     setIsDisplayedImageManager,

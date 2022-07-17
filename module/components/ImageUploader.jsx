@@ -11,11 +11,25 @@ const ImageUploader = () => {
 
   const { uploadProperties } = useContext(ImageManagerContext);
 
+  const defaultStateFields = uploadProperties.imageFields.reduce(
+    (total, current) => {
+      total[current] = "";
+      return total;
+    },
+    {}
+  );
+
+  const [fields, setFields] = useState(defaultStateFields);
+
   const handleChange = (event) => {
     const { target } = event;
     const { files } = target;
     const file = files[0];
     setDocumentUploaded(URL.createObjectURL(file));
+  };
+
+  const handleChangeFields = (e, name) => {
+    setFields({ ...fields, [name]: e.target.value });
   };
 
   const handleUpload = async (event) => {
@@ -25,6 +39,10 @@ const ImageUploader = () => {
     // width: 346.5111999511719
     // x: 139.39031982421875
     // y: 37.63502502441406
+
+    if (!uploadProperties.urlUpload) {
+      throw "urlUpload prop is not defined. It is needed to know where to send the data uploaded.";
+    }
 
     try {
       const resp = await axios.post(
@@ -55,6 +73,19 @@ const ImageUploader = () => {
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
       >
+        <div className={classes.fieldContainer}>
+          {documentUploaded &&
+            uploadProperties.imageFields.map((name, index) => (
+              <label key={index} htmlFor={name}>
+                {name}
+                <input
+                  id={name}
+                  value={fields?.[name]}
+                  onChange={(e) => handleChangeFields(e, name)}
+                />
+              </label>
+            ))}
+        </div>
         <div className={classes.inputContainer}>
           <input
             type="file"
@@ -104,6 +135,12 @@ export default ImageUploader;
 //
 //
 //
-// Le back va recevoir l'image, la découper avec Node et les infos, et la sauvegarder, et renvoyer une 200 (mettre le snippet sur github pour aider)
+// Endpoint back
+// Gestion image avec les data de crop
+// Sauvegarder l'image
+// Renvoyer une 200 ou 500
+
 // On passe sur la gallery (multi/mono select, pagination)
+//
 // On peut choisir les modes à activer sur l'image manager
+//
