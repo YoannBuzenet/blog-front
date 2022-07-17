@@ -32,6 +32,23 @@ const ImageUploader = () => {
     setFields({ ...fields, [name]: e.target.value });
   };
 
+  const isUploadButtonDisabled = () => {
+    let isDisabled = false;
+    for (const field in fields) {
+      if (!fields[field]) {
+        isDisabled = true;
+      }
+    }
+
+    if (!documentUploaded) {
+      isDisabled = true;
+    }
+
+    console.log("isDisabled ?", isDisabled);
+
+    return isDisabled;
+  };
+
   const handleUpload = async (event) => {
     // crop format example
     // height: 173.25559997558594
@@ -97,7 +114,11 @@ const ImageUploader = () => {
         </div>
         {documentUploaded && (
           <div className={classes.inputContainer}>
-            <button className="customFileInput" onClick={handleUpload}>
+            <button
+              className="customFileInput"
+              onClick={handleUpload}
+              disabled={isUploadButtonDisabled()}
+            >
               UPLOAD
             </button>
           </div>
@@ -131,9 +152,7 @@ export default ImageUploader;
 //
 //
 //
-//
-//
-//
+// CSS des champs
 //
 // Endpoint back
 // Gestion image avec les data de crop
