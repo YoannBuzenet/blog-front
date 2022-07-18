@@ -4,9 +4,7 @@ import { createUseStyles } from "react-jss";
 //TODO chaque parametre doit avoir une valeur par default
 export const useCustomizedStyle = () =>
   createUseStyles({
-    uploaded: {
-      overflow: "scroll",
-    },
+    uploaded: {},
     nonUploaded: {
       display: "flex",
       justifyContent: "center",

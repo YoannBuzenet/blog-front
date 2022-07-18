@@ -25,7 +25,6 @@ export const useCustomizedStyle = () =>
       borderRadius: "5px",
       padding: "20px",
       backgroundColor: "rgba(242, 241, 239, 1)",
-      overflow: "scroll",
     },
     imageManagerContainer__top: {
       display: "flex",
@@ -45,10 +44,17 @@ export const useCustomizedStyle = () =>
       borderRight: "1px solid black",
       position: "fixed",
     },
-    imageManagerContainer__body__right: {
-      marginLeft: "20%",
+    imageManagerContainer__body__right__container: {
+      width: "100%",
       height: "100%",
-      paddingLeft: "10px",
+      overflow: "hidden",
+    },
+    imageManagerContainer__body__right: {
+      marginLeft: "15%",
+      width: "100%",
+      height: "100%",
+      overflowY: "scroll",
+      paddingRight: "17px",
       display: "flex",
       justifyContent: "center",
     },

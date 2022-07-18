@@ -9,7 +9,7 @@
 TO do plus tard
 
 - On peut zoom et rotate l'image
-- L'image uploader peut empecher d'upload si le crop n'a pas été fait (utiliser le callback de crop)
+- On peut upload des compo custom dans l'image uploader avec leurs propres règles pour isDisabled
 
 Définir les props obligatoires du module
 si module upload activé, alors urlUpload obligatoire

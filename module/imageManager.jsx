@@ -44,9 +44,17 @@ const ImageManager = () => {
                     </div>
                   </div>
                 </div>
-                <div className={classes.imageManagerContainer__body__right}>
-                  {screenDisplayed === "upload" && <ImageUploader />}
-                  {screenDisplayed === "gallery" && <p>Galleries screen</p>}
+                {/* We add a container here to be able to hide scrolling bar */}
+                {/* https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll */}
+                <div
+                  className={
+                    classes.imageManagerContainer__body__right__container
+                  }
+                >
+                  <div className={classes.imageManagerContainer__body__right}>
+                    {screenDisplayed === "upload" && <ImageUploader />}
+                    {screenDisplayed === "gallery" && <p>Galleries screen</p>}
+                  </div>
                 </div>
               </div>
             </div>

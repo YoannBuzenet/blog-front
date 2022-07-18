@@ -3,6 +3,7 @@ import { useCustomizedStyle } from "../style/imageUploader.js";
 import CropImage from "./CropImage.jsx";
 import ImageManagerContext from "../contexts/index";
 import axios from "axios";
+import ImageField from "./ImageField.jsx";
 
 const ImageUploader = () => {
   const classes = useCustomizedStyle()();
@@ -93,16 +94,12 @@ const ImageUploader = () => {
         <div className={classes.fieldContainer}>
           {documentUploaded &&
             uploadProperties.imageFields.map((name, index) => (
-              <div key={index}>
-                <div>
-                  <label htmlFor={name}>{name}</label>
-                </div>
-                <input
-                  id={name}
-                  value={fields?.[name]}
-                  onChange={(e) => handleChangeFields(e, name)}
-                />
-              </div>
+              <ImageField
+                handleChange={handleChangeFields}
+                name={name}
+                key={index}
+                stateFields={fields}
+              />
             ))}
         </div>
         <div className={classes.allInputs}>
