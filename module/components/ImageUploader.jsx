@@ -8,6 +8,7 @@ import ImageField from "./ImageField.jsx";
 const ImageUploader = () => {
   const classes = useCustomizedStyle()();
   const [documentUploaded, setDocumentUploaded] = useState(null);
+  const [documentUploadedRaw, setDocumentUploadedRaw] = useState(null);
   const [crop, setCrop] = useState();
 
   const { uploadProperties } = useContext(ImageManagerContext);
@@ -26,11 +27,12 @@ const ImageUploader = () => {
     const { target } = event;
     const { files } = target;
     const file = files[0];
+    setDocumentUploadedRaw(file);
     setDocumentUploaded(URL.createObjectURL(file));
   };
 
-  const handleChangeFields = (e, name) => {
-    setFields({ ...fields, [name]: e.target.value });
+  const handleChangeFields = (e, key) => {
+    setFields({ ...fields, [key]: e.target.value });
   };
 
   const isUploadButtonDisabled = () => {
@@ -59,15 +61,27 @@ const ImageUploader = () => {
     // y: 37.63502502441406
 
     if (!uploadProperties.urlUpload) {
-      throw "urlUpload prop is not defined. It is needed to know where to send the data uploaded.";
+      throw "urlUpload prop is not defined. This URL is needed to know where to send the data uploaded.";
     }
 
+    const formData = new FormData();
+
+    // Adding all the keys defined by the dev
+    for (const key in fields) {
+      formData.append(key, fields[key]);
+    }
+    formData.append("x", crop?.x);
+    formData.append("y", crop?.y);
+    formData.append("width", crop?.width);
+    formData.append("height", crop?.height);
+    formData.append("image", documentUploadedRaw, "wtf.png");
+
     try {
-      const resp = await axios.post(
-        uploadProperties.urlUpload,
-        crop,
-        uploadProperties.axiosHeaders
-      );
+      const resp = await axios.post(uploadProperties.urlUpload, formData, {
+        ...uploadProperties.axiosHeaders,
+        "Content-Type": "multipart/form-data",
+      });
+      console.log("RESP OK ?", resp);
 
       // Success callback function if defined
       if (uploadProperties.onSuccessUpload) {
@@ -155,10 +169,11 @@ export default ImageUploader;
 //
 //
 //
-//
-// NEXT
-// CSS des champs
-//
+// next
+// Regarder dans la doc de sharp si left and co sont forcément des integer avec sharp, car on a des nombres avec 8 chiffres après la virgule
+// essayer de sauvegarder une image !!
+// checker que tous les endpoins ne sont pas désormais des multi form car on n'a pas encapsulé
+
 //
 // Endpoint back
 // Gestion image avec les data de crop

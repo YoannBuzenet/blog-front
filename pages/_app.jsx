@@ -26,7 +26,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   );
 
   return (
-    <ImageManagerContainer cropAspectRatio={2}>
+    <ImageManagerContainer
+      cropAspectRatio={2}
+      urlUpload={`${process.env.NEXT_PUBLIC_API_URL}/api/entities/images`}
+    >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
           <Component {...pageProps} />
