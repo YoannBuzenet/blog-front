@@ -10,6 +10,7 @@ const ImageUploader = () => {
   const [documentUploaded, setDocumentUploaded] = useState(null);
   const [documentUploadedRaw, setDocumentUploadedRaw] = useState(null);
   const [crop, setCrop] = useState();
+  const [adjustedHeightImage, setAdjustedHeightImage] = useState(0);
 
   const { uploadProperties } = useContext(ImageManagerContext);
 
@@ -29,6 +30,20 @@ const ImageUploader = () => {
     const file = files[0];
     setDocumentUploadedRaw(file);
     setDocumentUploaded(URL.createObjectURL(file));
+
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      const { width, height } = img;
+
+      const adjustedHeight = Math.round((680 * height) / width);
+      setAdjustedHeightImage(adjustedHeight);
+      console.log("c'est okAY", adjustedHeight);
+
+      URL.revokeObjectURL(img.src);
+    };
+
+    img.src = url;
   };
 
   const handleChangeFields = (e, key) => {
@@ -100,7 +115,12 @@ const ImageUploader = () => {
   return (
     <div>
       {documentUploaded && (
-        <CropImage src={documentUploaded} crop={crop} setCrop={setCrop} />
+        <CropImage
+          src={documentUploaded}
+          crop={crop}
+          setCrop={setCrop}
+          adjustedHeightImage={adjustedHeightImage}
+        />
       )}
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}
@@ -173,7 +193,8 @@ export default ImageUploader;
 // Regarder dans la doc de sharp si left and co sont forcément des integer avec sharp, car on a des nombres avec 8 chiffres après la virgule
 // essayer de sauvegarder une image !!
 // checker que tous les endpoins ne sont pas désormais des multi form car on n'a pas encapsulé
-
+//
+// prop isCropMandatory
 //
 // Endpoint back
 // Gestion image avec les data de crop
