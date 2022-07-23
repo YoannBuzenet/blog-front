@@ -24,4 +24,7 @@ export const useCustomizedStyle = () =>
       justifyContent: "center",
       alignItems: "center",
     },
+    cropContainer: {
+      marginTop: "40px",
+    },
   });

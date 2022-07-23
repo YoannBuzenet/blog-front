@@ -115,12 +115,14 @@ const ImageUploader = () => {
   return (
     <div>
       {documentUploaded && (
-        <CropImage
-          src={documentUploaded}
-          crop={crop}
-          setCrop={setCrop}
-          adjustedHeightImage={adjustedHeightImage}
-        />
+        <div className={classes.cropContainer}>
+          <CropImage
+            src={documentUploaded}
+            crop={crop}
+            setCrop={setCrop}
+            adjustedHeightImage={adjustedHeightImage}
+          />
+        </div>
       )}
       <div
         className={documentUploaded ? classes.uploaded : classes.nonUploaded}

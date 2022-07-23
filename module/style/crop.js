@@ -5,7 +5,6 @@ import { createUseStyles } from "react-jss";
 export const useCustomizedStyle = () =>
   createUseStyles({
     image: {
-      marginTop: "40px",
       width: "680px !important",
     },
   });
