@@ -8,6 +8,8 @@
 
 todo
 découpler le code pour que ça matche avec sharp (mettre des conditions par exemple, et indiquer dans le readme pourquoi on a mis ça)
+documenter la max width de l'image et comment modifier ça, coté sharp y compris
+ajouter callback de failure on upload size too small
 
 TO do plus tard
 

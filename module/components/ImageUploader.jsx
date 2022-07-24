@@ -28,19 +28,30 @@ const ImageUploader = () => {
     const { target } = event;
     const { files } = target;
     const file = files[0];
-    setDocumentUploadedRaw(file);
-    setDocumentUploaded(URL.createObjectURL(file));
 
     var url = URL.createObjectURL(file);
     var img = new Image();
     img.onload = function () {
-      const { width, height } = img;
+      if (
+        uploadProperties.minWidthImageUpload &&
+        img.width < uploadProperties.minWidthImageUpload
+      ) {
+        console.error(
+          `Width of the image is too small. It should be ${uploadProperties.minWidthImageUpload}px at least.`
+        );
+        // TODO : callback failure upload size too small
+        return;
+      } else {
+        setDocumentUploadedRaw(file);
+        setDocumentUploaded(URL.createObjectURL(file));
 
-      const adjustedHeight = Math.round((680 * height) / width);
-      setAdjustedHeightImage(adjustedHeight);
-      console.log("c'est okAY", adjustedHeight);
+        const { width, height } = img;
 
-      URL.revokeObjectURL(img.src);
+        const adjustedHeight = Math.round((680 * height) / width);
+        setAdjustedHeightImage(adjustedHeight);
+
+        URL.revokeObjectURL(img.src);
+      }
     };
 
     img.src = url;

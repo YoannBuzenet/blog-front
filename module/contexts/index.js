@@ -26,6 +26,7 @@ export default React.createContext({
     onSuccessUpload: null,
     onFailureupload: null,
     imageFields: ["name"],
+    minWidthImageUpload: null,
   },
   isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},
