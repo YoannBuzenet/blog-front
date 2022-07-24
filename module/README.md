@@ -9,7 +9,7 @@
 todo
 découpler le code pour que ça matche avec sharp (mettre des conditions par exemple, et indiquer dans le readme pourquoi on a mis ça)
 documenter la max width de l'image et comment modifier ça, coté sharp y compris
-ajouter callback de failure on upload size too small
+ajouter callback de failure on upload size too small OU afficher l'erreur dans le pop up
 
 TO do plus tard
 

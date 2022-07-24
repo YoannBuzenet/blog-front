@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import Gallery from "./components/Gallery";
 import ImageUploader from "./components/ImageUploader";
 import ImageManagerContext from "./contexts/index";
 import { useCustomizedStyle } from "./style/react-jss-customization";
@@ -53,7 +54,7 @@ const ImageManager = () => {
                 >
                   <div className={classes.imageManagerContainer__body__right}>
                     {screenDisplayed === "upload" && <ImageUploader />}
-                    {screenDisplayed === "gallery" && <p>Galleries screen</p>}
+                    {screenDisplayed === "gallery" && <Gallery />}
                   </div>
                 </div>
               </div>
