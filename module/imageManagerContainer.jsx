@@ -22,11 +22,13 @@ const ImageManagerContainer = ({
   cropRuleOfThirds,
   cropCircularCrop,
   urlUpload,
-  axiosHeaders,
+  axiosHeadersUpload,
   minWidthImageUpload,
   onSuccessUpload,
   onFailureupload,
   imageFields = ["name"],
+  urlFetchImages,
+  axiosHeadersFetchGallery,
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -52,11 +54,15 @@ const ImageManagerContainer = ({
     },
     uploadProperties: {
       urlUpload,
-      axiosHeaders,
+      axiosHeadersUpload,
       onSuccessUpload,
       onFailureupload,
       imageFields,
       minWidthImageUpload,
+    },
+    galleryProperties: {
+      urlFetchImages,
+      axiosHeadersFetchGallery,
     },
     isDisplayedImageManager,
     setIsDisplayedImageManager,

@@ -22,11 +22,15 @@ export default React.createContext({
   },
   uploadProperties: {
     urlUpload: null,
-    axiosHeaders: {},
+    axiosHeadersUpload: {},
     onSuccessUpload: null,
     onFailureupload: null,
     imageFields: ["name"],
     minWidthImageUpload: null,
+  },
+  galleryProperties: {
+    urlFetchImages: null,
+    axiosHeadersFetchGallery: null,
   },
   isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},

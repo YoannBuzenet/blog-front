@@ -104,7 +104,7 @@ const ImageUploader = () => {
 
     try {
       const resp = await axios.post(uploadProperties.urlUpload, formData, {
-        ...uploadProperties.axiosHeaders,
+        ...uploadProperties.axiosHeadersUpload,
         "Content-Type": "multipart/form-data",
       });
       console.log("RESP OK ?", resp);
