@@ -6,6 +6,10 @@
 - npm i babel-plugin-styled-components
 - npm i axios
 
+todo gallery
+
+- composant card "image"
+
 todo
 découpler le code pour que ça matche avec sharp (mettre des conditions par exemple, et indiquer dans le readme pourquoi on a mis ça)
 documenter la max width de l'image et comment modifier ça, coté sharp y compris

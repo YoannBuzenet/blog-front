@@ -5,7 +5,9 @@ import axios from "axios";
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
   const { axiosHeadersFetchGallery, urlFetchImages } = galleryProperties;
-  const [imagesGallery, setImagesGallery] = useState([]);
+  const [imagesGallery, setImagesGallery] = useState([
+    "https://www.widoobiz.com/wp-content/uploads/2020/07/ariane-1000x568.jpeg",
+  ]);
 
   useEffect(() => {
     if (!urlFetchImages) {
@@ -28,7 +30,8 @@ const Gallery = () => {
 
 export default Gallery;
 
-//
+// NEXT : composant Card pour une image
+// Comment on cherche dans la gallery par nom et tags ? il faut la data dans l'objet reçu, qui ne peut plus etre un simple string ?
 //
 //
 //
