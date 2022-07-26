@@ -30,6 +30,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       cropAspectRatio={2}
       urlUpload={`${process.env.NEXT_PUBLIC_API_URL}/api/entities/images`}
       minWidthImageUpload={700}
+      galleryImages={[
+        "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
+      ]}
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
