@@ -4,28 +4,26 @@ import axios from "axios";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
-  const { axiosHeadersFetchGallery, urlFetchImages } = galleryProperties;
-  const [imagesGallery, setImagesGallery] = useState([
-    "https://www.widoobiz.com/wp-content/uploads/2020/07/ariane-1000x568.jpeg",
-  ]);
+  const { galleryImages } = galleryProperties;
 
-  useEffect(() => {
-    if (!urlFetchImages) {
-      console.error("urlFetchImages is mandatory to fetch images from server.");
-      return;
-    }
-
-    axios
-      .post(urlFetchImages, {
-        ...axiosHeadersFetchGallery,
-      })
-      .then((resp) => setImagesGallery(resp.data))
-      .catch((e) =>
-        console.error("Error while fetching images in gallery : ", e)
-      );
-  }, []);
-
-  return <>Gallery</>;
+  return (
+    <div>
+      <div>Gallery</div>
+      <div>
+        {galleryImages.map((image) => {
+          if (typeof image === "string") {
+            return <img src={image} />;
+          } else if (typeof image === "object") {
+            return "compo qui gère l'image";
+          } else {
+            console.error(
+              "Image received can not be processed in the gallery. Please check the format."
+            );
+          }
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Gallery;

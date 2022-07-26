@@ -27,8 +27,7 @@ const ImageManagerContainer = ({
   onSuccessUpload,
   onFailureupload,
   imageFields = ["name"],
-  urlFetchImages,
-  axiosHeadersFetchGallery,
+  galleryImages = [],
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -61,8 +60,7 @@ const ImageManagerContainer = ({
       minWidthImageUpload,
     },
     galleryProperties: {
-      urlFetchImages,
-      axiosHeadersFetchGallery,
+      galleryImages,
     },
     isDisplayedImageManager,
     setIsDisplayedImageManager,

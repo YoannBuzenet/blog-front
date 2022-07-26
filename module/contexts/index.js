@@ -29,8 +29,7 @@ export default React.createContext({
     minWidthImageUpload: null,
   },
   galleryProperties: {
-    urlFetchImages: null,
-    axiosHeadersFetchGallery: null,
+    galleryImages: [],
   },
   isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},
