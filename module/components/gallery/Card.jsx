@@ -1,9 +1,12 @@
 import CardImageObject from "./CardImageObject";
 import CardImageString from "./CardImageString";
 import { useCustomizedStyle } from "../../style/card.js";
+import { useState } from "react";
 
 const Card = ({ image }) => {
   const classes = useCustomizedStyle()();
+
+  const [idCard, setIdCard] = useState(null);
 
   // We want the gallery to be able to display simple URLS as well as objects
   let CompoToUse;
@@ -20,7 +23,7 @@ const Card = ({ image }) => {
 
   return (
     <div className={classes.imageContainer}>
-      <CompoToUse image={image} />
+      <CompoToUse image={image} idCard={idCard} setIdCard={setIdCard} />
     </div>
   );
 };
