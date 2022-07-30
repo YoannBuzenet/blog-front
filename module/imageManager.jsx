@@ -11,7 +11,7 @@ const ImageManager = () => {
 
   const [screenDisplayed, setScreenDisplayed] = useState("upload");
 
-  const classes = useCustomizedStyle()();
+  const classes = useCustomizedStyle({ screenDisplayed })();
 
   return (
     <>
@@ -52,7 +52,12 @@ const ImageManager = () => {
                     classes.imageManagerContainer__body__right__container
                   }
                 >
-                  <div className={classes.imageManagerContainer__body__right}>
+                  <div
+                    className={classes.imageManagerContainer__body__right}
+                    style={{
+                      height: screenDisplayed === "upload" ? "100%" : "auto",
+                    }}
+                  >
                     {screenDisplayed === "upload" && <ImageUploader />}
                     {screenDisplayed === "gallery" && <Gallery />}
                   </div>

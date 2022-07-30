@@ -3,8 +3,9 @@ import { createUseStyles } from "react-jss";
 //TODO : passer tout le customizable en paramètre de la fonction
 //TODO chaque parametre doit avoir une valeur par default
 //TODO : tout faire passer là dedans ET créer les bonnes sous classes si besoin
-export const useCustomizedStyle = () =>
-  createUseStyles({
+export const useCustomizedStyle = (options) => {
+  // console.log("options", options);
+  return createUseStyles({
     imageContainer: {
       position: "fixed",
       zIndex: 9999,
@@ -52,7 +53,6 @@ export const useCustomizedStyle = () =>
       overflow: "hidden",
     },
     imageManagerContainer__body__right: {
-      height: "auto",
       overflowY: "scroll",
       paddingRight: "17px",
       display: "flex",
@@ -104,3 +104,4 @@ export const useCustomizedStyle = () =>
       },
     },
   });
+};
