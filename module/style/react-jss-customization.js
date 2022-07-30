@@ -52,7 +52,7 @@ export const useCustomizedStyle = () =>
       overflow: "hidden",
     },
     imageManagerContainer__body__right: {
-      height: "100%",
+      height: "auto",
       overflowY: "scroll",
       paddingRight: "17px",
       display: "flex",

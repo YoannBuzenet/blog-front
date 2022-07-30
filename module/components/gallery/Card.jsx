@@ -24,13 +24,13 @@ const Card = ({ image, selectedImages, setSelectedImages }) => {
   const isSelected = selectedImages.includes(idCard);
 
   return (
-    <div
-      className={
-        isSelected ? classes.imageContainerSelected : classes.imageContainer
-      }
-      onClick={(e) => setSelectedImages(idCard)}
-    >
-      <CompoToUse image={image} idCard={idCard} setIdCard={setIdCard} />
+    <div onClick={(e) => setSelectedImages(idCard)}>
+      <CompoToUse
+        image={image}
+        idCard={idCard}
+        setIdCard={setIdCard}
+        isSelected={isSelected}
+      />
     </div>
   );
 };

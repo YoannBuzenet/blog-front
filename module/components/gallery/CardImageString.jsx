@@ -2,7 +2,7 @@ import { useCustomizedStyle } from "../../style/card.js";
 import crypto from "crypto";
 import { useEffect } from "react";
 
-const CardImageString = ({ image, idCard, setIdCard }) => {
+const CardImageString = ({ image, idCard, setIdCard, isSelected }) => {
   const classes = useCustomizedStyle()();
 
   // Creating id from image URL to keep track of it
@@ -16,10 +16,14 @@ const CardImageString = ({ image, idCard, setIdCard }) => {
   console.log("mon id card", idCard);
 
   return (
-    <>
+    <div
+      className={
+        isSelected ? classes.imageContainerSelected : classes.imageContainer
+      }
+    >
       <img src={image} alt="Gallery Image" className={classes.image} />
       <p className={`${classes.lightText} ${classes.infoText}`}>{image}</p>
-    </>
+    </div>
   );
 };
 

@@ -6,20 +6,22 @@ export const useCustomizedStyle = () =>
   createUseStyles({
     imageContainer: {
       marginLeft: 20,
-      maxHeight: 210,
+      height: 120,
       "& img:hover": {
         cursor: "pointer",
         border: "2px solid black",
       },
       width: 200,
+      marginBottom: "40px",
     },
     imageContainerSelected: {
       "& img": {
         border: "2px solid red",
       },
-      maxHeight: 210,
+      height: 120,
       width: 200,
       marginLeft: 20,
+      marginBottom: "40px",
       "& img:hover": {
         cursor: "pointer",
       },
@@ -35,8 +37,13 @@ export const useCustomizedStyle = () =>
     infoContainer: {
       display: "flex",
       alignItems: "center",
+      "& p": {
+        display: "flex",
+        alignItems: "center",
+      },
     },
     infoText: {
+      marginTop: "5px",
       overflow: "hidden",
       whiteSpace: "nowrap",
       textOverflow: "ellipsis",
