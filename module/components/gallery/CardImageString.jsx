@@ -18,7 +18,7 @@ const CardImageString = ({ image, idCard, setIdCard }) => {
   return (
     <div>
       <img src={image} alt="Gallery Image" className={classes.image} />
-      <p className={classes.lightText}>{image}</p>
+      <p className={`${classes.lightText} ${classes.infoText}`}>{image}</p>
     </div>
   );
 };

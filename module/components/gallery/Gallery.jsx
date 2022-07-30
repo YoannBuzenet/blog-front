@@ -21,7 +21,11 @@ const Gallery = () => {
         setSelectedImages([...selectedImages, hash]);
       }
     } else {
-      setSelectedImages([hash]);
+      if (selectedImages.includes(hash)) {
+        setSelectedImages([]);
+      } else {
+        setSelectedImages([hash]);
+      }
     }
   };
 

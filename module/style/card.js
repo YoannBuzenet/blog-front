@@ -14,7 +14,9 @@ export const useCustomizedStyle = () =>
       width: 200,
     },
     imageContainerSelected: {
-      border: "2px solid red",
+      "& img": {
+        border: "2px solid red",
+      },
       width: 200,
       marginLeft: 20,
       "& img:hover": {
@@ -31,5 +33,10 @@ export const useCustomizedStyle = () =>
     infoContainer: {
       display: "flex",
       alignItems: "center",
+    },
+    infoText: {
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
     },
   });

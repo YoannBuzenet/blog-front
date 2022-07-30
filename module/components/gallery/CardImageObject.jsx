@@ -24,7 +24,7 @@ const CardImageObject = ({ image, idCard, setIdCard }) => {
       <div className={classes.infoContainer}>
         <p>{image.name}</p>
         {image.credits && (
-          <p className={classes.lightText}>
+          <p className={`${classes.lightText} ${classes.infoText}`}>
             <span>&nbsp;| </span>
             {image.credits}
           </p>
