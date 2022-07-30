@@ -13,6 +13,14 @@ export const useCustomizedStyle = () =>
       },
       width: 200,
     },
+    imageContainerSelected: {
+      border: "2px solid red",
+      width: 200,
+      marginLeft: 20,
+      "& img:hover": {
+        cursor: "pointer",
+      },
+    },
     image: {
       width: 200,
     },

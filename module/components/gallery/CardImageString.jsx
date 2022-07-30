@@ -13,6 +13,8 @@ const CardImageString = ({ image, idCard, setIdCard }) => {
     }
   }, []);
 
+  console.log("mon id card", idCard);
+
   return (
     <div>
       <img src={image} alt="Gallery Image" className={classes.image} />

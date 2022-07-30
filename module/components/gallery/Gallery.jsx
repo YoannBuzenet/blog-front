@@ -27,6 +27,8 @@ const Gallery = () => {
 
   const classes = useCustomizedStyle()();
 
+  console.log("selectedImages", selectedImages);
+
   return (
     <div className={classes.galleryImageContainer}>
       {galleryImages.map((image, index) => (
