@@ -35,6 +35,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
         "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
         "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
+        {
+          src: "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
+          name: "Flowers",
+          credits: " Yoann Buzenet",
+        },
       ]}
     >
       <ThemeProvider theme={customMUITheme}>
