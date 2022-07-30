@@ -11,13 +11,17 @@ export const useCustomizedStyle = () =>
         cursor: "pointer",
         border: "2px solid black",
       },
-      width: 250,
+      width: 200,
     },
     image: {
-      width: 250,
+      width: 200,
     },
     lightText: {
       opacity: 0.7,
       fontSize: "12px",
+    },
+    infoContainer: {
+      display: "flex",
+      alignItems: "center",
     },
   });

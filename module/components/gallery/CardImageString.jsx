@@ -5,7 +5,7 @@ const CardImageString = ({ image }) => {
 
   return (
     <div>
-      <img src={image} alt="Galler Image" className={classes.image} />
+      <img src={image} alt="Gallery Image" className={classes.image} />
       <p className={classes.lightText}>{image}</p>
     </div>
   );

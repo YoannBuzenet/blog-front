@@ -6,8 +6,15 @@ const CardImageObject = ({ image }) => {
   return (
     <div>
       <img src={image.src} alt={image.name} className={classes.image} />
-      <p>{image.name}</p>
-      {image.credits && <p>{image.credits}</p>}
+      <div className={classes.infoContainer}>
+        <p>{image.name}</p>
+        {image.credits && (
+          <p className={classes.lightText}>
+            <span>&nbsp;| </span>
+            {image.credits}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
