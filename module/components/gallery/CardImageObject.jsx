@@ -19,7 +19,7 @@ const CardImageObject = ({ image, idCard, setIdCard }) => {
   console.log("mon id card", idCard);
 
   return (
-    <div>
+    <>
       <img src={image.src} alt={image.name} className={classes.image} />
       <div className={classes.infoContainer}>
         <p>{image.name}</p>
@@ -30,7 +30,7 @@ const CardImageObject = ({ image, idCard, setIdCard }) => {
           </p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

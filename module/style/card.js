@@ -6,7 +6,7 @@ export const useCustomizedStyle = () =>
   createUseStyles({
     imageContainer: {
       marginLeft: 20,
-      height: 210,
+      maxHeight: 210,
       "& img:hover": {
         cursor: "pointer",
         border: "2px solid black",
@@ -17,6 +17,7 @@ export const useCustomizedStyle = () =>
       "& img": {
         border: "2px solid red",
       },
+      maxHeight: 210,
       width: 200,
       marginLeft: 20,
       "& img:hover": {
@@ -24,7 +25,8 @@ export const useCustomizedStyle = () =>
       },
     },
     image: {
-      width: 200,
+      maxWidth: "100%",
+      maxHeight: "100%",
     },
     lightText: {
       opacity: 0.7,
