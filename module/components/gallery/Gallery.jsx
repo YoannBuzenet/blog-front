@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ImageManagerContext from "../../contexts/index";
+import { useCustomizedStyle } from "../../style/gallery";
 import Card from "./Card";
 
 const Gallery = () => {
@@ -8,14 +9,13 @@ const Gallery = () => {
 
   console.log("galleryImages", galleryImages);
 
+  const classes = useCustomizedStyle()();
+
   return (
-    <div>
-      <div>Gallery</div>
-      <div>
-        {galleryImages.map((image, index) => (
-          <Card image={image} key={index} />
-        ))}
-      </div>
+    <div className={classes.galleryImageContainer}>
+      {galleryImages.map((image, index) => (
+        <Card image={image} key={index} />
+      ))}
     </div>
   );
 };

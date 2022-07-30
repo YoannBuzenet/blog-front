@@ -50,7 +50,7 @@ export const useCustomizedStyle = () =>
       overflow: "hidden",
     },
     imageManagerContainer__body__right: {
-      marginLeft: "15%",
+      marginLeft: "25%",
       width: "100%",
       height: "100%",
       overflowY: "scroll",

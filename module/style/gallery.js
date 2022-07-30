@@ -4,6 +4,5 @@ import { createUseStyles } from "react-jss";
 //TODO chaque parametre doit avoir une valeur par default
 export const useCustomizedStyle = () =>
   createUseStyles({
-    imageContainer: { marginLeft: 20 },
-    image: { width: 250 },
+    galleryImageContainer: { width: "100%", display: "flex", flexWrap: "wrap" },
   });
