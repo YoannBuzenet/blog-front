@@ -45,13 +45,13 @@ export const useCustomizedStyle = () =>
       position: "fixed",
     },
     imageManagerContainer__body__right__container: {
-      width: "100%",
-      height: "100%",
+      width: "53%",
+      height: "75%",
+      left: "32%",
+      position: "fixed",
       overflow: "hidden",
     },
     imageManagerContainer__body__right: {
-      marginLeft: "25%",
-      width: "100%",
       height: "100%",
       overflowY: "scroll",
       paddingRight: "17px",

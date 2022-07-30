@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import Gallery from "./components/Gallery/Gallery";
+import Gallery from "./components/gallery/Gallery";
 import ImageUploader from "./components/ImageUploader";
 import ImageManagerContext from "./contexts/index";
 import { useCustomizedStyle } from "./style/react-jss-customization";
