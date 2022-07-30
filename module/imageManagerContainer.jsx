@@ -28,6 +28,7 @@ const ImageManagerContainer = ({
   onFailureupload,
   imageFields = ["name"],
   galleryImages = [],
+  canSelectSeveralImages = false,
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -61,6 +62,7 @@ const ImageManagerContainer = ({
     },
     galleryProperties: {
       galleryImages,
+      canSelectSeveralImages,
     },
     isDisplayedImageManager,
     setIsDisplayedImageManager,

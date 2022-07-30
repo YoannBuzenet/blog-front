@@ -30,6 +30,7 @@ export default React.createContext({
   },
   galleryProperties: {
     galleryImages: [],
+    canSelectSeveralImages: false,
   },
   isDisplayedImageManager: false,
   setIsDisplayedImageManager: (value) => {},

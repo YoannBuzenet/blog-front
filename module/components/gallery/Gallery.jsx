@@ -1,20 +1,41 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ImageManagerContext from "../../contexts/index";
 import { useCustomizedStyle } from "../../style/gallery";
 import Card from "./Card";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
-  const { galleryImages } = galleryProperties;
+  const { galleryImages, canSelectSeveralImages } = galleryProperties;
 
   console.log("galleryImages", galleryImages);
+
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  const handleSetSelectedImages = (hash) => {
+    if (canSelectSeveralImages) {
+      if (selectedImages.includes(hash)) {
+        const indexString = selectedImages.indexOf(hash);
+        const newArray = selectedImages.splice(indexString, 1);
+        setSelectedImages(newArray);
+      } else {
+        setSelectedImages([...selectedImages, hash]);
+      }
+    } else {
+      setSelectedImages([hash]);
+    }
+  };
 
   const classes = useCustomizedStyle()();
 
   return (
     <div className={classes.galleryImageContainer}>
       {galleryImages.map((image, index) => (
-        <Card image={image} key={index} />
+        <Card
+          image={image}
+          key={index}
+          selectedImages={selectedImages}
+          setSelectedImages={handleSetSelectedImages}
+        />
       ))}
     </div>
   );

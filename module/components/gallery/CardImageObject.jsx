@@ -10,7 +10,7 @@ const CardImageObject = ({ image, idCard, setIdCard }) => {
     if (!idCard) {
       const hashedName = crypto
         .createHash("md5")
-        .update(image.name)
+        .update(image.src)
         .digest("hex");
       setIdCard(hashedName);
     }
