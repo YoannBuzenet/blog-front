@@ -1,11 +1,24 @@
 import { useContext, useState } from "react";
+import config from "../../config/config";
 import ImageManagerContext from "../../contexts/index";
+import { useWindowDimensions } from "../../hooks/hooks";
 import { useCustomizedStyle } from "../../style/gallery";
+import { getNearestBreakPoint } from "../../utils";
 import Card from "./Card";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
   const { galleryImages, canSelectSeveralImages } = galleryProperties;
+
+  // We compute the number of images we want to displaye, following screen size.
+  const { width } = useWindowDimensions();
+  const relevantBreakPoint = getNearestBreakPoint(width);
+  const numberOfImagesDisplayed =
+    config.gallery.imagePerSizeScreen[relevantBreakPoint];
+
+  const numberOfPages = Math.round(
+    galleryImages.length / numberOfImagesDisplayed
+  );
 
   console.log("galleryImages", galleryImages);
 
@@ -67,7 +80,5 @@ export default Gallery;
 //
 //
 //
-// A chaque clic sur Gallery, un call API est fait pour charger
-// On peut sélectionner une ou plusieurs images
 // Pagination
 // Select renvoie les ID des images
