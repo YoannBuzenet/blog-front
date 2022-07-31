@@ -16,11 +16,14 @@ const Gallery = () => {
   const numberOfImagesDisplayed =
     config.gallery.imagePerSizeScreen[relevantBreakPoint];
 
-  const numberOfPages = Math.round(
-    galleryImages.length / numberOfImagesDisplayed
-  );
+  const numberOfPages =
+    Math.round(galleryImages.length / numberOfImagesDisplayed) + 1;
 
   console.log("galleryImages", galleryImages);
+  console.log("numberOfPages", numberOfPages);
+  console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
+  console.log("galleryImages.length", galleryImages.length);
+  console.log("relevantBreakPoint", relevantBreakPoint);
 
   const [selectedImages, setSelectedImages] = useState([]);
 
