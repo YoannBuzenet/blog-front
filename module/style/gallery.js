@@ -11,7 +11,7 @@ export const useCustomizedStyle = () =>
       justifyContent: "start",
     },
     validationButtonContainer: {
-      position: "fixed",
+      position: "absolute",
       bottom: 0,
     },
   });

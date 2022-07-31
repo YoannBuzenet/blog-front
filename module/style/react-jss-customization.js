@@ -55,7 +55,6 @@ export const useCustomizedStyle = (options) => {
       paddingRight: "17px",
       display: "flex",
       justifyContent: "center",
-      position: "relative",
     },
     imageManagerContainer__body__left__titles: {
       marginTop: 20,
