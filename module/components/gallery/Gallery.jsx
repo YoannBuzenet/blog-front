@@ -62,7 +62,10 @@ const Gallery = () => {
         ))}
       </div>
       <div className={classes.validationButtonContainer}>
-        <p>Valider</p>
+        <div>Pagination</div>
+        <div>
+          <p>Valider</p>
+        </div>
       </div>
     </>
   );

@@ -13,5 +13,17 @@ export const useCustomizedStyle = () =>
     validationButtonContainer: {
       position: "absolute",
       bottom: 0,
+      left: 0,
+      right: 0,
+      display: "flex",
+      "& >div": {
+        width: "50%",
+      },
+      "& >div:first-child": {
+        textAlign: "left",
+      },
+      "& >div:last-child": {
+        textAlign: "right",
+      },
     },
   });

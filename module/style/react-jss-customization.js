@@ -49,6 +49,7 @@ export const useCustomizedStyle = (options) => {
       height: "100%",
       overflow: "hidden",
       width: "100%",
+      position: "relative",
     },
     imageManagerContainer__body__right: {
       overflowY: "scroll",
