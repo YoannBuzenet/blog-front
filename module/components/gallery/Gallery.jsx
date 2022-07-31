@@ -19,11 +19,11 @@ const Gallery = () => {
   const numberOfPages =
     Math.round(galleryImages.length / numberOfImagesDisplayed) + 1;
 
-  console.log("galleryImages", galleryImages);
-  console.log("numberOfPages", numberOfPages);
-  console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
-  console.log("galleryImages.length", galleryImages.length);
-  console.log("relevantBreakPoint", relevantBreakPoint);
+  // console.log("galleryImages", galleryImages);
+  // console.log("numberOfPages", numberOfPages);
+  // console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
+  // console.log("galleryImages.length", galleryImages.length);
+  // console.log("relevantBreakPoint", relevantBreakPoint);
 
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -50,16 +50,21 @@ const Gallery = () => {
   console.log("selectedImages", selectedImages);
 
   return (
-    <div className={classes.galleryImageContainer}>
-      {galleryImages.map((image, index) => (
-        <Card
-          image={image}
-          key={index}
-          selectedImages={selectedImages}
-          setSelectedImages={handleSetSelectedImages}
-        />
-      ))}
-    </div>
+    <>
+      <div className={classes.galleryImageContainer}>
+        {galleryImages.map((image, index) => (
+          <Card
+            image={image}
+            key={index}
+            selectedImages={selectedImages}
+            setSelectedImages={handleSetSelectedImages}
+          />
+        ))}
+      </div>
+      <div className={classes.validationButtonContainer}>
+        <p>Valider</p>
+      </div>
+    </>
   );
 };
 

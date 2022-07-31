@@ -16,8 +16,6 @@ const CardImageObject = ({ image, idCard, setIdCard, isSelected }) => {
     }
   }, []);
 
-  console.log("mon id card", idCard);
-
   return (
     <div
       className={

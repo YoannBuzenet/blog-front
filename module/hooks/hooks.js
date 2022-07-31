@@ -23,8 +23,6 @@ export function useWindowDimensions() {
     getWindowDimensions()
   );
 
-  console.log("oKKK", windowDimensions);
-
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());

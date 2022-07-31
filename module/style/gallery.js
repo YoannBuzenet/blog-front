@@ -10,4 +10,8 @@ export const useCustomizedStyle = () =>
       flexWrap: "wrap",
       justifyContent: "start",
     },
+    validationButtonContainer: {
+      position: "fixed",
+      bottom: 0,
+    },
   });

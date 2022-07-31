@@ -38,25 +38,24 @@ export const useCustomizedStyle = (options) => {
     imageManagerContainer__body: {
       position: "relative",
       height: "100%",
+      display: "flex",
     },
     imageManagerContainer__body__left: {
-      width: "15%",
-      height: "75%",
+      width: "25%",
+      height: "100%",
       borderRight: "1px solid black",
-      position: "fixed",
     },
     imageManagerContainer__body__right__container: {
-      width: "53%",
-      height: "75%",
-      left: "32%",
-      position: "fixed",
+      height: "100%",
       overflow: "hidden",
+      width: "100%",
     },
     imageManagerContainer__body__right: {
       overflowY: "scroll",
       paddingRight: "17px",
       display: "flex",
       justifyContent: "center",
+      position: "relative",
     },
     imageManagerContainer__body__left__titles: {
       marginTop: 20,

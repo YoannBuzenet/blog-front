@@ -12,10 +12,10 @@ function CropImage({ src, crop, setCrop, adjustedHeightImage }) {
   // width: 346.5111999511719
   // x: 139.39031982421875
   // y: 37.63502502441406
-  console.log("src", src);
-  console.log("crop", crop);
+  // console.log("src", src);
+  // console.log("crop", crop);
   const classes = useCustomizedStyle()();
-  console.log(cropProperties);
+  // console.log(cropProperties);
   return (
     <ReactCrop
       crop={crop}
