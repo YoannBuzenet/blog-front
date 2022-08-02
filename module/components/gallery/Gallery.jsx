@@ -72,6 +72,7 @@ const Gallery = () => {
           <button
             className="customFileInput"
             onClick={(e) => handleSelectImages(e, selectedImages)}
+            disabled={selectedImages.length === 0}
           >
             Valider
           </button>
