@@ -29,6 +29,8 @@ const ImageManagerContainer = ({
   imageFields = ["name"],
   galleryImages = [],
   canSelectSeveralImages = false,
+  onSelectImages = () =>
+    console.error("No callback defined to use selected images."),
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
@@ -63,6 +65,7 @@ const ImageManagerContainer = ({
     galleryProperties: {
       galleryImages,
       canSelectSeveralImages,
+      onSelectImages,
     },
     isDisplayedImageManager,
     setIsDisplayedImageManager,

@@ -8,7 +8,8 @@ import Card from "./Card";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
-  const { galleryImages, canSelectSeveralImages } = galleryProperties;
+  const { galleryImages, canSelectSeveralImages, onSelectImages } =
+    galleryProperties;
 
   // We compute the number of images we want to displaye, following screen size.
   const { width } = useWindowDimensions();
@@ -45,6 +46,10 @@ const Gallery = () => {
     }
   };
 
+  const handleSelectImages = (e, imagesSelected) => {
+    onSelectImages(imagesSelected);
+  };
+
   const classes = useCustomizedStyle()();
 
   console.log("selectedImages", selectedImages);
@@ -64,7 +69,12 @@ const Gallery = () => {
       <div className={classes.validationButtonContainer}>
         <div>Pagination</div>
         <div>
-          <p>Valider</p>
+          <button
+            className="customFileInput"
+            onClick={(e) => handleSelectImages(e, selectedImages)}
+          >
+            Valider
+          </button>
         </div>
       </div>
     </>
