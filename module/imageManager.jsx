@@ -13,7 +13,6 @@ const ImageManager = () => {
 
   const classes = useCustomizedStyle({
     screenDisplayed,
-    isUpload: screenDisplayed === "upload",
   })();
 
   return (
