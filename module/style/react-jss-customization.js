@@ -21,8 +21,8 @@ export const useCustomizedStyle = (options) => {
     imageManagerContainer: {
       position: "absolute",
       zIndex: 10000,
-      width: "70%",
-      height: "80%",
+      width: "85%",
+      height: "90%",
       borderRadius: "5px",
       padding: "20px",
       backgroundColor: "rgba(242, 241, 239, 1)",

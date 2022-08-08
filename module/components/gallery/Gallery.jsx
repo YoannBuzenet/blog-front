@@ -27,19 +27,29 @@ const Gallery = () => {
   console.log("galleryImages.length", galleryImages.length);
   // console.log("relevantBreakPoint", relevantBreakPoint);
 
+  // Pagination
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
+  const [galleryImagesAfterSearchFilter, setGalleryImagesAfterSearchFilter] =
+    useState(galleryImages);
+
+  console.log("galleryImagesAfterSearchFilter", galleryImagesAfterSearchFilter);
+
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + numberOfImagesDisplayed;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(galleryImages.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(galleryImages.length / numberOfImagesDisplayed));
-  }, [itemOffset, numberOfImagesDisplayed]);
+    setCurrentItems(
+      galleryImagesAfterSearchFilter.slice(itemOffset, endOffset)
+    );
+    setPageCount(
+      Math.ceil(galleryImagesAfterSearchFilter.length / numberOfImagesDisplayed)
+    );
+  }, [itemOffset, numberOfImagesDisplayed, galleryImagesAfterSearchFilter]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
@@ -51,6 +61,7 @@ const Gallery = () => {
     setItemOffset(newOffset);
   };
 
+  // Selection
   const [selectedImages, setSelectedImages] = useState([]);
 
   const handleSetSelectedImages = (hash) => {
@@ -75,23 +86,72 @@ const Gallery = () => {
     onSelectImages(imagesSelected);
   };
 
+  // CSS-in-js
   const classes = useCustomizedStyle()();
 
   console.log("selectedImages", selectedImages);
 
   console.log("pageCount", pageCount);
 
+  // Search by name or url
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value.toLowerCase());
+    setGalleryImagesAfterSearchFilter(
+      galleryImages.filter((image) => {
+        console.log("image dans le filtre", image);
+        if (image.name && image.name.toLowerCase().includes(search)) {
+          return image;
+        } else if (
+          !image.hasOwnProperty("name") &&
+          image.toLowerCase().includes(search)
+        ) {
+          return image;
+        }
+      })
+    );
+  };
+
+  // const lengthFileteredResults = currentItems.filter(item => {
+
+  // }).length
+
   return (
     <div className={classes.galleryContainer}>
+      <div className={classes.searchGalleryContainer}>
+        <input
+          type="text"
+          placeholder="Search by name"
+          onChange={handleSearch}
+        />
+      </div>
       <div className={classes.galleryImageContainer}>
-        {currentItems.map((image, index) => (
-          <Card
-            image={image}
-            key={index}
-            selectedImages={selectedImages}
-            setSelectedImages={handleSetSelectedImages}
-          />
-        ))}
+        {currentItems.map((image, index) => {
+          console.log("logique");
+          if (image.name && image.name.toLowerCase().includes(search)) {
+            return (
+              <Card
+                image={image}
+                key={index}
+                selectedImages={selectedImages}
+                setSelectedImages={handleSetSelectedImages}
+              />
+            );
+          } else if (
+            !image.hasOwnProperty("name") &&
+            image.toLowerCase().includes(search)
+          ) {
+            return (
+              <Card
+                image={image}
+                key={index}
+                selectedImages={selectedImages}
+                setSelectedImages={handleSetSelectedImages}
+              />
+            );
+          }
+        })}
       </div>
       <div className={classes.optionsGalleryContainer}>
         <div id="pagination">
