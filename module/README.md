@@ -8,6 +8,8 @@
 - npm i babel-plugin-styled-components
 - npm i axios
 - npm install react-paginate
+- npm i uuid
+- npm i --save-dev @types/uuid
 
 todo gallery
 

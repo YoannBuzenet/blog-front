@@ -6,6 +6,7 @@ import { useCustomizedStyle } from "../../style/gallery";
 import { getNearestBreakPoint } from "../../utils";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
+import { v4 as uuidv4 } from "uuid";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
@@ -98,6 +99,7 @@ const Gallery = () => {
 
   const handleSearch = (e) => {
     const currentSearch = e.target.value.toLowerCase();
+    setItemOffset(0);
     setSearch(currentSearch);
     const filteredGallery = galleryImages.filter((image) => {
       if (!search) {
@@ -133,7 +135,7 @@ const Gallery = () => {
             return (
               <Card
                 image={image}
-                key={index}
+                key={uuidv4()}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
               />
@@ -145,7 +147,7 @@ const Gallery = () => {
             return (
               <Card
                 image={image}
-                key={index}
+                key={uuidv4()}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
               />
