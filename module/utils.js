@@ -20,6 +20,35 @@ function getNearestBreakPoint(widthScreen) {
   }
 }
 
+function removeDuplicateFromArrayOfImages(array) {
+  if (!Array.isArray(array)) {
+    throw new Error("Parameters must be an array.");
+  }
+
+  let dictionnaryOfUnicity = {};
+  let uniqueArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    // If image is an object with name property
+    if (array[i].name) {
+      if (!dictionnaryOfUnicity[array[i].name]) {
+        uniqueArray = [...uniqueArray, array[i]];
+        dictionnaryOfUnicity[array[i].name] = true;
+      }
+    }
+    // If image is just an url
+    else {
+      if (!dictionnaryOfUnicity[array[i]]) {
+        uniqueArray = [...uniqueArray, array[i]];
+        dictionnaryOfUnicity[array[i]] = true;
+      }
+    }
+  }
+
+  return uniqueArray;
+}
+
 module.exports = {
   getNearestBreakPoint,
+  removeDuplicateFromArrayOfImages,
 };

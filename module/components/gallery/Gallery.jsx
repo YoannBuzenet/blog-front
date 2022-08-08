@@ -3,10 +3,12 @@ import config from "../../config/config";
 import ImageManagerContext from "../../contexts/index";
 import { useWindowDimensions } from "../../hooks/hooks";
 import { useCustomizedStyle } from "../../style/gallery";
-import { getNearestBreakPoint } from "../../utils";
+import {
+  getNearestBreakPoint,
+  removeDuplicateFromArrayOfImages,
+} from "../../utils";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
-import { v4 as uuidv4 } from "uuid";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
@@ -24,8 +26,8 @@ const Gallery = () => {
 
   // console.log("galleryImages", galleryImages);
   // console.log("numberOfPages", numberOfPages);
-  console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
-  console.log("galleryImages.length", galleryImages.length);
+  //console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
+  //console.log("galleryImages.length", galleryImages.length);
   // console.log("relevantBreakPoint", relevantBreakPoint);
 
   // Pagination
@@ -35,8 +37,13 @@ const Gallery = () => {
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
+  // Removing duplicate, otherwise the app wont be able to handle keys
+  // TODO next : fonction qui renvoie l'array d'image en ayant filtré les duplicate des deux types d'images
+  const galleryImageWithoutDuplicate =
+    removeDuplicateFromArrayOfImages(galleryImages);
+
   const [galleryImagesAfterSearchFilter, setGalleryImagesAfterSearchFilter] =
-    useState(galleryImages);
+    useState(galleryImageWithoutDuplicate);
 
   console.log("galleryImagesAfterSearchFilter", galleryImagesAfterSearchFilter);
 
@@ -55,7 +62,8 @@ const Gallery = () => {
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
     const newOffset =
-      (event.selected * numberOfImagesDisplayed) % galleryImages.length;
+      (event.selected * numberOfImagesDisplayed) %
+      galleryImageWithoutDuplicate.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -99,9 +107,12 @@ const Gallery = () => {
 
   const handleSearch = (e) => {
     const currentSearch = e.target.value.toLowerCase();
+
+    // Putting pagination to 0
     setItemOffset(0);
+
     setSearch(currentSearch);
-    const filteredGallery = galleryImages.filter((image) => {
+    const filteredGallery = galleryImageWithoutDuplicate.filter((image) => {
       if (!search) {
         return image;
       }
@@ -135,7 +146,7 @@ const Gallery = () => {
             return (
               <Card
                 image={image}
-                key={uuidv4()}
+                key={image.src}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
               />
@@ -147,7 +158,7 @@ const Gallery = () => {
             return (
               <Card
                 image={image}
-                key={uuidv4()}
+                key={image}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
               />
