@@ -4,6 +4,7 @@ import ImageManagerContext from "../../contexts/index";
 import { useWindowDimensions } from "../../hooks/hooks";
 import { useCustomizedStyle } from "../../style/gallery";
 import {
+  getAllInfosFromImageHash,
   getNearestBreakPoint,
   removeDuplicateFromArrayOfImages,
 } from "../../utils";
@@ -37,8 +38,7 @@ const Gallery = () => {
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
 
-  // Removing duplicate, otherwise the app wont be able to handle keys
-  // TODO next : fonction qui renvoie l'array d'image en ayant filtré les duplicate des deux types d'images
+  // Removing duplicate, otherwise react wont be able to handle keys
   const galleryImageWithoutDuplicate =
     removeDuplicateFromArrayOfImages(galleryImages);
 
@@ -74,6 +74,7 @@ const Gallery = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const handleSetSelectedImages = (hash) => {
+    console.log("hash reçu", hash);
     if (canSelectSeveralImages) {
       if (selectedImages.includes(hash)) {
         const indexString = selectedImages.indexOf(hash);
@@ -91,8 +92,13 @@ const Gallery = () => {
     }
   };
 
-  const handleSelectImages = (e, imagesSelected) => {
-    onSelectImages(imagesSelected);
+  const handleSelectImages = () => {
+    const arrayOfImagesSelected = getAllInfosFromImageHash(
+      galleryImageWithoutDuplicate,
+      selectedImages
+    );
+    console.log("yep ?", arrayOfImagesSelected);
+    onSelectImages(arrayOfImagesSelected);
   };
 
   // CSS-in-js
@@ -146,6 +152,7 @@ const Gallery = () => {
             return (
               <Card
                 image={image}
+                id={image.src}
                 key={image.src}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
@@ -159,6 +166,7 @@ const Gallery = () => {
               <Card
                 image={image}
                 key={image}
+                id={image}
                 selectedImages={selectedImages}
                 setSelectedImages={handleSetSelectedImages}
               />
@@ -194,9 +202,6 @@ const Gallery = () => {
 
 export default Gallery;
 
-// NEXT : composant Card pour une image
-// Comment on cherche dans la gallery par nom et tags ? il faut la data dans l'objet reçu, qui ne peut plus etre un simple string ?
-// Fonction Recherche par la prop name
 //
 //
 //
@@ -212,5 +217,3 @@ export default Gallery;
 //
 //
 //
-// Pagination
-// Select renvoie les ID des images

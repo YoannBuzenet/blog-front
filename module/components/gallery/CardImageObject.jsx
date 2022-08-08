@@ -2,26 +2,14 @@ import { useEffect } from "react";
 import { useCustomizedStyle } from "../../style/card";
 import crypto from "crypto";
 
-const CardImageObject = ({ image, idCard, setIdCard, isSelected }) => {
+const CardImageObject = ({ image, isSelected }) => {
   const classes = useCustomizedStyle()();
-
-  // Creating id from image URL to keep track of it
-  useEffect(() => {
-    if (!idCard) {
-      const hashedName = crypto
-        .createHash("md5")
-        .update(image.src)
-        .digest("hex");
-      setIdCard(hashedName);
-    }
-  }, []);
 
   return (
     <div
       className={
         isSelected ? classes.imageContainerSelected : classes.imageContainer
       }
-      id={idCard}
     >
       <img src={image.src} alt={image.name} className={classes.image} />
       <div className={classes.infoContainer}>

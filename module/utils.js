@@ -22,7 +22,7 @@ function getNearestBreakPoint(widthScreen) {
 
 function removeDuplicateFromArrayOfImages(array) {
   if (!Array.isArray(array)) {
-    throw new Error("Parameters must be an array.");
+    throw new Error("Parameter must be an array.");
   }
 
   let dictionnaryOfUnicity = {};
@@ -48,7 +48,51 @@ function removeDuplicateFromArrayOfImages(array) {
   return uniqueArray;
 }
 
+function getAllInfosFromImageHash(arrayOfImages, arrayOfHashes) {
+  if (!Array.isArray(arrayOfImages)) {
+    throw new Error("Parameter arrayOfImages must be an array.");
+  }
+  if (!Array.isArray(arrayOfHashes)) {
+    throw new Error("Parameter arrayOfHashes must be an array.");
+  }
+
+  const dictionnaryOfHashes = arrayOfHashes.reduce((acc, value) => {
+    acc[value] = true;
+    return acc;
+  }, {});
+
+  console.log("dictionnaryOfHashes", dictionnaryOfHashes);
+
+  let arrayOfImageInfos = [];
+
+  // We're mapping all image in the gallery, and picking the one with right hashs
+  // O(N) of gallery length
+  for (let i = 0; i < arrayOfImages.length; i++) {
+    const image = arrayOfImages[i];
+    console.log("image", image);
+    if (image.src) {
+      console.log("image.src", image.src);
+      if (dictionnaryOfHashes[image.src]) {
+        console.log(
+          "dictionnaryOfHashes[image.src]",
+          dictionnaryOfHashes[image.src]
+        );
+        arrayOfImageInfos = [...arrayOfImageInfos, image];
+      }
+    } else {
+      console.log("image sans name", image);
+      console.log("dictionnaryOfHashes[image]", dictionnaryOfHashes[image]);
+      if (dictionnaryOfHashes[image]) {
+        arrayOfImageInfos = [...arrayOfImageInfos, image];
+      }
+    }
+  }
+
+  return arrayOfImageInfos;
+}
+
 module.exports = {
   getNearestBreakPoint,
   removeDuplicateFromArrayOfImages,
+  getAllInfosFromImageHash,
 };
