@@ -2,6 +2,8 @@
 
 - Add css file for file input file
 
+- Add css for pagination (import "../module/style/pagination.css";)
+
 - Ajouter document pour react-jss (https://github.com/vercel/next.js/blob/deprecated-main/examples/with-react-jss/pages/_document.js)
 - npm i babel-plugin-styled-components
 - npm i axios

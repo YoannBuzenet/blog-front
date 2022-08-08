@@ -12,21 +12,34 @@ export const useCustomizedStyle = () =>
       width: "100%",
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "start",
-      height: "42%",
       overflowY: "scroll",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: "15%",
     },
-    validationButtonContainer: {
+    optionsGalleryContainer: {
+      position: "absolute",
+      top: "85%",
+      left: 0,
+      right: 0,
+      bottom: 0,
       backgroundColor: "rgba(242, 241, 239, 1)",
       display: "flex",
+      alignContent: "center",
       "& >div": {
         width: "50%",
+        display: "flex",
+        justifyContent: "center",
       },
-      "& >div:first-child": {
-        textAlign: "left",
-      },
+      "& >div:first-child": {},
       "& >div:last-child": {
         textAlign: "right",
       },
+    },
+    validationButtonContainer: {
+      display: "flex",
+      alignItems: "center",
     },
   });

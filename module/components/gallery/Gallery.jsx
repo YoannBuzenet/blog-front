@@ -93,8 +93,8 @@ const Gallery = () => {
           />
         ))}
       </div>
-      <div className={classes.validationButtonContainer}>
-        <div>
+      <div className={classes.optionsGalleryContainer}>
+        <div id="pagination">
           <ReactPaginate
             breakLabel="..."
             nextLabel=">"
@@ -105,7 +105,7 @@ const Gallery = () => {
             renderOnZeroPageCount={null}
           />
         </div>
-        <div>
+        <div className={classes.validationButtonContainer}>
           <button
             className="customFileInput"
             onClick={(e) => handleSelectImages(e, selectedImages)}
