@@ -124,7 +124,7 @@ const ImageUploader = () => {
   };
 
   return (
-    <div>
+    <div style={{ overflowY: documentUploaded ? "scroll" : "auto" }}>
       {documentUploaded && (
         <div className={classes.cropContainer}>
           <CropImage

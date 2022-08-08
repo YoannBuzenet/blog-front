@@ -4,17 +4,20 @@ import { createUseStyles } from "react-jss";
 //TODO chaque parametre doit avoir une valeur par default
 export const useCustomizedStyle = () =>
   createUseStyles({
+    galleryContainer: {
+      display: "flex",
+      flexDirection: "column",
+    },
     galleryImageContainer: {
       width: "100%",
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "start",
+      height: "42%",
+      overflowY: "scroll",
     },
     validationButtonContainer: {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      right: 0,
+      backgroundColor: "rgba(242, 241, 239, 1)",
       display: "flex",
       "& >div": {
         width: "50%",

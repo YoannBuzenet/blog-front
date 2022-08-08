@@ -11,7 +11,10 @@ const ImageManager = () => {
 
   const [screenDisplayed, setScreenDisplayed] = useState("upload");
 
-  const classes = useCustomizedStyle({ screenDisplayed })();
+  const classes = useCustomizedStyle({
+    screenDisplayed,
+    isUpload: screenDisplayed === "upload",
+  })();
 
   return (
     <>

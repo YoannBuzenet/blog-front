@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import config from "../../config/config";
 import ImageManagerContext from "../../contexts/index";
 import { useWindowDimensions } from "../../hooks/hooks";
 import { useCustomizedStyle } from "../../style/gallery";
 import { getNearestBreakPoint } from "../../utils";
 import Card from "./Card";
+import ReactPaginate from "react-paginate";
 
 const Gallery = () => {
   const { galleryProperties } = useContext(ImageManagerContext);
@@ -22,9 +23,33 @@ const Gallery = () => {
 
   // console.log("galleryImages", galleryImages);
   // console.log("numberOfPages", numberOfPages);
-  // console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
-  // console.log("galleryImages.length", galleryImages.length);
+  console.log("numberOfImagesDisplayed", numberOfImagesDisplayed);
+  console.log("galleryImages.length", galleryImages.length);
   // console.log("relevantBreakPoint", relevantBreakPoint);
+
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    // Fetch items from another resources.
+    const endOffset = itemOffset + numberOfImagesDisplayed;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    setCurrentItems(galleryImages.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(galleryImages.length / numberOfImagesDisplayed));
+  }, [itemOffset, numberOfImagesDisplayed]);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset =
+      (event.selected * numberOfImagesDisplayed) % galleryImages.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
 
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -54,10 +79,12 @@ const Gallery = () => {
 
   console.log("selectedImages", selectedImages);
 
+  console.log("pageCount", pageCount);
+
   return (
-    <>
+    <div className={classes.galleryContainer}>
       <div className={classes.galleryImageContainer}>
-        {galleryImages.map((image, index) => (
+        {currentItems.map((image, index) => (
           <Card
             image={image}
             key={index}
@@ -67,7 +94,17 @@ const Gallery = () => {
         ))}
       </div>
       <div className={classes.validationButtonContainer}>
-        <div>Pagination</div>
+        <div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+          />
+        </div>
         <div>
           <button
             className="customFileInput"
@@ -78,7 +115,7 @@ const Gallery = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
