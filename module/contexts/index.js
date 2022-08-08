@@ -1,6 +1,7 @@
 import React from "react";
 
 export default React.createContext({
+  enabledModes: ["upload", "gallery"],
   cropProperties: {
     cropAspectRatio: null,
     cropMinWidth: null,

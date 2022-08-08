@@ -31,10 +31,12 @@ const ImageManagerContainer = ({
   canSelectSeveralImages = false,
   onSelectImages = () =>
     console.error("No callback defined to use selected images."),
+  enabledModes = ["upload", "gallery"],
 }) => {
   const [isDisplayedImageManager, setIsDisplayedImageManager] = useState(false);
 
   const context = {
+    enabledModes,
     cropProperties: {
       cropAspectRatio,
       cropMinWidth,

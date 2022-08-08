@@ -6,10 +6,15 @@ import { useCustomizedStyle } from "./style/react-jss-customization";
 
 // Lui va recevoir masse props overwritable
 const ImageManager = () => {
-  const { isDisplayedImageManager, setIsDisplayedImageManager } =
+  const { isDisplayedImageManager, setIsDisplayedImageManager, enabledModes } =
     useContext(ImageManagerContext);
 
-  const [screenDisplayed, setScreenDisplayed] = useState("upload");
+  const bootMode = enabledModes.includes("upload") ? "upload" : "gallery";
+
+  console.log("enabledModes", enabledModes);
+  console.log("bootMode", bootMode);
+
+  const [screenDisplayed, setScreenDisplayed] = useState(bootMode);
 
   const classes = useCustomizedStyle({
     screenDisplayed,
@@ -33,20 +38,26 @@ const ImageManager = () => {
                 </div>
               </div>
               <div className={classes.imageManagerContainer__body}>
-                <div className={classes.imageManagerContainer__body__left}>
-                  <div
-                    className={
-                      classes.imageManagerContainer__body__left__titles
-                    }
-                  >
-                    <div onClick={() => setScreenDisplayed("upload")}>
-                      <p>Upload</p>
-                    </div>
-                    <div onClick={() => setScreenDisplayed("gallery")}>
-                      <p>Galleries</p>
+                {enabledModes.length > 1 && (
+                  <div className={classes.imageManagerContainer__body__left}>
+                    <div
+                      className={
+                        classes.imageManagerContainer__body__left__titles
+                      }
+                    >
+                      {enabledModes.includes("upload") && (
+                        <div onClick={() => setScreenDisplayed("upload")}>
+                          <p>Upload</p>
+                        </div>
+                      )}
+                      {enabledModes.includes("gallery") && (
+                        <div onClick={() => setScreenDisplayed("gallery")}>
+                          <p>Galleries</p>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
+                )}
                 {/* We add a container here to be able to hide scrolling bar */}
                 {/* https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll */}
                 <div
