@@ -18,6 +18,7 @@ const CardImageString = ({ image, idCard, setIdCard, isSelected }) => {
       className={
         isSelected ? classes.imageContainerSelected : classes.imageContainer
       }
+      id={idCard}
     >
       <img src={image} alt="Gallery Image" className={classes.image} />
       <p className={`${classes.lightText} ${classes.infoText}`}>{image}</p>

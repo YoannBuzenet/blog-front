@@ -21,6 +21,7 @@ const CardImageObject = ({ image, idCard, setIdCard, isSelected }) => {
       className={
         isSelected ? classes.imageContainerSelected : classes.imageContainer
       }
+      id={idCard}
     >
       <img src={image.src} alt={image.name} className={classes.image} />
       <div className={classes.infoContainer}>

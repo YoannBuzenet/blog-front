@@ -97,25 +97,26 @@ const Gallery = () => {
   const [search, setSearch] = useState("");
 
   const handleSearch = (e) => {
-    setSearch(e.target.value.toLowerCase());
-    setGalleryImagesAfterSearchFilter(
-      galleryImages.filter((image) => {
-        console.log("image dans le filtre", image);
-        if (image.name && image.name.toLowerCase().includes(search)) {
-          return image;
-        } else if (
-          !image.hasOwnProperty("name") &&
-          image.toLowerCase().includes(search)
-        ) {
-          return image;
-        }
-      })
-    );
+    const currentSearch = e.target.value.toLowerCase();
+    setSearch(currentSearch);
+    const filteredGallery = galleryImages.filter((image) => {
+      if (!search) {
+        return image;
+      }
+
+      if (image.name && image.name.toLowerCase().includes(currentSearch)) {
+        return image;
+      } else if (
+        !image.hasOwnProperty("name") &&
+        image.toLowerCase().includes(currentSearch)
+      ) {
+        return image;
+      }
+      console.log("Image filtrée", image);
+    });
+    console.log("filteredGallery", filteredGallery);
+    setGalleryImagesAfterSearchFilter(filteredGallery);
   };
-
-  // const lengthFileteredResults = currentItems.filter(item => {
-
-  // }).length
 
   return (
     <div className={classes.galleryContainer}>
@@ -128,7 +129,6 @@ const Gallery = () => {
       </div>
       <div className={classes.galleryImageContainer}>
         {currentItems.map((image, index) => {
-          console.log("logique");
           if (image.name && image.name.toLowerCase().includes(search)) {
             return (
               <Card
