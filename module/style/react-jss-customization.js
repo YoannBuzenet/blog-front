@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 //TODO chaque parametre doit avoir une valeur par default
 //TODO : tout faire passer là dedans ET créer les bonnes sous classes si besoin
 export const useCustomizedStyle = (options) => {
-  console.log("options reçues", options);
+  // console.log("options reçues", options);
   return createUseStyles({
     imageContainer: {
       position: "fixed",

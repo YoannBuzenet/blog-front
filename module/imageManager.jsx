@@ -11,9 +11,6 @@ const ImageManager = () => {
 
   const bootMode = enabledModes.includes("upload") ? "upload" : "gallery";
 
-  console.log("enabledModes", enabledModes);
-  console.log("bootMode", bootMode);
-
   const [screenDisplayed, setScreenDisplayed] = useState(bootMode);
 
   const classes = useCustomizedStyle({
@@ -22,7 +19,7 @@ const ImageManager = () => {
 
   return (
     <>
-      {!isDisplayedImageManager && (
+      {isDisplayedImageManager && (
         <div className={classes.imageContainer}>
           <>
             <div className={classes.imageManagerContainer}>

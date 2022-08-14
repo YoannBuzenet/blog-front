@@ -43,7 +43,7 @@ export const useCustomizedStyle = () =>
       backgroundColor: "rgba(242, 241, 239, 1)",
       display: "flex",
       alignContent: "center",
-      "& >div": {
+      "& > div": {
         width: "50%",
         display: "flex",
         justifyContent: "center",
