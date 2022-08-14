@@ -32,6 +32,7 @@ const HOTKEYS = {
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
 const handleClickImageModule = (e, ok, ok2) => {
+  //TODO
   console.log("e", e);
   console.log("e", ok);
   console.log("e", ok2);

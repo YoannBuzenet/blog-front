@@ -36,8 +36,6 @@ const Gallery = () => {
   const [galleryImagesAfterSearchFilter, setGalleryImagesAfterSearchFilter] =
     useState(galleryImageWithoutDuplicate);
 
-  console.log("galleryImagesAfterSearchFilter", galleryImagesAfterSearchFilter);
-
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + numberOfImagesDisplayed;
@@ -95,7 +93,7 @@ const Gallery = () => {
   // CSS-in-js
   const classes = useCustomizedStyle()();
 
-  console.log("selectedImages", selectedImages);
+  // console.log("selectedImages", selectedImages);
 
   console.log("pageCount", pageCount);
 

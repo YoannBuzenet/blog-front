@@ -1,5 +1,5 @@
 function getNearestBreakPoint(widthScreen) {
-  console.log("widthScreen", widthScreen);
+  // console.log("widthScreen", widthScreen);
 
   if (widthScreen < 320) {
     return 320;
@@ -61,27 +61,17 @@ function getAllInfosFromImageHash(arrayOfImages, arrayOfHashes) {
     return acc;
   }, {});
 
-  console.log("dictionnaryOfHashes", dictionnaryOfHashes);
-
   let arrayOfImageInfos = [];
 
   // We're mapping all image in the gallery, and picking the one with right hashs
   // O(N) of gallery length
   for (let i = 0; i < arrayOfImages.length; i++) {
     const image = arrayOfImages[i];
-    console.log("image", image);
     if (image.src) {
-      console.log("image.src", image.src);
       if (dictionnaryOfHashes[image.src]) {
-        console.log(
-          "dictionnaryOfHashes[image.src]",
-          dictionnaryOfHashes[image.src]
-        );
         arrayOfImageInfos = [...arrayOfImageInfos, image];
       }
     } else {
-      console.log("image sans name", image);
-      console.log("dictionnaryOfHashes[image]", dictionnaryOfHashes[image]);
       if (dictionnaryOfHashes[image]) {
         arrayOfImageInfos = [...arrayOfImageInfos, image];
       }
