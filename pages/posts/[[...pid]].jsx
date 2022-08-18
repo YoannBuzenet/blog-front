@@ -7,6 +7,7 @@ import NavBar from "../../components/Navbar/NavBar";
 import style from "../../styles/posts/PostPage.module.css";
 import Image from "next/image";
 import Footer from "../../components/Footer/Footer";
+import { useImageManager } from "react-image-manager";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -19,7 +20,7 @@ export async function getServerSideProps({ req, query, params }) {
   return { props: { postParsed } };
 }
 
-const onePost = ({ postParsed }) => {
+const OnePost = ({ postParsed }) => {
   const post = Post.builder()
     .id(postParsed.id)
     .title(postParsed.title)
@@ -31,6 +32,9 @@ const onePost = ({ postParsed }) => {
     .createdAt(postParsed.createdAt)
     .updatedAt(postParsed.updatedAt)
     .build();
+
+  const { isDisplayedImageManager, setIsDisplayedImageManager } =
+    useImageManager();
 
   return (
     <>
@@ -56,9 +60,13 @@ const onePost = ({ postParsed }) => {
           <DisplayHTML slateText={post?.content} />
         </div>
       </div>
+      <div>
+        <p>test</p>
+        <button onClick={(e) => setIsDisplayedImageManager(true)}>Go</button>
+      </div>
       <Footer />
     </>
   );
 };
 
-export default onePost;
+export default OnePost;

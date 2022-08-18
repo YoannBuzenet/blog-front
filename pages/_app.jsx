@@ -16,10 +16,13 @@ import { customMUITheme } from "../styles/Mui/theme";
 import { ToastContainer, toast } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
-import ImageManagerContainer from "../module/imageManagerContainer";
+
 import "react-image-crop/dist/ReactCrop.css";
-import "../module/style/style.css";
-import "../module/style/pagination.css";
+// import { useImageManager, ImageManagerContainer } from "react-image-manager";
+import { ImageManagerContainer } from "react-image-manager";
+
+// import "../module/style/style.css";
+// import "../module/style/pagination.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
