@@ -20,7 +20,8 @@ import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/basel
 import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
-import { useImageManager } from "../../../module/hooks/hooks";
+import { useImageManager } from "react-image-manager";
+import { EXAMPLE_IMAGE_URL } from "../../../debug/consts";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -31,11 +32,12 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const handleClickImageModule = (e, ok, ok2) => {
-  //TODO
-  console.log("e", e);
-  console.log("e", ok);
-  console.log("e", ok2);
+const handleClickImageModule = (setIsDisplayedImageManager) => {
+  // Set un handler d'image ici en contexte pour récupérer la data ?
+
+  setIsDisplayedImageManager(true);
+  // toggleBlock();
+  // toggleBlock(editor, format);
 };
 
 const RichText = ({ value, setValue, field }) => {
@@ -102,13 +104,10 @@ const RichText = ({ value, setValue, field }) => {
             title="Créer une liste à puce"
           />
           <CustomButton
-            handleClick={(e) =>
-              handleClickImageModule(
-                e,
-                isDisplayedImageManager,
-                setIsDisplayedImageManager
-              )
+            handleClick={() =>
+              handleClickImageModule(setIsDisplayedImageManager)
             }
+            format="image"
             SvgIcon={Image_SVG}
             title="Images"
           />
@@ -184,6 +183,7 @@ const isMarkActive = (editor, format) => {
 };
 
 const Element = ({ attributes, children, element }) => {
+  console.log("element reçu", element);
   switch (element.type) {
     case "block-quote":
       return <blockquote {...attributes}>{children}</blockquote>;
@@ -197,6 +197,8 @@ const Element = ({ attributes, children, element }) => {
       return <li {...attributes}>{children}</li>;
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
+    case "image":
+      return <img {...attributes} src={EXAMPLE_IMAGE_URL} />;
     default:
       return <p {...attributes}>{children}</p>;
   }
@@ -271,9 +273,26 @@ const MarkButton = ({ format, SvgIcon, title }) => {
     </Button>
   );
 };
-const CustomButton = ({ handleClick, SvgIcon, title }) => {
+const CustomButton = ({
+  handleClick,
+  SvgIcon,
+  title,
+  format,
+  isToggleMark,
+}) => {
+  const editor = useSlate();
+
+  const toggleFunction = isToggleMark ? toggleMark : toggleBlock;
+
   return (
-    <Button onMouseDown={handleClick} title={title}>
+    <Button
+      onMouseDown={(event) => {
+        event.preventDefault();
+        toggleBlock(editor, format);
+        // handleClick();
+      }}
+      title={title}
+    >
       <SvgIcon fill={colorsVariable.wysiwygLightGrey} />
     </Button>
   );

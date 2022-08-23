@@ -43,8 +43,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       onFailureupload={() =>
         toast.error(<p>L&apos;image a bien n&apos;a pu être uploadée.</p>)
       }
-      onSelectImages={(truc) => {
-        console.log("truc", truc);
+      onSelectImages={(arrayOfSelectedImages) => {
+        console.log("truc", arrayOfSelectedImages);
       }}
       galleryImages={[
         "https://cdn.britannica.com/84/73184-004-E5A450B5/Sunflower-field-Fargo-North-Dakota.jpg?w=400&h=300&c=crop",
