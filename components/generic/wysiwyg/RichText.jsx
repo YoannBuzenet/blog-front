@@ -198,7 +198,13 @@ const Element = ({ attributes, children, element }) => {
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
     case "image":
-      return <img {...attributes} src={EXAMPLE_IMAGE_URL} />;
+      return (
+        <div contentEditable={false} style={{ textAlign: "center" }}>
+          {/* eslint-disable */}
+          <img {...attributes} src={EXAMPLE_IMAGE_URL} width="500px" />
+          {/* eslint-enable */}
+        </div>
+      );
     default:
       return <p {...attributes}>{children}</p>;
   }
