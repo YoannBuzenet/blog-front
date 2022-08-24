@@ -1,6 +1,7 @@
 ### TODO
 
 - Voir si on peut mettre des legendes par image lol
+- checker que le displayHTML affiche bien l'image comme on veut
 - Bien brancher avec react-image-manager
 - check comment custom la méthode de onSelect dans un compo en bas du tree
 - Quand on aura les vraies images, bien sizer les images sur la home

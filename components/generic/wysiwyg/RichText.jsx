@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate, ReactEditor } from "slate-react";
 import {
@@ -36,16 +36,28 @@ const handleClickImageModule = (setIsDisplayedImageManager) => {
   // Set un handler d'image ici en contexte pour récupérer la data ?
 
   setIsDisplayedImageManager(true);
-  // toggleBlock();
-  // toggleBlock(editor, format);
 };
 
 const RichText = ({ value, setValue, field }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  const { isDisplayedImageManager, setIsDisplayedImageManager } =
-    useImageManager();
+  const {
+    isDisplayedImageManager,
+    setIsDisplayedImageManager,
+    selectedImages,
+    setSelectedImages,
+  } = useImageManager();
+
+  useEffect(() => {
+    const updateImageRichtext = (imageObject) => {
+      console.log("DID TRIGGER", imageObject);
+      toggleBlock(editor, "image", imageObject);
+    };
+
+    const oneSingleImage = selectedImages[0];
+    updateImageRichtext(oneSingleImage);
+  }, [selectedImages.length, setSelectedImages]);
 
   return (
     <div
@@ -132,7 +144,7 @@ const RichText = ({ value, setValue, field }) => {
   );
 };
 
-const toggleBlock = (editor, format) => {
+const toggleBlock = (editor, format, otherProps) => {
   const isActive = isBlockActive(editor, format);
   const isList = LIST_TYPES.includes(format);
 
@@ -143,9 +155,12 @@ const toggleBlock = (editor, format) => {
       LIST_TYPES.includes(n.type),
     split: true,
   });
-  const newProperties = {
+  let newProperties = {
     type: isActive ? "paragraph" : isList ? "list-item" : format,
   };
+  if (otherProps) {
+    newProperties = { ...newProperties, ...otherProps };
+  }
   Transforms.setNodes(editor, newProperties);
 
   if (!isActive && isList) {
@@ -201,7 +216,11 @@ const Element = ({ attributes, children, element }) => {
       return (
         <div contentEditable={false} style={{ textAlign: "center" }}>
           {/* eslint-disable */}
-          <img {...attributes} src={EXAMPLE_IMAGE_URL} width="500px" />
+          <img
+            {...attributes}
+            src={element.src ? element.src : element}
+            width="500px"
+          />
           {/* eslint-enable */}
         </div>
       );
@@ -294,8 +313,8 @@ const CustomButton = ({
     <Button
       onMouseDown={(event) => {
         event.preventDefault();
-        toggleBlock(editor, format);
-        // handleClick();
+        // toggleBlock(editor, format, { bleep: "boup" });
+        handleClick();
       }}
       title={title}
     >
