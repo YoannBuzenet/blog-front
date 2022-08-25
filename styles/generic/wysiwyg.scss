@@ -95,6 +95,7 @@
 
   .captionImage {
     position: relative;
+    border: 1px solid blue;
   }
 
   .captionImage::before {
@@ -103,7 +104,7 @@
     position: absolute;
     top: -8px;
     left: -1px;
-    background-color: red;
+    background-color: blue;
   }
 }
 

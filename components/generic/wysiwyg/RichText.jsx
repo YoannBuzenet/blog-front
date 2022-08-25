@@ -234,9 +234,7 @@ const Element = ({ attributes, children, element }) => {
             <img {...attributes} src={element.src} width="500px" />
             {/* eslint-enable */}
           </div>
-          <div className="captionImage" style={{ border: "1px solid red" }}>
-            {children}
-          </div>
+          <div className="captionImage">{children}</div>
         </>
       );
     default:

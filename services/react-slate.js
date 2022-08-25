@@ -41,7 +41,10 @@ const serialize = (node) => {
     case "link":
       return `<a href="${escapeHtml(node.url)}">${children}</a>`;
     case "image":
-      return `<img src="${escapeHtml(node.url)}">`;
+      return `<div class="imageDisplay">
+                <img src="${escapeHtml(node.src)}">
+                <p>${children}</p>
+              </div>`;
     default:
       return children;
   }

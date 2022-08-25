@@ -29,6 +29,16 @@ h1 .wysiwygDisplay p {
   border-radius: var(--border-radius);
 }
 
+.imageDisplay {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.imageDisplay img {
+  min-width: 600px;
+  max-height: 800px;
+}
+
 /* On screens that are 768px or less*/
 @media screen and (max-width: 768px) {
   .articleDescription .wysiwygDisplay p {
