@@ -61,15 +61,15 @@ const RichText = ({ value, setValue, field }) => {
 
   useEffect(() => {
     const updateImageRichtext = (imageObject) => {
-      let propsToPass = {};
-      if (imageObject?.src) {
-        propsToPass = imageObject;
-      } else {
-        propsToPass.src = imageObject;
+      if (imageObject) {
+        let propsToPass = {};
+        if (imageObject?.src) {
+          propsToPass = imageObject;
+        } else {
+          propsToPass.src = imageObject;
+        }
+        toggleBlock(editor, "image", propsToPass);
       }
-      console.log("DID TRIGGER, imageObject", imageObject);
-      console.log("DID TRIGGER, propsToPass", propsToPass);
-      toggleBlock(editor, "image", propsToPass);
     };
 
     const oneSingleImage = selectedImages[0];
