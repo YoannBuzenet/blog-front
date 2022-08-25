@@ -21,7 +21,6 @@ import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
 import { useImageManager } from "react-image-manager";
-import { EXAMPLE_IMAGE_URL } from "../../../debug/consts";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -235,7 +234,9 @@ const Element = ({ attributes, children, element }) => {
             <img {...attributes} src={element.src} width="500px" />
             {/* eslint-enable */}
           </div>
-          {children}
+          <div className="captionImage" style={{ border: "1px solid red" }}>
+            {children}
+          </div>
         </>
       );
     default:

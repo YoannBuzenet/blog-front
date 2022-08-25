@@ -92,6 +92,19 @@
   [data-slate-editor] > * + * {
     margin-top: 1em;
   }
+
+  .captionImage {
+    position: relative;
+  }
+
+  .captionImage::before {
+    content: "Caption Text";
+    font-size: 8px;
+    position: absolute;
+    top: -8px;
+    left: -1px;
+    background-color: red;
+  }
 }
 
 .wysiwyg_container.plainText {
