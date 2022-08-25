@@ -57,8 +57,6 @@ const RichText = ({ value, setValue, field }) => {
     strigifiedSelectedImages = [];
   }
 
-  console.log("strigifiedSelectedImages", strigifiedSelectedImages);
-
   useEffect(() => {
     const updateImageRichtext = (imageObject) => {
       if (imageObject) {
@@ -231,11 +229,14 @@ const Element = ({ attributes, children, element }) => {
       return <ol {...attributes}>{children}</ol>;
     case "image":
       return (
-        <div contentEditable={false} style={{ textAlign: "center" }}>
-          {/* eslint-disable */}
-          <img {...attributes} src={element.src} width="500px" />
-          {/* eslint-enable */}
-        </div>
+        <>
+          <div contentEditable={false} style={{ textAlign: "center" }}>
+            {/* eslint-disable */}
+            <img {...attributes} src={element.src} width="500px" />
+            {/* eslint-enable */}
+          </div>
+          {children}
+        </>
       );
     default:
       return <p {...attributes}>{children}</p>;
