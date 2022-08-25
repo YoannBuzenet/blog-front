@@ -41,7 +41,7 @@ const serialize = (node) => {
     case "link":
       return `<a href="${escapeHtml(node.url)}">${children}</a>`;
     case "image":
-      return `<div class="imageDisplay">
+      return `<div class="imageDisplay" data-lang=${node.language}>
                 <img src="${escapeHtml(node.src)}">
                 <p>${children}</p>
               </div>`;
