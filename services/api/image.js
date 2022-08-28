@@ -16,7 +16,7 @@ const addCompletePathToImages = (arrayOfImages) => {
     // If the image is hosted on an external website, we keep the current url. Otherwise, we add the api url.
     const pathUpdated = image.path.includes("https")
       ? image.path
-      : process.env.NEXT_PUBLIC_API_URL + "/" + image.path;
+      : process.env.NEXT_PUBLIC_API_URL + "/public/images/" + image.name;
 
     return {
       ...image,
