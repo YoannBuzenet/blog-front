@@ -111,34 +111,54 @@ const PostPage = ({ page, isCreationInit }) => {
         <div className="contentPageContainer">
           {page && (
             <div>
-              <h1>{capitalizeFirstLetter(pageState?.name)}</h1>
-              <div>
+              <h1>Article n°{capitalizeFirstLetter(pageState?.id)}</h1>
+              <div className={style.editableElement}>
+                <h2>Titre</h2>
+                <SimpleField
+                  value={pageState.title}
+                  setValue={handleChangePage}
+                  title="Le titre de l'article"
+                  field="title"
+                  showError={showError}
+                />
+              </div>
+              <div className={style.editableElement}>
+                <h2>Image Principale</h2>
+                <img
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/${pageState.mainImageUrl}`}
+                />
+                <SimpleField
+                  value={pageState.mainImageUrl}
+                  setValue={handleChangePage}
+                  title="URL de l'image en tête d'article"
+                  field="mainImageUrl"
+                />
+              </div>
+              <div className={style.editableElement}>
+                <h2>Contenu</h2>
                 <RichTextExample
                   value={pageState.content}
                   setValue={handleChangePage}
                   field="content"
                 />
               </div>
+              <div className={style.editableElement}>
+                <h2>Description Courte</h2>
+                <SimpleField
+                  value={pageState.shortDescription}
+                  setValue={handleChangePage}
+                  title="Description courte"
+                  field="shortDescription"
+                />
+              </div>
 
               <div>
+                <h3>SEO</h3>
                 <SimpleField
                   value={pageState.metaDescription}
                   setValue={handleChangePage}
                   title="Ceci est la description qui s'affiche sur Google lorsque votre site apparait dans les résultats."
                   field="metaDescription"
-                />
-                <SimpleField
-                  value={pageState.title}
-                  setValue={handleChangePage}
-                  title="Le titre de votre page, qui apparait sur l'onglet de votre navigateur."
-                  field="title"
-                  showError={showError}
-                />
-                <SimpleField
-                  value={pageState.shortDescription}
-                  setValue={handleChangePage}
-                  title="short description"
-                  field="shortDescription"
                 />
               </div>
             </div>

@@ -31,12 +31,6 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const handleClickImageModule = (setIsDisplayedImageManager) => {
-  // Set un handler d'image ici en contexte pour récupérer la data ?
-
-  setIsDisplayedImageManager(true);
-};
-
 const RichText = ({ value, setValue, field }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
@@ -44,34 +38,31 @@ const RichText = ({ value, setValue, field }) => {
   const {
     isDisplayedImageManager,
     setIsDisplayedImageManager,
-    selectedImages,
-    setSelectedImages,
+    setOnValidationCallBack,
   } = useImageManager();
 
-  let strigifiedSelectedImages;
-  try {
-    strigifiedSelectedImages = JSON.stringify(selectedImages);
-  } catch (e) {
-    console.error("Couldnt striginfy selectedImages. Error :", e);
-    strigifiedSelectedImages = [];
-  }
+  console.log("setterCallback coté blog front", setOnValidationCallBack);
 
-  useEffect(() => {
-    const updateImageRichtext = (imageObject) => {
-      if (imageObject) {
-        let propsToPass = {};
-        if (imageObject?.src) {
-          propsToPass = imageObject;
-        } else {
-          propsToPass.src = imageObject;
+  const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
+    const updateImageRichtext = (arrayOfImages) => {
+      if (Array.isArray(arrayOfImages)) {
+        const imageObject = arrayOfImages[0];
+
+        if (imageObject) {
+          let propsToPass = {};
+          if (imageObject?.src) {
+            propsToPass = imageObject;
+          } else {
+            propsToPass.src = imageObject;
+          }
+          toggleBlock(editor, "image", propsToPass);
         }
-        toggleBlock(editor, "image", propsToPass);
       }
     };
 
-    const oneSingleImage = selectedImages[0];
-    updateImageRichtext(oneSingleImage);
-  }, [strigifiedSelectedImages, setSelectedImages]);
+    setOnValidationCallBack(updateImageRichtext);
+    setIsDisplayedImageManager(true);
+  };
 
   return (
     <div
@@ -131,7 +122,7 @@ const RichText = ({ value, setValue, field }) => {
           />
           <CustomButton
             handleClick={() =>
-              handleClickImageModule(setIsDisplayedImageManager)
+              handleClickImageModule(setIsDisplayedImageManager, editor)
             }
             format="image"
             SvgIcon={Image_SVG}
