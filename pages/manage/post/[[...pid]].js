@@ -22,6 +22,8 @@ import {
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { useImageManager } from "react-image-manager";
 
+//TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
+
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
   // const session = await getSession({ req });
@@ -104,6 +106,17 @@ const PostPage = ({ page, isCreationInit }) => {
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
+  const previewImageUrl = () => {
+    const imageUrl = parseSlateFormatSimple(pageState.mainImageUrl);
+    if (imageUrl.includes("http")) {
+      return imageUrl;
+    } else {
+      return `${process.env.NEXT_PUBLIC_API_URL}${parseSlateFormatSimple(
+        pageState.mainImageUrl
+      )}`;
+    }
+  };
+
   const {
     isDisplayedImageManager,
     setIsDisplayedImageManager,
@@ -139,11 +152,7 @@ const PostPage = ({ page, isCreationInit }) => {
                 <h2>Image Principale</h2>
                 {/* eslint-disable */}
                 {/* le linter veut qu'on utilise le compo Image next - no way ici ! */}
-                <img
-                  src={`${
-                    process.env.NEXT_PUBLIC_API_URL
-                  }${parseSlateFormatSimple(pageState.mainImageUrl)}`}
-                />
+                <img src={previewImageUrl()} />
                 {/* eslint-enable */}
                 <SimpleField
                   value={pageState.mainImageUrl}
