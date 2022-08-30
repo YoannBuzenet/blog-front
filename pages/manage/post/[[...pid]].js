@@ -16,9 +16,11 @@ import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
 import { getOnePost } from "../../../services/api/post";
 import {
   calculateLengthOfSimpleField,
+  formatSimple,
   parseSlateFormatSimple,
 } from "../../../services/react-slate";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
+import { useImageManager } from "react-image-manager";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -82,24 +84,31 @@ const PostPage = ({ page, isCreationInit }) => {
   const [hasStateChanged, setHasStateChanged] = useState(false);
 
   console.log("page state", pageState);
-  console.log("page sate stringifié", JSON.stringify(pageState.content));
-  console.log(
-    "pageState.metaDescription stringifié",
-    JSON.stringify(pageState.metaDescription)
-  );
-  console.log("pageState.title stringifié", JSON.stringify(pageState.title));
-  console.log(
-    "shortDescription stringifié",
-    JSON.stringify(pageState.shortDescription)
-  );
-  console.log("is creation ?", isCreation);
+  // console.log("page sate stringifié", JSON.stringify(pageState.content));
+  // console.log(
+  //   "pageState.metaDescription stringifié",
+  //   JSON.stringify(pageState.metaDescription)
+  // );
+  // console.log("pageState.title stringifié", JSON.stringify(pageState.title));
+  // console.log(
+  //   "shortDescription stringifié",
+  //   JSON.stringify(pageState.shortDescription)
+  // );
+  // console.log("is creation ?", isCreation);
 
   const handleChangePage = (value, field) => {
+    console.log("jai ete appele", value, field);
     setHasStateChanged(true);
     setPageState({ ...pageState, [field]: value });
   };
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
+
+  const {
+    isDisplayedImageManager,
+    setIsDisplayedImageManager,
+    setOnValidationCallBack,
+  } = useImageManager();
 
   return (
     <BackOfficeLayout>
@@ -142,8 +151,17 @@ const PostPage = ({ page, isCreationInit }) => {
                   title="URL de l'image en tête d'article"
                   field="mainImageUrl"
                   handleClickCTA={(e) => {
-                    // setter d'image
-                    // setDisplay à true
+                    setOnValidationCallBack((arrayOfImages) => {
+                      if (Array.isArray(arrayOfImages)) {
+                        const image = arrayOfImages[0];
+                        console.log("image reçue", image);
+                        const url = image.path;
+                        const slateUrl = formatSimple(url);
+                        const slateURLParsed = JSON.parse(slateUrl);
+                        handleChangePage(slateURLParsed, "mainImageUrl");
+                      }
+                    });
+                    setIsDisplayedImageManager(true);
                     console.log("ya un CTA les gars");
                   }}
                   svgCTA={MessageIcon}

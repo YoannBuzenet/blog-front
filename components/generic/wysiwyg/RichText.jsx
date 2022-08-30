@@ -41,8 +41,6 @@ const RichText = ({ value, setValue, field }) => {
     setOnValidationCallBack,
   } = useImageManager();
 
-  console.log("setterCallback coté blog front", setOnValidationCallBack);
-
   const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
     const updateImageRichtext = (arrayOfImages) => {
       if (Array.isArray(arrayOfImages)) {

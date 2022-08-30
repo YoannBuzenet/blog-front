@@ -28,7 +28,7 @@ const SimpleField = ({
           showError={showError}
         />
         {isThereCTA && (
-          <span>
+          <span onClick={handleClickCTA}>
             <SvgIcon className="actionableSvg" />
           </span>
         )}
