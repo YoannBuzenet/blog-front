@@ -152,7 +152,9 @@ const PostPage = ({ page, isCreationInit }) => {
                 <h2>Image Principale</h2>
                 {/* eslint-disable */}
                 {/* le linter veut qu'on utilise le compo Image next - no way ici ! */}
-                <img src={previewImageUrl()} />
+                <div className={style.mainPicture}>
+                  <img src={previewImageUrl()} />
+                </div>
                 {/* eslint-enable */}
                 <SimpleField
                   value={pageState.mainImageUrl}
