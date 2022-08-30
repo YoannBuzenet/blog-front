@@ -7,6 +7,8 @@ const PlainTextEditor = ({ value, setValue, field, showError }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const classStateField = showError ? "isError" : "";
 
+  editor.children = value;
+
   return (
     <div
       className={`wysiwyg_container plainText ${classStateField}`}
