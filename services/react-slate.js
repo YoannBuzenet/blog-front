@@ -1,6 +1,15 @@
 import escapeHtml from "escape-html";
 import { Text } from "slate";
 
+const slateConstants = {
+  paragraph: "paragraph",
+  blockQuote: "block-quote",
+  h1: "heading-one",
+  h2: "heading-two",
+  numberedList: "numbered-list",
+  bulletList: "bulleted-list",
+};
+
 const serialize = (node) => {
   if (Text.isText(node)) {
     let string = escapeHtml(node.text);
@@ -59,4 +68,46 @@ function calculateLengthOfSimpleField(simpleFieldObject) {
   return stringToCheck.length;
 }
 
-export { serialize, wrapJSONArrayReactSlate, calculateLengthOfSimpleField };
+const createBlock = ({ type, children }) => {
+  //if children is not an array, just put it
+  if (!Array.isArray(children)) {
+    return `{ "type":"${slateConstants[type]}", "children": [{"text" :"${children}"}]}`;
+  }
+
+  return `{ "type": "${slateConstants[type]}", "children": [${children.map(
+    (child) => createChild({ text: child.text, options: child.options })
+  )}]}`;
+};
+
+const createChild = ({ text, options }) => {
+  const objectToStringify = { text };
+
+  if (Array.isArray(options)) {
+    for (const style of options) {
+      objectToStringify[style] = true;
+    }
+  } else {
+    objectToStringify[options] = true;
+  }
+
+  const objectStringified = JSON.stringify(objectToStringify);
+
+  return objectStringified;
+};
+
+const formatSimple = (text) => {
+  return `[${createBlock({ type: "paragraph", children: text })}]`;
+};
+
+const parseSlateFormatSimple = (slateFormatSimple) => {
+  const stringIncluded = slateFormatSimple?.[0]?.children?.[0]?.text;
+  return stringIncluded;
+};
+
+export {
+  serialize,
+  wrapJSONArrayReactSlate,
+  calculateLengthOfSimpleField,
+  formatSimple,
+  parseSlateFormatSimple,
+};

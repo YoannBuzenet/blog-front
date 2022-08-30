@@ -14,7 +14,10 @@ import {
 import { useRouter } from "next/router";
 import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
 import { getOnePost } from "../../../services/api/post";
-import { calculateLengthOfSimpleField } from "../../../services/react-slate";
+import {
+  calculateLengthOfSimpleField,
+  parseSlateFormatSimple,
+} from "../../../services/react-slate";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -125,7 +128,9 @@ const PostPage = ({ page, isCreationInit }) => {
               <div className={style.editableElement}>
                 <h2>Image Principale</h2>
                 <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/${pageState.mainImageUrl}`}
+                  src={`${
+                    process.env.NEXT_PUBLIC_API_URL
+                  }${parseSlateFormatSimple(pageState.mainImageUrl)}`}
                 />
                 <SimpleField
                   value={pageState.mainImageUrl}
