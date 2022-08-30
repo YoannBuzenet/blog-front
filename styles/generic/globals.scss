@@ -98,3 +98,20 @@ div.activeMenu {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
+
+.fieldWithCTA {
+  position: relative;
+}
+.field.fieldWithCTA div.wysiwyg {
+  width: 90%;
+}
+.fieldWithCTA > span {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.actionableSvg:hover {
+  fill: red;
+}

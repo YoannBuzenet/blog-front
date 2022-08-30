@@ -18,6 +18,7 @@ import {
   calculateLengthOfSimpleField,
   parseSlateFormatSimple,
 } from "../../../services/react-slate";
+import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 
 export async function getServerSideProps({ req, query, params }) {
   // Auth check
@@ -127,16 +128,25 @@ const PostPage = ({ page, isCreationInit }) => {
               </div>
               <div className={style.editableElement}>
                 <h2>Image Principale</h2>
+                {/* eslint-disable */}
+                {/* le linter veut qu'on utilise le compo Image next - no way ici ! */}
                 <img
                   src={`${
                     process.env.NEXT_PUBLIC_API_URL
                   }${parseSlateFormatSimple(pageState.mainImageUrl)}`}
                 />
+                {/* eslint-enable */}
                 <SimpleField
                   value={pageState.mainImageUrl}
                   setValue={handleChangePage}
                   title="URL de l'image en tête d'article"
                   field="mainImageUrl"
+                  handleClickCTA={(e) => {
+                    // setter d'image
+                    // setDisplay à true
+                    console.log("ya un CTA les gars");
+                  }}
+                  svgCTA={MessageIcon}
                 />
               </div>
               <div className={style.editableElement}>
