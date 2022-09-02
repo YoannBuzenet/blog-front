@@ -21,6 +21,7 @@ import {
 } from "../../../services/react-slate";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { useImageManager } from "react-image-manager";
+import { previewImageUrl } from "../../../services/imageUtils";
 
 //TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
 
@@ -106,17 +107,6 @@ const PostPage = ({ page, isCreationInit }) => {
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
-  const previewImageUrl = () => {
-    const imageUrl = parseSlateFormatSimple(pageState.mainImageUrl);
-    if (imageUrl.includes("http")) {
-      return imageUrl;
-    } else {
-      return `${process.env.NEXT_PUBLIC_API_URL}${parseSlateFormatSimple(
-        pageState.mainImageUrl
-      )}`;
-    }
-  };
-
   const {
     isDisplayedImageManager,
     setIsDisplayedImageManager,
@@ -153,7 +143,7 @@ const PostPage = ({ page, isCreationInit }) => {
                 {/* eslint-disable */}
                 {/* le linter veut qu'on utilise le compo Image next - no way ici ! */}
                 <div className={style.mainPicture}>
-                  <img src={previewImageUrl()} />
+                  <img src={previewImageUrl(pageState.mainImageUrl)} />
                 </div>
                 {/* eslint-enable */}
                 <SimpleField
