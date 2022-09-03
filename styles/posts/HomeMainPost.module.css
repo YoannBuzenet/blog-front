@@ -1,6 +1,4 @@
 .container {
-  max-width: 450px;
-  min-width: 100px;
   display: flex;
   justify-content: space-evenly;
   cursor: pointer;
@@ -12,4 +10,9 @@
 }
 .articleDescription p {
   font-size: 2rem;
+}
+
+.imageContainer img {
+  width: 400px;
+  height: 200px;
 }

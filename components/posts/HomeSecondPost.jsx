@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { previewImageUrl } from "../../services/imageUtils";
-
 import style from "../../styles/posts/HomeSecondPost.module.css";
 import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 

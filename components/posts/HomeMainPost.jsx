@@ -9,7 +9,7 @@ const HomeMainPost = ({ post }) => {
     <div className={style.container}>
       <Link href={`/posts/${post.id}`} passHref>
         <div>
-          <div>
+          <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />
           </div>
           <div className={style.articleDescription}>

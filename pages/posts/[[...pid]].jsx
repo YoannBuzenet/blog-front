@@ -5,9 +5,8 @@ import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../domain/post/Post";
 import NavBar from "../../components/Navbar/NavBar";
 import style from "../../styles/posts/PostPage.module.css";
-import Image from "next/image";
 import Footer from "../../components/Footer/Footer";
-import { useImageManager } from "react-image-manager";
+import { previewImageUrl } from "../../services/imageUtils";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -21,11 +20,13 @@ export async function getServerSideProps({ req, query, params }) {
 }
 
 const OnePost = ({ postParsed }) => {
+  console.log("bite", postParsed);
   const post = Post.builder()
     .id(postParsed.id)
     .title(postParsed.title)
     .metaDescription(postParsed.metaDescription)
     .shortDescription(postParsed.shortDescription)
+    .mainImageUrl(postParsed.mainImageUrl)
     .content(postParsed.content)
     .isScoop(postParsed.isScoop)
     .userId(postParsed.UserId)
@@ -33,8 +34,7 @@ const OnePost = ({ postParsed }) => {
     .updatedAt(postParsed.updatedAt)
     .build();
 
-  const { isDisplayedImageManager, setIsDisplayedImageManager } =
-    useImageManager();
+  console.log("post de ses morts", post);
 
   return (
     <>
@@ -44,12 +44,7 @@ const OnePost = ({ postParsed }) => {
           <DisplayHTML slateText={post?.title} />
         </h1>
         <div className={style.imageContainer}>
-          <Image
-            src="https://via.placeholder.com/350.png"
-            alt="Landscape picture"
-            width={"700px"}
-            height={"350px"}
-          />
+          <img src={previewImageUrl(post?.mainImageUrl)} />
         </div>
         <div
           className={`${genericTextStyle.articleDescription} articleDescription`}
@@ -60,10 +55,7 @@ const OnePost = ({ postParsed }) => {
           <DisplayHTML slateText={post?.content} />
         </div>
       </div>
-      <div>
-        <p>test</p>
-        <button onClick={(e) => setIsDisplayedImageManager(true)}>Go</button>
-      </div>
+
       <Footer />
     </>
   );

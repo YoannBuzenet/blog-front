@@ -10,7 +10,9 @@ const PostPeek = ({ post }) => {
     <Link href={`/posts/${post.id}`} passHref>
       <div className={style.post}>
         <div>
-          <img src={previewImageUrl(post.mainImageUrl)} />
+          <div className={style.imageContainer}>
+            <img src={previewImageUrl(post.mainImageUrl)} />
+          </div>
         </div>
         <DisplayHTML slateText={post.title} />
         {/* <p>Publié le</p>

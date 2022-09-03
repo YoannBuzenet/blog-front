@@ -16,3 +16,8 @@
 .articleDescription p {
   font-size: 2rem;
 }
+
+.imageContainer img {
+  width: 200px;
+  height: 100px;
+}

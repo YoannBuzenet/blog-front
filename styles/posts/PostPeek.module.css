@@ -6,3 +6,8 @@
   cursor: pointer;
   font-size: 2rem;
 }
+
+.imageContainer img {
+  width: 250px;
+  height: 125px;
+}
