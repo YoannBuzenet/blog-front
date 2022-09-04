@@ -8,13 +8,17 @@ const HomePostsDisplay = ({ posts }) => {
   return (
     <>
       <div className={style.firstLine}>
-        {posts.map((post, index) => {
-          if (index === 0) {
-            return <HomeMainPost post={post} key={index} />;
-          } else if (index === 1 || index === 2) {
-            return <HomeSecondPost index={index} post={post} key={index} />;
-          }
-        })}
+        <div>
+          <HomeMainPost post={posts[0]} />
+        </div>
+        <div className={style.secondPart}>
+          <div>
+            <HomeSecondPost post={posts[1]} />
+          </div>
+          <div>
+            <HomeSecondPost post={posts[2]} />
+          </div>
+        </div>
       </div>
       <div className={style.secondLine}>
         {posts.map((post, index) => {

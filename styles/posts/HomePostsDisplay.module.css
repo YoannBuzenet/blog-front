@@ -16,7 +16,7 @@
 }
 
 /* On screens that are 768px or less*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .firstLine {
     flex-direction: column;
   }
