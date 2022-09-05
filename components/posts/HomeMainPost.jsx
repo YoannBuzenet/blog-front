@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { previewImageUrl } from "../../services/imageUtils";
@@ -15,6 +16,7 @@ const HomeMainPost = ({ post }) => {
           <div className={style.articleDescription}>
             <DisplayHTML slateText={post?.title} />
           </div>
+          <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
         </div>
       </Link>
     </div>

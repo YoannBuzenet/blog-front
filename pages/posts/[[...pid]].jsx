@@ -7,6 +7,7 @@ import NavBar from "../../components/Navbar/NavBar";
 import style from "../../styles/posts/PostPage.module.css";
 import Footer from "../../components/Footer/Footer";
 import { previewImageUrl } from "../../services/imageUtils";
+import { format } from "date-fns";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -43,6 +44,7 @@ const OnePost = ({ postParsed }) => {
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />
         </h1>
+        <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
         <div className={style.imageContainer}>
           <img src={previewImageUrl(post?.mainImageUrl)} />
         </div>
