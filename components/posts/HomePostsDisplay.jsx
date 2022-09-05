@@ -8,7 +8,7 @@ const HomePostsDisplay = ({ posts }) => {
   return (
     <>
       <div className={style.firstLine}>
-        <div>
+        <div className={style.firstPart}>
           <HomeMainPost post={posts[0]} />
         </div>
         <div className={style.secondPart}>

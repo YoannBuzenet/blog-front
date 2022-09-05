@@ -5,14 +5,24 @@
   padding: 1rem;
 }
 
-.articleDescription {
+.articleTitle {
   margin-top: 2rem;
 }
-.articleDescription p {
-  font-size: 2rem;
+.articleTitle p {
+  margin-top: 1rem;
+  font-size: 3rem;
+}
+
+p.articleDate {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.imageContainer {
+  width: 600px;
+  overflow: hidden;
 }
 
 .imageContainer img {
-  width: 520px;
-  height: 260px;
+  height: 300px;
 }

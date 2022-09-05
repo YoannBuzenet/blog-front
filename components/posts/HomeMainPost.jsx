@@ -13,10 +13,12 @@ const HomeMainPost = ({ post }) => {
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />
           </div>
-          <div className={style.articleDescription}>
+          <div className={style.articleTitle}>
             <DisplayHTML slateText={post?.title} />
           </div>
-          <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
+          <p className={style.articleDate}>
+            {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
+          </p>
         </div>
       </Link>
     </div>

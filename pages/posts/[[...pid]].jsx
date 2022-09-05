@@ -35,7 +35,7 @@ const OnePost = ({ postParsed }) => {
     .updatedAt(postParsed.updatedAt)
     .build();
 
-  console.log("post de ses morts", post);
+  // SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 
   return (
     <>

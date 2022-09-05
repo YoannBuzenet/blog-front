@@ -15,7 +15,9 @@ const PostPeek = ({ post }) => {
           </div>
         </div>
         <DisplayHTML slateText={post.title} />
-        <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
+        <p className={style.articleDate}>
+          {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
+        </p>
       </div>
     </Link>
   );

@@ -16,7 +16,9 @@ const HomeSecondPost = ({ post, index }) => {
           <div className={style.articleDescription}>
             <DisplayHTML slateText={post?.title} />
           </div>
-          <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
+          <p className={style.articleDate}>
+            {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
+          </p>
         </div>
       </Link>
     </div>
