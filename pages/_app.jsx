@@ -17,12 +17,18 @@ import { ToastContainer, toast } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
 
+import { IntlProvider } from "react-intl";
+import { langInApp } from "../i18n/allLang";
+
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
 import "react-image-crop/dist/ReactCrop.css";
 import { ImageManagerContainer } from "react-image-manager";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchAllImagesWithPathUpdated } from "../services/api/image";
+
+import UserDataContext from "../contexts/userData";
+import AppCurrentLangContext from "../contexts/appCurrentLang";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -37,6 +43,41 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       setImagesGallerie(resp);
     });
   }, []);
+
+  // App Language initialization
+
+  let appInitialLang;
+  let langSavedInLocalStorage;
+  if (typeof window !== "undefined") {
+    langSavedInLocalStorage = window.localStorage.getItem("lang");
+  }
+
+  if (langSavedInLocalStorage) {
+    if (langInApp?.[langSavedInLocalStorage] !== undefined) {
+      appInitialLang = langInApp[langSavedInLocalStorage];
+    } else {
+      appInitialLang = langInApp["en-US"];
+      appInitialLang.isDefault = true;
+    }
+  } else {
+    appInitialLang = langInApp["en-US"];
+    appInitialLang.isDefault = true;
+  }
+
+  const [appCurrentLang, setAppCurrentLang] = useState(appInitialLang);
+
+  const handleSetContextCurrentLang = (currentLang) => {
+    if (Object.keys(langInApp).includes(currentLang?.locale)) {
+      setAppCurrentLang(currentLang);
+    } else {
+      setAppCurrentLang(langInApp["en-US"]);
+    }
+  };
+
+  const contextCurrentLang = {
+    appCurrentLang,
+    setCurrentLang: handleSetContextCurrentLang,
+  };
 
   return (
     <ImageManagerContainer
@@ -68,11 +109,18 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
-          <Component {...pageProps} />
-          <ToastContainer
-            position={toast.POSITION.TOP_CENTER}
-            autoClose={10000}
-          />
+          <AppCurrentLangContext value={contextCurrentLang}>
+            <IntlProvider
+              locale={appCurrentLang.locale}
+              messages={appCurrentLang.translatedText}
+            >
+              <Component {...pageProps} />
+              <ToastContainer
+                position={toast.POSITION.TOP_CENTER}
+                autoClose={10000}
+              />
+            </IntlProvider>
+          </AppCurrentLangContext>
         </SessionProvider>
       </ThemeProvider>
     </ImageManagerContainer>
