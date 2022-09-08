@@ -26,3 +26,7 @@
 .rightPart {
   justify-content: flex-end;
 }
+
+.navbarFlags {
+  position: relative;
+}

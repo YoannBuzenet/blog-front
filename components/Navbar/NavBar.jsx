@@ -1,6 +1,7 @@
 import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";
 import { FormattedMessage } from "react-intl";
+import AppLangChoice from "../appSetLang/AppLangChoice";
 
 const NavBar = () => {
   return (
@@ -15,6 +16,7 @@ const NavBar = () => {
         </div>
         <div className={style.rightPart}>
           <p>Menu</p>
+          <AppLangChoice top="13" marginLeft="20" />
         </div>
       </div>
     </div>

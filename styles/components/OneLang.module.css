@@ -1,0 +1,24 @@
+.langIsSelected {
+  /* background-color: rgb(216, 216, 219) !important; */
+  font-weight: 600;
+  display: flex;
+}
+.langIsNotSelected {
+  display: flex;
+}
+
+.oneLangLiContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.iconContainer {
+  margin-left: 10px;
+  margin-top: 9px;
+}
+
+.iconContainer svg {
+  font-size: 20px;
+  margin-left: 10px;
+}

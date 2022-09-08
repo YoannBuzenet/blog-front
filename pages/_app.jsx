@@ -29,6 +29,9 @@ import { fetchAllImagesWithPathUpdated } from "../services/api/image";
 
 import UserDataContext from "../contexts/userData";
 import AppCurrentLangContext from "../contexts/appCurrentLang";
+import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
+import TransparentDivContext from "../contexts/transparentDiv";
+import { initializeLang } from "../services/i18n";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -36,6 +39,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   );
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
+  const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
+    useState(false);
+  const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   useEffect(() => {
     // fetch images for gallerie
@@ -45,28 +51,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   }, []);
 
   // App Language initialization
-
-  let appInitialLang;
-  let langSavedInLocalStorage;
-  if (typeof window !== "undefined") {
-    langSavedInLocalStorage = window.localStorage.getItem("lang");
-  }
-
-  if (langSavedInLocalStorage) {
-    if (langInApp?.[langSavedInLocalStorage] !== undefined) {
-      appInitialLang = langInApp[langSavedInLocalStorage];
-    } else {
-      appInitialLang = langInApp["en-US"];
-      appInitialLang.isDefault = true;
-    }
-  } else {
-    appInitialLang = langInApp["en-US"];
-    appInitialLang.isDefault = true;
-  }
-
+  let appInitialLang = initializeLang(langInApp);
   const [appCurrentLang, setAppCurrentLang] = useState(appInitialLang);
-
-  console.log("appCurrentLang", appCurrentLang);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {
@@ -79,6 +65,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const contextCurrentLang = {
     appCurrentLang,
     setCurrentLang: handleSetContextCurrentLang,
+  };
+  const contextTransparentDiv = {
+    isTransparentDivDisplayed,
+    setIsTransparentDivDisplayed,
+  };
+  const contextFlagsDisplayed = {
+    areFlagsDisplayed,
+    setAreFlagsDisplayed,
   };
 
   return (
@@ -112,16 +106,22 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
           <AppCurrentLangContext.Provider value={contextCurrentLang}>
-            <IntlProvider
-              locale={appCurrentLang.locale}
-              messages={appCurrentLang.translatedText}
+            <AreLangFlagsDisplayedContext.Provider
+              value={contextFlagsDisplayed}
             >
-              <Component {...pageProps} />
-              <ToastContainer
-                position={toast.POSITION.TOP_CENTER}
-                autoClose={10000}
-              />
-            </IntlProvider>
+              <TransparentDivContext.Provider value={contextTransparentDiv}>
+                <IntlProvider
+                  locale={appCurrentLang.locale}
+                  messages={appCurrentLang.translatedText}
+                >
+                  <Component {...pageProps} />
+                  <ToastContainer
+                    position={toast.POSITION.TOP_CENTER}
+                    autoClose={10000}
+                  />
+                </IntlProvider>
+              </TransparentDivContext.Provider>
+            </AreLangFlagsDisplayedContext.Provider>
           </AppCurrentLangContext.Provider>
         </SessionProvider>
       </ThemeProvider>

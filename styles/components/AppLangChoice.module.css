@@ -1,0 +1,58 @@
+.currentAppLang {
+  position: relative;
+  width: 40px;
+  outline: none;
+}
+
+.currentLangFlag {
+  position: absolute;
+  cursor: pointer;
+  padding-right: 1rem;
+}
+
+/* Arrow to toggle menu */
+.arrowMenu {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  content: "";
+  border-top-style: solid;
+  border-top-width: 4px;
+  border-right: 4px solid transparent;
+  border-bottom: 0 solid transparent;
+  border-left: 4px solid transparent;
+  margin-left: 5px;
+}
+
+.setLangChoosing {
+  position: absolute;
+  top: 28px;
+  right: 8px;
+  left: 0;
+  box-shadow: 1px 1px 1px black;
+  z-index: 7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: white;
+  width: 35px;
+  right: 12px;
+  left: -5px;
+  outline: none;
+}
+
+.flagDropDown {
+  cursor: pointer;
+  padding: 3px;
+  background-color: var(--background-color);
+  margin-left: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+  .currentAppLang {
+    position: absolute;
+    right: 0;
+  }
+}
