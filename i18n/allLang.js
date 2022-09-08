@@ -1,5 +1,5 @@
-import English from "translations/en-US.json";
-import French from "translations/fr-FR.json";
+import English from "./translations/en-US.json";
+import French from "./translations/fr-FR.json";
 
 const langInApp = {
   "en-US": {

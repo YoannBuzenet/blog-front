@@ -1,4 +1,6 @@
 {
   "generic.lang.english": "English",
-  "generic.lang.french": "French"
+  "generic.lang.french": "French",
+
+  "navbar.button.home": "Home"
 }

@@ -66,6 +66,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   const [appCurrentLang, setAppCurrentLang] = useState(appInitialLang);
 
+  console.log("appCurrentLang", appCurrentLang);
+
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {
       setAppCurrentLang(currentLang);
@@ -109,7 +111,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
-          <AppCurrentLangContext value={contextCurrentLang}>
+          <AppCurrentLangContext.Provider value={contextCurrentLang}>
             <IntlProvider
               locale={appCurrentLang.locale}
               messages={appCurrentLang.translatedText}
@@ -120,7 +122,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
                 autoClose={10000}
               />
             </IntlProvider>
-          </AppCurrentLangContext>
+          </AppCurrentLangContext.Provider>
         </SessionProvider>
       </ThemeProvider>
     </ImageManagerContainer>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";
+import { FormattedMessage } from "react-intl";
 
 const NavBar = () => {
   return (
@@ -7,7 +8,9 @@ const NavBar = () => {
       <div className={`${style.navBarDisplay} container`}>
         <div>
           <p>
-            <Link href="/">Home</Link>
+            <Link href="/">
+              <FormattedMessage id="navbar.button.home" defaultMessage="Home" />
+            </Link>
           </p>
         </div>
         <div className={style.rightPart}>
