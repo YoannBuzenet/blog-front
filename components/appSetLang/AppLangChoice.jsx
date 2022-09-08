@@ -12,7 +12,9 @@ const AppLangChoice = ({
   lineHeightSelectAppLang = "25",
   topSelectAppLangFlags = "22",
 }) => {
-  const { currentLang, setCurrentLang } = useContext(AppCurrentLangContext);
+  const { appCurrentLang, setAppCurrentLang } = useContext(
+    AppCurrentLangContext
+  );
   const { isTransparentDivDisplayed, setIsTransparentDivDisplayed } =
     useContext(transparentDivContext);
 
@@ -22,7 +24,7 @@ const AppLangChoice = ({
 
   const handleClick = (event, lang) => {
     setIsTransparentDivDisplayed(false);
-    setCurrentLang({
+    setAppCurrentLang({
       locale: lang?.locale,
       translatedText: lang?.translatedText,
       picture: lang?.picture,
@@ -37,7 +39,7 @@ const AppLangChoice = ({
     setIsTransparentDivDisplayed(!isTransparentDivDisplayed);
   };
 
-  const urlPicture = "/pictures/flags/25X13/" + currentLang.picture + ".png";
+  const urlPicture = "/pictures/flags/25X13/" + appCurrentLang.picture + ".png";
 
   // Updating directly the DOM because DOm from SSR can be different from data in memory, and HTML can miss an update sometimes.
   if (typeof window !== "undefined") {
@@ -68,7 +70,7 @@ const AppLangChoice = ({
       appInitialLang = langInApp["en-US"];
     }
 
-    setCurrentLang({ ...appInitialLang });
+    setAppCurrentLang({ ...appInitialLang });
   }, []);
 
   return (
@@ -81,7 +83,7 @@ const AppLangChoice = ({
         >
           <img
             src={urlPicture}
-            alt={currentLang.picture + " flag"}
+            alt={appCurrentLang.picture + " flag"}
             id="currentFlag"
           />
           <span
@@ -104,7 +106,7 @@ const AppLangChoice = ({
                   onClick={(event) => handleClick(event, lang)}
                 >
                   <img
-                    src={"/pictures/flags/25X13/" + lang.picture + ".png"}
+                    src={"/pictures/flags/" + lang.picture + ".png"}
                     alt={lang.picture + " flag"}
                   />
                 </div>

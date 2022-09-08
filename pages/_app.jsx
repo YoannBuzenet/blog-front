@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   const contextCurrentLang = {
     appCurrentLang,
-    setCurrentLang: handleSetContextCurrentLang,
+    setAppCurrentLang: handleSetContextCurrentLang,
   };
   const contextTransparentDiv = {
     isTransparentDivDisplayed,
