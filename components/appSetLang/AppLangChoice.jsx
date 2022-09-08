@@ -39,7 +39,7 @@ const AppLangChoice = ({
     setIsTransparentDivDisplayed(!isTransparentDivDisplayed);
   };
 
-  const urlPicture = "/pictures/flags/25X13/" + appCurrentLang.picture + ".png";
+  const urlPicture = "/pictures/flags/" + appCurrentLang.picture + ".png";
 
   // Updating directly the DOM because DOm from SSR can be different from data in memory, and HTML can miss an update sometimes.
   if (typeof window !== "undefined") {
