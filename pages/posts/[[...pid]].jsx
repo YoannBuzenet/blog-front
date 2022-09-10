@@ -56,11 +56,22 @@ const OnePost = ({ postParsed }) => {
         const postToDisplay = post.sibling.filter(
           (post) => post.lang === langThatShouldBeDisplayed
         );
-        const titleExtracted = parseSlateFormatSimple(postToDisplay.title);
-        router.push(titleExtracted);
-        //TODO translate
-        toast.info("Redirection vers le post traduit.");
+        if (postToDisplay) {
+          // We found a sibling o the post. Redirecting to him
+          const titleExtracted = parseSlateFormatSimple(postToDisplay.title);
+          router.push(titleExtracted);
+          //TODO translate
+          toast.info("Redirection vers le post traduit.");
+        } else {
+          // Post has sibling but no one in the relevant language
+          router.push("/");
+          //TODO translate
+          toast.info("Le post n'existe pas, redirectino vers la home.", {
+            toastId: "change",
+          });
+        }
       } else {
+        // Post has no sibling. Redirection to home.
         router.push("/");
         //TODO translate
         toast.info("Le post n'existe pas, redirectino vers la home.", {

@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps({ req }) {
   const resp = await getAllPosts();
+  //TODO : choper la langue alors qu'on est server side ?!
   // getAllPosts doit fetch les articles dans la bonne langue
 
   return { props: { posts: resp } };
