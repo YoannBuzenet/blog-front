@@ -16,7 +16,7 @@ const NavBar = () => {
         </div>
         <div className={style.rightPart}>
           <p>Menu</p>
-          <AppLangChoice top="13" marginLeft="20" />
+          <AppLangChoice top="-6" marginLeft="20" />
         </div>
       </div>
     </div>
