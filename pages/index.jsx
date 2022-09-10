@@ -8,11 +8,14 @@ import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps({ req }) {
   const resp = await getAllPosts();
+  // getAllPosts doit fetch les articles dans la bonne langue
 
   return { props: { posts: resp } };
 }
 
 export default function Home({ posts }) {
+  // useEffect, recharger les posts dans la bonne langue si le contexte de langue a changé
+
   return (
     <>
       <div className="container">

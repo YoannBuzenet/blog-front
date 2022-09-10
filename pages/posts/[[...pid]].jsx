@@ -8,6 +8,10 @@ import style from "../../styles/posts/PostPage.module.css";
 import Footer from "../../components/Footer/Footer";
 import { previewImageUrl } from "../../services/imageUtils";
 import { format } from "date-fns";
+import AppCurrentLangContext from "../../contexts/appCurrentLang";
+import { useContext, useEffect } from "react";
+import { localeToLangDictionnary } from "../../i18n/allLang";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -21,13 +25,13 @@ export async function getServerSideProps({ req, query, params }) {
 }
 
 const OnePost = ({ postParsed }) => {
-  console.log("bite", postParsed);
   const post = Post.builder()
     .id(postParsed.id)
     .title(postParsed.title)
     .metaDescription(postParsed.metaDescription)
     .shortDescription(postParsed.shortDescription)
     .mainImageUrl(postParsed.mainImageUrl)
+    .lang(postParsed.language)
     .content(postParsed.content)
     .isScoop(postParsed.isScoop)
     .userId(postParsed.UserId)
@@ -36,6 +40,22 @@ const OnePost = ({ postParsed }) => {
     .build();
 
   // SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
+
+  const { appCurrentLang } = useContext(AppCurrentLangContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    const langThatShouldBeDisplayed =
+      localeToLangDictionnary[appCurrentLang.locale];
+    console.log("langThatShouldBeDisplayed", langThatShouldBeDisplayed);
+    console.log("post.lang", post.lang);
+    if (langThatShouldBeDisplayed !== post.lang) {
+      router.push("/okokok");
+      // si le contexte de langue change, il faut charger la page du post correspondant dans l'autre langue
+      // ou renvoyer sur la home avec une notif
+      // load la page de l'article avec history.push() + la notif
+    }
+  }, [appCurrentLang]);
 
   return (
     <>

@@ -10,6 +10,7 @@ export class Post {
   private readonly _shortDescription: slateContentObject[];
   private readonly _metaDescription: slateContentObject[];
   private readonly _mainImageUrl: string;
+  private readonly _lang: string;
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
   private readonly _isScoop: boolean;
@@ -22,6 +23,7 @@ export class Post {
     this._shortDescription = builder.shortDescription();
     this._metaDescription = builder.metaDescription();
     this._mainImageUrl = builder.mainImageUrl();
+    this._lang = builder.lang();
     this._content = builder.content();
     this._userId = builder.userId();
     this._createdAt = builder.createdAt();
@@ -39,6 +41,9 @@ export class Post {
   }
   get mainImageUrl() {
     return this._mainImageUrl;
+  }
+  get lang() {
+    return this._lang;
   }
   get shortDescription() {
     return this._shortDescription;
@@ -71,6 +76,7 @@ class PostBuilder {
   private _metaDescription: slateContentObject[];
   private _content: slateContentObject[];
   private _mainImageUrl: string;
+  private _lang: string;
   private _userId: number;
   private _isScoop: boolean;
   private _createdAt: string;
@@ -120,6 +126,13 @@ class PostBuilder {
   mainImageUrl(mainImageUrl?: string) {
     if (!mainImageUrl) return this._mainImageUrl;
     this._mainImageUrl = mainImageUrl;
+    return this;
+  }
+  lang(): string;
+  lang(lang: string): this;
+  lang(lang?: string) {
+    if (!lang) return this._lang;
+    this._lang = lang;
     return this;
   }
 

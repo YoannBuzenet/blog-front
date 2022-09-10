@@ -35,5 +35,14 @@ const expandLocaleDictionnary = {
   fr: "fr-FR",
   en: "en-US",
 };
+const localeToLangDictionnary = {
+  "fr-FR": "FR",
+  "en-US": "EN",
+};
 
-module.exports = { langInApp, arrayLangsInApp, expandLocaleDictionnary };
+module.exports = {
+  langInApp,
+  arrayLangsInApp,
+  expandLocaleDictionnary,
+  localeToLangDictionnary,
+};
