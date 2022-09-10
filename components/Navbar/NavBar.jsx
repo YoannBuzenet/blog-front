@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className={`${style.navBarDisplay} container`}>
         <div>
           <p>
-            <Link href="/">
+            <Link href="/" passHref>
               <FormattedMessage id="navbar.button.home" defaultMessage="Home" />
             </Link>
           </p>

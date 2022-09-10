@@ -13,6 +13,7 @@ export class Post {
   private readonly _lang: string;
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
+  private readonly _sibling: Post[];
   private readonly _isScoop: boolean;
   private readonly _createdAt: string;
   private readonly _updatedAt: string;
@@ -25,6 +26,7 @@ export class Post {
     this._mainImageUrl = builder.mainImageUrl();
     this._lang = builder.lang();
     this._content = builder.content();
+    this._sibling = builder.sibling();
     this._userId = builder.userId();
     this._createdAt = builder.createdAt();
     this._updatedAt = builder.updatedAt();
@@ -57,6 +59,9 @@ export class Post {
   get isScoop() {
     return this._isScoop;
   }
+  get sibling() {
+    return this._sibling;
+  }
   get createdAt() {
     return this._createdAt;
   }
@@ -79,6 +84,7 @@ class PostBuilder {
   private _lang: string;
   private _userId: number;
   private _isScoop: boolean;
+  private _sibling: Post[];
   private _createdAt: string;
   private _updatedAt: string;
 
@@ -133,6 +139,13 @@ class PostBuilder {
   lang(lang?: string) {
     if (!lang) return this._lang;
     this._lang = lang;
+    return this;
+  }
+  sibling(): Post[];
+  sibling(sibling: Post[]): this;
+  sibling(sibling?: Post[]) {
+    if (!sibling) return this._sibling;
+    this._sibling = sibling;
     return this;
   }
 

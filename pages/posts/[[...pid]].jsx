@@ -12,6 +12,8 @@ import AppCurrentLangContext from "../../contexts/appCurrentLang";
 import { useContext, useEffect } from "react";
 import { localeToLangDictionnary } from "../../i18n/allLang";
 import { useRouter } from "next/router";
+import { parseSlateFormatSimple } from "../../services/react-slate";
+import { toast } from "react-toastify";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -34,8 +36,9 @@ const OnePost = ({ postParsed }) => {
     .lang(postParsed.language)
     .content(postParsed.content)
     .isScoop(postParsed.isScoop)
-    .userId(postParsed.UserId)
     .createdAt(postParsed.createdAt)
+    .userId(postParsed.UserId)
+    .sibling(postParsed.Sibling)
     .updatedAt(postParsed.updatedAt)
     .build();
 
@@ -44,16 +47,26 @@ const OnePost = ({ postParsed }) => {
   const { appCurrentLang } = useContext(AppCurrentLangContext);
   const router = useRouter();
 
+  console.log("post", post);
   useEffect(() => {
     const langThatShouldBeDisplayed =
       localeToLangDictionnary[appCurrentLang.locale];
-    console.log("langThatShouldBeDisplayed", langThatShouldBeDisplayed);
-    console.log("post.lang", post.lang);
     if (langThatShouldBeDisplayed !== post.lang) {
-      router.push("/okokok");
-      // si le contexte de langue change, il faut charger la page du post correspondant dans l'autre langue
-      // ou renvoyer sur la home avec une notif
-      // load la page de l'article avec history.push() + la notif
+      if (Array.isArray(post.sibling && post.sibling.length > 1)) {
+        const postToDisplay = post.sibling.filter(
+          (post) => post.lang === langThatShouldBeDisplayed
+        );
+        const titleExtracted = parseSlateFormatSimple(postToDisplay.title);
+        router.push(titleExtracted);
+        //TODO translate
+        toast.info("Redirection vers le post traduit.");
+      } else {
+        router.push("/");
+        //TODO translate
+        toast.info("Le post n'existe pas, redirectino vers la home.", {
+          toastId: "change",
+        });
+      }
     }
   }, [appCurrentLang]);
 
