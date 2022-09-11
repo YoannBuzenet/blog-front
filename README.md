@@ -1,8 +1,5 @@
 ### TODO
 
-- site plante s'il boot en FR
-- url Home dead
-- refacto les langues : a-ton besoin de FR en plus de fr-FR ? pareil pour EN, peut-on le retirer partout et juste user la locale ?
 - refacto les contextes dans \_app
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
 - Mettre la fonction de ratio de crop definissable par appel dans RIM

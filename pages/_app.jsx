@@ -55,6 +55,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     fetchAllImagesWithPathUpdated().then((resp) => {
       setImagesGallerie(resp);
     });
+
+    // Loading saved settings by user
+    if (appInitialLang.locale !== appCurrentLang.locale) {
+      setAppCurrentLang(appInitialLang);
+    }
   }, []);
 
   // App Language initialization
@@ -64,13 +69,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [appCurrentLang, setAppCurrentLang] = useState(
     langInApp[completeLocaleFromRouter]
   );
-
-  // Loading saved settings by user
-  useEffect(() => {
-    if (appInitialLang.locale !== appCurrentLang.locale) {
-      setAppCurrentLang(appInitialLang);
-    }
-  }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {

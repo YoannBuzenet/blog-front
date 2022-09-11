@@ -1,7 +1,7 @@
 import axios from "axios";
 import SwitchWithLabel from "../../../generic/Switch/index";
 import BasicButton from "../../../generic/Buttons/Button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { routes } from "../../../../routing/routes";
 import {
   JSONParseAllProps,

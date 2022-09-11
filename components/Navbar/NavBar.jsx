@@ -2,15 +2,31 @@ import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";
 import { FormattedMessage } from "react-intl";
 import AppLangChoice from "../appSetLang/AppLangChoice";
+import React from "react";
 
 const NavBar = () => {
+  const Ok = React.forwardRef(function FormattedMessage(props, ref) {
+    return (
+      <FormattedMessage
+        id="navbar.button.home"
+        defaultMessage="Home"
+        ref={ref}
+      />
+    );
+  });
+
   return (
     <div className={style.navBarContainer}>
       <div className={`${style.navBarDisplay} container`}>
         <div>
           <p>
             <Link href="/" passHref>
-              <FormattedMessage id="navbar.button.home" defaultMessage="Home" />
+              <a>
+                <FormattedMessage
+                  id="navbar.button.home"
+                  defaultMessage="Home"
+                />
+              </a>
             </Link>
           </p>
         </div>
