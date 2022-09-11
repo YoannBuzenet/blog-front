@@ -4,13 +4,13 @@ import French from "./translations/fr-FR.json";
 const langInApp = {
   "en-US": {
     translatedText: English,
-    picture: "EN",
+    picture: "en-US",
     langID: 0,
     locale: "en-US",
   },
   "fr-FR": {
     translatedText: French,
-    picture: "FR",
+    picture: "fr-FR",
     langID: 1,
     locale: "fr-FR",
   },
@@ -19,13 +19,13 @@ const langInApp = {
 const arrayLangsInApp = [
   {
     translatedText: English,
-    picture: "EN",
+    picture: "en-US",
     langID: 0,
     locale: "en-US",
   },
   {
     translatedText: French,
-    picture: "FR",
+    picture: "fr-FR",
     langID: 1,
     locale: "fr-FR",
   },

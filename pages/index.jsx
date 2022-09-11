@@ -6,19 +6,20 @@ import PostPeek from "../components/posts/PostPeek";
 import { getAllPosts } from "../services/api/post";
 import styles from "../styles/Home.module.css";
 import { localeToLangDictionnary } from "../i18n/allLang";
-import { useContext, useEffect } from "react";
-import appCurrentLang from "../contexts/appCurrentLang";
+import { useContext, useEffect, useState } from "react";
+import appCurrentLangContext from "../contexts/appCurrentLang";
+import {} from "../i18n/consts";
 
 export async function getServerSideProps({ req }) {
   const headersAcceptLanguages = req?.headers?.["accept-language"];
 
-  let localeBrowser = "EN";
+  let localeBrowser = "en-US";
 
   if (headersAcceptLanguages !== undefined) {
     const allLanguages = headersAcceptLanguages.split(";");
     const mainLanguageLocaleAndLanguage = allLanguages[0];
     const [locale, language] = mainLanguageLocaleAndLanguage.split(",");
-    localeBrowser = localeToLangDictionnary[locale];
+    localeBrowser = locale;
   }
 
   const resp = await getAllPosts(localeBrowser);
@@ -29,18 +30,21 @@ export async function getServerSideProps({ req }) {
 export default function Home({ posts, userLocaleFromReqHeaders }) {
   // useEffect, recharger les posts dans la bonne langue si le contexte de langue a changé
 
-  const { appCurrentLang } = useContext(appCurrentLang);
+  const { appCurrentLang } = useContext(appCurrentLangContext);
+  const [postsDisplayed, setPostsDisplayed] = useState(posts);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Si le compo boot
-    // ou
-    // Si la langue change
-    // on regarde ce qui matche avec le localstorage
-    // si pas de localstorage, on repart sur la langue en state
-  }, [appCurrentLang.lang]);
-
-  console.log("userLocaleFromReqHeaders", userLocaleFromReqHeaders);
-  console.log("posts", posts);
+    const currentLangPosts = postsDisplayed?.[0]?.language;
+    if (currentLangPosts && currentLangPosts !== appCurrentLang.locale) {
+      console.log("Getting posts in nex lang !");
+      setIsLoading(true);
+      getAllPosts(appCurrentLang.locale).then((posts) => {
+        setPostsDisplayed(posts);
+        setIsLoading(false);
+      });
+    }
+  }, [appCurrentLang.locale]);
 
   return (
     <>
@@ -53,7 +57,7 @@ export default function Home({ posts, userLocaleFromReqHeaders }) {
         <NavBar />
 
         <main className="main belowNavbar">
-          <HomePostsDisplay posts={posts} />
+          <HomePostsDisplay posts={postsDisplayed} />
         </main>
       </div>
       <Footer />

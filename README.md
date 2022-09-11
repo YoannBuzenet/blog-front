@@ -1,6 +1,6 @@
 ### TODO
 
-- si la req server est en FR et que le site est en anglais, impossible de lire les articles : qui doit prendre le dessus ?
+- site plante s'il boot en FR
 - url Home dead
 - refacto les langues : a-ton besoin de FR en plus de fr-FR ? pareil pour EN, peut-on le retirer partout et juste user la locale ?
 - refacto les contextes dans \_app
@@ -10,6 +10,7 @@
 
 ### Un peu plus tard
 
+- loader sur le fetch de posts (isLoading déjà fonctionnel, juste à mettre le loader)
 - Users
 - Levels d'accès
 - Tags

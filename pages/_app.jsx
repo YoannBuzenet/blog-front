@@ -52,7 +52,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   // App Language initialization
   let appInitialLang = initializeLang(langInApp);
-  const [appCurrentLang, setAppCurrentLang] = useState(appInitialLang);
+  const [appCurrentLang, setAppCurrentLang] = useState(langInApp["en-US"]);
+  useEffect(() => {
+    setAppCurrentLang(appInitialLang);
+  }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {

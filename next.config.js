@@ -12,4 +12,9 @@ module.exports = {
   images: {
     domains: ["via.placeholder.com"],
   },
+  i18n: {
+    locales: ["en-US", "fr-FR"],
+    defaultLocale: "en-US",
+    localeDetection: false,
+  },
 };
