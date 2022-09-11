@@ -55,28 +55,6 @@ const AppLangChoice = ({
     }
   }
 
-  useEffect(() => {
-    // App Language initialization
-    let appInitialLang;
-    let langSavedInLocalStorage;
-
-    langSavedInLocalStorage = window.localStorage.getItem(
-      LANG_SETTINGS_LOCAL_STORAGE
-    );
-
-    if (langSavedInLocalStorage) {
-      if (langInApp?.[langSavedInLocalStorage] !== undefined) {
-        appInitialLang = langInApp[langSavedInLocalStorage];
-      } else {
-        appInitialLang = langInApp["en-US"];
-      }
-    } else {
-      appInitialLang = langInApp["en-US"];
-    }
-
-    setAppCurrentLang({ ...appInitialLang });
-  }, []);
-
   return (
     <>
       <div className={styles.currentAppLang}>

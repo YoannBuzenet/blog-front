@@ -18,7 +18,11 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
 
 import { IntlProvider } from "react-intl";
-import { langInApp } from "../i18n/allLang";
+import {
+  langInApp,
+  expandLocaleDictionnary,
+  localeToLangDictionnary,
+} from "../i18n/allLang";
 
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
@@ -33,10 +37,13 @@ import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import { initializeLang } from "../services/i18n";
 
+import { useRouter } from "next/router";
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
     `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
   );
+  const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
@@ -52,16 +59,32 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   // App Language initialization
   let appInitialLang = initializeLang(langInApp);
-  const [appCurrentLang, setAppCurrentLang] = useState(langInApp["en-US"]);
+  const completeLocaleFromRouter = expandLocaleDictionnary[router.locale];
+
+  const [appCurrentLang, setAppCurrentLang] = useState(
+    langInApp[completeLocaleFromRouter]
+  );
+
+  // Loading saved settings by user
   useEffect(() => {
-    setAppCurrentLang(appInitialLang);
+    if (appInitialLang.locale !== appCurrentLang.locale) {
+      setAppCurrentLang(appInitialLang);
+    }
   }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {
       setAppCurrentLang(currentLang);
+      // if (router.pathname === "/") {
+      //   router.push(router.pathname, router.pathname, {
+      //     locale: localeToLangDictionnary[currentLang.locale],
+      //   });
+      // }
     } else {
       setAppCurrentLang(langInApp["en-US"]);
+      // if (router.pathname === "/") {
+      //   router.push(router.pathname, router.pathname, { locale: "en" });
+      // }
     }
   };
 

@@ -47,14 +47,11 @@ const OnePost = ({ postParsed }) => {
   const { appCurrentLang } = useContext(AppCurrentLangContext);
   const router = useRouter();
 
-  console.log("post", post);
   useEffect(() => {
-    const langThatShouldBeDisplayed =
-      localeToLangDictionnary[appCurrentLang.locale];
-    if (langThatShouldBeDisplayed !== post.lang) {
+    if (appCurrentLang.locale !== post.lang) {
       if (Array.isArray(post.sibling && post.sibling.length > 1)) {
         const postToDisplay = post.sibling.filter(
-          (post) => post.lang === langThatShouldBeDisplayed
+          (post) => post.lang === appCurrentLang.locale
         );
         if (postToDisplay) {
           // We found a sibling o the post. Redirecting to him
@@ -79,7 +76,7 @@ const OnePost = ({ postParsed }) => {
         });
       }
     }
-  }, [appCurrentLang]);
+  }, [appCurrentLang.locale]);
 
   return (
     <>

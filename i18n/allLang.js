@@ -36,8 +36,8 @@ const expandLocaleDictionnary = {
   en: "en-US",
 };
 const localeToLangDictionnary = {
-  "fr-FR": "FR",
-  "en-US": "EN",
+  "fr-FR": "fr",
+  "en-US": "en",
 };
 
 module.exports = {

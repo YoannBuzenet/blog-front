@@ -13,8 +13,7 @@ module.exports = {
     domains: ["via.placeholder.com"],
   },
   i18n: {
-    locales: ["en-US", "fr-FR"],
-    defaultLocale: "en-US",
-    localeDetection: false,
+    locales: ["en", "fr"],
+    defaultLocale: "en",
   },
 };
