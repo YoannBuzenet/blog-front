@@ -3,6 +3,7 @@ import AppCurrentLangContext from "../../contexts/appCurrentLang";
 import AreFlagsDisplayedContext from "../../contexts/areFlagsDisplayed";
 import transparentDivContext from "../../contexts/transparentDiv";
 import { arrayLangsInApp, langInApp } from "../../i18n/allLang";
+import { LANG_SETTINGS_LOCAL_STORAGE } from "../../i18n/consts";
 import styles from "../../styles/components/AppLangChoice.module.css";
 
 const AppLangChoice = ({
@@ -30,8 +31,8 @@ const AppLangChoice = ({
       picture: lang?.picture,
       langID: lang?.langID,
     });
-    // setUserContext({ ...userContext, langSelected: lang.locale });
-    window.localStorage.setItem("lang", lang?.locale);
+
+    window.localStorage.setItem(LANG_SETTINGS_LOCAL_STORAGE, lang?.locale);
   };
 
   const handleClickDisplayFlags = (event) => {
@@ -41,6 +42,7 @@ const AppLangChoice = ({
 
   const urlPicture = "/pictures/flags/" + appCurrentLang.picture + ".png";
 
+  // code d'easyflow pas utilisé ici, à voir si on en a besoin si le drapeau a du mal à se rerendre
   // Updating directly the DOM because DOm from SSR can be different from data in memory, and HTML can miss an update sometimes.
   if (typeof window !== "undefined") {
     const urlFlagDOM = window.document.getElementById("currentFlag")?.src;
@@ -58,7 +60,9 @@ const AppLangChoice = ({
     let appInitialLang;
     let langSavedInLocalStorage;
 
-    langSavedInLocalStorage = window.localStorage.getItem("lang");
+    langSavedInLocalStorage = window.localStorage.getItem(
+      LANG_SETTINGS_LOCAL_STORAGE
+    );
 
     if (langSavedInLocalStorage) {
       if (langInApp?.[langSavedInLocalStorage] !== undefined) {

@@ -6,6 +6,8 @@ import PostPeek from "../components/posts/PostPeek";
 import { getAllPosts } from "../services/api/post";
 import styles from "../styles/Home.module.css";
 import { localeToLangDictionnary } from "../i18n/allLang";
+import { useContext, useEffect } from "react";
+import appCurrentLang from "../contexts/appCurrentLang";
 
 export async function getServerSideProps({ req }) {
   const headersAcceptLanguages = req?.headers?.["accept-language"];
@@ -26,6 +28,16 @@ export async function getServerSideProps({ req }) {
 
 export default function Home({ posts, userLocaleFromReqHeaders }) {
   // useEffect, recharger les posts dans la bonne langue si le contexte de langue a changé
+
+  const { appCurrentLang } = useContext(appCurrentLang);
+
+  useEffect(() => {
+    // Si le compo boot
+    // ou
+    // Si la langue change
+    // on regarde ce qui matche avec le localstorage
+    // si pas de localstorage, on repart sur la langue en state
+  }, [appCurrentLang.lang]);
 
   console.log("userLocaleFromReqHeaders", userLocaleFromReqHeaders);
   console.log("posts", posts);

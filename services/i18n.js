@@ -1,8 +1,12 @@
+const { LANG_SETTINGS_LOCAL_STORAGE } = require("../i18n/consts");
+
 const initializeLang = (langInApp) => {
   let appInitialLang;
   let langSavedInLocalStorage;
   if (typeof window !== "undefined") {
-    langSavedInLocalStorage = window.localStorage.getItem("lang");
+    langSavedInLocalStorage = window.localStorage.getItem(
+      LANG_SETTINGS_LOCAL_STORAGE
+    );
   }
 
   if (langSavedInLocalStorage) {
