@@ -5,17 +5,30 @@ import HomePostsDisplay from "../components/posts/HomePostsDisplay";
 import PostPeek from "../components/posts/PostPeek";
 import { getAllPosts } from "../services/api/post";
 import styles from "../styles/Home.module.css";
+import { localeToLangDictionnary } from "../i18n/allLang";
 
 export async function getServerSideProps({ req }) {
-  const resp = await getAllPosts();
-  //TODO : choper la langue alors qu'on est server side ?!
-  // getAllPosts doit fetch les articles dans la bonne langue
+  const headersAcceptLanguages = req?.headers?.["accept-language"];
 
-  return { props: { posts: resp } };
+  let localeBrowser = "EN";
+
+  if (headersAcceptLanguages !== undefined) {
+    const allLanguages = headersAcceptLanguages.split(";");
+    const mainLanguageLocaleAndLanguage = allLanguages[0];
+    const [locale, language] = mainLanguageLocaleAndLanguage.split(",");
+    localeBrowser = localeToLangDictionnary[locale];
+  }
+
+  const resp = await getAllPosts(localeBrowser);
+
+  return { props: { posts: resp, userLocaleFromReqHeaders: localeBrowser } };
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, userLocaleFromReqHeaders }) {
   // useEffect, recharger les posts dans la bonne langue si le contexte de langue a changé
+
+  console.log("userLocaleFromReqHeaders", userLocaleFromReqHeaders);
+  console.log("posts", posts);
 
   return (
     <>
