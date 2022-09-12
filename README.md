@@ -7,14 +7,14 @@
 
 ### Un peu plus tard
 
-- loader sur le fetch de posts (isLoading déjà fonctionnel, juste à mettre le loader)
 - Users
 - Levels d'accès
 - Tags
 - Menu
+- loader sur le fetch de posts (isLoading déjà fonctionnel, juste à mettre le loader)
 - Remplir le footer
 - Commentaires !
-- Gérer le multi langues
+- Dockeriser le tout dans un docker-compose
 
 ### Plus tard
 
