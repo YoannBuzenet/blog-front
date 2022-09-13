@@ -1,6 +1,6 @@
 ### TODO
 
-- ajouter les ID pour le login google
+- Debug la decryption JWT pour next-auth ><
 - back-end : faire les routes pour register/login
 
 - refacto les contextes dans \_app
