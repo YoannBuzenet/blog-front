@@ -1,7 +1,6 @@
 ### TODO
 
-- Debug la decryption JWT pour next-auth ><
-- back-end : faire les routes pour register/login
+- back-end : faire les routes pour register/login pour pas choper une 400 sur google auth
 
 - refacto les contextes dans \_app
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
@@ -23,3 +22,7 @@
 
 - Passer progressivement l'app en typescript
 - Passer l'app en hexagonal
+
+### A noter pour docker
+
+-

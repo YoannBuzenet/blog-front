@@ -113,4 +113,10 @@ export default NextAuth({
     }),
   ],
   callbacks,
+  jwt: {
+    signingKey: { kty: "oct", kid: "--", alg: "HS256", k: "--" },
+    verificationOptions: {
+      algorithms: ["HS256"],
+    },
+  },
 });
