@@ -31,7 +31,9 @@ const NavBar = () => {
           </p>
         </div>
         <div className={style.rightPart}>
-          <p>Menu</p>
+          <Link href="/login" passHref>
+            <p>Login</p>
+          </Link>
           <AppLangChoice top="-6" marginLeft="20" />
         </div>
       </div>
