@@ -2,8 +2,6 @@ import axios from "axios";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-//TODO : reprendre celui d'easyflow
-
 const callbacks = {};
 
 callbacks.signIn = async function signIn({
@@ -38,7 +36,7 @@ callbacks.signIn = async function signIn({
 
     const userDataFromAPI = await axios
       .post(
-        `${process.env.CENTRAL_API_URL}/api/users/login-and-register-if-needed`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/login-and-register-if-needed`,
         finalUserObject
       )
       .catch((err) => console.log("error while pinging API : ", err));
@@ -93,7 +91,7 @@ callbacks.session = async function session({ session, user, token }) {
   // refresh user Data
   if (token.hasOwnProperty("idUser")) {
     let apiResp = await axios.get(
-      `${process.env.CENTRAL_API_URL}/api/users/googleId/${token.idUser}`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`
     );
 
     session.user = apiResp.data;

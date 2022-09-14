@@ -1,7 +1,9 @@
 ### TODO
 
-- back-end : faire les routes pour register/login pour pas choper une 400 sur google auth
-
+- Belle page de login
+- Belle page Mon compte pour modifier son pseudo (ou autre)
+- Le menu propose de log out quand on est logué
+- On peut commenter si on logué !
 - refacto les contextes dans \_app
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
 - Mettre la fonction de ratio de crop definissable par appel dans RIM
@@ -9,7 +11,6 @@
 
 ### Un peu plus tard
 
-- Users
 - Levels d'accès
 - Tags
 - Menu
