@@ -4,8 +4,12 @@ import { FormattedMessage } from "react-intl";
 import AppLangChoice from "../appSetLang/AppLangChoice";
 import React from "react";
 import LoginIcon from "../../assets/svg/login/round.svg";
+import { useIntl } from "react-intl";
+import { useTranslation } from "../../i18n/hooks";
 
 const NavBar = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={style.navBarContainer}>
       <div className={`${style.navBarDisplay} container`}>
@@ -24,7 +28,10 @@ const NavBar = () => {
         <div className={style.rightPart}>
           <Link href="/login" passHref>
             <a>
-              <LoginIcon className="svg" title="ok" />
+              <LoginIcon
+                className="svg"
+                title={t("navbar.button.login", "Login")}
+              />
             </a>
           </Link>
           <AppLangChoice top="-6" marginLeft="20" />

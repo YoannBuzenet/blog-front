@@ -2,5 +2,6 @@
   "generic.lang.english": "English",
   "generic.lang.french": "French",
 
-  "navbar.button.home": "Home"
+  "navbar.button.home": "Home",
+  "navbar.button.login": "Login"
 }

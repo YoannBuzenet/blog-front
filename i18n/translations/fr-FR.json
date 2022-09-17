@@ -2,5 +2,6 @@
   "generic.lang.english": "Anglais",
   "generic.lang.french": "Français",
 
-  "navbar.button.home": "Accueil"
+  "navbar.button.home": "Accueil",
+  "navbar.button.login": "Se Connecter"
 }
