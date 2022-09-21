@@ -26,9 +26,9 @@ import {
 
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
-import "react-image-crop/dist/ReactCrop.css";
+import "react-image-manager/node_modules/react-image-crop/dist/ReactCrop.css";
 import { ImageManagerContainer } from "react-image-manager";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchAllImagesWithPathUpdated } from "../services/api/image";
 
 import UserDataContext from "../contexts/userData";
@@ -38,6 +38,7 @@ import TransparentDivContext from "../contexts/transparentDiv";
 import { initializeLang } from "../services/i18n";
 
 import { useRouter } from "next/router";
+import { getAllTags } from "../services/api/tag";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -46,14 +47,22 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
+  const [imageTags, setImagesTags] = useState([]);
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   useEffect(() => {
-    // fetch images for gallerie
+    // fetch images for gallery
     fetchAllImagesWithPathUpdated().then((resp) => {
       setImagesGallerie(resp);
+    });
+
+    // fetch tags for gallery
+    getAllTags().then((resp) => {
+      const extractNames = (resp) => resp.map((tag) => tag.name);
+      const arrayOfNames = extractNames(resp);
+      setImagesTags(arrayOfNames);
     });
 
     // Loading saved settings by user
@@ -126,6 +135,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       }
       onSelectImages={(arrayOfSelectedImages) => {}}
       galleryImages={imagesGallerie}
+      tagList={imageTags}
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
