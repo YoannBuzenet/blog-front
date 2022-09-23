@@ -1,5 +1,5 @@
-const LANG_SETTINGS_LOCAL_STORAGE = "languageSettings";
+const LANGUAGE_SETTINGS_LOCAL_STORAGE = "languageSettings";
 
 module.exports = {
-  LANG_SETTINGS_LOCAL_STORAGE,
+  LANGUAGE_SETTINGS_LOCAL_STORAGE,
 };

@@ -10,7 +10,7 @@ export class Post {
   private readonly _shortDescription: slateContentObject[];
   private readonly _metaDescription: slateContentObject[];
   private readonly _mainImageUrl: string;
-  private readonly _lang: string;
+  private readonly _language: string;
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
   private readonly _sibling: Post[];
@@ -24,7 +24,7 @@ export class Post {
     this._shortDescription = builder.shortDescription();
     this._metaDescription = builder.metaDescription();
     this._mainImageUrl = builder.mainImageUrl();
-    this._lang = builder.lang();
+    this._language = builder.language();
     this._content = builder.content();
     this._sibling = builder.sibling();
     this._userId = builder.userId();
@@ -44,8 +44,8 @@ export class Post {
   get mainImageUrl() {
     return this._mainImageUrl;
   }
-  get lang() {
-    return this._lang;
+  get language() {
+    return this._language;
   }
   get shortDescription() {
     return this._shortDescription;
@@ -81,7 +81,7 @@ class PostBuilder {
   private _metaDescription: slateContentObject[];
   private _content: slateContentObject[];
   private _mainImageUrl: string;
-  private _lang: string;
+  private _language: string;
   private _userId: number;
   private _isScoop: boolean;
   private _sibling: Post[];
@@ -134,11 +134,11 @@ class PostBuilder {
     this._mainImageUrl = mainImageUrl;
     return this;
   }
-  lang(): string;
-  lang(lang: string): this;
-  lang(lang?: string) {
-    if (!lang) return this._lang;
-    this._lang = lang;
+  language(): string;
+  language(language: string): this;
+  language(language?: string) {
+    if (!language) return this._language;
+    this._language = language;
     return this;
   }
   sibling(): Post[];

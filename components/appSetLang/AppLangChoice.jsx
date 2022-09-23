@@ -3,7 +3,7 @@ import AppCurrentLangContext from "../../contexts/appCurrentLang";
 import AreFlagsDisplayedContext from "../../contexts/areFlagsDisplayed";
 import transparentDivContext from "../../contexts/transparentDiv";
 import { arrayLangsInApp, langInApp } from "../../i18n/allLang";
-import { LANG_SETTINGS_LOCAL_STORAGE } from "../../i18n/consts";
+import { LANGUAGE_SETTINGS_LOCAL_STORAGE } from "../../i18n/consts";
 import styles from "../../styles/components/AppLangChoice.module.css";
 
 const AppLangChoice = ({
@@ -32,7 +32,7 @@ const AppLangChoice = ({
       langID: lang?.langID,
     });
 
-    window.localStorage.setItem(LANG_SETTINGS_LOCAL_STORAGE, lang?.locale);
+    window.localStorage.setItem(LANGUAGE_SETTINGS_LOCAL_STORAGE, lang?.locale);
   };
 
   const handleClickDisplayFlags = (event) => {

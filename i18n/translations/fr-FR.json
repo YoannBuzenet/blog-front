@@ -1,6 +1,6 @@
 {
-  "generic.lang.english": "Anglais",
-  "generic.lang.french": "Français",
+  "generic.language.english": "Anglais",
+  "generic.language.french": "Français",
 
   "navbar.button.home": "Accueil",
   "navbar.button.login": "Se Connecter"

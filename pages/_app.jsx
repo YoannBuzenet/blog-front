@@ -136,6 +136,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       onSelectImages={(arrayOfSelectedImages) => {}}
       galleryImages={imagesGallerie}
       tagList={imageTags}
+      withTags
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
