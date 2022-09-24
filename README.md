@@ -29,3 +29,8 @@
 ### A noter pour docker
 
 -
+
+## Dev local avec react-image-manager
+
+- Dans `package.json`
+  "react-image-manager": "file:../react-image-manager",

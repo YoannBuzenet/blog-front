@@ -1,9 +1,9 @@
 import axios from "axios";
 import { JSONParseAllProps } from "../utils";
 
-export const getAllImages = async (sort = "createdAt") => {
+export const getAllImages = async (sortBy = "createdAt") => {
   const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images?sort=${sort}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images?sortBy=${sortBy}`
   );
 
   const parsedResp = JSONParseAllProps(resp.data);

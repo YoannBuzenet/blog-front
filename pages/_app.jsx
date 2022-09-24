@@ -47,29 +47,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
-  const [imageTags, setImagesTags] = useState([]);
+  const [tags, setTags] = useState([]);
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
-
-  useEffect(() => {
-    // fetch images for gallery
-    fetchAllImagesWithPathUpdated().then((resp) => {
-      setImagesGallerie(resp);
-    });
-
-    // fetch tags for gallery
-    getAllTags().then((resp) => {
-      const extractNames = (resp) => resp.map((tag) => tag.name);
-      const arrayOfNames = extractNames(resp);
-      setImagesTags(arrayOfNames);
-    });
-
-    // Loading saved settings by user
-    if (appInitialLang.locale !== appCurrentLang.locale) {
-      setAppCurrentLang(appInitialLang);
-    }
-  }, []);
 
   // App Language initialization
   let appInitialLang = initializeLang(langInApp);
@@ -78,6 +59,23 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [appCurrentLang, setAppCurrentLang] = useState(
     langInApp[completeLocaleFromRouter]
   );
+
+  useEffect(() => {
+    // fetch images for gallery
+    fetchAllImagesWithPathUpdated().then((resp) => {
+      setImagesGallerie(resp);
+    });
+
+    // fetch tags for gallery
+    getAllTags(appCurrentLang.locale).then((resp) => {
+      setTags(resp);
+    });
+
+    // Loading saved settings by user
+    if (appInitialLang.locale !== appCurrentLang.locale) {
+      setAppCurrentLang(appInitialLang);
+    }
+  }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {
@@ -135,8 +133,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       }
       onSelectImages={(arrayOfSelectedImages) => {}}
       galleryImages={imagesGallerie}
-      tagList={imageTags}
+      tagList={tags}
       withTags
+      customPropsToPass={{ language: appCurrentLang?.locale }}
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>

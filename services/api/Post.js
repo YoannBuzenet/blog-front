@@ -4,10 +4,10 @@ import { JSONParseAllProps } from "../utils";
 export const getAllPosts = async (
   language = "EN",
   limit = 10,
-  sort = "createdAt"
+  sortBy = "createdAt"
 ) => {
   const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?language=${language}&limit=${limit}&sort=${sort}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?language=${language}&limit=${limit}&sortBy=${sortBy}`
   );
 
   const parsedResp = JSONParseAllProps(resp.data);

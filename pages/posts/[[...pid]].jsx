@@ -33,7 +33,7 @@ const OnePost = ({ postParsed }) => {
     .metaDescription(postParsed.metaDescription)
     .shortDescription(postParsed.shortDescription)
     .mainImageUrl(postParsed.mainImageUrl)
-    .lang(postParsed.language)
+    .language(postParsed.language)
     .content(postParsed.content)
     .isScoop(postParsed.isScoop)
     .createdAt(postParsed.createdAt)
