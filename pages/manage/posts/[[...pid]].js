@@ -111,6 +111,7 @@ const PostPage = ({ page, isCreationInit }) => {
     isDisplayedImageManager,
     setIsDisplayedImageManager,
     setOnValidationCallBack,
+    setMinWidthImageUpload,
   } = useImageManager();
 
   return (
@@ -155,15 +156,14 @@ const PostPage = ({ page, isCreationInit }) => {
                     setOnValidationCallBack((arrayOfImages) => {
                       if (Array.isArray(arrayOfImages)) {
                         const image = arrayOfImages[0];
-                        console.log("image reçue", image);
                         const url = image.path;
                         const slateUrl = formatSimple(url);
                         const slateURLParsed = JSON.parse(slateUrl);
                         handleChangePage(slateURLParsed, "mainImageUrl");
                       }
                     });
+                    setMinWidthImageUpload(null);
                     setIsDisplayedImageManager(true);
-                    console.log("ya un CTA les gars");
                   }}
                   svgCTA={MessageIcon}
                 />

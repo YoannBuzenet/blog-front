@@ -39,6 +39,7 @@ const RichText = ({ value, setValue, field }) => {
     isDisplayedImageManager,
     setIsDisplayedImageManager,
     setOnValidationCallBack,
+    setMinWidthImageUpload,
   } = useImageManager();
 
   const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
@@ -57,7 +58,7 @@ const RichText = ({ value, setValue, field }) => {
         }
       }
     };
-
+    setMinWidthImageUpload(700);
     setOnValidationCallBack(updateImageRichtext);
     setIsDisplayedImageManager(true);
   };

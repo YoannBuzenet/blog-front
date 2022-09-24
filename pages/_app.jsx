@@ -110,7 +110,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <ImageManagerContainer
       cropAspectRatio={2}
       urlUpload={`${process.env.NEXT_PUBLIC_API_URL}/api/entities/images`}
-      minWidthImageUpload={700}
+      minWidthImageUploadInitial={700}
       enabledModes={["gallery", "upload"]}
       imageFields={[
         {
@@ -131,6 +131,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       onFailureupload={() =>
         toast.error(<p>L&apos;image a bien n&apos;a pu être uploadée.</p>)
       }
+      onFailureuploadImageTooSmall={(minWidth) => {
+        toast.error(
+          <p>L&apos;image adoit avoir une largeur minimum de {minWidth}px.</p>
+        );
+      }}
       onSelectImages={(arrayOfSelectedImages) => {}}
       galleryImages={imagesGallerie}
       tagList={tags}
