@@ -112,6 +112,7 @@ const PostPage = ({ page, isCreationInit }) => {
     setIsDisplayedImageManager,
     setOnValidationCallBack,
     setMinWidthImageUpload,
+    setNewCropAspectRatio,
   } = useImageManager();
 
   return (
@@ -164,6 +165,7 @@ const PostPage = ({ page, isCreationInit }) => {
                     });
                     setMinWidthImageUpload(null);
                     setIsDisplayedImageManager(true);
+                    setNewCropAspectRatio(2);
                   }}
                   svgCTA={MessageIcon}
                 />

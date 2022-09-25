@@ -63,7 +63,7 @@ const OnePost = ({ postParsed }) => {
           // Post has sibling but no one in the relevant language
           router.push("/");
           //TODO translate
-          toast.info("Le post n'existe pas, redirectino vers la home.", {
+          toast.info("Le post n'existe pas, redirection vers la home.", {
             toastId: "change",
           });
         }

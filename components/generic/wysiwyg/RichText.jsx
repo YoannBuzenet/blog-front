@@ -40,6 +40,7 @@ const RichText = ({ value, setValue, field }) => {
     setIsDisplayedImageManager,
     setOnValidationCallBack,
     setMinWidthImageUpload,
+    setNewCropAspectRatio,
   } = useImageManager();
 
   const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
@@ -59,6 +60,7 @@ const RichText = ({ value, setValue, field }) => {
       }
     };
     setMinWidthImageUpload(700);
+    setNewCropAspectRatio(undefined);
     setOnValidationCallBack(updateImageRichtext);
     setIsDisplayedImageManager(true);
   };
