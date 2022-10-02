@@ -46,15 +46,17 @@ const LoginPage = ({ images }) => {
     });
   };
 
-  console.log("images from props", images);
-  console.log("imagesDisplayed", imagesDisplayed);
-
   return (
     <>
       <NavBar />
       <div className={style.container}>
-        Login bro
-        <button onClick={handleGoogleClick}>Login test</button>
+        <div className={style.doubleDivContainer}>
+          <div className={style.leftDiv}>
+            leftLogin bro
+            <button onClick={handleGoogleClick}>Login test</button>
+          </div>
+          <div className={style.rightDiv}>right</div>
+        </div>
       </div>
     </>
   );
