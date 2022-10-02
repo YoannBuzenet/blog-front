@@ -6,6 +6,7 @@ import style from "../styles/pages/Login.module.css";
 import appCurrentLangContext from "../contexts/appCurrentLang";
 import { FormattedMessage } from "react-intl";
 import { useTranslation } from "../i18n/hooks";
+import GoogleIcon from "../assets/icons/google.svg";
 
 export async function getServerSideProps({ req }) {
   const headersAcceptLanguages = req?.headers?.["accept-language"];
@@ -59,15 +60,26 @@ const LoginPage = ({ images }) => {
             <div>
               <div className={style.vAlign}>
                 <button onClick={handleGoogleClick} className="CTAButton">
-                  <FormattedMessage
-                    id="page.login.button.login"
-                    defaultMessage="Login / Register"
-                  />
+                  <div>
+                    <GoogleIcon
+                      title={t("generic.connect.google", "Connect With Google")}
+                    />
+                    <p>
+                      <FormattedMessage
+                        id="page.login.button.login"
+                        defaultMessage="Login / Register"
+                      />
+                    </p>
+                  </div>
                 </button>
               </div>
             </div>
           </div>
-          <div className={style.rightDiv}>right</div>
+          <div className={style.rightDiv}>
+            <div>
+              <img src={""} />
+            </div>
+          </div>
         </div>
       </div>
     </>

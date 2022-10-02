@@ -1,8 +1,9 @@
 {
   "generic.language.english": "Anglais",
   "generic.language.french": "Français",
+  "generic.connect.google": "Se connecter avec Google",
 
-  "page.login.button.login": "Se Connecter / S'inscrire",
+  "page.login.button.login": "Se connecter / S'inscrire",
 
   "navbar.button.home": "Accueil",
   "navbar.button.login": "Se Connecter"

@@ -21,8 +21,23 @@
   height: 100%;
 }
 
+.vAlign button > div {
+  display: flex;
+}
+.vAlign button > div > p {
+  margin-top: 5px;
+}
+
+.vAlign svg {
+  margin-right: 20px;
+  width: 30px;
+}
+
+.googleSvg {
+  margin-right: 20px;
+}
+
 .rightDiv {
   background-color: red;
-
   width: 50%;
 }
