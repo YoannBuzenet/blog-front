@@ -8,7 +8,6 @@
 }
 
 .leftDiv {
-  background-color: gold;
   width: 50%;
   display: flex;
   justify-content: center;
@@ -18,7 +17,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
+}
+
+.vAlign button {
+  width: 300px;
 }
 
 .vAlign button > div {
@@ -37,7 +41,28 @@
   margin-right: 20px;
 }
 
+.subTitle {
+  margin-top: 5px;
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+
 .rightDiv {
-  background-color: red;
   width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.rightDiv > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rightDiv > div > div {
+  text-align: center;
+}
+
+.rightDiv img {
+  max-width: 80%;
 }

@@ -51,6 +51,8 @@ const LoginPage = ({ images }) => {
     });
   };
 
+  console.log("okkk", imagesDisplayed);
+
   return (
     <>
       <NavBar />
@@ -72,12 +74,22 @@ const LoginPage = ({ images }) => {
                     </p>
                   </div>
                 </button>
+                <div>
+                  <p className={style.subTitle}>
+                    <FormattedMessage
+                      id="page.login.disclaimer"
+                      defaultMessage="You can change then nickname and avatar appearing online."
+                    />
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div className={style.rightDiv}>
             <div>
-              <img src={""} />
+              <div>
+                <img src={imagesDisplayed?.[0].path} />
+              </div>
             </div>
           </div>
         </div>
