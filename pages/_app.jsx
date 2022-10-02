@@ -9,6 +9,7 @@ import "../styles/generic/animations.scss";
 import "../styles/generic/wysiwyg.scss";
 import "../styles/generic/wysiwygDisplay.css";
 import "../styles/generic/colors.scss";
+import "../styles/generic/buttons.scss";
 import "../styles/generic/loaders.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@mui/material/styles";

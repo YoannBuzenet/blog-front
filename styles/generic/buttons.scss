@@ -1,0 +1,21 @@
+/* Buttons */
+.CTAButton {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background-color: rgb(28, 100, 242);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.5s;
+  text-decoration: none;
+}
+
+.CTAButton:hover {
+  background-color: rgba(63, 131, 248, 0.8);
+  transition: background-color 0.5s;
+}

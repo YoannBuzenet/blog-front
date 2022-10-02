@@ -2,6 +2,8 @@
   "generic.language.english": "English",
   "generic.language.french": "French",
 
+  "page.login.button.login": "Login / Register",
+
   "navbar.button.home": "Home",
   "navbar.button.login": "Login"
 }

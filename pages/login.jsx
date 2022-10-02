@@ -4,6 +4,8 @@ import NavBar from "../components/Navbar/NavBar";
 import { getAllImages } from "../services/api/image";
 import style from "../styles/pages/Login.module.css";
 import appCurrentLangContext from "../contexts/appCurrentLang";
+import { FormattedMessage } from "react-intl";
+import { useTranslation } from "../i18n/hooks";
 
 export async function getServerSideProps({ req }) {
   const headersAcceptLanguages = req?.headers?.["accept-language"];
@@ -25,6 +27,8 @@ export async function getServerSideProps({ req }) {
 const LoginPage = ({ images }) => {
   const [imagesDisplayed, setImagesDisplayed] = useState(images);
   const { appCurrentLang } = useContext(appCurrentLangContext);
+
+  const { t } = useTranslation();
 
   // Checking if lang in client side is the same as perceived in the router from headers.
   // If not, we refetch the images from the right language here
@@ -54,8 +58,12 @@ const LoginPage = ({ images }) => {
           <div className={style.leftDiv}>
             <div>
               <div className={style.vAlign}>
-                leftLogin bro
-                <button onClick={handleGoogleClick}>Login test</button>
+                <button onClick={handleGoogleClick} className="CTAButton">
+                  <FormattedMessage
+                    id="page.login.button.login"
+                    defaultMessage="Login / Register"
+                  />
+                </button>
               </div>
             </div>
           </div>
