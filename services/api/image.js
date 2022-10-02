@@ -1,13 +1,21 @@
 import axios from "axios";
 import { JSONParseAllProps } from "../utils";
 
-export const getAllImages = async (sortBy = "createdAt", limit, tags) => {
+export const getAllImages = async (
+  sortBy = "createdAt",
+  limit,
+  tags,
+  language
+) => {
   let query = `?sortBy=${sortBy}`;
   if (limit) {
     query += `&limit=${limit}`;
   }
   if (tags) {
     query += `&tags=${tags}`;
+  }
+  if (language) {
+    query += `&language=${language}`;
   }
 
   const resp = await axios.get(

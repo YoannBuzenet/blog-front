@@ -4,7 +4,6 @@
 - Belle page Mon compte pour modifier son pseudo (ou autre)
 - Le menu propose de log out quand on est logué
 - On peut commenter si on logué !
-- peut-on query les images par langue également ?
 - refacto les contextes dans \_app
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
 - Mettre la fonction de ratio de crop definissable par appel dans RIM
