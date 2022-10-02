@@ -48,10 +48,12 @@ const OnePost = ({ postParsed }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (appCurrentLang.locale !== post.lang) {
+    if (appCurrentLang.locale !== post.language) {
+      console.log("appCurrentLang.locale", appCurrentLang.locale);
+      console.log("post.lang", post.language);
       if (Array.isArray(post.sibling && post.sibling.length > 1)) {
         const postToDisplay = post.sibling.filter(
-          (post) => post.lang === appCurrentLang.locale
+          (post) => post.language === appCurrentLang.locale
         );
         if (postToDisplay) {
           // We found a sibling o the post. Redirecting to him

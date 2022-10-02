@@ -2,10 +2,7 @@ import Head from "next/head";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/Navbar/NavBar";
 import HomePostsDisplay from "../components/posts/HomePostsDisplay";
-import PostPeek from "../components/posts/PostPeek";
 import { getAllPosts } from "../services/api/post";
-import styles from "../styles/Home.module.css";
-import { localeToLangDictionnary } from "../i18n/allLang";
 import { useContext, useEffect, useState } from "react";
 import appCurrentLangContext from "../contexts/appCurrentLang";
 import {} from "../i18n/consts";
@@ -24,10 +21,10 @@ export async function getServerSideProps({ req }) {
 
   const resp = await getAllPosts(localeBrowser);
 
-  return { props: { posts: resp, userLocaleFromReqHeaders: localeBrowser } };
+  return { props: { posts: resp } };
 }
 
-export default function Home({ posts, userLocaleFromReqHeaders }) {
+export default function Home({ posts }) {
   // useEffect, recharger les posts dans la bonne langue si le contexte de langue a changé
 
   const { appCurrentLang } = useContext(appCurrentLangContext);
@@ -37,7 +34,6 @@ export default function Home({ posts, userLocaleFromReqHeaders }) {
   useEffect(() => {
     const currentLangPosts = postsDisplayed?.[0]?.language;
     if (currentLangPosts && currentLangPosts !== appCurrentLang.locale) {
-      console.log("Getting posts in nex lang !");
       setIsLoading(true);
       getAllPosts(appCurrentLang.locale).then((posts) => {
         setPostsDisplayed(posts);

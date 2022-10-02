@@ -1,9 +1,17 @@
 import axios from "axios";
 import { JSONParseAllProps } from "../utils";
 
-export const getAllImages = async (sortBy = "createdAt") => {
+export const getAllImages = async (sortBy = "createdAt", limit, tags) => {
+  let query = `?sortBy=${sortBy}`;
+  if (limit) {
+    query += `&limit=${limit}`;
+  }
+  if (tags) {
+    query += `&tags=${tags}`;
+  }
+
   const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images?sortBy=${sortBy}`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images${query}`
   );
 
   const parsedResp = JSONParseAllProps(resp.data);

@@ -193,6 +193,7 @@ const PostPage = ({ page, isCreationInit }) => {
                 <SimpleField
                   value={pageState.metaDescription}
                   setValue={handleChangePage}
+                  // TODO TRANSLATE
                   title="Ceci est la description qui s'affiche sur Google lorsque votre site apparait dans les résultats."
                   field="metaDescription"
                 />

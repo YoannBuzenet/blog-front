@@ -56,6 +56,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   let appInitialLang = initializeLang(langInApp);
   const completeLocaleFromRouter = expandLocaleDictionnary[router.locale];
 
+  // Booting on next router language, server side
+  // We will adjust client side by watching local storage
   const [appCurrentLang, setAppCurrentLang] = useState(
     langInApp[completeLocaleFromRouter]
   );
