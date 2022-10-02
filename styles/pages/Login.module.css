@@ -64,5 +64,21 @@
 }
 
 .rightDiv img {
-  max-width: 80%;
+  max-width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .doubleDivContainer {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+  .rightDiv {
+    width: 60%;
+    margin-bottom: 50px;
+  }
+  .leftDiv {
+    width: 80%;
+  }
 }

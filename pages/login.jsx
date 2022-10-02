@@ -44,14 +44,14 @@ const LoginPage = ({ images }) => {
     }
   }, [appCurrentLang.locale]);
 
-  const handleGoogleClick = (e) => {
+  const handleGoogleClick = async (e) => {
     e.preventDefault();
     signIn("google", {
       callbackUrl: `/`,
     });
   };
 
-  console.log("okkk", imagesDisplayed);
+  console.log("imagesDisplayed", imagesDisplayed);
 
   return (
     <>

@@ -45,6 +45,7 @@ callbacks.signIn = async function signIn({
 
     // fetch data from back end and add it here in user object
     user = { user, ...userDataFromAPI.data };
+
     return true;
   }
 
