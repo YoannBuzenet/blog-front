@@ -52,8 +52,12 @@ const LoginPage = ({ images }) => {
       <div className={style.container}>
         <div className={style.doubleDivContainer}>
           <div className={style.leftDiv}>
-            leftLogin bro
-            <button onClick={handleGoogleClick}>Login test</button>
+            <div>
+              <div className={style.vAlign}>
+                leftLogin bro
+                <button onClick={handleGoogleClick}>Login test</button>
+              </div>
+            </div>
           </div>
           <div className={style.rightDiv}>right</div>
         </div>

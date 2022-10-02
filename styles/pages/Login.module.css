@@ -9,8 +9,16 @@
 
 .leftDiv {
   background-color: gold;
-
   width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.leftDiv > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .rightDiv {
