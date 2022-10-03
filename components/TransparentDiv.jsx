@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import TransparentDivContext from "../contexts/transparentDiv";
 import areFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
+import isUserMenuDisplayedContext from "../contexts/userMenu";
 
 const TransparentDiv = () => {
   console.log("JE SUIS LAA");
@@ -11,10 +12,14 @@ const TransparentDiv = () => {
   const { areFlagsDisplayed, setAreFlagsDisplayed } = useContext(
     areFlagsDisplayedContext
   );
+  const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
+    isUserMenuDisplayedContext
+  );
 
   const closeEverything = (event) => {
     setIsTransparentDivDisplayed(false);
     setAreFlagsDisplayed(false);
+    setIsUserMenuDisplayed(false);
   };
 
   return (

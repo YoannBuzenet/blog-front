@@ -35,6 +35,7 @@ import { fetchAllImagesWithPathUpdated } from "../services/api/image";
 
 import UserDataContext from "../contexts/userData";
 import AppCurrentLangContext from "../contexts/appCurrentLang";
+import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import { initializeLang } from "../services/i18n";
@@ -53,6 +54,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [tags, setTags] = useState([]);
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
+  const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   // App Language initialization
@@ -110,6 +112,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     areFlagsDisplayed,
     setAreFlagsDisplayed,
   };
+  const contextUserMenuDisplayed = {
+    isUserMenuDisplayed,
+    setIsUserMenuDisplayed,
+  };
 
   return (
     <ImageManagerContainer
@@ -149,25 +155,27 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     >
       <ThemeProvider theme={customMUITheme}>
         <SessionProvider session={session}>
-          <AppCurrentLangContext.Provider value={contextCurrentLang}>
-            <AreLangFlagsDisplayedContext.Provider
-              value={contextFlagsDisplayed}
-            >
-              <TransparentDivContext.Provider value={contextTransparentDiv}>
-                <IntlProvider
-                  locale={appCurrentLang.locale}
-                  messages={appCurrentLang.translatedText}
-                >
-                  {isTransparentDivDisplayed && <TransparentDiv />}
-                  <Component {...pageProps} />
-                  <ToastContainer
-                    position={toast.POSITION.TOP_CENTER}
-                    autoClose={10000}
-                  />
-                </IntlProvider>
-              </TransparentDivContext.Provider>
-            </AreLangFlagsDisplayedContext.Provider>
-          </AppCurrentLangContext.Provider>
+          <UserMenuContext.Provider value={contextUserMenuDisplayed}>
+            <AppCurrentLangContext.Provider value={contextCurrentLang}>
+              <AreLangFlagsDisplayedContext.Provider
+                value={contextFlagsDisplayed}
+              >
+                <TransparentDivContext.Provider value={contextTransparentDiv}>
+                  <IntlProvider
+                    locale={appCurrentLang.locale}
+                    messages={appCurrentLang.translatedText}
+                  >
+                    {isTransparentDivDisplayed && <TransparentDiv />}
+                    <Component {...pageProps} />
+                    <ToastContainer
+                      position={toast.POSITION.TOP_CENTER}
+                      autoClose={10000}
+                    />
+                  </IntlProvider>
+                </TransparentDivContext.Provider>
+              </AreLangFlagsDisplayedContext.Provider>
+            </AppCurrentLangContext.Provider>
+          </UserMenuContext.Provider>
         </SessionProvider>
       </ThemeProvider>
     </ImageManagerContainer>

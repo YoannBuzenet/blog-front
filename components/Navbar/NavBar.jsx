@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";
 import { FormattedMessage } from "react-intl";
@@ -7,6 +8,8 @@ import LoginIcon from "../../assets/svg/login/round.svg";
 import { useIntl } from "react-intl";
 import { useTranslation } from "../../i18n/hooks";
 import { useSession } from "next-auth/react";
+import isUserMenuDisplayedContext from "../../contexts/userMenu";
+import UserMenu from "./UserMenu";
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -16,6 +19,14 @@ const NavBar = () => {
   console.log("status", status);
 
   const isUserAuthenTicated = status === "authenticated";
+
+  const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
+    isUserMenuDisplayedContext
+  );
+
+  const handleDisplayUserMenu = () => {
+    setIsUserMenuDisplayed(true);
+  };
 
   return (
     <div className={style.navBarContainer}>
@@ -46,8 +57,12 @@ const NavBar = () => {
             </>
           )}
           {isUserAuthenTicated && (
-            <div className={style.userMenuAccess}>
+            <div
+              className={style.userMenuAccess}
+              onClick={handleDisplayUserMenu}
+            >
               <p>{data.user.firstName}</p>
+              {isUserMenuDisplayed && <UserMenu />}
             </div>
           )}
           <AppLangChoice top="-6" marginLeft="20" />
