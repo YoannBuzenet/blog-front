@@ -88,7 +88,7 @@ const LoginPage = ({ images }) => {
           <div className={style.rightDiv}>
             <div>
               <div>
-                <img src={imagesDisplayed?.[0].path} />
+                <img src={imagesDisplayed?.[0]?.path} />
               </div>
             </div>
           </div>

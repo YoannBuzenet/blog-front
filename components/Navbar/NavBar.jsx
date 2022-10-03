@@ -29,7 +29,7 @@ const NavBar = () => {
 
   const handleDisplayUserMenu = () => {
     setIsTransparentDivDisplayed(true);
-    setIsUserMenuDisplayed(true);
+    setIsUserMenuDisplayed(!isUserMenuDisplayed);
   };
 
   return (
@@ -61,7 +61,7 @@ const NavBar = () => {
             </>
           )}
           {isUserAuthenTicated && (
-            <div className={style.userMenuAccessContainer}>
+            <div className={`${style.userMenuAccessContainer} noselect`}>
               <div
                 className={style.userMenuAccess}
                 onClick={handleDisplayUserMenu}
