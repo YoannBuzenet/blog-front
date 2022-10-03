@@ -4,8 +4,6 @@ import areFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import isUserMenuDisplayedContext from "../contexts/userMenu";
 
 const TransparentDiv = () => {
-  console.log("JE SUIS LAA");
-
   //Transparent Div Context
   const { isTransparentDivDisplayed, setIsTransparentDivDisplayed } =
     useContext(TransparentDivContext);

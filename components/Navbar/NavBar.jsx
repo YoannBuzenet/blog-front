@@ -9,6 +9,7 @@ import { useIntl } from "react-intl";
 import { useTranslation } from "../../i18n/hooks";
 import { useSession } from "next-auth/react";
 import isUserMenuDisplayedContext from "../../contexts/userMenu";
+import isTransparentDisplayedContext from "../../contexts/transparentDiv";
 import UserMenu from "./UserMenu";
 
 const NavBar = () => {
@@ -23,8 +24,11 @@ const NavBar = () => {
   const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
     isUserMenuDisplayedContext
   );
+  const { isTransparentDivDisplayed, setIsTransparentDivDisplayed } =
+    useContext(isTransparentDisplayedContext);
 
   const handleDisplayUserMenu = () => {
+    setIsTransparentDivDisplayed(true);
     setIsUserMenuDisplayed(true);
   };
 
@@ -57,11 +61,13 @@ const NavBar = () => {
             </>
           )}
           {isUserAuthenTicated && (
-            <div
-              className={style.userMenuAccess}
-              onClick={handleDisplayUserMenu}
-            >
-              <p>{data.user.firstName}</p>
+            <div className={style.userMenuAccessContainer}>
+              <div
+                className={style.userMenuAccess}
+                onClick={handleDisplayUserMenu}
+              >
+                <p>{data.user.firstName}</p>
+              </div>
               {isUserMenuDisplayed && <UserMenu />}
             </div>
           )}

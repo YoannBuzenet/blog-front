@@ -1,0 +1,19 @@
+.container {
+  position: absolute;
+  z-index: 7;
+  /* top: calc(var(--height-nav-bar) + 10px); */
+  top: var(--height-nav-bar);
+  cursor: pointer;
+  background-color: white;
+}
+
+.menuLine {
+  padding: 2rem;
+}
+
+.menuLine:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.menuLine:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
