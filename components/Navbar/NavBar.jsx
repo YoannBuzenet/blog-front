@@ -46,7 +46,7 @@ const NavBar = () => {
             </>
           )}
           {isUserAuthenTicated && (
-            <div>
+            <div className={style.userMenuAccess}>
               <p>{data.user.firstName}</p>
             </div>
           )}
