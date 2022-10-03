@@ -1,9 +1,9 @@
 ### TODO
 
-- Belle page de login
 - Belle page Mon compte pour modifier son pseudo (ou autre)
 - Le menu propose de log out quand on est logué
 - On peut commenter si on logué !
+- Login page affiche un slider des images et pas une image figée (et apparait en fondu)
 - refacto les contextes dans \_app
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
 - Mettre la fonction de ratio de crop definissable par appel dans RIM

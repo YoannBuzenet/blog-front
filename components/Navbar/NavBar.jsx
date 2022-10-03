@@ -6,9 +6,16 @@ import React from "react";
 import LoginIcon from "../../assets/svg/login/round.svg";
 import { useIntl } from "react-intl";
 import { useTranslation } from "../../i18n/hooks";
+import { useSession } from "next-auth/react";
 
 const NavBar = () => {
   const { t } = useTranslation();
+  const { data, status } = useSession();
+
+  console.log("data", data);
+  console.log("status", status);
+
+  const isUserAuthenTicated = status === "authenticated";
 
   return (
     <div className={style.navBarContainer}>
@@ -26,14 +33,23 @@ const NavBar = () => {
           </p>
         </div>
         <div className={style.rightPart}>
-          <Link href="/login" passHref>
-            <a>
-              <LoginIcon
-                className="svg"
-                title={t("navbar.button.login", "Login")}
-              />
-            </a>
-          </Link>
+          {!isUserAuthenTicated && (
+            <>
+              <Link href="/login" passHref>
+                <a>
+                  <LoginIcon
+                    className="svg"
+                    title={t("navbar.button.login", "Login")}
+                  />
+                </a>
+              </Link>
+            </>
+          )}
+          {isUserAuthenTicated && (
+            <div>
+              <p>{data.user.firstName}</p>
+            </div>
+          )}
           <AppLangChoice top="-6" marginLeft="20" />
         </div>
       </div>
