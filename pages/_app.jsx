@@ -11,6 +11,7 @@ import "../styles/generic/wysiwygDisplay.css";
 import "../styles/generic/colors.scss";
 import "../styles/generic/buttons.scss";
 import "../styles/generic/loaders.css";
+import "../styles/generic/transparentDiv.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@mui/material/styles";
 import { customMUITheme } from "../styles/Mui/theme";
@@ -40,6 +41,7 @@ import { initializeLang } from "../services/i18n";
 
 import { useRouter } from "next/router";
 import { getAllTags } from "../services/api/tag";
+import TransparentDiv from "../components/TransparentDiv";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -156,6 +158,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
                   locale={appCurrentLang.locale}
                   messages={appCurrentLang.translatedText}
                 >
+                  {isTransparentDivDisplayed && <TransparentDiv />}
                   <Component {...pageProps} />
                   <ToastContainer
                     position={toast.POSITION.TOP_CENTER}
