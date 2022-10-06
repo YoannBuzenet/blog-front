@@ -8,3 +8,7 @@
 .menuLine {
   padding: 1rem;
 }
+
+.selected {
+  background-color: antiquewhite;
+}

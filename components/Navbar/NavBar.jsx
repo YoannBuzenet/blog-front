@@ -35,16 +35,16 @@ const NavBar = () => {
     <div className={style.navBarContainer}>
       <div className={`${style.navBarDisplay} container`}>
         <div>
-          <p>
-            <Link href="/" passHref>
-              <a>
+          <Link href="/" passHref>
+            <a>
+              <p className={`${style.homeButton} clickable`}>
                 <FormattedMessage
                   id="navbar.button.home"
                   defaultMessage="Home"
                 />
-              </a>
-            </Link>
-          </p>
+              </p>
+            </a>
+          </Link>
         </div>
         <div className={style.rightPart}>
           {!isUserAuthenTicated && (

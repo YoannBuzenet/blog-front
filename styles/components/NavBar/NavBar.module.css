@@ -12,6 +12,10 @@
   z-index: 7;
 }
 
+.homeButton {
+  padding: 1.5rem;
+}
+
 .navBarDisplay {
   display: flex;
   height: 100%;
