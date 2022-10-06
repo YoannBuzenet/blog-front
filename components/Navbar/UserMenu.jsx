@@ -18,7 +18,7 @@ const UserMenu = () => {
     <div className={style.container}>
       <Link href={"/myAccount"} passHref>
         <p
-          className={style.menuLine}
+          className={`${style.menuLine} clickable`}
           onClick={() => {
             closeMenu();
           }}
@@ -32,7 +32,7 @@ const UserMenu = () => {
         </p>
       </Link>
       <p
-        className={style.menuLine}
+        className={`${style.menuLine} clickable`}
         onClick={() => {
           closeMenu();
           signOut();

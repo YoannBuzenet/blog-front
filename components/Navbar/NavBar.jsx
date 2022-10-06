@@ -5,7 +5,6 @@ import { FormattedMessage } from "react-intl";
 import AppLangChoice from "../appSetLang/AppLangChoice";
 import React from "react";
 import LoginIcon from "../../assets/svg/login/round.svg";
-import { useIntl } from "react-intl";
 import { useTranslation } from "../../i18n/hooks";
 import { useSession } from "next-auth/react";
 import isUserMenuDisplayedContext from "../../contexts/userMenu";
@@ -61,7 +60,7 @@ const NavBar = () => {
             </>
           )}
           {isUserAuthenTicated && (
-            <div className={`${style.userMenuAccessContainer} noselect`}>
+            <div className={`clickable noselect`}>
               <div
                 className={style.userMenuAccess}
                 onClick={handleDisplayUserMenu}

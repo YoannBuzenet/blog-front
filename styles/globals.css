@@ -30,3 +30,19 @@ a {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.clickable:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.h2 {
+  font-size: 2rem;
+}

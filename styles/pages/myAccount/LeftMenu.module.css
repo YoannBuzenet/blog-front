@@ -1,4 +1,10 @@
 .container {
   width: 200px;
   border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuLine {
+  padding: 1rem;
 }
