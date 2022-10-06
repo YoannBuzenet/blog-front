@@ -1,7 +1,8 @@
 ### TODO
 
 - Belle page Mon compte pour modifier son pseudo (ou autre)
-- Le menu propose de log out quand on est logué
+- Affichage d'un tweet dans le wysiwyg
+- Affichage d'une video YT dans le WYSIWYG
 - On peut commenter si on logué !
 - Login page affiche un slider des images et pas une image figée (et apparait en fondu)
 - refacto les contextes dans \_app

@@ -7,5 +7,7 @@
   "page.login.disclaimer": "You can change then nickname and avatar appearing online.",
 
   "navbar.button.home": "Home",
-  "navbar.button.login": "Login"
+  "navbar.button.login": "Login",
+  "navbar.userMenu.logout": "Log out",
+  "navbar.userMenu.profile": "Profile"
 }

@@ -7,5 +7,7 @@
   "page.login.disclaimer": "Vous pourrez changer le pseudo affiché et l'avatar utilisé.",
 
   "navbar.button.home": "Accueil",
-  "navbar.button.login": "Se Connecter"
+  "navbar.button.login": "Se Connecter",
+  "navbar.userMenu.logout": "Déconnection",
+  "navbar.userMenu.profile": "Profil"
 }

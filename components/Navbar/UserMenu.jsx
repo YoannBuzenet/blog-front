@@ -3,6 +3,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useContext } from "react";
 import isUserMenuDisplayedContext from "../../contexts/userMenu";
+import { FormattedMessage } from "react-intl";
 
 const UserMenu = () => {
   const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
@@ -22,7 +23,12 @@ const UserMenu = () => {
             closeMenu();
           }}
         >
-          <a>Settings</a>
+          <a>
+            <FormattedMessage
+              id="navbar.userMenu.profile"
+              defaultMessage="Profile"
+            />
+          </a>
         </p>
       </Link>
       <p
@@ -32,7 +38,10 @@ const UserMenu = () => {
           signOut();
         }}
       >
-        Log out
+        <FormattedMessage
+          id="navbar.userMenu.logout"
+          defaultMessage="Log out"
+        />
       </p>
     </div>
   );
