@@ -1,0 +1,8 @@
+.container {
+  padding-top: var(--height-nav-bar);
+}
+
+.menuContainer {
+  display: flex;
+  height: calc(100vh - var(--height-nav-bar));
+}

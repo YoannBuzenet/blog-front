@@ -1,11 +1,17 @@
-import style from "../styles/pages/MyAccount.module.css";
+import style from "../styles/pages/myAccount/MyAccount.module.css";
 import NavBar from "../components/Navbar/NavBar";
+import LeftMenu from "../components/myAccount/LeftMenu";
 
 const MyAccount = () => {
   return (
-    <div className={style.container}>
+    <div className={`${style.container} container`}>
       <NavBar />
-      My Account
+      <div className={style.menuContainer}>
+        <LeftMenu />
+        <div>
+          <p>Right Screen</p>
+        </div>
+      </div>
     </div>
   );
 };
