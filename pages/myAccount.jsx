@@ -2,6 +2,7 @@ import style from "../styles/pages/myAccount/MyAccount.module.css";
 import NavBar from "../components/Navbar/NavBar";
 import LeftMenu from "../components/myAccount/LeftMenu";
 import { useState } from "react";
+import MyAnswers from "../components/myAccount/MyAnswers";
 
 const MyAccount = () => {
   // Garder en state quel menu est cliqué
@@ -18,9 +19,7 @@ const MyAccount = () => {
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
-        <div>
-          <p>Right Screen</p>
-        </div>
+        <div>{selectedMenu === "myAnswers" && <MyAnswers />}</div>
       </div>
     </div>
   );
