@@ -3,15 +3,18 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useContext } from "react";
 import isUserMenuDisplayedContext from "../../contexts/userMenu";
+import transparentDivContext from "../../contexts/transparentDiv";
 import { FormattedMessage } from "react-intl";
 
 const UserMenu = () => {
   const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
     isUserMenuDisplayedContext
   );
+  const { setIsTransparentDivDisplayed } = useContext(transparentDivContext);
 
   const closeMenu = () => {
     setIsUserMenuDisplayed(false);
+    setIsTransparentDivDisplayed(false);
   };
 
   return (
