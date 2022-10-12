@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import Answer from "./Answer";
+import style from "../../styles/pages/myAccount/MyAnswers.module.css";
 
 const MyAnswers = () => {
   const { data, status } = useSession();
@@ -8,7 +9,7 @@ const MyAnswers = () => {
   console.log("status", status);
 
   return (
-    <div>
+    <div className={style.container}>
       <p>My Answers</p>
       {Array.isArray(data?.user?.Answers) &&
         data.user.Answers.map((answer, index) => (

@@ -19,7 +19,9 @@ const MyAccount = () => {
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
-        <div>{selectedMenu === "myAnswers" && <MyAnswers />}</div>
+        <div className={style.rightPartContainer}>
+          {selectedMenu === "myAnswers" && <MyAnswers />}
+        </div>
       </div>
     </div>
   );
