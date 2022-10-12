@@ -10,7 +10,7 @@ const MyAnswers = () => {
 
   return (
     <div className={style.container}>
-      <p>My Answers</p>
+      <h1 className={`h2`}>My Answers</h1>
       {Array.isArray(data?.user?.Answers) &&
         data.user.Answers.map((answer, index) => (
           <Answer content={answer} key={index} />
