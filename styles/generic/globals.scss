@@ -115,3 +115,10 @@ div.activeMenu {
 .actionableSvg:hover {
   fill: red;
 }
+
+.generalLink {
+  cursor: pointer;
+  & :hover {
+    text-decoration: underline;
+  }
+}
