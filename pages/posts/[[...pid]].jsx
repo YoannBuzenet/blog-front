@@ -14,6 +14,8 @@ import { localeToLangDictionnary } from "../../i18n/allLang";
 import { useRouter } from "next/router";
 import { parseSlateFormatSimple } from "../../services/react-slate";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { getAllAnswersForPost } from "../../services/api/answer";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -27,6 +29,8 @@ export async function getServerSideProps({ req, query, params }) {
 }
 
 const OnePost = ({ postParsed }) => {
+  const [answers, setAnswers] = useState([]);
+
   const post = Post.builder()
     .id(postParsed.id)
     .title(postParsed.title)
@@ -79,6 +83,11 @@ const OnePost = ({ postParsed }) => {
       }
     }
   }, [appCurrentLang.locale]);
+
+  // Fetch all the answers
+  useEffect(() => {
+    getAllAnswersForPost(post.id).then((resp) => setAnswers(resp));
+  }, []);
 
   return (
     <>

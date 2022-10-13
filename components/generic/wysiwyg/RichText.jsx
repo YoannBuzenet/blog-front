@@ -31,7 +31,7 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const RichText = ({ value, setValue, field }) => {
+const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
@@ -121,14 +121,16 @@ const RichText = ({ value, setValue, field }) => {
             SvgIcon={Format_list_bulleted}
             title="Créer une liste à puce"
           />
-          <CustomButton
-            handleClick={() =>
-              handleClickImageModule(setIsDisplayedImageManager, editor)
-            }
-            format="image"
-            SvgIcon={Image_SVG}
-            title="Images"
-          />
+          {displayImagePicker && (
+            <CustomButton
+              handleClick={() =>
+                handleClickImageModule(setIsDisplayedImageManager, editor)
+              }
+              format="image"
+              SvgIcon={Image_SVG}
+              title="Images"
+            />
+          )}
         </Toolbar>
         <Editable
           renderElement={renderElement}
