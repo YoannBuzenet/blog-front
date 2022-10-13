@@ -16,6 +16,7 @@ import { parseSlateFormatSimple } from "../../services/react-slate";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { getAllAnswersForPost } from "../../services/api/answer";
+import AnswerPost from "../../components/posts/AnswerPost";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -108,6 +109,12 @@ const OnePost = ({ postParsed }) => {
         <div className={genericTextStyle.content}>
           <DisplayHTML slateText={post?.content} />
         </div>
+      </div>
+
+      <div>
+        {answers.map((answer, index) => (
+          <AnswerPost answer={answer} key={index} />
+        ))}
       </div>
 
       <Footer />
