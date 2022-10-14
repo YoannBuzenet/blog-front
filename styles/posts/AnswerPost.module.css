@@ -1,3 +1,18 @@
 .container {
-  background-color: red;
+  background-color: var(--grey);
+  border-radius: var(--border-radius);
+  margin-bottom: 3rem;
+}
+
+.splitter {
+  display: flex;
+}
+
+.user {
+  width: 100px;
+  padding: 2rem;
+}
+
+.answerWysiwyg {
+  padding: 0.5rem;
 }

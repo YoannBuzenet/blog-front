@@ -31,6 +31,7 @@ export async function getServerSideProps({ req, query, params }) {
 
 const OnePost = ({ postParsed }) => {
   const [answers, setAnswers] = useState([]);
+  const [isLoadingAnswers, setIsLoadingAnswers] = useState(false);
 
   const post = Post.builder()
     .id(postParsed.id)
@@ -87,7 +88,11 @@ const OnePost = ({ postParsed }) => {
 
   // Fetch all the answers
   useEffect(() => {
-    getAllAnswersForPost(post.id).then((resp) => setAnswers(resp));
+    setIsLoadingAnswers(true);
+    getAllAnswersForPost(post.id).then((resp) => {
+      setAnswers(resp);
+      setIsLoadingAnswers(false);
+    });
   }, []);
 
   return (
@@ -109,12 +114,20 @@ const OnePost = ({ postParsed }) => {
         <div className={genericTextStyle.content}>
           <DisplayHTML slateText={post?.content} />
         </div>
-      </div>
-
-      <div>
-        {answers.map((answer, index) => (
-          <AnswerPost answer={answer} key={index} />
-        ))}
+        {isLoadingAnswers && <>Loading...</>}
+        {!isLoadingAnswers && answers.length > 0 && (
+          <div className={style.answerPostContainer}>
+            <h2 className="h2">Answers</h2>
+            {answers.map((answer, index) => (
+              <AnswerPost answer={answer} key={index} />
+            ))}
+          </div>
+        )}
+        {!isLoadingAnswers && answers.length === 0 && (
+          <div className={style.answerPostContainer}>
+            <p>No answers for now.</p>
+          </div>
+        )}
       </div>
 
       <Footer />
