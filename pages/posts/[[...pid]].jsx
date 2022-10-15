@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { getAllAnswersForPost } from "../../services/api/answer";
 import AnswerPost from "../../components/posts/AnswerPost";
+import { AnswerManager } from "../../domain/answer/AnswerManager";
 
 export async function getServerSideProps({ req, query, params }) {
   const { pid } = params;
@@ -48,7 +49,7 @@ const OnePost = ({ postParsed }) => {
     .updatedAt(postParsed.updatedAt)
     .build();
 
-  // SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
+  // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 
   const { appCurrentLang } = useContext(AppCurrentLangContext);
   const router = useRouter();
@@ -90,7 +91,12 @@ const OnePost = ({ postParsed }) => {
   useEffect(() => {
     setIsLoadingAnswers(true);
     getAllAnswersForPost(post.id).then((resp) => {
-      setAnswers(resp);
+      const answerDomain = resp.map((answer) =>
+        AnswerManager.fromJSONToDomain(answer)
+      );
+      const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
+      console.log("sorted ?", sortedAnswers);
+      setAnswers(sortedAnswers);
       setIsLoadingAnswers(false);
     });
   }, []);
