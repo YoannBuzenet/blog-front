@@ -2,6 +2,8 @@ import { Answer } from "./Answer";
 
 export class AnswerManager {
   static sortAnswers(answers: Answer[]): Answer[] {
+    console.log("answers to Sort", answers);
+
     let tempStorage: Record<string, Answer> = {};
     // We keep track of all ids
     for (let i = 0; i < answers.length; i++) {

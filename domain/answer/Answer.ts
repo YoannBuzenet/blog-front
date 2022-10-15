@@ -67,7 +67,7 @@ class AnswerBuilder {
   private _content: slateContentObject[];
   private _userId: number;
   private _postId: number;
-  private _parentAnswerId: number = null;
+  private _parentAnswerId: number;
   private _hasBeenSorted: boolean;
   private _childrenAnswers: Answer[] = [];
   private _createdAt: string;
@@ -106,8 +106,8 @@ class AnswerBuilder {
 
   parentAnswerId(): number;
   parentAnswerId(parentAnswerId: number): this;
-  parentAnswerId(parentAnswerId?: number): this | number {
-    if (!parentAnswerId) return this;
+  parentAnswerId(parentAnswerId?: number) {
+    if (parentAnswerId === undefined) return this._parentAnswerId;
     this._parentAnswerId = parentAnswerId;
     return this;
   }
