@@ -1,9 +1,13 @@
 import { slateContentObject } from "../post/Post";
+import { simpleUser } from "../types/types";
+
+//TODO : ajouter l'objet utilisateur dans answer
 
 export class Answer {
   private readonly _id: number;
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
+  private readonly _user: simpleUser;
   private readonly _postId: number;
   private readonly _parentAnswerId: number;
   private _hasBeenSorted: boolean;
@@ -15,6 +19,7 @@ export class Answer {
     this._id = builder.id();
     this._content = builder.content();
     this._userId = builder.userId();
+    this._user = builder.user();
     this._postId = builder.postId();
     this._parentAnswerId = builder.parentAnswerId();
     this._hasBeenSorted = builder.hasBeenSorted();
@@ -31,6 +36,9 @@ export class Answer {
   }
   get userId() {
     return this._userId;
+  }
+  get user() {
+    return this._user;
   }
   get postId() {
     return this._postId;
@@ -66,6 +74,7 @@ class AnswerBuilder {
   private _id: number;
   private _content: slateContentObject[];
   private _userId: number;
+  private _user: simpleUser;
   private _postId: number;
   private _parentAnswerId: number;
   private _hasBeenSorted: boolean;
@@ -96,6 +105,15 @@ class AnswerBuilder {
     this._userId = userId;
     return this;
   }
+
+  user(): simpleUser;
+  user(user: simpleUser): this;
+  user(user?: simpleUser) {
+    if (!user) return this._user;
+    this._user = user;
+    return this;
+  }
+
   postId(): number;
   postId(postId: number): this;
   postId(postId?: number) {

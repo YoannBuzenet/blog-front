@@ -39,6 +39,7 @@ export class AnswerManager {
       .id(answerJS.id)
       .content(answerJS.content)
       .userId(answerJS.UserId)
+      .user(answerJS.User)
       .postId(answerJS.PostId)
       .parentAnswerId(answerJS.ParentAnswerId)
       .createdAt(answerJS.createdAt)
