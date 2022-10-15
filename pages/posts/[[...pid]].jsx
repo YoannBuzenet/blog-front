@@ -125,7 +125,7 @@ const OnePost = ({ postParsed }) => {
           <div className={style.answerPostContainer}>
             <h2 className="h2">Answers</h2>
             {answers.map((answer, index) => (
-              <AnswerPost answer={answer} key={index} />
+              <AnswerPost answer={answer} key={index} level={0} />
             ))}
           </div>
         )}
