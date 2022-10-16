@@ -3,6 +3,8 @@ import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
 import { Answer } from "../../domain/answer/Answer";
 import { useState } from "react";
+import RichText from "../../components/generic/wysiwyg/RichText";
+import { useSession } from "next-auth/react";
 
 type AnswerPostProps = {
   answer: Answer;
@@ -10,10 +12,25 @@ type AnswerPostProps = {
 };
 
 const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
-  console.log("answer", answer);
-  console.log("mon level", level);
+  const { data: session, status } = useSession();
+  const isUserAuthenTicated = status === "authenticated";
 
   const [isDisplayedWysiwyg, setIsDisplayedWysiwyg] = useState(false);
+
+  const handlePostAnswer = (e, answer) => {
+    console.log("answer posted !");
+  };
+
+  const temp = [
+    {
+      type: "paragraph",
+      children: [
+        {
+          text: "Tesla's biggest threat is not external - it is from trying to do too many things.",
+        },
+      ],
+    },
+  ];
 
   return (
     <div className={`${style.rootAnswer}`}>
@@ -28,12 +45,24 @@ const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
           </div>
         </div>
         <div className={style.replyContainer}>
-          <p onClick={(e) => setIsDisplayedWysiwyg(!isDisplayedWysiwyg)}>
-            Reply
-          </p>
+          {isUserAuthenTicated && (
+            <p onClick={(e) => setIsDisplayedWysiwyg(!isDisplayedWysiwyg)}>
+              Reply
+            </p>
+          )}
         </div>
+        {isDisplayedWysiwyg && (
+          <div className={style.wysiwygContainer}>
+            <RichText
+              value={temp}
+              setValue={() => {}}
+              displayImagePicker={false}
+              field="k"
+            />
+            <div className={style.buttonContainer}>Poster</div>
+          </div>
+        )}
       </div>
-      {isDisplayedWysiwyg && <>Je suis là</>}
       {Array.isArray(answer.childrenAnswers) &&
         answer.childrenAnswers.map((answer) => {
           return <AnswerPost answer={answer} level={level + 1} />;

@@ -20,7 +20,7 @@
 .replyContainer {
   text-align: right;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .replyContainer p {
@@ -30,4 +30,9 @@
 
 .replyContainer p:hover {
   text-decoration: underline;
+}
+
+.wysiwygContainer {
+  width: 80%;
+  margin: auto;
 }
