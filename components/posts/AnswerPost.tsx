@@ -5,32 +5,29 @@ import { Answer } from "../../domain/answer/Answer";
 import { useState } from "react";
 import RichText from "../../components/generic/wysiwyg/RichText";
 import { useSession } from "next-auth/react";
+import { createEmptyField } from "../generic/wysiwyg/utils";
 
 type AnswerPostProps = {
   answer: Answer;
   level: number;
+  idPost: number;
 };
 
-const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
+const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
   const { data: session, status } = useSession();
   const isUserAuthenTicated = status === "authenticated";
 
   const [isDisplayedWysiwyg, setIsDisplayedWysiwyg] = useState(false);
+  const [response, setResponse] = useState(createEmptyField());
 
   const handlePostAnswer = (e, answer) => {
     console.log("answer posted !");
   };
 
-  const temp = [
-    {
-      type: "paragraph",
-      children: [
-        {
-          text: "Tesla's biggest threat is not external - it is from trying to do too many things.",
-        },
-      ],
-    },
-  ];
+  const handleSetValue = (value, field) => {
+    console.log("field received :", field);
+    setResponse(value);
+  };
 
   return (
     <div className={`${style.rootAnswer}`}>
@@ -54,18 +51,24 @@ const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
         {isDisplayedWysiwyg && (
           <div className={style.wysiwygContainer}>
             <RichText
-              value={temp}
-              setValue={() => {}}
+              value={response}
+              setValue={handleSetValue}
               displayImagePicker={false}
-              field="k"
+              field={`idPost-${idPost}-idParentAnswer-${
+                answer.parentAnswerId || "root"
+              }`}
             />
-            <div className={style.buttonContainer}>Poster</div>
+            <div className={style.buttonContainer}>
+              <p onClick={(e) => handlePostAnswer(e, "ok")}>Poster</p>
+            </div>
           </div>
         )}
       </div>
       {Array.isArray(answer.childrenAnswers) &&
         answer.childrenAnswers.map((answer) => {
-          return <AnswerPost answer={answer} level={level + 1} />;
+          return (
+            <AnswerPost answer={answer} level={level + 1} idPost={idPost} />
+          );
         })}
     </div>
   );
