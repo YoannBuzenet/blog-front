@@ -6,6 +6,7 @@ import { useState } from "react";
 import RichText from "../../components/generic/wysiwyg/RichText";
 import { useSession } from "next-auth/react";
 import { createEmptyField } from "../generic/wysiwyg/utils";
+import { useLocalStorage } from "../../hooks/hooks";
 
 type AnswerPostProps = {
   answer: Answer;
@@ -17,16 +18,18 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
   const { data: session, status } = useSession();
   const isUserAuthenTicated = status === "authenticated";
 
+  const uniqueKeyAnswer = `idPost-${idPost}-idParentAnswer-${
+    answer.parentAnswerId || "root"
+  }`;
+
   const [isDisplayedWysiwyg, setIsDisplayedWysiwyg] = useState(false);
-  const [response, setResponse] = useState(createEmptyField());
+  const [response, setResponse] = useLocalStorage(
+    uniqueKeyAnswer,
+    createEmptyField()
+  );
 
   const handlePostAnswer = (e, answer) => {
     console.log("answer posted !");
-  };
-
-  const handleSetValue = (value, field) => {
-    console.log("field received :", field);
-    setResponse(value);
   };
 
   return (
@@ -52,11 +55,9 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
           <div className={style.wysiwygContainer}>
             <RichText
               value={response}
-              setValue={handleSetValue}
+              setValue={setResponse}
               displayImagePicker={false}
-              field={`idPost-${idPost}-idParentAnswer-${
-                answer.parentAnswerId || "root"
-              }`}
+              field={uniqueKeyAnswer}
             />
             <div className={style.buttonContainer}>
               <p onClick={(e) => handlePostAnswer(e, "ok")}>Poster</p>
