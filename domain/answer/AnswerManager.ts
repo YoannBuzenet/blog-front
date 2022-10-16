@@ -15,10 +15,19 @@ export class AnswerManager {
     for (let i = 0; i < answers.length; i++) {
       const answer = answers[i];
       if (answer.parentAnswerId) {
-        tempStorage[answer.parentAnswerId].childrenAnswers = [
-          ...tempStorage[answer.parentAnswerId].childrenAnswers,
-          answer,
-        ];
+        try {
+          tempStorage[answer.parentAnswerId].childrenAnswers = [
+            ...tempStorage[answer.parentAnswerId].childrenAnswers,
+            answer,
+          ];
+        } catch (e) {
+          console.error(
+            "This answer could not be linked to a parent :",
+            answer
+          );
+          console.log("tempStorage", tempStorage);
+          console.log("answer.parentAnswerId", answer.parentAnswerId);
+        }
       }
     }
     // Getting root level of Answers

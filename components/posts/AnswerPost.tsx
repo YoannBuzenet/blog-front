@@ -22,6 +22,7 @@ const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
           <div className={style.user}>{answer?.user?.nickname}</div>
           <div className={style.answerWysiwyg}>
             <DisplayHTML slateText={answer.content} />
+            <p>Reply</p>
           </div>
         </div>
       </div>
