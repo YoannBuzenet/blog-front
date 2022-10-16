@@ -2,6 +2,7 @@ import style from "../../styles/posts/AnswerPost.module.css";
 import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
 import { Answer } from "../../domain/answer/Answer";
+import { useState } from "react";
 
 type AnswerPostProps = {
   answer: Answer;
@@ -11,6 +12,8 @@ type AnswerPostProps = {
 const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
   console.log("answer", answer);
   console.log("mon level", level);
+
+  const [isDisplayedWysiwyg, setIsDisplayedWysiwyg] = useState(false);
 
   return (
     <div className={`${style.rootAnswer}`}>
@@ -22,10 +25,15 @@ const AnswerPost = ({ answer, level = 0 }: AnswerPostProps) => {
           <div className={style.user}>{answer?.user?.nickname}</div>
           <div className={style.answerWysiwyg}>
             <DisplayHTML slateText={answer.content} />
-            <p>Reply</p>
           </div>
         </div>
+        <div className={style.replyContainer}>
+          <p onClick={(e) => setIsDisplayedWysiwyg(!isDisplayedWysiwyg)}>
+            Reply
+          </p>
+        </div>
       </div>
+      {isDisplayedWysiwyg && <>Je suis là</>}
       {Array.isArray(answer.childrenAnswers) &&
         answer.childrenAnswers.map((answer) => {
           return <AnswerPost answer={answer} level={level + 1} />;

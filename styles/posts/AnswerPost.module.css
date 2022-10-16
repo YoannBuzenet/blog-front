@@ -16,3 +16,18 @@
 .answerWysiwyg {
   padding: 0.5rem;
 }
+
+.replyContainer {
+  text-align: right;
+  display: flex;
+  justify-content: end;
+}
+
+.replyContainer p {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.replyContainer p:hover {
+  text-decoration: underline;
+}
