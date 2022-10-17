@@ -7,6 +7,8 @@ import RichText from "../../components/generic/wysiwyg/RichText";
 import { useSession } from "next-auth/react";
 import { createEmptyField } from "../generic/wysiwyg/utils";
 import { useLocalStorage } from "../../hooks/hooks";
+import { toast } from "react-toastify";
+import { AnswerREST } from "../../secondary/answerREST";
 
 type AnswerPostProps = {
   answer: Answer;
@@ -28,8 +30,38 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
     createEmptyField()
   );
 
-  const handlePostAnswer = (e, answer) => {
+  const handlePostAnswer = async (e, textResponse) => {
     console.log("answer posted !");
+
+    let stringifiedAnswer;
+    try {
+      stringifiedAnswer = JSON.stringify(textResponse);
+    } catch (e) {
+      //TODO translate
+      toast.error("There was an error parsing the answer.");
+      return;
+    }
+
+    const answerPost = {
+      content: stringifiedAnswer,
+      UserId: answer.userId,
+      PostId: idPost,
+      ParentAnswerId: answer.parentAnswerId,
+    };
+
+    //TODO : redirect sur next et faire l'endpoint next
+    try {
+      const servResp = await AnswerREST.create(answerPost);
+      // TODO translate
+      toast.success("Votre réponse a été postée.");
+      // TODO clean local storage sur la clef de l'anwer
+      // TODO refresh la liste des answers
+    } catch (e) {
+      //TODO translate
+      toast.error(
+        "Il y a eu une réponse lors de l'enregistrement de votre réponse."
+      );
+    }
   };
 
   return (
@@ -60,7 +92,7 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
               field={uniqueKeyAnswer}
             />
             <div className={style.buttonContainer}>
-              <p onClick={(e) => handlePostAnswer(e, "ok")}>Poster</p>
+              <p onClick={(e) => handlePostAnswer(e, response)}>Poster</p>
             </div>
           </div>
         )}
