@@ -10,7 +10,7 @@ export type responseDTO = {
 export class AnswerREST {
   static async create(response: responseDTO) {
     return axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/answers`,
       response
     );
   }

@@ -20,6 +20,9 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
   const { data: session, status } = useSession();
   const isUserAuthenTicated = status === "authenticated";
 
+  console.log("answer", answer);
+  console.log("level", level);
+
   const uniqueKeyAnswer = `idPost-${idPost}-idParentAnswer-${
     answer.parentAnswerId || "root"
   }`;
@@ -46,7 +49,7 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
       content: stringifiedAnswer,
       UserId: answer.userId,
       PostId: idPost,
-      ParentAnswerId: answer.parentAnswerId,
+      ParentAnswerId: answer.id,
     };
 
     //TODO : redirect sur next et faire l'endpoint next
@@ -58,6 +61,7 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
       // TODO refresh la liste des answers
     } catch (e) {
       //TODO translate
+      console.log("ERR", e);
       toast.error(
         "Il y a eu une réponse lors de l'enregistrement de votre réponse."
       );
