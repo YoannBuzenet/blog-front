@@ -51,6 +51,7 @@ const SubLayoutContentPage = ({
       // Passing in edit mode
       setIsCreation(false);
     } catch (error) {
+      //TODO translate
       toast.error(
         "ERREUR - La page n'a pu être sauvegardée. Merci de réessayer ultérieurement. Pensez à copier-coller vos modifications dans un fichier en attendant, pour ne pas les perdre !"
       );

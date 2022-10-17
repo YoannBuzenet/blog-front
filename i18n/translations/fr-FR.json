@@ -9,5 +9,9 @@
   "navbar.button.home": "Accueil",
   "navbar.button.login": "Se Connecter",
   "navbar.userMenu.logout": "Déconnection",
-  "navbar.userMenu.profile": "Profil"
+  "navbar.userMenu.profile": "Profil",
+
+  "answer.parsing.error": "Il y a eu une erreur pendant la lecture de l'erreur.",
+  "answer.creation.success": "Votre réponse a été créée.",
+  "answer.creation.error": "Il y a eu une erreur lors de l'enregistrement de votre réponse. Merci de réessayer ultérieurement."
 }

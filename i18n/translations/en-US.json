@@ -9,5 +9,9 @@
   "navbar.button.home": "Home",
   "navbar.button.login": "Login",
   "navbar.userMenu.logout": "Log out",
-  "navbar.userMenu.profile": "Profile"
+  "navbar.userMenu.profile": "Profile",
+
+  "answer.parsing.error": "There was an error parsing the answer.",
+  "answer.creation.success": "Your answer has been created.",
+  "answer.creation.error": "There has been an error while saving your answer. Please try later."
 }

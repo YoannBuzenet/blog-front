@@ -9,6 +9,7 @@ import { createEmptyField } from "../generic/wysiwyg/utils";
 import { useLocalStorage } from "../../hooks/hooks";
 import { toast } from "react-toastify";
 import { AnswerREST } from "../../secondary/answerREST";
+import { FormattedMessage } from "react-intl";
 
 type AnswerPostProps = {
   answer: Answer;
@@ -46,8 +47,14 @@ const AnswerPost = ({
     try {
       stringifiedAnswer = JSON.stringify(textResponse);
     } catch (e) {
-      //TODO translate
-      toast.error("There was an error parsing the answer.");
+      toast.error(
+        <p>
+          <FormattedMessage
+            id="answer.parsing.error"
+            defaultMessage="There was an error parsing the answer."
+          />
+        </p>
+      );
       return;
     }
 
@@ -61,17 +68,26 @@ const AnswerPost = ({
     //TODO : redirect sur next et faire l'endpoint next
     try {
       const servResp = await AnswerREST.create(answerPost);
-      // TODO translate
-      toast.success("Votre réponse a été postée.");
+      toast.success(
+        <p>
+          <FormattedMessage
+            id="answer.creation.success"
+            defaultMessage="Your answer has been created."
+          />
+        </p>
+      );
       // We clean the saved answer from Local Storage
       localStorage.removeItem(uniqueKeyAnswer);
       // We reload the answers
       loadAnswers();
     } catch (e) {
-      //TODO translate
-      console.log("ERR", e);
       toast.error(
-        "Il y a eu une réponse lors de l'enregistrement de votre réponse."
+        <p>
+          <FormattedMessage
+            id="answer.creation.error"
+            defaultMessage="There has been an error while saving your answer. Please try later."
+          />
+        </p>
       );
     }
   };
