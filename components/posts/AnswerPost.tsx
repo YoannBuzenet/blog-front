@@ -14,9 +14,15 @@ type AnswerPostProps = {
   answer: Answer;
   level: number;
   idPost: number;
+  loadAnswers: Function;
 };
 
-const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
+const AnswerPost = ({
+  answer,
+  level = 0,
+  idPost,
+  loadAnswers,
+}: AnswerPostProps) => {
   const { data: session, status } = useSession();
   const isUserAuthenTicated = status === "authenticated";
 
@@ -59,6 +65,8 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
       toast.success("Votre réponse a été postée.");
       // We clean the saved answer from Local Storage
       localStorage.removeItem(uniqueKeyAnswer);
+      // We reload the answers
+      loadAnswers();
     } catch (e) {
       //TODO translate
       console.log("ERR", e);
@@ -104,7 +112,12 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
       {Array.isArray(answer.childrenAnswers) &&
         answer.childrenAnswers.map((answer) => {
           return (
-            <AnswerPost answer={answer} level={level + 1} idPost={idPost} />
+            <AnswerPost
+              answer={answer}
+              level={level + 1}
+              idPost={idPost}
+              loadAnswers={loadAnswers}
+            />
           );
         })}
     </div>

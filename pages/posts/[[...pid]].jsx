@@ -54,6 +54,18 @@ const OnePost = ({ postParsed }) => {
   const { appCurrentLang } = useContext(AppCurrentLangContext);
   const router = useRouter();
 
+  const loadAnswers = () => {
+    setIsLoadingAnswers(true);
+    getAllAnswersForPost(post.id).then((resp) => {
+      const answerDomain = resp.map((answer) =>
+        AnswerManager.fromJSONToDomain(answer)
+      );
+      const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
+      setAnswers(sortedAnswers);
+      setIsLoadingAnswers(false);
+    });
+  };
+
   useEffect(() => {
     if (appCurrentLang.locale !== post.language) {
       console.log("appCurrentLang.locale", appCurrentLang.locale);
@@ -89,16 +101,7 @@ const OnePost = ({ postParsed }) => {
 
   // Fetch all the answers
   useEffect(() => {
-    setIsLoadingAnswers(true);
-    getAllAnswersForPost(post.id).then((resp) => {
-      const answerDomain = resp.map((answer) =>
-        AnswerManager.fromJSONToDomain(answer)
-      );
-      const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
-      console.log("sorted ?", sortedAnswers);
-      setAnswers(sortedAnswers);
-      setIsLoadingAnswers(false);
-    });
+    loadAnswers();
   }, []);
 
   return (
@@ -130,6 +133,7 @@ const OnePost = ({ postParsed }) => {
                 key={index}
                 level={0}
                 idPost={post.id}
+                loadAnswers={loadAnswers}
               />
             ))}
           </div>
