@@ -20,8 +20,8 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
   const { data: session, status } = useSession();
   const isUserAuthenTicated = status === "authenticated";
 
-  console.log("answer", answer);
-  console.log("level", level);
+  // console.log("answer", answer);
+  // console.log("level", level);
 
   const uniqueKeyAnswer = `idPost-${idPost}-idParentAnswer-${
     answer.parentAnswerId || "root"
@@ -57,8 +57,8 @@ const AnswerPost = ({ answer, level = 0, idPost }: AnswerPostProps) => {
       const servResp = await AnswerREST.create(answerPost);
       // TODO translate
       toast.success("Votre réponse a été postée.");
-      // TODO clean local storage sur la clef de l'anwer
-      // TODO refresh la liste des answers
+      // We clean the saved answer from Local Storage
+      localStorage.removeItem(uniqueKeyAnswer);
     } catch (e) {
       //TODO translate
       console.log("ERR", e);

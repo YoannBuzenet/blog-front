@@ -101,8 +101,6 @@ const OnePost = ({ postParsed }) => {
     });
   }, []);
 
-  console.log("les answers de base", answers);
-
   return (
     <>
       <NavBar />

@@ -1,9 +1,12 @@
 import { Answer } from "./Answer";
 
 export class AnswerManager {
+  /**
+   * Sort all answers from a one level array to a tree with parent/chdil relation for each answer (0(n))
+   * @param answers
+   * @returns sorted array
+   */
   static sortAnswers(answers: Answer[]): Answer[] {
-    console.log("answers to Sort", answers);
-
     let tempStorage: Record<string, Answer> = {};
     // We keep track of all ids
     for (let i = 0; i < answers.length; i++) {
