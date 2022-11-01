@@ -18,10 +18,10 @@ export default async function handler(req, res) {
       // Post req.body to back end directly with axios + passPhrase
       try {
         const respServer = await axios.post(
-          routes.api.entities.post.post,
+          routes.api.entities.answer.post,
           req.body.payload
         );
-        console.log("SUCCESS - Création Post: " + respServer);
+        console.log("SUCCESS - Création Answer: " + respServer);
         return res.status(200).json("Success");
       } catch (e) {
         console.error("ERROR:" + e);

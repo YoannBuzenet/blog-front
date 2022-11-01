@@ -13,6 +13,15 @@ export const routes = {
           build: () => buildCompleteURL(`/api/entities/posts`),
         },
       },
+      answer: {
+        put: {
+          build: (idAnswer) =>
+            buildCompleteURL(`/api/entities/answers/${idAnswer}`),
+        },
+        post: {
+          build: () => buildCompleteURL(`/api/entities/answers`),
+        },
+      },
     },
     auth: {
       login: {

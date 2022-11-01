@@ -1,3 +1,4 @@
+// Ce fichier est imortée dans _app.jsx pour être s'ûr d'être appliqué partout
 import axios from "axios";
 
 axios.interceptors.request.use(
@@ -5,7 +6,7 @@ axios.interceptors.request.use(
     // Do something before request is sent
     // TODO Mettre un vrai header quand le back filtrera les requetes auth
     console.log("middleware axios log");
-    config.headers.Authorization = "Test front";
+    config.headers.Authorization = "passPhraseTestNextOuioui";
     return config;
   },
   function (error) {
