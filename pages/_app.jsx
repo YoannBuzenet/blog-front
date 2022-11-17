@@ -28,7 +28,7 @@ import {
 
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
-import "react-image-manager/node_modules/react-image-crop/dist/ReactCrop.css";
+import "react-image-crop/dist/ReactCrop.css";
 import { ImageManagerContainer } from "react-image-manager";
 import { useEffect, useState } from "react";
 import { fetchAllImagesWithPathUpdated } from "../services/api/image";

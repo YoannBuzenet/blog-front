@@ -33,26 +33,19 @@ const NavBar = () => {
       <div className={`${style.navBarDisplay} container`}>
         <div>
           <Link href="/" passHref>
-            <a>
-              <p className={`${style.homeButton} clickable`}>
-                <FormattedMessage
-                  id="navbar.button.home"
-                  defaultMessage="Home"
-                />
-              </p>
-            </a>
+            <p className={`${style.homeButton} clickable`}>
+              <FormattedMessage id="navbar.button.home" defaultMessage="Home" />
+            </p>
           </Link>
         </div>
         <div className={style.rightPart}>
           {!isUserAuthenTicated && (
             <>
               <Link href="/login" passHref>
-                <a>
-                  <LoginIcon
-                    className="svg"
-                    title={t("navbar.button.login", "Login")}
-                  />
-                </a>
+                <LoginIcon
+                  className="svg"
+                  title={t("navbar.button.login", "Login")}
+                />
               </Link>
             </>
           )}

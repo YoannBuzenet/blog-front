@@ -26,12 +26,10 @@ const UserMenu = () => {
             closeMenu();
           }}
         >
-          <a>
-            <FormattedMessage
-              id="navbar.userMenu.profile"
-              defaultMessage="Profile"
-            />
-          </a>
+          <FormattedMessage
+            id="navbar.userMenu.profile"
+            defaultMessage="Profile"
+          />
         </p>
       </Link>
       <p
