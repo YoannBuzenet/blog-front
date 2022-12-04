@@ -25,10 +25,9 @@ const AnswerPost = ({
   loadAnswers,
 }: AnswerPostProps) => {
   const { data: session, status } = useSession();
+  
   const isUserAuthenTicated = status === "authenticated";
 
-  // console.log("answer", answer);
-  // console.log("level", level);
 
   const uniqueKeyAnswer = `idPost-${idPost}-idParentAnswer-${
     answer.parentAnswerId || "root"
@@ -39,6 +38,7 @@ const AnswerPost = ({
     uniqueKeyAnswer,
     createEmptyField()
   );
+
 
   const handlePostAnswer = async (e, textResponse) => {
     console.log("answer posted !");
@@ -58,14 +58,18 @@ const AnswerPost = ({
       return;
     }
 
+    const { user } = session;
+    const { googleAccessToken, provider } = user;
+
     const answerPost = {
       content: stringifiedAnswer,
       UserId: answer.userId,
       PostId: idPost,
       ParentAnswerId: answer.id,
+      token: googleAccessToken,
+      provider: provider
     };
 
-    //TODO : redirect sur next et faire l'endpoint next
     try {
       const servResp = await AnswerREST.create(answerPost);
       toast.success(
