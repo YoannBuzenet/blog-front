@@ -10,6 +10,7 @@ import {
 import { toast } from "react-toastify";
 import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
 import { calculateLengthOfSimpleField } from "../../../../services/react-slate";
+import { useSession } from "next-auth/react";
 
 const SubLayoutContentPage = ({
   hasStateChanged,
@@ -20,6 +21,7 @@ const SubLayoutContentPage = ({
   setIsCreation,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { data: session, status } = useSession();
 
   console.log("is creation from sublayout", isCreation);
 
@@ -30,7 +32,12 @@ const SubLayoutContentPage = ({
   const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
 
-    const objectToSend = JSONStringifyAllProps(pageState);
+
+    const objectToSend = JSONStringifyAllProps({
+      ...pageState,
+      token: session.user.googleAccessToken,
+      provider: session.user.provider,
+    });
 
     setIsLoading(true);
     try {

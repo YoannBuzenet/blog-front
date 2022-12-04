@@ -26,7 +26,7 @@ const AnswerPost = ({
 }: AnswerPostProps) => {
   const { data: session, status } = useSession();
   
-  const isUserAuthenTicated = status === "authenticated";
+  const isUserAuthenTicated = status === "authenticated" && session.user;
 
 
   const uniqueKeyAnswer = `idPost-${idPost}-idParentAnswer-${
