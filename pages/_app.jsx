@@ -29,7 +29,6 @@ import {
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
 import "react-image-crop/dist/ReactCrop.css";
-import { ImageManagerContainer } from "react-image-manager";
 import { useEffect, useState } from "react";
 import { fetchAllImagesWithPathUpdated } from "../services/api/image";
 
@@ -43,6 +42,9 @@ import { initializeLang } from "../services/i18n";
 import { useRouter } from "next/router";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
+import AppWrapper from "../components/AppWrapper/AppWrapper";
+
+
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   console.log(
@@ -56,6 +58,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
+
+
 
   // App Language initialization
   let appInitialLang = initializeLang(langInApp);
@@ -116,69 +120,42 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     isUserMenuDisplayed,
     setIsUserMenuDisplayed,
   };
+  
+
 
   return (
-    <ImageManagerContainer
-      cropAspectRatio={2}
-      urlUpload={`${process.env.NEXT_PUBLIC_API_URL}/api/entities/images`}
-      minWidthImageUploadInitial={700}
-      enabledModes={["gallery", "upload"]}
-      imageFields={[
-        {
-          name: "name",
-          isRequired: true,
-        },
-        {
-          name: "credits",
-        },
-      ]}
-      onSuccessUpload={() => {
-        toast.success(<p>L&apos;image a bien été uploadée.</p>);
-        // Maj Gallerie
-        fetchAllImagesWithPathUpdated().then((resp) => {
-          setImagesGallerie(resp);
-        });
-      }}
-      onFailureupload={() =>
-        toast.error(<p>L&apos;image a bien n&apos;a pu être uploadée.</p>)
-      }
-      onFailureuploadImageTooSmall={(minWidth) => {
-        toast.error(
-          <p>L&apos;image adoit avoir une largeur minimum de {minWidth}px.</p>
-        );
-      }}
-      onSelectImages={(arrayOfSelectedImages) => {}}
-      galleryImages={imagesGallerie}
-      tagList={tags}
-      withTags
-      customPropsToPass={{ language: appCurrentLang?.locale }}
-    >
-      <ThemeProvider theme={customMUITheme}>
-        <SessionProvider session={session}>
-          <UserMenuContext.Provider value={contextUserMenuDisplayed}>
-            <AppCurrentLangContext.Provider value={contextCurrentLang}>
-              <AreLangFlagsDisplayedContext.Provider
-                value={contextFlagsDisplayed}
-              >
-                <TransparentDivContext.Provider value={contextTransparentDiv}>
-                  <IntlProvider
-                    locale={appCurrentLang.locale}
-                    messages={appCurrentLang.translatedText}
+    <ThemeProvider theme={customMUITheme}>
+      <SessionProvider session={session}>
+        <UserMenuContext.Provider value={contextUserMenuDisplayed}>
+          <AppCurrentLangContext.Provider value={contextCurrentLang}>
+            <AreLangFlagsDisplayedContext.Provider
+              value={contextFlagsDisplayed}
+            >
+              <TransparentDivContext.Provider value={contextTransparentDiv}>
+                <IntlProvider
+                  locale={appCurrentLang.locale}
+                  messages={appCurrentLang.translatedText}
+                >
+                  {isTransparentDivDisplayed && <TransparentDiv />}
+                  <AppWrapper
+                    appCurrentLang={appCurrentLang}
+                    setImagesGallerie={setImagesGallerie}
+                    imagesGallerie={imagesGallerie}
+                    tags={tags}
                   >
-                    {isTransparentDivDisplayed && <TransparentDiv />}
                     <Component {...pageProps} />
-                    <ToastContainer
-                      position={toast.POSITION.TOP_CENTER}
-                      autoClose={10000}
-                    />
-                  </IntlProvider>
-                </TransparentDivContext.Provider>
-              </AreLangFlagsDisplayedContext.Provider>
-            </AppCurrentLangContext.Provider>
-          </UserMenuContext.Provider>
-        </SessionProvider>
-      </ThemeProvider>
-    </ImageManagerContainer>
+                  </AppWrapper>
+                  <ToastContainer
+                    position={toast.POSITION.TOP_CENTER}
+                    autoClose={10000}
+                  />
+                </IntlProvider>
+              </TransparentDivContext.Provider>
+            </AreLangFlagsDisplayedContext.Provider>
+          </AppCurrentLangContext.Provider>
+        </UserMenuContext.Provider>
+      </SessionProvider>
+    </ThemeProvider>
   );
 }
 
