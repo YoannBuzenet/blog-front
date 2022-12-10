@@ -16,4 +16,5 @@ module.exports = {
     locales: ["en", "fr"],
     defaultLocale: "en",
   },
+  productionBrowserSourceMaps: true,
 };

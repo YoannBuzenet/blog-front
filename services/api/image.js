@@ -41,13 +41,9 @@ const addCompletePathToImages = (arrayOfImages) => {
   });
 };
 
-const fetchAllImagesWithPathUpdated = async () => {
+export const fetchAllImagesWithPathUpdated = async () => {
   const images = await getAllImages();
   const imagesPathUpdated = addCompletePathToImages(images);
   return imagesPathUpdated;
 };
 
-module.exports = {
-  getAllImages,
-  fetchAllImagesWithPathUpdated,
-};

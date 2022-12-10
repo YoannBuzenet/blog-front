@@ -13,8 +13,8 @@ const AppWrapper = ({
   tags,
   children,
 }) => {
-  const { data: session, status } = useSession();
-  console.log("wrapper là", session);
+  const { data: session, status } =  useSession();
+  console.log("wrapper là: contenu session", session);
   return (
     <>
       <ImageManagerContainer
@@ -24,11 +24,23 @@ const AppWrapper = ({
         enabledModes={["gallery", "upload"]}
         imageFields={[
           {
+            type: "input",
             name: "name",
             isRequired: true,
           },
           {
+            type: "input",
             name: "credits",
+          },
+          {
+            type: "dropdown",
+            name: "language",
+            keys: [
+              { name: "e", value: "1" },
+              { name: "a", value: "2" },
+            ],
+            defaultValue: "2",
+            isRequired: true,
           },
         ]}
         onSuccessUpload={() => {
@@ -46,7 +58,7 @@ const AppWrapper = ({
             <p>L&apos;image adoit avoir une largeur minimum de {minWidth}px.</p>
           );
         }}
-        onSelectImages={(arrayOfSelectedImages) => {}}
+        globalOnSelectImages={(arrayOfSelectedImages) => {}}
         galleryImages={imagesGallerie}
         tagList={tags}
         withTags

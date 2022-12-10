@@ -24,8 +24,10 @@ import { useImageManager } from "react-image-manager";
 import { previewImageUrl } from "../../../services/imageUtils";
 
 //TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
+// Il gère un post en state mais ce n'est jamais défini nulle part. Il faudrait tout typer sur le post, instancier un post
+// Pareil pour la fonction sauvegarde dans SubLayoutContentPage. Il faudrait faire une factory autour pour qu'elle puisse tout sauvegarder, y compris un Post
 
-export async function getServerSideProps({ req, query, params }) {
+export async function getServerSideProps(context) {
   // Auth check
   // const session = await getSession({ req });
   // if (session) {
@@ -41,7 +43,7 @@ export async function getServerSideProps({ req, query, params }) {
   //     props: {},
   //   };
   // }
-
+const { params } = context;
   const { pid } = params;
   console.log("pid !== undefined", pid === undefined);
 
@@ -62,8 +64,16 @@ export async function getServerSideProps({ req, query, params }) {
     }
   }
 
-  // TODO avoir le vrai user ID quand on aura des users !
-  page.UserId = 1;
+  // const session = await unstable_getServerSession(
+  //   context.req,
+  //   context.res
+  // );
+
+  //TODO check si ça marche, si oui utiliser le vrai userId
+    // console.log('session server side ?', session)
+
+    // TODO avoir le vrai user ID quand on aura des users !
+    (page.UserId = 1);
 
   return { props: { page, isCreationInit } };
 }
