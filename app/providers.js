@@ -117,34 +117,36 @@ export function Providers({ lang, children }) {
 
   return (
     <ThemeProvider theme={customMUITheme}>
-      {/* <SessionProvider session={session}> */}
-      <UserMenuContext.Provider value={contextUserMenuDisplayed}>
-        <AppCurrentLangContext.Provider value={contextCurrentLang}>
-          <AreLangFlagsDisplayedContext.Provider value={contextFlagsDisplayed}>
-            <TransparentDivContext.Provider value={contextTransparentDiv}>
-              <IntlProvider
-                locale={appCurrentLang.locale}
-                messages={appCurrentLang.translatedText}
-              >
-                {isTransparentDivDisplayed && <TransparentDiv />}
-                <AppWrapper
-                  appCurrentLang={appCurrentLang}
-                  setImagesGallerie={setImagesGallerie}
-                  imagesGallerie={imagesGallerie}
-                  tags={tags}
+      <SessionProvider>
+        <UserMenuContext.Provider value={contextUserMenuDisplayed}>
+          <AppCurrentLangContext.Provider value={contextCurrentLang}>
+            <AreLangFlagsDisplayedContext.Provider
+              value={contextFlagsDisplayed}
+            >
+              <TransparentDivContext.Provider value={contextTransparentDiv}>
+                <IntlProvider
+                  locale={appCurrentLang.locale}
+                  messages={appCurrentLang.translatedText}
                 >
-                  {children}
-                </AppWrapper>
-                <ToastContainer
-                  position={toast.POSITION.TOP_CENTER}
-                  autoClose={10000}
-                />
-              </IntlProvider>
-            </TransparentDivContext.Provider>
-          </AreLangFlagsDisplayedContext.Provider>
-        </AppCurrentLangContext.Provider>
-      </UserMenuContext.Provider>
-      {/* </SessionProvider> */}
+                  {isTransparentDivDisplayed && <TransparentDiv />}
+                  <AppWrapper
+                    appCurrentLang={appCurrentLang}
+                    setImagesGallerie={setImagesGallerie}
+                    imagesGallerie={imagesGallerie}
+                    tags={tags}
+                  >
+                    {children}
+                  </AppWrapper>
+                  <ToastContainer
+                    position={toast.POSITION.TOP_CENTER}
+                    autoClose={10000}
+                  />
+                </IntlProvider>
+              </TransparentDivContext.Provider>
+            </AreLangFlagsDisplayedContext.Provider>
+          </AppCurrentLangContext.Provider>
+        </UserMenuContext.Provider>
+      </SessionProvider>
     </ThemeProvider>
   );
 }
