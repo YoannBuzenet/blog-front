@@ -1,4 +1,5 @@
 import { Providers } from "./providers";
+import { headers } from "next/headers";
 
 // On veut que chaque requete axios ajoute ce header
 // Voir si on peut mettre ça dans un autre fichier ?
@@ -25,10 +26,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const headersList = headers();
+  const acceptLanguageHeader = headersList.get("accept-language");
+  const mainHeader = acceptLanguageHeader.split(",")[0];
+
   return (
     <html lang="en" data-test="test">
       <body>
-        <Providers>{children}</Providers>
+        <Providers lang={mainHeader}>{children}</Providers>
       </body>
     </html>
   );

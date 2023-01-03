@@ -41,16 +41,15 @@ import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import { initializeLang } from "../services/i18n";
 
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 
-export function Providers({ children }) {
+export function Providers({ lang, children }) {
   console.log(
     `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
   );
-  const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [tags, setTags] = useState([]);
@@ -62,16 +61,9 @@ export function Providers({ children }) {
   // App Language initialization
   let appInitialLang = initializeLang(langInApp);
 
-  //TODO get la locale
-
-  console.log("-------", router);
-  const completeLocaleFromRouter = expandLocaleDictionnary[router.locale];
-
   // Booting on next router language, server side
   // We will adjust client side by watching local storage
-  const [appCurrentLang, setAppCurrentLang] = useState(
-    langInApp[completeLocaleFromRouter]
-  );
+  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[lang]);
 
   useEffect(() => {
     // fetch images for gallery
