@@ -17,4 +17,7 @@ module.exports = {
     defaultLocale: "en",
   },
   productionBrowserSourceMaps: true,
+  experimental: {
+    appDir: true,
+  },
 };

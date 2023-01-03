@@ -1,10 +1,13 @@
 import React from "react";
 import { useSession } from "next-auth/react";
-import { ImageManagerContainer } from "react-image-manager";
 import { toast } from "react-toastify";
 import { fetchAllImagesWithPathUpdated } from "../../services/api/image";
+import dynamic from 'next/dynamic'
 
-//TODO passer le wrapper d'imageContainer avec ses dépendances pour avoir accès à useSession pour passer la data en payload
+
+const ImageManagerContainer: any= dynamic(() =>
+  import('react-image-manager').then((module) => module.ImageManagerContainer),{ssr:false}
+)
 
 const AppWrapper = ({
   appCurrentLang,
@@ -15,6 +18,7 @@ const AppWrapper = ({
 }) => {
   const { data: session, status } =  useSession();
   console.log("wrapper là: contenu session", session);
+
   return (
     <>
       <ImageManagerContainer

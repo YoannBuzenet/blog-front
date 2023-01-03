@@ -20,7 +20,7 @@ import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/basel
 import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
-import { useImageManager } from "react-image-manager";
+import dynamic from "next/dynamic";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -31,19 +31,30 @@ const HOTKEYS = {
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
+const getImageManager = async () =>{
+  import("react-image-manager").then((module) => {
+      module.useImageManager
+    });
+}
+
+
+
 const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-  const {
-    isDisplayedImageManager,
-    setIsDisplayedImageManager,
-    setOnValidationCallBack,
-    setMinWidthImageUpload,
-    setNewCropAspectRatio,
-  } = useImageManager();
+  // const {
+  //   setIsDisplayedImageManager,
+  //   setOnValidationCallBack,
+  //   setMinWidthImageUpload,
+  //   setNewCropAspectRatio,
+  // } = useImageManager();
 
-  const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
+  useEffect(()=>{
+    console.log("okay ?", getImageManager());
+  },[])
+
+  const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
       if (Array.isArray(arrayOfImages)) {
         const imageObject = arrayOfImages[0];
@@ -59,10 +70,13 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
         }
       }
     };
-    setMinWidthImageUpload(700);
-    setNewCropAspectRatio(undefined);
-    setOnValidationCallBack(updateImageRichtext);
-    setIsDisplayedImageManager(true);
+    
+
+
+    // setMinWidthImageUpload(700);
+    // setNewCropAspectRatio(undefined);
+    // setOnValidationCallBack(updateImageRichtext);
+    // setIsDisplayedImageManager(true);
   };
 
   return (
@@ -124,7 +138,7 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
           {displayImagePicker && (
             <CustomButton
               handleClick={() =>
-                handleClickImageModule(setIsDisplayedImageManager, editor)
+                handleClickImageModule(editor)
               }
               format="image"
               SvgIcon={Image_SVG}

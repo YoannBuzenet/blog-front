@@ -1,3 +1,4 @@
+"use client";
 import { useContext } from "react";
 import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";

@@ -1,7 +1,7 @@
 import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
 import SubLayoutRight from "../../../components/back_office/layouts/SubLayoutRight";
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import style from "../../../styles/back_office/pages/onePage.module.css";
 import RichTextExample from "../../../components/generic/wysiwyg/RichText";
 import SimpleField from "../../../components/back_office/pages/contentPage/SimpleField";
@@ -20,7 +20,6 @@ import {
   parseSlateFormatSimple,
 } from "../../../services/react-slate";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
-import { useImageManager } from "react-image-manager";
 import { previewImageUrl } from "../../../services/imageUtils";
 
 //TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
@@ -95,6 +94,8 @@ const PostPage = ({ page, isCreationInit }) => {
 
   const [pageState, setPageState] = useState({ ...page });
   const [hasStateChanged, setHasStateChanged] = useState(false);
+  const [isConditionnalCompoDisplayed, setIsConditionnalCompoDisplayed] =
+    useState(false);
 
   console.log("page state", pageState);
   // console.log("page sate stringifié", JSON.stringify(pageState.content));
@@ -117,13 +118,10 @@ const PostPage = ({ page, isCreationInit }) => {
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
-  const {
-    isDisplayedImageManager,
-    setIsDisplayedImageManager,
-    setOnValidationCallBack,
-    setMinWidthImageUpload,
-    setNewCropAspectRatio,
-  } = useImageManager();
+ 
+useEffect(()=>{
+setIsConditionnalCompoDisplayed(true);
+}, [])
 
   return (
     <BackOfficeLayout>
@@ -163,19 +161,33 @@ const PostPage = ({ page, isCreationInit }) => {
                   setValue={handleChangePage}
                   title="URL de l'image en tête d'article"
                   field="mainImageUrl"
-                  handleClickCTA={(e) => {
-                    setOnValidationCallBack((arrayOfImages) => {
-                      if (Array.isArray(arrayOfImages)) {
-                        const image = arrayOfImages[0];
-                        const url = image.path;
-                        const slateUrl = formatSimple(url);
-                        const slateURLParsed = JSON.parse(slateUrl);
-                        handleChangePage(slateURLParsed, "mainImageUrl");
-                      }
-                    });
-                    setMinWidthImageUpload(null);
-                    setIsDisplayedImageManager(true);
-                    setNewCropAspectRatio(2);
+                  handleClickCTA={async (e) => {
+                    const getImageManager = async () => {
+                      import("react-image-manager").then((module) => {
+                       return module.useImageManager;
+                      
+                      });
+                    };
+                    const useImageManager = await getImageManager();
+                    const {
+                      isDisplayedImageManager,
+                      setIsDisplayedImageManager,
+                      setOnValidationCallBack,
+                      setMinWidthImageUpload,
+                      setNewCropAspectRatio,
+                    } = useImageManager();
+                    // setOnValidationCallBack((arrayOfImages) => {
+                    //   if (Array.isArray(arrayOfImages)) {
+                    //     const image = arrayOfImages[0];
+                    //     const url = image.path;
+                    //     const slateUrl = formatSimple(url);
+                    //     const slateURLParsed = JSON.parse(slateUrl);
+                    //     handleChangePage(slateURLParsed, "mainImageUrl");
+                    //   }
+                    // });
+                    // setMinWidthImageUpload(null);
+                    // setIsDisplayedImageManager(true);
+                    // setNewCropAspectRatio(2);
                   }}
                   svgCTA={MessageIcon}
                 />
