@@ -1,3 +1,4 @@
+'use client'
 import style from "../../styles/posts/AnswerPost.module.css";
 import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 import genericTextStyle from "../../styles/generic/genericTextStyle.module.css";
