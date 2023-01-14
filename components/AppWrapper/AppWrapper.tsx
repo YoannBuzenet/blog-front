@@ -1,13 +1,11 @@
+'use client'
+
 import React from "react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { fetchAllImagesWithPathUpdated } from "../../services/api/image";
-import dynamic from 'next/dynamic'
+import {ImageManagerContainer} from 'react-image-manager'
 
-
-const ImageManagerContainer: any= dynamic(() =>
-  import('react-image-manager').then((module) => module.ImageManagerContainer),{ssr:false}
-)
 
 const AppWrapper = ({
   appCurrentLang,
