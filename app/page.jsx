@@ -6,6 +6,27 @@ import { getAllPosts } from "../services/api/post";
 import {} from "../i18n/consts";
 import { headers } from "next/headers";
 
+// On veut que chaque requete axios ajoute ce header
+// Voir si on peut mettre ça dans un autre fichier ?
+import axios from "axios";
+
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    // TODO Mettre un vrai header quand le back filtrera les requetes auth
+    console.log('HY',process.env);
+    console.log("middleware axios log 2",process.env.NEXT_PUBLIC_PASSPHRASE);
+    config.headers.Authorization = process.env.NEXT_PUBLIC_PASSPHRASE;
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+
+
+
 export default async function Page() {
   const headersList = headers();
   const acceptLanguageHeader = headersList.get("accept-language");
