@@ -47,9 +47,7 @@ import AppWrapper from "../components/AppWrapper/AppWrapper";
 
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  console.log(
-    `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
-  );
+  
   const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
@@ -62,7 +60,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
 
   // App Language initialization
-  let appInitialLang = initializeLang(langInApp);
+  // let appInitialLang = initializeLang(langInApp);
   const completeLocaleFromRouter = expandLocaleDictionnary[router.locale];
 
   // Booting on next router language, server side
@@ -83,9 +81,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     });
 
     // Loading saved settings by user
-    if (appInitialLang.locale !== appCurrentLang.locale) {
-      setAppCurrentLang(appInitialLang);
-    }
+    // if (appInitialLang.locale !== appCurrentLang.locale) {
+    //   setAppCurrentLang(appInitialLang);
+    // }
   }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {

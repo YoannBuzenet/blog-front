@@ -17,7 +17,7 @@ const AppWrapper = ({
   children,
 }) => {
   const { data: session, status } =  useSession();
-  console.log("wrapper là: contenu session", session);
+  //console.log("wrapper SESSION là: contenu session", session);
 
   return (
     <>

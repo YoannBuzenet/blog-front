@@ -52,6 +52,8 @@ const OnePost = ({ postParsed }) => {
   // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 
   const { appCurrentLang } = useContext(AppCurrentLangContext);
+
+
   const router = useRouter();
 
   const loadAnswers = () => {
@@ -67,9 +69,9 @@ const OnePost = ({ postParsed }) => {
   };
 
   useEffect(() => {
-    if (appCurrentLang.locale !== post.language) {
-      console.log("appCurrentLang.locale", appCurrentLang.locale);
-      console.log("post.lang", post.language);
+    console.log("appCurrentLang", appCurrentLang);
+    if (!appCurrentLang.isDefault && appCurrentLang.locale !== post.language) {
+      console.log("post", post);
       if (Array.isArray(post.sibling && post.sibling.length > 1)) {
         const postToDisplay = post.sibling.filter(
           (post) => post.language === appCurrentLang.locale
@@ -82,17 +84,21 @@ const OnePost = ({ postParsed }) => {
           toast.info("Redirection vers le post traduit.");
         } else {
           // Post has sibling but no one in the relevant language
-          router.push("/");
+           router.push("/");
           //TODO translate
-          toast.info("Le post n'existe pas, redirection vers la home.", {
+          toast.info("Le post n'existe pas dans cette langue, redirection vers la home.", {
             toastId: "change",
           });
         }
       } else {
+
+        console.log('LAAA')
         // Post has no sibling. Redirection to home.
-        router.push("/");
+
+        // router.push("/");
+
         //TODO translate
-        toast.info("Le post n'existe pas, redirectino vers la home.", {
+        toast.info("Le post n'existe pas, redirection vers la home.", {
           toastId: "change",
         });
       }

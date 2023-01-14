@@ -1,6 +1,7 @@
 const { LANGUAGE_SETTINGS_LOCAL_STORAGE } = require("../i18n/consts");
 
-const initializeLang = (langInApp) => {
+const initializeLang = (langInApp, lang) => {
+
   let appInitialLang;
   let langSavedInLocalStorage;
   if (typeof window !== "undefined") {
@@ -13,11 +14,11 @@ const initializeLang = (langInApp) => {
     if (langInApp?.[langSavedInLocalStorage] !== undefined) {
       appInitialLang = langInApp[langSavedInLocalStorage];
     } else {
-      appInitialLang = langInApp["en-US"];
+      appInitialLang = langInApp[lang];
       appInitialLang.isDefault = true;
     }
   } else {
-    appInitialLang = langInApp["en-US"];
+    appInitialLang = langInApp[lang];
     appInitialLang.isDefault = true;
   }
 

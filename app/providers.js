@@ -47,9 +47,6 @@ import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 
 export function Providers({ lang, children }) {
-  console.log(
-    `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
-  );
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [tags, setTags] = useState([]);
@@ -59,7 +56,7 @@ export function Providers({ lang, children }) {
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   // App Language initialization
-  let appInitialLang = initializeLang(langInApp);
+  let appInitialLang = initializeLang(langInApp, lang);
 
   // Booting on next router language, server side
   // We will adjust client side by watching local storage

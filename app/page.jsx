@@ -41,6 +41,8 @@ export default async function Page() {
 
   const posts = await getAllPosts(localeBrowser);
 
+
+
   return (
     <>
       <div className="container">
