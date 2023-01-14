@@ -18,21 +18,21 @@ import { useState } from "react";
 import { getAllAnswersForPost } from "../../services/api/answer";
 import AnswerPost from "../../components/posts/AnswerPost";
 import { AnswerManager } from "../../domain/answer/AnswerManager";
+import PostLangRefresh from "./PostLangRefresh";
 
-export async function getServerSideProps({ req, query, params }) {
-  const { pid } = params;
 
-  // TODO : gérer si 0 article correspond
-  // Demander le post par le nom pour SEO purpose ?
+export default async function OnePost({params,searchParams}) {
+
+
   const jsonPost = await getOnePost(pid);
   const postParsed = JSONParseAllProps(jsonPost);
 
-  return { props: { postParsed } };
-}
+  const answers = await getAllAnswersForPost(post.id)
+  const answerDomain = answers.map((answer) =>
+        AnswerManager.fromJSONToDomain(answer)
+      );
+  const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
 
-const OnePost = ({ postParsed }) => {
-  const [answers, setAnswers] = useState([]);
-  const [isLoadingAnswers, setIsLoadingAnswers] = useState(false);
 
   const post = Post.builder()
     .id(postParsed.id)
@@ -55,18 +55,6 @@ const OnePost = ({ postParsed }) => {
 
 
   const router = useRouter();
-
-  const loadAnswers = () => {
-    setIsLoadingAnswers(true);
-    getAllAnswersForPost(post.id).then((resp) => {
-      const answerDomain = resp.map((answer) =>
-        AnswerManager.fromJSONToDomain(answer)
-      );
-      const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
-      setAnswers(sortedAnswers);
-      setIsLoadingAnswers(false);
-    });
-  };
 
   useEffect(() => {
     console.log("appCurrentLang", appCurrentLang);
@@ -105,13 +93,11 @@ const OnePost = ({ postParsed }) => {
     }
   }, [appCurrentLang.locale]);
 
-  // Fetch all the answers
-  useEffect(() => {
-    loadAnswers();
-  }, []);
+
 
   return (
     <>
+    <PostLangRefresh post={post}/>
       <NavBar />
       <div className="contentPageContainer belowNavbar">
         <h1 className={genericTextStyle.title}>
@@ -129,11 +115,10 @@ const OnePost = ({ postParsed }) => {
         <div className={genericTextStyle.content}>
           <DisplayHTML slateText={post?.content} />
         </div>
-        {isLoadingAnswers && <>Loading...</>}
-        {!isLoadingAnswers && answers.length > 0 && (
+        
           <div className={style.answerPostContainer}>
             <h2 className="h2">Answers</h2>
-            {answers.map((answer, index) => (
+            {sortedAnswers.map((answer, index) => (
               <AnswerPost
                 answer={answer}
                 key={index}
@@ -143,8 +128,8 @@ const OnePost = ({ postParsed }) => {
               />
             ))}
           </div>
-        )}
-        {!isLoadingAnswers && answers.length === 0 && (
+        
+        {sortedAnswers.length === 0 && (
           <div className={style.answerPostContainer}>
             <p>No answers for now.</p>
           </div>
@@ -156,4 +141,3 @@ const OnePost = ({ postParsed }) => {
   );
 };
 
-export default OnePost;
