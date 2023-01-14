@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
 export const getAllImages = async (
@@ -18,11 +19,14 @@ export const getAllImages = async (
     query += `&language=${language}`;
   }
 
-  const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images${query}`
+  const resp = await axios.fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images${query}`, getFetchConfig()
   );
 
-  const parsedResp = JSONParseAllProps(resp.data);
+  const respJSON = await resp.json();
+
+  const parsedResp = JSONParseAllProps(respJSON);
+
 
   return parsedResp;
 };

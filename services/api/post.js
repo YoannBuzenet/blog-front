@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
 export const getAllPosts = async (
@@ -7,13 +8,7 @@ export const getAllPosts = async (
   sortBy = "createdAt"
 ) => {
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?language=${language}&limit=${limit}&sortBy=${sortBy}`,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'text/plain',
-        'Authorization': process.env.NEXT_PUBLIC_PASSPHRASE,
-      }
-    }
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?language=${language}&limit=${limit}&sortBy=${sortBy}`,getFetchConfig()
   );
   const respJSON = await resp.json();
 
@@ -24,17 +19,20 @@ export const getAllPosts = async (
 };
 
 export const getOnePost = async (id) => {
-  const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/${id}`
+  const resp = await axios.fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/${id}`,
+    getFetchConfig()
   );
 
-  return resp.data;
+  const respJSON = await resp.json();
+
+  return respJSON;
 };
 
 export const savePost = async (post) => {
-  const resp = await axios.post(
+  const resp = await axios.fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,
-    post
+    getFetchConfig("POST",post),
   );
 
   return resp.data;

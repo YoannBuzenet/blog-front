@@ -1,12 +1,16 @@
 import axios from "axios";
+import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
 export const getAllAnswersForPost = async (postId, sortBy = "createdAt") => {
-  const resp = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/answers/posts/${postId}&sort=${sortBy}`
+  const resp = await axios.fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/answers/posts/${postId}&sort=${sortBy}`,getFetchConfig()
   );
 
-  const parsedResp = JSONParseAllProps(resp.data);
+  const respJSON = await resp.json();
+
+  const parsedResp = JSONParseAllProps(respJSON);
+
 
   return parsedResp;
 };
