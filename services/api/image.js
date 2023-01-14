@@ -1,4 +1,3 @@
-import axios from "axios";
 import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
@@ -19,7 +18,7 @@ export const getAllImages = async (
     query += `&language=${language}`;
   }
 
-  const resp = await axios.fetch(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/images${query}`, getFetchConfig()
   );
 

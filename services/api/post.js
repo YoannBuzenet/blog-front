@@ -1,4 +1,3 @@
-import axios from "axios";
 import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
@@ -19,7 +18,7 @@ export const getAllPosts = async (
 };
 
 export const getOnePost = async (id) => {
-  const resp = await axios.fetch(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/${id}`,
     getFetchConfig()
   );
@@ -30,7 +29,7 @@ export const getOnePost = async (id) => {
 };
 
 export const savePost = async (post) => {
-  const resp = await axios.fetch(
+  const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,
     getFetchConfig("POST",post),
   );
