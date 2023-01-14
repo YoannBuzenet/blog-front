@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import "../styles/generic/globals.scss";
-import config from "../config/axios";
 import "../styles/generic/normalize.css";
 import "../styles/generic/wysiwyg.scss";
 import "../styles/generic/globals.scss";
@@ -44,10 +43,7 @@ import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 
-
-
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  
   const router = useRouter();
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
@@ -56,8 +52,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
-
-
 
   // App Language initialization
   // let appInitialLang = initializeLang(langInApp);
@@ -118,8 +112,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     isUserMenuDisplayed,
     setIsUserMenuDisplayed,
   };
-  
-
 
   return (
     <ThemeProvider theme={customMUITheme}>

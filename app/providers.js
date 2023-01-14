@@ -2,7 +2,6 @@
 
 import "../styles/globals.css";
 import "../styles/generic/globals.scss";
-import config from "../config/axios";
 import "../styles/generic/normalize.css";
 import "../styles/generic/wysiwyg.scss";
 import "../styles/generic/globals.scss";
@@ -24,8 +23,6 @@ import "../styles/generic/normalize.css";
 import { IntlProvider } from "react-intl";
 import {
   langInApp,
-  expandLocaleDictionnary,
-  localeToLangDictionnary,
 } from "../i18n/allLang";
 
 import "react-image-manager/dist/style.css";
