@@ -1,21 +1,21 @@
-const getHeaders =() => {
+const getHeaders =(contentType ="text/plain") => {
 
     return {
-        'Content-Type': 'text/plain',
+        'Content-Type': contentType,
         'Authorization': process.env.NEXT_PUBLIC_PASSPHRASE,
       }
 
 }
 
-const getFetchConfig = (httpVerb = "GET", body) => {
+const getFetchConfig = (httpVerb = "GET", body, contentType ="text/plain") => {
 
     const object = {
         method: httpVerb,
-        headers: getHeaders(),
+        headers: getHeaders(contentType),
       }
 
       if(body){
-        object.body = body;
+        object.body = JSON.stringify(body);
       }
 
     return object

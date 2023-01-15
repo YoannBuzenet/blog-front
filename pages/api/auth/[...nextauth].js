@@ -1,6 +1,6 @@
-import axios from "axios";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { getFetchConfig } from "../../../services/http";
 
 const callbacks = {};
 
@@ -34,10 +34,11 @@ callbacks.signIn = async function signIn({
       provider: "google",
     };
 
-    const userDataFromAPI = await axios
-      .post(
+    const userDataFromAPI = await 
+      fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/login-and-register-if-needed`,
-        finalUserObject
+        getFetchConfig("POST", finalUserObject, 'application/json'),
+        
       )
       .catch((err) => console.log("error while pinging API : ", err));
 
@@ -91,8 +92,9 @@ callbacks.session = async function session({ session, user, token }) {
 
   // refresh user Data
   if (token.hasOwnProperty("idUser")) {
-    let apiResp = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`
+    let apiResp = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`,
+      getFetchConfig()
     );
 
     session.user = apiResp.data;

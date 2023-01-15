@@ -16,6 +16,8 @@ const NavBar = () => {
   const { t } = useTranslation();
   const { data, status } = useSession();
 
+  console.log("YA QUOI ?", data);
+
   const isUserAuthenTicated = status === "authenticated";
 
   const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(

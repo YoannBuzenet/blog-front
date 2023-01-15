@@ -1,6 +1,6 @@
 import { useIntl } from "react-intl";
 
-const useTranslation = () => {
+export const useTranslation = () => {
   const Intl = useIntl();
 
   return {

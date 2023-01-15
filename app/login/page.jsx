@@ -1,14 +1,13 @@
-import { useSession, signIn } from "next-auth/react";
 // import { useEffect, useState, useContext } from "react";
 import NavBar from "../../components/Navbar/NavBar";
 import { getAllImages } from "../../services/api/image";
 import style from "../../styles/pages/Login.module.css";
 // import appCurrentLangContext from "../../contexts/appCurrentLang";
 import { FormattedMessage } from "react-intl";
-// import { useTranslation } from "../../i18n/hooks";
 import GoogleIcon from "../../assets/icons/google.svg";
 import IntlLangWrapper from "../../components/IntlLangWrapper/IntlLangWrapper";
 import { headers } from "next/headers";
+import LoginButton from "./LoginButton";
 
 export default async function LoginPage() {
   //TODO refacto avec app/page.jsx, code dupliqué lulz
@@ -26,8 +25,6 @@ export default async function LoginPage() {
 
   console.log("dude", images);
 
-  // const { t } = useTranslation();
-
   // Checking if lang in client side is the same as perceived in the router from headers.
   // If not, we refetch the images from the right language here
   // useEffect(() => {
@@ -41,13 +38,6 @@ export default async function LoginPage() {
   //   }
   // }, [appCurrentLang.locale]);
 
-  const handleGoogleClick = async (e) => {
-    e.preventDefault();
-    signIn("google", {
-      callbackUrl: `/`,
-    });
-  };
-
   // console.log("imagesDisplayed", imagesDisplayed);
 
   return (
@@ -58,22 +48,7 @@ export default async function LoginPage() {
           <div className={style.leftDiv}>
             <div>
               <div className={style.vAlign}>
-                <button
-                  // onClick={handleGoogleClick}
-                  className="CTAButton"
-                >
-                  <div>
-                    {/* <GoogleIcon
-                      title={t("generic.connect.google", "Connect With Google")}
-                    /> */}
-                    <p>
-                      <IntlLangWrapper
-                        translationKey={"page.login.button.login"}
-                        defaultMessage="Login / Register"
-                      />
-                    </p>
-                  </div>
-                </button>
+                <LoginButton />
                 <div>
                   <p className={style.subTitle}>
                     <IntlLangWrapper
