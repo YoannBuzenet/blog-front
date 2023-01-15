@@ -3,20 +3,14 @@ import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
 
 import AnswerWYSIWYG from "./AnswerWYSIWYG";
-import { AnswerManager } from "../../../domain/answer/AnswerManager";
 
 type AnswerPostProps = {
-  rawAnswer: Record<string,unknown>;
+  rawAnswer: Record<string, unknown>;
   level: number;
   idPost: number;
 };
 
-const AnswerPost = ({
-  rawAnswer,
-  level = 0,
-  idPost,
-}: AnswerPostProps) => {
-
+const AnswerPost = ({ rawAnswer, level = 0, idPost }: AnswerPostProps) => {
   return (
     <div className={`${style.rootAnswer}`}>
       <div
@@ -29,16 +23,12 @@ const AnswerPost = ({
             <DisplayHTML slateText={rawAnswer.content} />
           </div>
         </div>
-        <AnswerWYSIWYG idPost={idPost} rawAnswer={rawAnswer}/>
+        <AnswerWYSIWYG idPost={idPost} rawAnswer={rawAnswer} />
       </div>
       {Array.isArray(rawAnswer.childrenAnswers) &&
         rawAnswer.childrenAnswers.map((answer) => {
           return (
-            <AnswerPost
-              rawAnswer={answer}
-              level={level + 1}
-              idPost={idPost}
-            />
+            <AnswerPost rawAnswer={answer} level={level + 1} idPost={idPost} />
           );
         })}
     </div>
