@@ -16,8 +16,6 @@ const NavBar = () => {
   const { t } = useTranslation();
   const { data, status } = useSession();
 
-  console.log("YA QUOI ?", data);
-
   const isUserAuthenTicated = status === "authenticated";
 
   const { isUserMenuDisplayed, setIsUserMenuDisplayed } = useContext(
@@ -58,7 +56,7 @@ const NavBar = () => {
                 className={style.userMenuAccess}
                 onClick={handleDisplayUserMenu}
               >
-                <p>{data.user.firstName}</p>
+                <p>{data?.user?.firstName}</p>
               </div>
               {isUserMenuDisplayed && <UserMenu />}
             </div>

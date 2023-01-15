@@ -34,7 +34,7 @@ callbacks.signIn = async function signIn({
       provider: "google",
     };
 
-    const userDataFromAPI = await 
+    const resp = await 
       fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/login-and-register-if-needed`,
         getFetchConfig("POST", finalUserObject, 'application/json'),
@@ -42,10 +42,12 @@ callbacks.signIn = async function signIn({
       )
       .catch((err) => console.log("error while pinging API : ", err));
 
-    // console.log("data from API", userData.data);
+    const userDataFromAPI = await resp.json();
+
+    console.log('BRO', userDataFromAPI)
 
     // fetch data from back end and add it here in user object
-    user = { user, ...userDataFromAPI.data };
+    user = { user, ...userDataFromAPI };
 
     return true;
   }
@@ -92,12 +94,14 @@ callbacks.session = async function session({ session, user, token }) {
 
   // refresh user Data
   if (token.hasOwnProperty("idUser")) {
-    let apiResp = await fetch(
+    let resp = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`,
       getFetchConfig()
     );
 
-    session.user = apiResp.data;
+    const userData = await resp.json();
+
+    session.user = userData;
   }
 
   session.idUser = token.idUser;
