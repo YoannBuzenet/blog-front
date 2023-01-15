@@ -1,0 +1,19 @@
+.replyContainer {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .replyContainer p {
+    padding: 1rem;
+    cursor: pointer;
+  }
+  
+  .replyContainer p:hover {
+    text-decoration: underline;
+  }
+  
+  .wysiwygContainer {
+    width: 80%;
+    margin: auto;
+  }

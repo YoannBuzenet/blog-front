@@ -6,30 +6,35 @@ export class AnswerManager {
    * @param answers
    * @returns sorted array
    */
-  static sortAnswers(answers: Answer[]): Answer[] {
+
+  // Cette fonction prenait des Answers précédemment, mais pour passer des objets non classes aux enfants i la été choisi de prendre des raw objects
+  static sortAnswers(answers) {
     let tempStorage: Record<string, Answer> = {};
     // We keep track of all ids
     for (let i = 0; i < answers.length; i++) {
       const answer = answers[i];
+      answer.childrenAnswers = [];
+
       tempStorage[answer.id] = answer;
     }
 
     // Every answer is going to be affected to its parent
     for (let i = 0; i < answers.length; i++) {
       const answer = answers[i];
-      if (answer.parentAnswerId) {
+      if (answer.ParentAnswerId) {
         try {
-          tempStorage[answer.parentAnswerId].childrenAnswers = [
-            ...tempStorage[answer.parentAnswerId].childrenAnswers,
+          tempStorage[answer.ParentAnswerId].childrenAnswers = [
+            ...tempStorage[answer.ParentAnswerId].childrenAnswers,
             answer,
           ];
         } catch (e) {
+          console.log('e',e)
           console.error(
             "This answer could not be linked to a parent :",
             answer
           );
           console.log("tempStorage", tempStorage);
-          console.log("answer.parentAnswerId", answer.parentAnswerId);
+          console.log("answer.parentAnswerId", answer.ParentAnswerId);
         }
       }
     }
@@ -37,7 +42,7 @@ export class AnswerManager {
     let finalOBject = [];
     for (let i = 0; i < answers.length; i++) {
       const answer = answers[i];
-      if (!answer.parentAnswerId) {
+      if (!answer.ParentAnswerId) {
         finalOBject = [...finalOBject, answer];
       }
     }
@@ -46,7 +51,7 @@ export class AnswerManager {
   }
 
   static fromJSONToDomain(answerJS: Record<string, any>): Answer {
-    console.log("answer received to be parsed", answerJS);
+    // console.log("answer received to be parsed", answerJS);
     const answer = Answer.builder()
       .id(answerJS.id)
       .content(answerJS.content)
@@ -60,4 +65,25 @@ export class AnswerManager {
 
     return answer;
   }
+  static fromDomainToJSON(answer: Answer): Record<string,unknown> {
+    console.log("answer received to be JSONed", answer);
+    const answerJS = {
+      id : answer.id,
+      content : answer.content,
+      UserId : answer.user.id,
+      PostId : answer.postId,
+      ParentAnswerId : answer.parentAnswerId,
+      createdAt : answer.createdAt,
+      updatedAt : answer.updatedAt,
+      User : {
+        id : answer.user.id,
+        nickname : answer.user.nickname
+      }
+    }
+  
+    return answerJS;
+  
+  }
 }
+
+

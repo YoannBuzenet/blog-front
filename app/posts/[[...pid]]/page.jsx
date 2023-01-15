@@ -9,7 +9,7 @@ import Footer from "../../../components/Footer/Footer";
 import { previewImageUrl } from "../../../services/imageUtils";
 import { format } from "date-fns";
 import { getAllAnswersForPost } from "../../../services/api/answer";
-import AnswerPost from "../../../components/posts/AnswerPost";
+import AnswerPost from "../../../components/posts/AnswerPost/AnswerPost";
 import { AnswerManager } from "../../../domain/answer/AnswerManager";
 import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../domain/post/PostManager";
@@ -24,10 +24,9 @@ export default async function OnePost({ params }) {
   const post = PostManager.fromJSONToDomain(postParsed);
 
   const answers = await getAllAnswersForPost(post.id);
-  const answerDomain = answers.map((answer) =>
-    AnswerManager.fromJSONToDomain(answer)
-  );
-  const sortedAnswers = AnswerManager.sortAnswers(answerDomain);
+  const sortedAnswers = AnswerManager.sortAnswers(answers);
+
+  // console.log("sortedAnswers", sortedAnswers);
 
   // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 
@@ -54,14 +53,14 @@ export default async function OnePost({ params }) {
 
         <div className={style.answerPostContainer}>
           <h2 className="h2">Answers</h2>
-          {/* {sortedAnswers.map((answer, index) => (
-              <AnswerPost
-                answer={answer}
-                key={index}
-                level={0}
-                idPost={post.id}
-              />
-            ))} */}
+          {sortedAnswers.map((answer, index) => (
+            <AnswerPost
+              rawAnswer={answer}
+              key={index}
+              level={0}
+              idPost={post.id}
+            />
+          ))}
         </div>
 
         {sortedAnswers.length === 0 && (
