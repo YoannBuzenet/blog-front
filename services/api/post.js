@@ -31,7 +31,7 @@ export const getOnePost = async (id) => {
 export const savePost = async (post) => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,
-    getFetchConfig("POST",post),
+    getFetchConfig("POST", post, 'application/json'),
   );
 
   return resp.data;

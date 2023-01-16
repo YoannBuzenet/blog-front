@@ -11,9 +11,9 @@ callbacks.signIn = async function signIn({
   email,
   credentials,
 }) {
-  console.log("user", user);
-  console.log("account", account);
-  console.log("profile", profile);
+  // console.log("user", user);
+  // console.log("account", account);
+  // console.log("profile", profile);
   if (account.provider === "google") {
     const googleUser = {
       email: user.email,
@@ -44,8 +44,6 @@ callbacks.signIn = async function signIn({
 
     const userDataFromAPI = await resp.json();
 
-    console.log('BRO', userDataFromAPI)
-
     // fetch data from back end and add it here in user object
     user = { user, ...userDataFromAPI };
 
@@ -73,12 +71,12 @@ callbacks.jwt = async function jwt({
   profile,
   isNewUser,
 }) {
-  console.log("jwt did trigger");
-  console.log("jwt token", token);
-  console.log("jwt user", user);
-  console.log("jwt account", account);
-  console.log("jwt profile", profile);
-  console.log("jwt isNewUser", isNewUser);
+  // console.log("jwt did trigger");
+  // console.log("jwt token", token);
+  // console.log("jwt user", user);
+  // console.log("jwt account", account);
+  // console.log("jwt profile", profile);
+  // console.log("jwt isNewUser", isNewUser);
   if (user) {
     token = { idUser: user.id };
   }
@@ -88,8 +86,8 @@ callbacks.jwt = async function jwt({
 
 callbacks.session = async function session({ session, user, token }) {
   // we can fetch info from back end here to add it to the session
-  console.log("session in session callback", session);
-  console.log("token in session callback", token);
+  // console.log("session in session callback", session);
+  // console.log("token in session callback", token);
   // token in session callback { iat: 1620653204, exp: 1623245204, idUser }
 
   // refresh user Data

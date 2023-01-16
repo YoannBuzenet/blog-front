@@ -23,23 +23,6 @@ export default async function LoginPage() {
   }
   const images = await getAllImages("createdAt", null, "Banner", localeBrowser);
 
-  console.log("dude", images);
-
-  // Checking if lang in client side is the same as perceived in the router from headers.
-  // If not, we refetch the images from the right language here
-  // useEffect(() => {
-  //   const currentLangImages = images?.[0]?.language;
-  //   if (currentLangImages && currentLangImages !== appCurrentLang.locale) {
-  //     getAllImages("createdAt", null, "Banner", appCurrentLang.locale).then(
-  //       (images) => {
-  //         setImagesDisplayed(images);
-  //       }
-  //     );
-  //   }
-  // }, [appCurrentLang.locale]);
-
-  // console.log("imagesDisplayed", imagesDisplayed);
-
   return (
     <>
       <NavBar />

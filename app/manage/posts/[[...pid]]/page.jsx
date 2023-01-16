@@ -1,3 +1,4 @@
+"use client";
 import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
 import SubLayoutRight from "../../../components/back_office/layouts/SubLayoutRight";
 import axios from "axios";
@@ -42,7 +43,7 @@ export async function getServerSideProps(context) {
   //     props: {},
   //   };
   // }
-const { params } = context;
+  const { params } = context;
   const { pid } = params;
   console.log("pid !== undefined", pid === undefined);
 
@@ -69,10 +70,10 @@ const { params } = context;
   // );
 
   //TODO check si ça marche, si oui utiliser le vrai userId
-    // console.log('session server side ?', session)
+  // console.log('session server side ?', session)
 
-    // TODO avoir le vrai user ID quand on aura des users !
-    (page.UserId = 1);
+  // TODO avoir le vrai user ID quand on aura des users !
+  page.UserId = 1;
 
   return { props: { page, isCreationInit } };
 }
@@ -118,10 +119,9 @@ const PostPage = ({ page, isCreationInit }) => {
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
- 
-useEffect(()=>{
-setIsConditionnalCompoDisplayed(true);
-}, [])
+  useEffect(() => {
+    setIsConditionnalCompoDisplayed(true);
+  }, []);
 
   return (
     <BackOfficeLayout>
@@ -164,8 +164,7 @@ setIsConditionnalCompoDisplayed(true);
                   handleClickCTA={async (e) => {
                     const getImageManager = async () => {
                       import("react-image-manager").then((module) => {
-                       return module.useImageManager;
-                      
+                        return module.useImageManager;
                       });
                     };
                     const useImageManager = await getImageManager();
