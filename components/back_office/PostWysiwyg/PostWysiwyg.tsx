@@ -9,14 +9,34 @@ import { capitalizeFirstLetter } from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
 import { getSession } from "next-auth/react";
 import { useState, useContext, useEffect } from "react";
-import { formatSimple } from "../../../services/react-slate";
+import {
+  calculateLengthOfSimpleField,
+  formatSimple,
+} from "../../../services/react-slate";
 
-const PostWysiwyg = ({ page }) => {
+const PostWysiwyg = ({ page, isCreationInit, pid }) => {
+  const [isCreation, setIsCreation] = useState(isCreationInit);
+
+  let postId;
+  if (!isCreation) {
+    // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
+    postId = pid?.[0];
+  }
+
+  const [pageState, setPageState] = useState({ ...page });
+  const [hasStateChanged, setHasStateChanged] = useState(false);
+  const [isConditionnalCompoDisplayed, setIsConditionnalCompoDisplayed] =
+    useState(false);
+
+  console.log("page state", pageState);
+
   const handleChangePage = (value, field) => {
     console.log("jai ete appele", value, field);
     setHasStateChanged(true);
     setPageState({ ...pageState, [field]: value });
   };
+
+  const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
   return (
     <>

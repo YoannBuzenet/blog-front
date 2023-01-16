@@ -1,36 +1,18 @@
-import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
-import SubLayoutRight from "../../../components/back_office/layouts/SubLayoutRight";
-import SubLayoutContentPage from "../../../components/back_office/pages/contentPage/SubLayoutContentPage";
-import { JSONParseAllProps } from "../../../services/utils";
-import { createBlankPage } from "../../../components/generic/wysiwyg/utils";
-import { getOnePost } from "../../../services/api/post";
-import { calculateLengthOfSimpleField } from "../../../services/react-slate";
-
+import SubLayoutRight from "../../../../components/back_office/layouts/SubLayoutRight";
+import { JSONParseAllProps } from "../../../../services/utils";
+import { createBlankPage } from "../../../../components/generic/wysiwyg/utils";
+import { getOnePost } from "../../../../services/api/post";
 import PostWysiwyg from "../../../../components/back_office/PostWysiwyg/PostWysiwyg";
+import BackOfficeLayout from "../../../../components/back_office/layouts/BackOfficeLayout";
+import SubLayoutContentPage from "../../../../components/back_office/pages/contentPage/SubLayoutContentPage";
 
 //TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
 // Il gère un post en state mais ce n'est jamais défini nulle part. Il faudrait tout typer sur le post, instancier un post
 // Pareil pour la fonction sauvegarde dans SubLayoutContentPage. Il faudrait faire une factory autour pour qu'elle puisse tout sauvegarder, y compris un Post
 
-export async function getServerSideProps(context) {
-  // Auth check
-  // const session = await getSession({ req });
-  // if (session) {
-  //   // Signed in
-  //   console.log("Session", JSON.stringify(session, null, 2));
-  // } else {
-  //   // Not Signed in
-  //   return {
-  //     redirect: {
-  //       destination: "/login",
-  //       permanent: false,
-  //     },
-  //     props: {},
-  //   };
-  // }
-  const { params } = context;
+export default async function PostPage({ params }) {
+  // is creation ?
   const { pid } = params;
-  console.log("pid !== undefined", pid === undefined);
 
   let isCreationInit = pid === undefined;
 
@@ -52,31 +34,10 @@ export async function getServerSideProps(context) {
   // TODO avoir le vrai user ID quand on aura des users !
   page.UserId = 1;
 
-  return { props: { page, isCreationInit } };
-}
-
-export async function PostPage({ params }) {
-  // is creation ?
-  const { pid } = params;
-
   // checked
 
   // si pid est défini, il est une array
 
-  const [isCreation, setIsCreation] = useState(isCreationInit);
-
-  let postId;
-  if (!isCreation) {
-    // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
-    postId = pid?.[0];
-  }
-
-  const [pageState, setPageState] = useState({ ...page });
-  const [hasStateChanged, setHasStateChanged] = useState(false);
-  const [isConditionnalCompoDisplayed, setIsConditionnalCompoDisplayed] =
-    useState(false);
-
-  console.log("page state", pageState);
   // console.log("page sate stringifié", JSON.stringify(pageState.content));
   // console.log(
   //   "pageState.metaDescription stringifié",
@@ -88,12 +49,6 @@ export async function PostPage({ params }) {
   //   JSON.stringify(pageState.shortDescription)
   // );
   // console.log("is creation ?", isCreation);
-
-  const showError = calculateLengthOfSimpleField(pageState.title) === 0;
-
-  useEffect(() => {
-    setIsConditionnalCompoDisplayed(true);
-  }, []);
 
   return (
     <BackOfficeLayout>
@@ -107,7 +62,7 @@ export async function PostPage({ params }) {
         setIsCreation={setIsCreation}
       >
         <div className="contentPageContainer">
-          <PostWysiwyg page={page} />
+          <PostWysiwyg page={page} isCreationInit={isCreationInit} pid={pid} />
         </div>
       </SubLayoutRight>
     </BackOfficeLayout>

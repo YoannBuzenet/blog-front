@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import SwitchWithLabel from "../../../generic/Switch/index";
 import BasicButton from "../../../generic/Buttons/Button";
@@ -31,7 +33,6 @@ const SubLayoutContentPage = ({
 
   const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
-
 
     const objectToSend = JSONStringifyAllProps({
       ...pageState,
