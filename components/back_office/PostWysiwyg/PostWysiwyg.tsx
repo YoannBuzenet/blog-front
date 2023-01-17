@@ -14,19 +14,20 @@ import {
   formatSimple,
 } from "../../../services/react-slate";
 
-const PostWysiwyg = ({ page, isCreationInit, pid }) => {
-  const [isCreation, setIsCreation] = useState(isCreationInit);
-
+const PostWysiwyg = ({
+  page,
+  isCreation,
+  pid,
+  pageState,
+  setPageState,
+  hasStateChanged,
+  setHasStateChanged,
+}) => {
   let postId;
   if (!isCreation) {
     // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
     postId = pid?.[0];
   }
-
-  const [pageState, setPageState] = useState({ ...page });
-  const [hasStateChanged, setHasStateChanged] = useState(false);
-  const [isConditionnalCompoDisplayed, setIsConditionnalCompoDisplayed] =
-    useState(false);
 
   console.log("page state", pageState);
 

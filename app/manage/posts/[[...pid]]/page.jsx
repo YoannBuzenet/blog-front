@@ -5,6 +5,7 @@ import { getOnePost } from "../../../../services/api/post";
 import PostWysiwyg from "../../../../components/back_office/PostWysiwyg/PostWysiwyg";
 import BackOfficeLayout from "../../../../components/back_office/layouts/BackOfficeLayout";
 import SubLayoutContentPage from "../../../../components/back_office/pages/contentPage/SubLayoutContentPage";
+import ManageStateContainer from "../../../../components/back_office/ManageStateContainer/ManageStateContainer";
 
 //TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
 // Il gère un post en state mais ce n'est jamais défini nulle part. Il faudrait tout typer sur le post, instancier un post
@@ -34,37 +35,13 @@ export default async function PostPage({ params }) {
   // TODO avoir le vrai user ID quand on aura des users !
   page.UserId = 1;
 
-  // checked
-
-  // si pid est défini, il est une array
-
-  // console.log("page sate stringifié", JSON.stringify(pageState.content));
-  // console.log(
-  //   "pageState.metaDescription stringifié",
-  //   JSON.stringify(pageState.metaDescription)
-  // );
-  // console.log("pageState.title stringifié", JSON.stringify(pageState.title));
-  // console.log(
-  //   "shortDescription stringifié",
-  //   JSON.stringify(pageState.shortDescription)
-  // );
-  // console.log("is creation ?", isCreation);
-
   return (
     <BackOfficeLayout>
-      <SubLayoutRight
-        CompoToRender={SubLayoutContentPage}
-        pageState={pageState}
-        setPageState={setPageState}
-        hasStateChanged={hasStateChanged}
-        setHasStateChanged={setHasStateChanged}
-        isCreation={isCreation}
-        setIsCreation={setIsCreation}
-      >
-        <div className="contentPageContainer">
-          <PostWysiwyg page={page} isCreationInit={isCreationInit} pid={pid} />
-        </div>
-      </SubLayoutRight>
+      <ManageStateContainer
+        pid={pid}
+        isCreationInit={isCreationInit}
+        page={page}
+      />
     </BackOfficeLayout>
   );
 }
