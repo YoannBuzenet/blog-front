@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import PlainTextEditor from "../../../generic/wysiwyg/PlainText";
 import style from "../../../../styles/back_office/pages/contentPage/SimpleField.module.css";
 
+//TODO faire le fichier en ts et mettre l'aspect CTA en facultatif (labelCTA, handleClickCTA, svgCTA)
+
 const SimpleField = ({
   value,
   setValue,

@@ -9,6 +9,7 @@ import { capitalizeFirstLetter } from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
 import { getSession } from "next-auth/react";
 import { useState, useContext, useEffect } from "react";
+import { useImageManager } from "react-image-manager";
 import {
   calculateLengthOfSimpleField,
   formatSimple,
@@ -39,6 +40,16 @@ const PostWysiwyg = ({
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
+  const {
+    isDisplayedImageManager,
+    setIsDisplayedImageManager,
+    setOnValidationCallBack,
+    setMinWidthImageUpload,
+    setNewCropAspectRatio,
+  } = useImageManager();
+
+  console.log("OKAY isDisplayedImageManager", isDisplayedImageManager);
+
   return (
     <>
       {page && (
@@ -68,19 +79,7 @@ const PostWysiwyg = ({
               title="URL de l'image en tête d'article"
               field="mainImageUrl"
               handleClickCTA={async (e) => {
-                const getImageManager = async () => {
-                  import("react-image-manager").then((module) => {
-                    return module.useImageManager;
-                  });
-                };
-                const useImageManager = await getImageManager();
-                const {
-                  isDisplayedImageManager,
-                  setIsDisplayedImageManager,
-                  setOnValidationCallBack,
-                  setMinWidthImageUpload,
-                  setNewCropAspectRatio,
-                } = useImageManager();
+                console.log("clicked on RIM");
                 setOnValidationCallBack((arrayOfImages) => {
                   if (Array.isArray(arrayOfImages)) {
                     const image = arrayOfImages[0];
