@@ -25,9 +25,6 @@ import {
   localeToLangDictionnary,
 } from "../i18n/allLang";
 
-import "react-image-manager/dist/style.css";
-import "react-image-manager/dist/pagination.css";
-import "react-image-crop/dist/ReactCrop.css";
 import { useEffect, useState } from "react";
 import { fetchAllImagesWithPathUpdated } from "../services/api/image";
 

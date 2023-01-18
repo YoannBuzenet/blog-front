@@ -1,11 +1,10 @@
-'use client'
+"use client";
 
 import React from "react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { fetchAllImagesWithPathUpdated } from "../../services/api/image";
-import {ImageManagerContainer} from 'react-image-manager'
-
+import { ImageManagerContainer } from "react-image-manager";
 
 const AppWrapper = ({
   appCurrentLang,
@@ -14,7 +13,7 @@ const AppWrapper = ({
   tags,
   children,
 }) => {
-  const { data: session, status } =  useSession();
+  const { data: session, status } = useSession();
   //console.log("wrapper SESSION là: contenu session", session);
 
   return (
@@ -38,8 +37,8 @@ const AppWrapper = ({
             type: "dropdown",
             name: "language",
             keys: [
-              { name: "e", value: "1" },
-              { name: "a", value: "2" },
+              { label: "e", value: "1" },
+              { label: "a", value: "2" },
             ],
             defaultValue: "2",
             isRequired: true,

@@ -67,7 +67,18 @@ export function Providers({ lang, children }) {
 
     // fetch tags for gallery
     getAllTags(appCurrentLang.locale).then((resp) => {
-      setTags(resp);
+
+      // Setting right format to match react-select on react-image-manager
+      const tags = resp.map(tag => {return {
+        createdAt : tag.createdAt,
+        id : tag.id,
+        value : tag.id,
+        language : tag.language,
+        label : tag.name,
+        updatedAt : tag.updatedAt,
+      }})
+
+      setTags(tags);
     });
 
     // Loading saved settings by user
