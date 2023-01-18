@@ -5,10 +5,6 @@ import HomePostsDisplay from "../components/posts/HomePostsDisplay";
 import { getAllPosts } from "../services/api/post";
 import { headers } from "next/headers";
 
-import "react-image-manager/dist/style.css";
-import "react-image-manager/dist/pagination.css";
-import "react-image-crop/dist/ReactCrop.css";
-
 export default async function Page() {
   const headersList = headers();
   const acceptLanguageHeader = headersList.get("accept-language");
