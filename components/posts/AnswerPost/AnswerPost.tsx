@@ -5,7 +5,7 @@ import genericTextStyle from "../../../styles/generic/genericTextStyle.module.cs
 import AnswerWYSIWYG from "./AnswerWYSIWYG";
 
 type AnswerPostProps = {
-  rawAnswer: Record<string, unknown>;
+  rawAnswer: Record<string, any>; //TODO add real type, or see if we can use classes for the prop usage in this component and still pass the raw answer to the child (class not accepted)
   level: number;
   idPost: number;
 };
