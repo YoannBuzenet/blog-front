@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate, ReactEditor } from "slate-react";
@@ -36,14 +38,13 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const {
-    isDisplayedImageManager,
     setIsDisplayedImageManager,
     setOnValidationCallBack,
     setMinWidthImageUpload,
     setNewCropAspectRatio,
   } = useImageManager();
 
-  const handleClickImageModule = (setIsDisplayedImageManager, editor) => {
+  const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
       if (Array.isArray(arrayOfImages)) {
         const imageObject = arrayOfImages[0];
@@ -59,6 +60,7 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
         }
       }
     };
+
     setMinWidthImageUpload(700);
     setNewCropAspectRatio(undefined);
     setOnValidationCallBack(updateImageRichtext);
@@ -123,9 +125,7 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
           />
           {displayImagePicker && (
             <CustomButton
-              handleClick={() =>
-                handleClickImageModule(setIsDisplayedImageManager, editor)
-              }
+              handleClick={() => handleClickImageModule(editor)}
               format="image"
               SvgIcon={Image_SVG}
               title="Images"

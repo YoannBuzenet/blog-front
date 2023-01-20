@@ -1,6 +1,18 @@
 import React, { useContext } from "react";
-import PlainTextEditor from "../../../generic/wysiwyg/plainText";
+import PlainTextEditor from "../../../generic/wysiwyg/PlainText";
 import style from "../../../../styles/back_office/pages/contentPage/SimpleField.module.css";
+
+// TODO finish types
+export type SimpleFieldProps = {
+  value: string;
+  setValue: any;
+  title: any;
+  field: any;
+  showError?: boolean;
+  labelCTA?: any;
+  handleClickCTA?: any;
+  svgCTA?: any;
+};
 
 const SimpleField = ({
   value,
@@ -11,7 +23,7 @@ const SimpleField = ({
   labelCTA,
   handleClickCTA,
   svgCTA,
-}) => {
+}: SimpleFieldProps) => {
   const isThereCTA = Boolean(handleClickCTA) && Boolean(svgCTA);
   const SvgIcon = svgCTA;
 

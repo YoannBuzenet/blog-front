@@ -1,10 +1,10 @@
+"use client";
+
 import React from "react";
 import { useSession } from "next-auth/react";
-import { ImageManagerContainer } from "react-image-manager";
 import { toast } from "react-toastify";
 import { fetchAllImagesWithPathUpdated } from "../../services/api/image";
-
-//TODO passer le wrapper d'imageContainer avec ses dépendances pour avoir accès à useSession pour passer la data en payload
+import { ImageManagerContainer } from "react-image-manager";
 
 const AppWrapper = ({
   appCurrentLang,
@@ -13,8 +13,9 @@ const AppWrapper = ({
   tags,
   children,
 }) => {
-  const { data: session, status } =  useSession();
-  console.log("wrapper là: contenu session", session);
+  const { data: session, status } = useSession();
+  //console.log("wrapper SESSION là: contenu session", session);
+
   return (
     <>
       <ImageManagerContainer
@@ -36,8 +37,8 @@ const AppWrapper = ({
             type: "dropdown",
             name: "language",
             keys: [
-              { name: "e", value: "1" },
-              { name: "a", value: "2" },
+              { label: "e", value: "1" },
+              { label: "a", value: "2" },
             ],
             defaultValue: "2",
             isRequired: true,

@@ -1,6 +1,6 @@
-import axios from "axios";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { getFetchConfig } from "../../../services/http";
 
 const callbacks = {};
 
@@ -11,9 +11,9 @@ callbacks.signIn = async function signIn({
   email,
   credentials,
 }) {
-  console.log("user", user);
-  console.log("account", account);
-  console.log("profile", profile);
+  // console.log("user", user);
+  // console.log("account", account);
+  // console.log("profile", profile);
   if (account.provider === "google") {
     const googleUser = {
       email: user.email,
@@ -34,17 +34,18 @@ callbacks.signIn = async function signIn({
       provider: "google",
     };
 
-    const userDataFromAPI = await axios
-      .post(
+    const resp = await 
+      fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/login-and-register-if-needed`,
-        finalUserObject
+        getFetchConfig("POST", finalUserObject, 'application/json'),
+        
       )
       .catch((err) => console.log("error while pinging API : ", err));
 
-    // console.log("data from API", userData.data);
+    const userDataFromAPI = await resp.json();
 
     // fetch data from back end and add it here in user object
-    user = { user, ...userDataFromAPI.data };
+    user = { user, ...userDataFromAPI };
 
     return true;
   }
@@ -70,12 +71,12 @@ callbacks.jwt = async function jwt({
   profile,
   isNewUser,
 }) {
-  console.log("jwt did trigger");
-  console.log("jwt token", token);
-  console.log("jwt user", user);
-  console.log("jwt account", account);
-  console.log("jwt profile", profile);
-  console.log("jwt isNewUser", isNewUser);
+  // console.log("jwt did trigger");
+  // console.log("jwt token", token);
+  // console.log("jwt user", user);
+  // console.log("jwt account", account);
+  // console.log("jwt profile", profile);
+  // console.log("jwt isNewUser", isNewUser);
   if (user) {
     token = { idUser: user.id };
   }
@@ -85,17 +86,20 @@ callbacks.jwt = async function jwt({
 
 callbacks.session = async function session({ session, user, token }) {
   // we can fetch info from back end here to add it to the session
-  console.log("session in session callback", session);
-  console.log("token in session callback", token);
+  // console.log("session in session callback", session);
+  // console.log("token in session callback", token);
   // token in session callback { iat: 1620653204, exp: 1623245204, idUser }
 
   // refresh user Data
   if (token.hasOwnProperty("idUser")) {
-    let apiResp = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`
+    let resp = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/entities/users/googleId/${token.idUser}`,
+      getFetchConfig()
     );
 
-    session.user = apiResp.data;
+    const userData = await resp.json();
+
+    session.user = userData;
   }
 
   session.idUser = token.idUser;

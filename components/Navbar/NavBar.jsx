@@ -1,3 +1,4 @@
+"use client";
 import { useContext } from "react";
 import Link from "next/link";
 import style from "../../styles/components/NavBar/NavBar.module.css";
@@ -55,7 +56,7 @@ const NavBar = () => {
                 className={style.userMenuAccess}
                 onClick={handleDisplayUserMenu}
               >
-                <p>{data.user.firstName}</p>
+                <p>{data?.user?.firstName}</p>
               </div>
               {isUserMenuDisplayed && <UserMenu />}
             </div>

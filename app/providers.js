@@ -1,6 +1,7 @@
+"use client";
+
 import "../styles/globals.css";
 import "../styles/generic/globals.scss";
-import config from "../config/axios";
 import "../styles/generic/normalize.css";
 import "../styles/generic/wysiwyg.scss";
 import "../styles/generic/globals.scss";
@@ -22,8 +23,6 @@ import "../styles/generic/normalize.css";
 import { IntlProvider } from "react-intl";
 import {
   langInApp,
-  expandLocaleDictionnary,
-  localeToLangDictionnary,
 } from "../i18n/allLang";
 
 import "react-image-manager/dist/style.css";
@@ -39,18 +38,12 @@ import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import { initializeLang } from "../services/i18n";
 
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 
-
-
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  console.log(
-    `Booting app - Back-end API URL is ${process.env.NEXT_PUBLIC_API_URL}`
-  );
-  const router = useRouter();
+export function Providers({ lang, children }) {
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [tags, setTags] = useState([]);
@@ -59,17 +52,12 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
-
-
   // App Language initialization
-  let appInitialLang = initializeLang(langInApp);
-  const completeLocaleFromRouter = expandLocaleDictionnary[router.locale];
+  let appInitialLang = initializeLang(langInApp, lang);
 
   // Booting on next router language, server side
   // We will adjust client side by watching local storage
-  const [appCurrentLang, setAppCurrentLang] = useState(
-    langInApp[completeLocaleFromRouter]
-  );
+  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[lang]);
 
   useEffect(() => {
     // fetch images for gallery
@@ -79,7 +67,18 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
     // fetch tags for gallery
     getAllTags(appCurrentLang.locale).then((resp) => {
-      setTags(resp);
+
+      // Setting right format to match react-select on react-image-manager
+      const tags = resp.map(tag => {return {
+        createdAt : tag.createdAt,
+        id : tag.id,
+        value : tag.id,
+        language : tag.language,
+        label : tag.name,
+        updatedAt : tag.updatedAt,
+      }})
+
+      setTags(tags);
     });
 
     // Loading saved settings by user
@@ -120,12 +119,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     isUserMenuDisplayed,
     setIsUserMenuDisplayed,
   };
-  
-
 
   return (
     <ThemeProvider theme={customMUITheme}>
-      <SessionProvider session={session}>
+      <SessionProvider>
         <UserMenuContext.Provider value={contextUserMenuDisplayed}>
           <AppCurrentLangContext.Provider value={contextCurrentLang}>
             <AreLangFlagsDisplayedContext.Provider
@@ -143,7 +140,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
                     imagesGallerie={imagesGallerie}
                     tags={tags}
                   >
-                    <Component {...pageProps} />
+                    {children}
                   </AppWrapper>
                   <ToastContainer
                     position={toast.POSITION.TOP_CENTER}
@@ -158,5 +155,3 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     </ThemeProvider>
   );
 }
-
-export default MyApp;

@@ -1,5 +1,5 @@
 import React from "react";
-import layoutStyle from "../../../styles/back_office/Layouts/SubLayout.module.css";
+import layoutStyle from "../../../styles/back_office/layouts/SubLayout.module.css";
 
 const SubLayoutRight = ({ children, CompoToRender, ...props }) => {
   return (

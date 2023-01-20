@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import layoutStyle from "../../../styles/back_office/Layouts/BackOfficeLayout.module.css";
+"use client";
+
+import React from "react";
+import layoutStyle from "../../../styles/back_office/layouts/BackOfficeLayout.module.css";
 import LeftMenu from "../mainMenu/leftMenu/LeftMenu";
 import BackOfficeNavBar from "../mainMenu/NavBar";
 
