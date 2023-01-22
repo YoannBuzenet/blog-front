@@ -1,0 +1,21 @@
+@value borderGlobal from "../../styles/generic/genericStyle.module.css";
+
+.footer {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  min-height: 200px;
+  border-top: borderGlobal;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: center;
+  &__section {
+    width : 25%;
+  }
+  // &__firstColumn{
+  //   text-align: left;
+  // }
+
+
+}
