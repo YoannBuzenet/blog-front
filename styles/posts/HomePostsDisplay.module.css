@@ -1,6 +1,6 @@
 .firstLine {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 2rem 0;
 }
 
@@ -14,11 +14,11 @@
   justify-content: center;
 }
 
-.secondLine {
+.secondPart {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 /* On screens that are 768px or less*/

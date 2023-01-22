@@ -9,13 +9,6 @@
 
 .footerContent {
   display: flex;
-  justify-content: center;
-  &__section {
-    width : 25%;
-  }
-  // &__firstColumn{
-  //   text-align: left;
-  // }
-
-
+  justify-content: space-between;
+  text-align: left;
 }

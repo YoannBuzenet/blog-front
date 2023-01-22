@@ -28,13 +28,15 @@ export default function PostLangRefresh({ postParsed }) {
           const titleExtracted = parseSlateFormatSimple(postToDisplay.title);
           router.push(titleExtracted);
           //TODO translate
-          toast.info("Redirection vers le post traduit.");
+          toast.info(<p>Redirection vers le post traduit.</p>);
         } else {
           // Post has sibling but no one in the relevant language
           router.push("/");
           //TODO translate
           toast.info(
-            "Le post n'existe pas dans cette langue, redirection vers la home.",
+            <p>
+              Le post n'existe pas dans cette langue, redirection vers la home
+            </p>,
             {
               toastId: "change",
             }
@@ -47,7 +49,7 @@ export default function PostLangRefresh({ postParsed }) {
         // router.push("/");
 
         //TODO translate
-        toast.info("Le post n'existe pas, redirection vers la home.", {
+        toast.info(<p>Le post n'existe pas, redirection vers la home</p>, {
           toastId: "change",
         });
       }

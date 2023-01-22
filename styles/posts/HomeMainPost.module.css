@@ -14,6 +14,7 @@
 .articleTitle {
   margin-top: 2rem;
 }
+
 .articleTitle p {
   margin-top: 1rem;
   font-size: 3rem;
@@ -25,11 +26,10 @@ p.articleDate {
 }
 
 .imageContainer {
-  width: 600px;
-  overflow: hidden;
+  width: 800px;
 }
 
 .imageContainer img {
-  height: 300px;
+  width: 800px;
   transition: all 0.5s;
 }

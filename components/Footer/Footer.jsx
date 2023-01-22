@@ -21,7 +21,9 @@ const Footer = () => {
           <p>General</p>
           <p>Rights</p>
         </div>
-        <div className={`h3 ${style.footerContent__section}`}>
+        <div
+          className={`h3 ${style.footerContent__section} ${style.footerContent__lastColumn}`}
+        >
           <h3>Social</h3>
           <p>General</p>
           <p>Rights</p>

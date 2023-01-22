@@ -1,7 +1,6 @@
 .container {
   min-width: 250px;
   cursor: pointer;
-  padding: 1rem;
 }
 
 .imageContainer {
@@ -23,6 +22,5 @@ p.articleDate {
 }
 
 .imageContainer img {
-  width: 200px;
-  height: 100px;
+  width: 300px;
 }

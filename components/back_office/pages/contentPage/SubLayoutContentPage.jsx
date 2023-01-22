@@ -54,14 +54,18 @@ const SubLayoutContentPage = ({
       // Removing the alert window function
       window.onbeforeunload = () => {};
 
-      toast.success("La page a bien été sauvegardée.");
+      toast.success(<p>La page a bien été sauvegardée.</p>);
 
       // Passing in edit mode
       setIsCreation(false);
     } catch (error) {
       //TODO translate
       toast.error(
-        "ERREUR - La page n'a pu être sauvegardée. Merci de réessayer ultérieurement. Pensez à copier-coller vos modifications dans un fichier en attendant, pour ne pas les perdre !"
+        <p>
+          ERREUR - La page n'a pu être sauvegardée. Merci de réessayer
+          ultérieurement. Pensez à copier-coller vos modifications dans un
+          fichier en attendant, pour ne pas les perdre !
+        </p>
       );
     } finally {
       setIsLoading(false);
