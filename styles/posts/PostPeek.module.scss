@@ -1,0 +1,21 @@
+.postContainer {
+  display: block;
+  width: 50%;
+}
+
+.post {
+  margin: 1rem;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+p.articleDate {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.imageContainer {
+  & img {
+    width: 100%;
+}
+}

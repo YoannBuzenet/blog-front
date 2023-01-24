@@ -1,3 +1,4 @@
+/* First line is the slider part with the emphasized posts */
 .firstLine {
   display: flex;
   justify-content: space-around;
@@ -19,6 +20,12 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+}
+
+/* secondline is the posts displayed as a list */
+.secondLine {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* On screens that are 768px or less*/

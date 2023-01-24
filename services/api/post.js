@@ -2,7 +2,7 @@ import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
 export const getAllPosts = async (
-  language = "EN",
+  language = "en-us",
   limit = 10,
   sortBy = "createdAt"
 ) => {
