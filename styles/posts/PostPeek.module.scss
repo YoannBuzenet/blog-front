@@ -1,17 +1,21 @@
+.postContainer {
+
+}
+
 .postContainer:nth-child(even) {
   display: block;
   padding : 3rem 0rem 3rem 3rem;
   width: 50%;
-
   @media screen and (max-width: 768px) {
     width: 100%;
     padding : 3rem 0;
   }
+
 }
 
 .postContainer:nth-child(odd) {
   display: block;
-  padding : 3rem 3rem 0rem 3rem;
+  padding : 3rem 3rem 3rem 0rem;
   width: 50%;
 
   @media screen and (max-width: 768px) {
@@ -19,9 +23,6 @@
     padding : 3rem 0;
   }
 }
-
-
-
 
 .post {
   cursor: pointer;

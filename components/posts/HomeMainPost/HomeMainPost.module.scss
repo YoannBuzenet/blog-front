@@ -3,6 +3,7 @@
   justify-content: space-evenly;
   cursor: pointer;
   padding: 1rem;
+  
 }
 
 /* Uncomment pour récupérer l'effet de zoom au hover (peut etre overkill) */
@@ -15,9 +16,12 @@
   margin-top: 2rem;
 }
 
-.articleTitle p {
+.container .articleTitle p {
   margin-top: 1rem;
   font-size: 3rem;
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+   }
 }
 
 p.articleDate {
@@ -27,9 +31,15 @@ p.articleDate {
 
 .imageContainer {
   width: 800px;
+  @media screen and (max-width: 768px) {
+    width : 300px;
+   }
 }
 
 .imageContainer img {
   width: 800px;
   transition: all 0.5s;
+  @media screen and (max-width: 768px) {
+    width : 100%;
+   }
 }

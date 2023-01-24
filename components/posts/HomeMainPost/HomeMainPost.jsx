@@ -2,9 +2,9 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { previewImageUrl } from "../../services/imageUtils";
-import style from "../../styles/posts/HomeMainPost.module.css";
-import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
+import { previewImageUrl } from "../../../services/imageUtils";
+import style from "./HomeMainPost.module.scss";
+import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
 
 const HomeMainPost = ({ post }) => {
   return (

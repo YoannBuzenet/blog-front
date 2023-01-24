@@ -1,8 +1,8 @@
 "use client";
 import PostPeek from "./PostPeek";
 import style from "../../styles/posts/HomePostsDisplay.module.css";
-import HomeMainPost from "./HomeMainPost";
-import HomeSecondPost from "./HomeSecondPost";
+import HomeMainPost from "./HomeMainPost/HomeMainPost";
+import HomeSecondPost from "./HomeSecondPost/HomeSecondPost";
 import { useContext, useEffect, useState } from "react";
 import appCurrentLangContext from "../../contexts/appCurrentLang";
 import { getAllPosts } from "../../services/api/post";
