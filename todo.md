@@ -1,11 +1,17 @@
+### next steps short term
+
+- responsive navbar
+
 ### features manquantes
 
-- Gestionnaire de sibling dans le back office
+- sibling management for articles in the back office (use react select + get post by title after X characters)
 
 #### bugs
 
 - MyAccount doit filtrer si on n'est pas connecté
-- La redirection ne marche pas si on change de langue depuis la navbar, ça ne charge rien
+- Dans un article, la redirection ne marche pas si on change de langue depuis la navbar, ça ne charge rien
+- Dans un article, le toast dure bien trop longtemps
+- Dans un article, le toast n'est pas traduit
 - s'inscrire avec mon mail crée un nouvel user et modifie les 2 au lieu d'en avoir un nickel
 
 ### backlog

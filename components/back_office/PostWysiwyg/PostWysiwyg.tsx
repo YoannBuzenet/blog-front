@@ -7,8 +7,6 @@ import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { previewImageUrl } from "../../../services/imageUtils";
 import { capitalizeFirstLetter } from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
-import { getSession } from "next-auth/react";
-import { useState, useContext, useEffect } from "react";
 import { useImageManager } from "react-image-manager";
 import {
   calculateLengthOfSimpleField,
@@ -53,10 +51,12 @@ const PostWysiwyg = ({
   return (
     <>
       {page && (
-        <div>
-          <h1>Article n°{capitalizeFirstLetter(pageState?.id)}</h1>
+        <div className={`h1 ${style.articleContainer}`}>
+          <h1 className={`h1 ${style.articleContainer__title}`}>
+            Article n°{capitalizeFirstLetter(pageState?.id)}
+          </h1>
           <div className={style.editableElement}>
-            <h2>Titre</h2>
+            <h2 className="h2">Titre</h2>
             <SimpleField
               value={pageState.title}
               setValue={handleChangePage}
@@ -66,7 +66,7 @@ const PostWysiwyg = ({
             />
           </div>
           <div className={style.editableElement}>
-            <h2>Image Principale</h2>
+            <h2 className="h2">Image Principale</h2>
             {/* eslint-disable */}
             {/* le linter veut qu'on utilise le compo Image next - no way ici ! */}
             <div className={style.mainPicture}>
@@ -97,7 +97,7 @@ const PostWysiwyg = ({
             />
           </div>
           <div className={style.editableElement}>
-            <h2>Contenu</h2>
+            <h2 className="h2">Contenu</h2>
             <RichTextExample
               value={pageState.content}
               setValue={handleChangePage}

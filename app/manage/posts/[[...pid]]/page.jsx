@@ -29,6 +29,8 @@ export default async function PostPage({ params }) {
     }
   }
 
+  // Choper les langues ici
+
   // TODO avoir le vrai user ID quand on aura des users !
   page.UserId = 1;
 

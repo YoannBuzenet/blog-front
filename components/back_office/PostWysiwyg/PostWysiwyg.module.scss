@@ -2,8 +2,19 @@
     margin-bottom: 2rem;
   }
   
-  .mainPicture img {
-    max-width: 500px;
-    max-height: 500px;
+  .mainPicture {
+    display: flex;
+    justify-content: center;
+
+    & img {
+      max-width: 500px;
+      max-height: 500px;
+    }
   }
-  
+
+  .articleContainer {
+    &__title {
+      text-align: center;
+      font-size: 3rem;
+    }
+  }
