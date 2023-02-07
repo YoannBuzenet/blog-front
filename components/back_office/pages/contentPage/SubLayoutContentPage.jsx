@@ -78,7 +78,7 @@ const SubLayoutContentPage = ({
 
   return (
     <>
-      <h2>Sub Layout</h2>
+      <h2 className="h2">Sub Layout</h2>
       <p>Pour vos clients, cette page est actuellement :</p>
       <SwitchWithLabel
         label={switchLabel}

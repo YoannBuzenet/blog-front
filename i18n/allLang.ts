@@ -1,7 +1,7 @@
 import English from "./translations/en-US.json";
 import French from "./translations/fr-FR.json";
 
-const langInApp = {
+export const langInApp = {
   "en-US": {
     translatedText: English,
     picture: "en-US",
@@ -16,7 +16,7 @@ const langInApp = {
   },
 };
 
-const arrayLangsInApp = [
+export const arrayLangsInApp = [
   {
     translatedText: English,
     picture: "en-US",
@@ -31,18 +31,12 @@ const arrayLangsInApp = [
   },
 ];
 
-const expandLocaleDictionnary = {
+export const expandLocaleDictionnary = {
   fr: "fr-FR",
   en: "en-US",
 };
-const localeToLangDictionnary = {
+export const localeToLangDictionnary = {
   "fr-FR": "fr",
   "en-US": "en",
 };
 
-module.exports = {
-  langInApp,
-  arrayLangsInApp,
-  expandLocaleDictionnary,
-  localeToLangDictionnary,
-};

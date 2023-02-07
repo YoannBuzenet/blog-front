@@ -5,13 +5,20 @@ import SimpleField from "../pages/contentPage/SimpleField";
 import RichTextExample from "../../generic/wysiwyg/RichText";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { previewImageUrl } from "../../../services/imageUtils";
-import { capitalizeFirstLetter } from "../../../services/utils";
+import {
+  capitalizeFirstLetter,
+  transformValueToReactSelectValue,
+} from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
 import { useImageManager } from "react-image-manager";
 import {
   calculateLengthOfSimpleField,
   formatSimple,
 } from "../../../services/react-slate";
+import Select from "react-select";
+import { arrayLangsInApp } from "../../../i18n/allLang";
+import { log } from "console";
+import { useState } from "react";
 
 const PostWysiwyg = ({
   page,
@@ -36,6 +43,11 @@ const PostWysiwyg = ({
     setPageState({ ...pageState, [field]: value });
   };
 
+  const handleChangeLanguage = (value) => {
+    setHasStateChanged(true);
+    setPageState({ ...pageState, language: value.value });
+  };
+
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
 
   const {
@@ -46,7 +58,10 @@ const PostWysiwyg = ({
     setNewCropAspectRatio,
   } = useImageManager();
 
-  console.log("OKAY isDisplayedImageManager", isDisplayedImageManager);
+  const languageoptions = arrayLangsInApp.map((lang) => ({
+    value: lang.locale,
+    label: lang.locale,
+  }));
 
   return (
     <>
@@ -63,6 +78,20 @@ const PostWysiwyg = ({
               title="Le titre de l'article"
               field="title"
               showError={showError}
+            />
+          </div>
+          <div>
+            <p>Language</p>
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              onChange={handleChangeLanguage}
+              name="language"
+              options={languageoptions}
+              value={transformValueToReactSelectValue(
+                pageState.language,
+                pageState.language
+              )}
             />
           </div>
           <div className={style.editableElement}>

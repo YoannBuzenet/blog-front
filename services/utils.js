@@ -77,9 +77,16 @@ function isObjectEmpty(object = {}) {
   return Object.keys(object).length === 0;
 }
 
+function transformValueToReactSelectValue(value, label){
+  return {
+    value, label
+  }
+}
+
 module.exports = {
   JSONParseAllProps,
   JSONStringifyAllProps,
   capitalizeFirstLetter,
   isObjectEmpty,
+  transformValueToReactSelectValue
 };
