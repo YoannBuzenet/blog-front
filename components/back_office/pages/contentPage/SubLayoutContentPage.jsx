@@ -31,6 +31,7 @@ const SubLayoutContentPage = ({
   console.log("http verb", httpVerb);
   const isErrorName = calculateLengthOfSimpleField(pageState.title) === 0;
 
+  // TODO -> Vérifier la cohérence des informations, notamment : les langues des siblings VS la langue du post, aucune ne doit être similaire
   const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
 

@@ -63,6 +63,12 @@ const PostWysiwyg = ({
     label: lang.locale,
   }));
 
+  const languageNotUsed = languageoptions.filter(
+    (language) => language.value !== pageState.language
+  );
+
+  console.log(languageNotUsed, "languageNotUsed");
+
   return (
     <>
       {page && (
@@ -152,6 +158,30 @@ const PostWysiwyg = ({
               title="Ceci est la description qui s'affiche sur Google lorsque votre site apparait dans les résultats."
               field="metaDescription"
             />
+          </div>
+          {/* TODO : vérifier la cohérence des langues des siblings à la sauvegarde */}
+          <div>
+            <h3>Siblings</h3>
+            <ul>
+              <li> Load les Siblings</li>
+              <li> Ajouter un sibling </li>
+              <li> Choisir la langue (filtrer les langues dispo)</li>
+              <p>Select Language</p>
+              <Select options={languageNotUsed} />
+              <li>
+                Taper et XHR après X character avec debounce avec la langue en
+                param
+              </li>
+              <p>Select Article</p>
+              {/* Mettre un debounce
+              Mettre un call XHR */}
+              <Select
+                options={[]}
+                isSearchable
+                onInputChange={(e) => console.log("on tappe bro")}
+              />
+              <li> Retirer un sibling</li>
+            </ul>
           </div>
         </div>
       )}
