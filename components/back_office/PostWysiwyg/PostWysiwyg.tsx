@@ -7,6 +7,7 @@ import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { previewImageUrl } from "../../../services/imageUtils";
 import {
   capitalizeFirstLetter,
+  debounce,
   transformValueToReactSelectValue,
 } from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
@@ -68,6 +69,8 @@ const PostWysiwyg = ({
   );
 
   console.log(languageNotUsed, "languageNotUsed");
+
+  const k = () => console.log("on tappe bro");
 
   return (
     <>
@@ -173,12 +176,11 @@ const PostWysiwyg = ({
                 param
               </li>
               <p>Select Article</p>
-              {/* Mettre un debounce
-              Mettre un call XHR */}
+              {/* Mettre un call XHR à la place de la function k */}
               <Select
                 options={[]}
                 isSearchable
-                onInputChange={(e) => console.log("on tappe bro")}
+                onInputChange={(e) => debounce(k, 1000)}
               />
               <li> Retirer un sibling</li>
             </ul>

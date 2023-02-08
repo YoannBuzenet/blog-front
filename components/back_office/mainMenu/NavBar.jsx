@@ -9,8 +9,13 @@ const BackOfficeNavBar = () => {
   return (
     <div>
       <nav className={navBarStyle.navbarBack}>
-        <div>menu haut navbar</div>
-        <div> Bonjour, {session?.user?.firstName}</div>
+        <div>
+          <p>menu haut navbar</p>
+        </div>
+        <div>
+          {" "}
+          <p>Bonjour, {session?.user?.firstName}</p>
+        </div>
         <div className={navBarStyle.navbarLogOut}>
           <BasicButton
             handleClick={() => signOut()}
