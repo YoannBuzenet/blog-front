@@ -34,6 +34,16 @@ const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
     []
   );
 
+  // TODO !
+  const addSibling = (siblingId) => {
+    setPageState({
+      ...pageState,
+      Sibling: [
+        // Ajouter uniquement si pas déjà là
+      ],
+    });
+  };
+
   return (
     <div className={style.container}>
       <div className={style.container__leftDiv}>
@@ -57,6 +67,7 @@ const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
             }
           }}
           inputValue={inputSearch}
+          onChange={addSibling}
         />
       </div>
     </div>
