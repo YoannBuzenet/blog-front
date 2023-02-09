@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios"; // TODO use fetch
 import SimpleField from "../pages/contentPage/SimpleField";
 import RichTextExample from "../../generic/wysiwyg/RichText";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
@@ -169,6 +168,7 @@ const PostWysiwyg = ({
               <SiblingSelector
                 languageAvailables={languageoptions}
                 pageState={pageState}
+                setPageState={setPageState}
               />
               <li> Retirer un sibling</li>
             </ul>

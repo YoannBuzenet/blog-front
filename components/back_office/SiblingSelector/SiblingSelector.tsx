@@ -4,10 +4,12 @@ import style from "./SiblingSelector.module.scss";
 import Select from "react-select";
 import { useCallback, useState } from "react";
 import { debounce } from "../../../services/utils";
+import axios from "axios";
+import { getOnePostbyTitle } from "../../../services/api/post";
 
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
-const SiblingSelector = ({ languageAvailables, pageState }) => {
+const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
   const [langSibblingSelected, setLangSibblingSelected] = useState(null);
   const [articleAvailables, setArticleAvailables] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
@@ -16,11 +18,22 @@ const SiblingSelector = ({ languageAvailables, pageState }) => {
     (language) => language.value !== pageState.language
   );
   console.log(languageNotUsed, "languageNotUsed");
+  console.log(langSibblingSelected, "langSibblingSelected");
 
-  const debounceK = useCallback(
-    debounce((e) => console.log("on log bordel", e), 1000),
+  // TODO parser la réponse, la mettre au format option React Select
+  // le JSON du wysiwyg doit être parsé pour les labels ahah
+
+  const debounceGetPostsByTitle = useCallback(
+    debounce((inputValue, currentLang) => {
+      const currentLangValue = currentLang.value;
+      return getOnePostbyTitle(inputValue, true, currentLangValue).then(
+        (resp) => setArticleAvailables(resp)
+      );
+    }, 1000),
     []
   );
+
+  console.log(":O", articleAvailables);
 
   return (
     <div className={style.container}>
@@ -38,9 +51,11 @@ const SiblingSelector = ({ languageAvailables, pageState }) => {
         <Select
           options={[]}
           isSearchable
-          onInputChange={(e) => {
-            setInputSearch(e);
-            debounceK(e);
+          onInputChange={(value) => {
+            setInputSearch(value);
+            if (value && value.length > 0) {
+              debounceGetPostsByTitle(value, langSibblingSelected);
+            }
           }}
           inputValue={inputSearch}
         />
