@@ -83,7 +83,6 @@ function transformValueToReactSelectValue(value, label){
   }
 }
 
-// https://stackoverflow.com/questions/24004791/what-is-the-debounce-function-in-javascript
 function debounce(func, wait, immediate) {
   // 'private' variable for instance
   // The returned function will be able to reference this due to closure.
@@ -126,6 +125,8 @@ function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   }
 }
+
+
 
 module.exports = {
   JSONParseAllProps,

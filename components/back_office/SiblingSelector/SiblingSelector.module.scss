@@ -1,0 +1,18 @@
+.container {
+
+    display: flex;
+    justify-content: center;
+
+    &__leftDiv {
+    width : 30%;
+    }
+
+    &__rightDiv {
+        width : 70%;
+    
+    }
+
+}
+
+
+

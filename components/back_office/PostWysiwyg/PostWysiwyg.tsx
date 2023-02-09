@@ -7,7 +7,6 @@ import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
 import { previewImageUrl } from "../../../services/imageUtils";
 import {
   capitalizeFirstLetter,
-  debounce,
   transformValueToReactSelectValue,
 } from "../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
@@ -16,10 +15,9 @@ import {
   calculateLengthOfSimpleField,
   formatSimple,
 } from "../../../services/react-slate";
-import Select from "react-select";
 import { arrayLangsInApp } from "../../../i18n/allLang";
-import { log } from "console";
-import { useState } from "react";
+import SiblingSelector from "../SiblingSelector/SiblingSelector";
+import Select from "react-select";
 
 const PostWysiwyg = ({
   page,
@@ -63,14 +61,6 @@ const PostWysiwyg = ({
     value: lang.locale,
     label: lang.locale,
   }));
-
-  const languageNotUsed = languageoptions.filter(
-    (language) => language.value !== pageState.language
-  );
-
-  console.log(languageNotUsed, "languageNotUsed");
-
-  const k = () => console.log("on tappe bro");
 
   return (
     <>
@@ -169,18 +159,16 @@ const PostWysiwyg = ({
               <li> Load les Siblings</li>
               <li> Ajouter un sibling </li>
               <li> Choisir la langue (filtrer les langues dispo)</li>
-              <p>Select Language</p>
-              <Select options={languageNotUsed} />
               <li>
                 Taper et XHR après X character avec debounce avec la langue en
                 param
               </li>
-              <p>Select Article</p>
-              {/* Mettre un call XHR à la place de la function k */}
-              <Select
-                options={[]}
-                isSearchable
-                onInputChange={(e) => debounce(k, 1000)}
+              {/* Now : Mettre un call XHR à la place de la function k */}
+              {/* Now : Puis mettre le resultat en option du select
+              Now : Puis handleChange le select pour avoir id et nom de l'article en state + id de l'article en sibling */}
+              <SiblingSelector
+                languageAvailables={languageoptions}
+                pageState={pageState}
               />
               <li> Retirer un sibling</li>
             </ul>
