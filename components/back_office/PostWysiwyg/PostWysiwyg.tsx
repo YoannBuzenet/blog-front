@@ -62,9 +62,9 @@ const PostWysiwyg = ({
   }));
 
   return (
-    <>
+    <div className={`${style.articleContainer}`}>
       {page && (
-        <div className={`h1 ${style.articleContainer}`}>
+        <div className={`h1`}>
           <h1 className={`h1 ${style.articleContainer__title}`}>
             Article n°{capitalizeFirstLetter(pageState?.id)}
           </h1>
@@ -155,21 +155,23 @@ const PostWysiwyg = ({
           <div>
             <h3>Siblings</h3>
             <ul>
-              <li> Load les Siblings</li>
               <li> Ajouter un sibling </li>
-              <li> Choisir la langue (filtrer les langues dispo)</li>
-              <li>
-                Taper et XHR après X character avec debounce avec la langue en
-                param
-              </li>
-              {/* Now : Mettre un call XHR à la place de la function k */}
+
               {/* Now : Puis mettre le resultat en option du select
               Now : Puis handleChange le select pour avoir id et nom de l'article en state + id de l'article en sibling */}
-              <SiblingSelector
-                languageAvailables={languageoptions}
-                pageState={pageState}
-                setPageState={setPageState}
-              />
+              {Array.isArray(pageState.Sibling) &&
+                pageState.Sibling.map((sibling, index) => {
+                  return (
+                    <SiblingSelector
+                      isPreloaded
+                      sibling={sibling}
+                      languageAvailables={languageoptions}
+                      pageState={pageState}
+                      setPageState={setPageState}
+                      setHasStateChanged={setHasStateChanged}
+                    />
+                  );
+                })}
               <li> Retirer un sibling</li>
             </ul>
           </div>
@@ -181,7 +183,7 @@ const PostWysiwyg = ({
           <p>Avez-vous cliqué sur le bon lien ?</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

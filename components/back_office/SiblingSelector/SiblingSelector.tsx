@@ -7,14 +7,37 @@ import { debounce } from "../../../services/utils";
 import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { ReactSelectObject } from "../../../types/types";
+import { transformValueToReactSelectValue } from "../../../services/utils";
 
-// Ne pas pouvoir entrer un nom si pas de langue selectionnée
-// Load les sibiling existants
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
-const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
-  const [langSibblingSelected, setLangSibblingSelected] = useState(null);
+// Load les sibiling existants
+// Garder le nom du selectionné en state ?
+
+const SiblingSelector = ({
+  languageAvailables,
+  pageState,
+  setPageState,
+  setHasStateChanged,
+  isPreloaded = false,
+  sibling,
+}) => {
+  const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
+    return isPreloaded
+      ? transformValueToReactSelectValue(sibling.language, sibling.language)
+      : null;
+  });
+  const [selectedArticle, setSelectedArticle] = useState(() => {
+    return isPreloaded
+      ? transformValueToReactSelectValue(
+          sibling.id,
+          parseSlateFormatSimple(sibling.title)
+        )
+      : null;
+  });
+
   const [articleAvailables, setArticleAvailables] = useState([]);
+
   const [inputSearch, setInputSearch] = useState("");
 
   const languageNotUsed = languageAvailables.filter(
@@ -48,8 +71,10 @@ const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
     if (!isSibilingAlreadySet) {
       setPageState({
         ...pageState,
-        Sibling: [siblingObject.value],
+        Sibling: [...pageState.Sibling, siblingObject.value],
       });
+      setSelectedArticle(siblingObject);
+      setHasStateChanged(true);
     } else {
       console.error("Sibling already set.");
     }
@@ -78,6 +103,8 @@ const SiblingSelector = ({ languageAvailables, pageState, setPageState }) => {
           }}
           inputValue={inputSearch}
           onChange={addSibling}
+          isDisabled={!langSibblingSelected}
+          value={selectedArticle}
         />
       </div>
     </div>
