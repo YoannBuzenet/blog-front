@@ -1,14 +1,18 @@
 .container {
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 
     &__leftDiv {
-    width : 30%;
+        width : 30%;
     }
 
+    &__centralDiv {
+        width : 55%;
+        }
+
     &__rightDiv {
-        width : 70%;
+        width : 10%;
     
     }
 

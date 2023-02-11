@@ -169,6 +169,7 @@ const PostWysiwyg = ({
                       pageState={pageState}
                       setPageState={setPageState}
                       setHasStateChanged={setHasStateChanged}
+                      index={index}
                     />
                   );
                 })}

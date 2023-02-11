@@ -8,11 +8,12 @@ import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { ReactSelectObject } from "../../../types/types";
 import { transformValueToReactSelectValue } from "../../../services/utils";
+import SVGButton from "../../generic/Buttons/SVGButton/SVGButtonButton";
+import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
 
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
-// Load les sibiling existants
-// Garder le nom du selectionné en state ?
+// Quid du bouton Delete ? On fait un bouton spécifique ?
 
 const SiblingSelector = ({
   languageAvailables,
@@ -21,6 +22,7 @@ const SiblingSelector = ({
   setHasStateChanged,
   isPreloaded = false,
   sibling,
+  index,
 }) => {
   const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
     return isPreloaded
@@ -91,7 +93,7 @@ const SiblingSelector = ({
           value={langSibblingSelected}
         />
       </div>
-      <div className={style.container__rightDiv}>
+      <div className={style.container__centralDiv}>
         <Select
           options={articleAvailables}
           isSearchable
@@ -105,6 +107,13 @@ const SiblingSelector = ({
           onChange={addSibling}
           isDisabled={!langSibblingSelected}
           value={selectedArticle}
+        />
+      </div>
+      <div className={style.container__rightDiv}>
+        <SVGButton
+          Svg={DeleteIcon}
+          svgTitle="Delete Sibling"
+          handleClick={() => console.log("deleting sibling !")}
         />
       </div>
     </div>
