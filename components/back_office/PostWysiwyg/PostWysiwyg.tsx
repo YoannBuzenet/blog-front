@@ -17,6 +17,7 @@ import {
 import { arrayLangsInApp } from "../../../i18n/allLang";
 import SiblingSelector from "../SiblingSelector/SiblingSelector";
 import Select from "react-select";
+import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
 
 const PostWysiwyg = ({
   page,
@@ -154,26 +155,32 @@ const PostWysiwyg = ({
           {/* TODO : vérifier la cohérence des langues des siblings à la sauvegarde */}
           <div>
             <h3>Siblings</h3>
-            <ul>
-              <li> Ajouter un sibling </li>
-
-              {/* Now : Puis mettre le resultat en option du select
+            {/* Now : Puis mettre le resultat en option du select
               Now : Puis handleChange le select pour avoir id et nom de l'article en state + id de l'article en sibling */}
-              {Array.isArray(pageState.Sibling) &&
-                pageState.Sibling.map((sibling, index) => {
-                  return (
-                    <SiblingSelector
-                      isPreloaded
-                      sibling={sibling}
-                      languageAvailables={languageoptions}
-                      pageState={pageState}
-                      setPageState={setPageState}
-                      setHasStateChanged={setHasStateChanged}
-                    />
-                  );
-                })}
-              <li> Retirer un sibling</li>
-            </ul>
+            {Array.isArray(pageState.Sibling) &&
+              pageState.Sibling.map((sibling, index) => {
+                return (
+                  <SiblingSelector
+                    isPreloaded
+                    sibling={sibling}
+                    languageAvailables={languageoptions}
+                    pageState={pageState}
+                    setPageState={setPageState}
+                    setHasStateChanged={setHasStateChanged}
+                  />
+                );
+              })}
+            <div className={style.addSibilingButtonContainer}>
+              <GenericButton
+                text="Créer un sibling"
+                handleClick={() => {
+                  setPageState({
+                    ...pageState,
+                    Sibling: [...pageState.Sibling, {}],
+                  });
+                }}
+              />
+            </div>
           </div>
         </div>
       )}

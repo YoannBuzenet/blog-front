@@ -13,7 +13,6 @@ import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
 
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
-// TODO : methode delete Sibling
 // TODO : update un sibling deja saisi
 
 const SiblingSelector = ({
@@ -43,6 +42,7 @@ const SiblingSelector = ({
   );
 
   // Updating local state after pagestate change
+  // Else, if you delete the first one, it is still displayed in componenet (even if it's the right one in pageState)
   useEffect(() => {
     if (selectedArticle.id !== sibling.id) {
       setSelectedArticle(computeSelectedArticle(sibling));

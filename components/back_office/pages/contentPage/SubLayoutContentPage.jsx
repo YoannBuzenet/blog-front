@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import SwitchWithLabel from "../../../generic/Switch/index";
-import BasicButton from "../../../generic/Buttons/Button";
+import BasicButton from "../../../generic/Buttons/GenericButton/GenericButton";
 import React, { useState } from "react";
 import { routes } from "../../../../routing/routes";
 import {

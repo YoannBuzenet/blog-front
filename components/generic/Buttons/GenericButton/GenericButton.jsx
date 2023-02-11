@@ -3,9 +3,9 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Save from "@mui/icons-material/Save";
 import LogoutIcon from "@mui/icons-material/Logout";
-import SpinningLoaderButton from "../Loaders/CSSLoader/SpinningLoaderButton";
+import SpinningLoaderButton from "../../Loaders/CSSLoader/SpinningLoaderButton";
 
-export default function BasicButton({
+export default function GenericButton({
   variant = "contained",
   handleClick,
   text,

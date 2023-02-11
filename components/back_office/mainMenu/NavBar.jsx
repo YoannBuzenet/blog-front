@@ -1,7 +1,7 @@
 import navBarStyle from "../../../styles/back_office/menu/Navbar.module.css";
 import { signOut, useSession } from "next-auth/react";
 
-import BasicButton from "../../generic/Buttons/Button";
+import BasicButton from "../../generic/Buttons/GenericButton/GenericButton";
 
 const BackOfficeNavBar = () => {
   const { data: session, status } = useSession();
