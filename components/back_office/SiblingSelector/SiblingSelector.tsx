@@ -49,10 +49,6 @@ const SiblingSelector = ({
     }
   }, [sibling.id]);
 
-  console.log("selectedArticld", selectedArticle);
-  console.log("selectedArticle.id", selectedArticle.id);
-  console.log("sibling.id", sibling.id);
-
   const [articleAvailables, setArticleAvailables] = useState([]);
 
   const [inputSearch, setInputSearch] = useState("");
@@ -99,13 +95,29 @@ const SiblingSelector = ({
           Sibling: [...pageState.Sibling],
         });
       } else {
-        setPageState({
-          ...pageState,
-          Sibling: [
-            ...pageState.Sibling,
-            { value: siblingObject.value, title: siblingObject.label },
-          ],
-        });
+        if (!selectedArticle) {
+          setPageState({
+            ...pageState,
+            Sibling: [
+              ...pageState.Sibling,
+              { value: siblingObject.value, title: siblingObject.label },
+            ],
+          });
+        } else {
+          // update
+          // ne marche pas si on cherche un objet de type {label, value}
+          const indexUpdatedObject = pageState.Sibling.findIndex(
+            (currentSibling) => currentSibling.id === selectedArticle.value
+          );
+          pageState.Sibling[indexUpdatedObject] = {
+            value: siblingObject.value,
+            title: siblingObject.label,
+          };
+          setPageState({
+            ...pageState,
+            Sibling: [...pageState.Sibling],
+          });
+        }
       }
       setSelectedArticle(siblingObject);
       setHasStateChanged(true);
