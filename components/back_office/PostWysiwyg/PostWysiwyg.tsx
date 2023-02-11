@@ -174,10 +174,17 @@ const PostWysiwyg = ({
               <GenericButton
                 text="Créer un sibling"
                 handleClick={() => {
-                  setPageState({
-                    ...pageState,
-                    Sibling: [...pageState.Sibling, { isNewSibling: true }],
-                  });
+                  if (Array.isArray(pageState.Sibling)) {
+                    setPageState({
+                      ...pageState,
+                      Sibling: [...pageState.Sibling, { isNewSibling: true }],
+                    });
+                  } else {
+                    setPageState({
+                      ...pageState,
+                      Sibling: [{ isNewSibling: true }],
+                    });
+                  }
                 }}
               />
             </div>

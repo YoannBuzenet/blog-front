@@ -77,6 +77,7 @@ const SiblingSelector = ({
     );
 
     if (!isSiblingAlreadySet) {
+      // new sibling created from scratch
       if (sibling.isNewSibling) {
         const indexNullObject = pageState.Sibling.findIndex(
           (currentSibling) => currentSibling.isNewSibling === true
@@ -88,7 +89,7 @@ const SiblingSelector = ({
         });
       } else {
         if (!selectedArticle) {
-          // creation
+          // first value into the select
           setPageState({
             ...pageState,
             Sibling: [...pageState.Sibling, siblingObject.completeSibling],
