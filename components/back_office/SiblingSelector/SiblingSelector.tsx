@@ -10,9 +10,11 @@ import { ReactSelectObject } from "../../../types/types";
 import { transformValueToReactSelectValue } from "../../../services/utils";
 import SVGButton from "../../generic/Buttons/SVGButton/SVGButtonButton";
 import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
+import { computeSelectedArticle } from "./SibilingSelector.func";
 
-// Refacto ce compo pour le rendre moins crade
-// Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
+// Refacto ce compo !
+// Comment exporter les fonctions avec des setstate ? Dans une classe manager avec des hooks ?
+// Refacto step: nom de la prop languageAvailables pas clair car omet le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
 const SiblingSelector = ({
   languageAvailables,
@@ -22,29 +24,20 @@ const SiblingSelector = ({
   isPreloaded = false,
   sibling,
 }) => {
-  const computeSelectedArticle = (sibling) => {
-    return isPreloaded
-      ? transformValueToReactSelectValue(
-          sibling.id,
-          parseSlateFormatSimple(sibling.title)
-        )
-      : null;
-  };
-
   const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
     return isPreloaded
       ? transformValueToReactSelectValue(sibling.language, sibling.language)
       : null;
   });
   const [selectedArticle, setSelectedArticle] = useState(() =>
-    computeSelectedArticle(sibling)
+    computeSelectedArticle(sibling, isPreloaded)
   );
 
   // Updating local state after pagestate change
   // Else, if you delete the first one, it is still displayed in componenet (even if it's the right one in pageState)
   useEffect(() => {
     if (selectedArticle.value !== sibling.id) {
-      setSelectedArticle(computeSelectedArticle(sibling));
+      setSelectedArticle(computeSelectedArticle(sibling, isPreloaded));
     }
   }, [sibling.id]);
 
@@ -84,9 +77,9 @@ const SiblingSelector = ({
     );
 
     if (!isSiblingAlreadySet) {
-      if (sibling.isEmpty) {
+      if (sibling.isNewSibling) {
         const indexNullObject = pageState.Sibling.findIndex(
-          (currentSibling) => currentSibling.isEmpty === true
+          (currentSibling) => currentSibling.isNewSibling === true
         );
         pageState.Sibling[indexNullObject] = siblingObject.completeSibling;
         setPageState({
@@ -95,13 +88,13 @@ const SiblingSelector = ({
         });
       } else {
         if (!selectedArticle) {
+          // creation
           setPageState({
             ...pageState,
             Sibling: [...pageState.Sibling, siblingObject.completeSibling],
           });
         } else {
           // update
-          // ne marche pas si on cherche un objet de type {label, value}
           const indexUpdatedObject = pageState.Sibling.findIndex(
             (currentSibling) => currentSibling.id === selectedArticle.value
           );
@@ -126,8 +119,6 @@ const SiblingSelector = ({
       const sibling = pageState.Sibling[i];
 
       if (sibling.id && sibling.id === siblingId) {
-        indexInPageState = i;
-      } else if (sibling === siblingId) {
         indexInPageState = i;
       }
     }

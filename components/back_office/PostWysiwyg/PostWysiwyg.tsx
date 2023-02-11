@@ -176,7 +176,7 @@ const PostWysiwyg = ({
                 handleClick={() => {
                   setPageState({
                     ...pageState,
-                    Sibling: [...pageState.Sibling, { isEmpty: true }],
+                    Sibling: [...pageState.Sibling, { isNewSibling: true }],
                   });
                 }}
               />

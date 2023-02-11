@@ -5,6 +5,26 @@ import Save from "@mui/icons-material/Save";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SpinningLoaderButton from "../../Loaders/CSSLoader/SpinningLoaderButton";
 
+type GenericButtonProps = {
+  variant?: "text" | "outlined" | "contained";
+  handleClick: () => void;
+  text: string;
+  spacing?: string;
+  color?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning";
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  iconToDisplay?: string;
+  isLetterCapitalize?: boolean;
+  triggerOnEnterKey?: boolean;
+};
+
 export default function GenericButton({
   variant = "contained",
   handleClick,
@@ -16,7 +36,7 @@ export default function GenericButton({
   iconToDisplay,
   isLetterCapitalize = false,
   triggerOnEnterKey = false,
-}) {
+}: GenericButtonProps) {
   const iconDictionnary = {
     save: Save,
     loading: SpinningLoaderButton,
