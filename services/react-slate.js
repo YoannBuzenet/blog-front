@@ -100,6 +100,11 @@ const formatSimple = (text) => {
 };
 
 const parseSlateFormatSimple = (slateFormatSimple) => {
+
+  if(typeof slateFormatSimple === "string"){
+    return slateFormatSimple
+  }
+
   const stringIncluded = slateFormatSimple?.[0]?.children?.[0]?.text;
   return stringIncluded;
 };

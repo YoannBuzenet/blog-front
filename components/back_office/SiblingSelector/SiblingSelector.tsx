@@ -44,10 +44,14 @@ const SiblingSelector = ({
   // Updating local state after pagestate change
   // Else, if you delete the first one, it is still displayed in componenet (even if it's the right one in pageState)
   useEffect(() => {
-    if (selectedArticle.id !== sibling.id) {
+    if (selectedArticle.value !== sibling.id) {
       setSelectedArticle(computeSelectedArticle(sibling));
     }
   }, [sibling.id]);
+
+  console.log("selectedArticld", selectedArticle);
+  console.log("selectedArticle.id", selectedArticle.id);
+  console.log("sibling.id", sibling.id);
 
   const [articleAvailables, setArticleAvailables] = useState([]);
 
@@ -77,15 +81,32 @@ const SiblingSelector = ({
   );
 
   const addSibling = (siblingObject: ReactSelectObject) => {
-    const isSibilingAlreadySet = pageState.Sibling.find(
+    const isSiblingAlreadySet = pageState.Sibling.find(
       (sibling) => sibling.id === siblingObject.value
     );
 
-    if (!isSibilingAlreadySet) {
-      setPageState({
-        ...pageState,
-        Sibling: [...pageState.Sibling, siblingObject.value],
-      });
+    if (!isSiblingAlreadySet) {
+      if (sibling.value === null) {
+        const indexNullObject = pageState.Sibling.findIndex(
+          (currentSibling) => currentSibling.value === null
+        );
+        pageState.Sibling[indexNullObject] = {
+          value: siblingObject.value,
+          title: siblingObject.label,
+        };
+        setPageState({
+          ...pageState,
+          Sibling: [...pageState.Sibling],
+        });
+      } else {
+        setPageState({
+          ...pageState,
+          Sibling: [
+            ...pageState.Sibling,
+            { value: siblingObject.value, title: siblingObject.label },
+          ],
+        });
+      }
       setSelectedArticle(siblingObject);
       setHasStateChanged(true);
     } else {
