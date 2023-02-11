@@ -3,7 +3,7 @@
 import style from "./SiblingSelector.module.scss";
 import Select from "react-select";
 import { useCallback, useEffect, useState } from "react";
-import { debounce } from "../../../services/utils";
+import { debounce, JSONParseAllProps } from "../../../services/utils";
 import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { ReactSelectObject } from "../../../types/types";
@@ -11,9 +11,8 @@ import { transformValueToReactSelectValue } from "../../../services/utils";
 import SVGButton from "../../generic/Buttons/SVGButton/SVGButtonButton";
 import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
 
+// Refacto ce compo pour le rendre moins crade
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
-
-// TODO : update un sibling deja saisi
 
 const SiblingSelector = ({
   languageAvailables,
@@ -67,6 +66,7 @@ const SiblingSelector = ({
               resp.map((article) => ({
                 value: article.id,
                 label: parseSlateFormatSimple(JSON.parse(article.title)),
+                completeSibling: JSONParseAllProps(article),
               }))
             )
         );
@@ -76,20 +76,19 @@ const SiblingSelector = ({
     []
   );
 
-  const addSibling = (siblingObject: ReactSelectObject) => {
+  const addSibling = (
+    siblingObject: ReactSelectObject & { completeSibling: any }
+  ) => {
     const isSiblingAlreadySet = pageState.Sibling.find(
       (sibling) => sibling.id === siblingObject.value
     );
 
     if (!isSiblingAlreadySet) {
-      if (sibling.value === null) {
+      if (sibling.isEmpty) {
         const indexNullObject = pageState.Sibling.findIndex(
-          (currentSibling) => currentSibling.value === null
+          (currentSibling) => currentSibling.isEmpty === true
         );
-        pageState.Sibling[indexNullObject] = {
-          value: siblingObject.value,
-          title: siblingObject.label,
-        };
+        pageState.Sibling[indexNullObject] = siblingObject.completeSibling;
         setPageState({
           ...pageState,
           Sibling: [...pageState.Sibling],
@@ -98,10 +97,7 @@ const SiblingSelector = ({
         if (!selectedArticle) {
           setPageState({
             ...pageState,
-            Sibling: [
-              ...pageState.Sibling,
-              { value: siblingObject.value, title: siblingObject.label },
-            ],
+            Sibling: [...pageState.Sibling, siblingObject.completeSibling],
           });
         } else {
           // update
@@ -109,10 +105,7 @@ const SiblingSelector = ({
           const indexUpdatedObject = pageState.Sibling.findIndex(
             (currentSibling) => currentSibling.id === selectedArticle.value
           );
-          pageState.Sibling[indexUpdatedObject] = {
-            value: siblingObject.value,
-            title: siblingObject.label,
-          };
+          pageState.Sibling[indexUpdatedObject] = siblingObject.completeSibling;
           setPageState({
             ...pageState,
             Sibling: [...pageState.Sibling],
