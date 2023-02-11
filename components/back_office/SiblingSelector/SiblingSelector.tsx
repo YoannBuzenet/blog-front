@@ -2,7 +2,7 @@
 
 import style from "./SiblingSelector.module.scss";
 import Select from "react-select";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { debounce } from "../../../services/utils";
 import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
@@ -13,7 +13,8 @@ import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
 
 // Refacto step: nom de la prop languageAvailables pas clair car cache le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
-// Quid du bouton Delete ? On fait un bouton spécifique ?
+// TODO : methode delete Sibling
+// TODO : update un sibling deja saisi
 
 const SiblingSelector = ({
   languageAvailables,
@@ -22,21 +23,31 @@ const SiblingSelector = ({
   setHasStateChanged,
   isPreloaded = false,
   sibling,
-  index,
 }) => {
-  const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
-    return isPreloaded
-      ? transformValueToReactSelectValue(sibling.language, sibling.language)
-      : null;
-  });
-  const [selectedArticle, setSelectedArticle] = useState(() => {
+  const computeSelectedArticle = (sibling) => {
     return isPreloaded
       ? transformValueToReactSelectValue(
           sibling.id,
           parseSlateFormatSimple(sibling.title)
         )
       : null;
+  };
+
+  const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
+    return isPreloaded
+      ? transformValueToReactSelectValue(sibling.language, sibling.language)
+      : null;
   });
+  const [selectedArticle, setSelectedArticle] = useState(() =>
+    computeSelectedArticle(sibling)
+  );
+
+  // Updating local state after pagestate change
+  useEffect(() => {
+    if (selectedArticle.id !== sibling.id) {
+      setSelectedArticle(computeSelectedArticle(sibling));
+    }
+  }, [sibling.id]);
 
   const [articleAvailables, setArticleAvailables] = useState([]);
 
@@ -82,6 +93,27 @@ const SiblingSelector = ({
     }
   };
 
+  const deleteSibling = (siblingId: number) => {
+    let indexInPageState;
+    const arrayOfSibilingCopy = [...pageState.Sibling];
+    for (let i = 0; i < pageState.Sibling.length; i++) {
+      const sibling = pageState.Sibling[i];
+
+      if (sibling.id && sibling.id === siblingId) {
+        indexInPageState = i;
+      } else if (sibling === siblingId) {
+        indexInPageState = i;
+      }
+    }
+
+    arrayOfSibilingCopy.splice(indexInPageState, 1);
+    setPageState({
+      ...pageState,
+      Sibling: arrayOfSibilingCopy,
+    });
+    setHasStateChanged(true);
+  };
+
   return (
     <div className={style.container}>
       <div className={style.container__leftDiv}>
@@ -113,7 +145,7 @@ const SiblingSelector = ({
         <SVGButton
           Svg={DeleteIcon}
           svgTitle="Delete Sibling"
-          handleClick={() => console.log("deleting sibling !")}
+          handleClick={() => deleteSibling(sibling)}
         />
       </div>
     </div>
