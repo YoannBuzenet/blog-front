@@ -115,11 +115,25 @@ const SiblingSelector = ({
   const deleteSibling = (siblingId: number) => {
     let indexInPageState;
     const arrayOfSibilingCopy = [...pageState.Sibling];
-    for (let i = 0; i < pageState.Sibling.length; i++) {
-      const sibling = pageState.Sibling[i];
 
-      if (sibling.id && sibling.id === siblingId) {
-        indexInPageState = i;
+    // deleting existing sibling
+    if (siblingId) {
+      for (let i = 0; i < pageState.Sibling.length; i++) {
+        const sibling = pageState.Sibling[i];
+
+        if (sibling.id && sibling.id === siblingId) {
+          indexInPageState = i;
+        }
+      }
+    }
+    // deleting newly created sibling
+    else {
+      for (let i = 0; i < pageState.Sibling.length; i++) {
+        const sibling = pageState.Sibling[i];
+
+        if (sibling.isNewSibling) {
+          indexInPageState = i;
+        }
       }
     }
 
@@ -162,7 +176,7 @@ const SiblingSelector = ({
         <SVGButton
           Svg={DeleteIcon}
           svgTitle="Delete Sibling"
-          handleClick={() => deleteSibling(sibling)}
+          handleClick={() => deleteSibling(sibling.id)}
         />
       </div>
     </div>
