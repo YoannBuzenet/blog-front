@@ -10,7 +10,10 @@ import { ReactSelectObject } from "../../../types/types";
 import { transformValueToReactSelectValue } from "../../../services/utils";
 import SVGButton from "../../generic/Buttons/SVGButton/SVGButtonButton";
 import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
-import { computeSelectedArticle } from "./SibilingSelector.func";
+import {
+  computeSelectedArticle,
+  computeSelectedLang,
+} from "./SibilingSelector.func";
 
 // Refacto ce compo !
 // Comment exporter les fonctions avec des setstate ? Dans une classe manager avec des hooks ?
@@ -24,11 +27,9 @@ const SiblingSelector = ({
   isPreloaded = false,
   sibling,
 }) => {
-  const [langSibblingSelected, setLangSibblingSelected] = useState(() => {
-    return isPreloaded
-      ? transformValueToReactSelectValue(sibling.language, sibling.language)
-      : null;
-  });
+  const [langSibblingSelected, setLangSibblingSelected] = useState(() =>
+    computeSelectedLang(sibling, isPreloaded)
+  );
   const [selectedArticle, setSelectedArticle] = useState(() =>
     computeSelectedArticle(sibling, isPreloaded)
   );

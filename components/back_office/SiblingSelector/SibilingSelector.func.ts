@@ -9,3 +9,9 @@ export const computeSelectedArticle = (sibling, isPreloaded: boolean) => {
         )
       : null;
   };
+
+  export const computeSelectedLang = (sibling, isPreloaded: boolean) =>{
+    return isPreloaded
+      ? transformValueToReactSelectValue(sibling.language, sibling.language)
+      : null;
+  }
