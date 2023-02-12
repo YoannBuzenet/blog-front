@@ -21,16 +21,21 @@ export default function PostLangRefresh({ postParsed }) {
       console.log("Difference between language settings and language of post");
       console.log("appCurrentLang", appCurrentLang);
       console.log("post.language", post.language);
-      if (Array.isArray(post.sibling && post.sibling.length > 1)) {
-        const postToDisplay = post.sibling.filter(
+      console.log("post", post);
+      console.log("post.sibling", post.sibling);
+
+      if (Array.isArray(post.sibling) && post.sibling.length > 0) {
+        const postToDisplay = post.sibling.find(
           (post) => post.language === appCurrentLang.locale
         );
+        console.log("postToDisplay", postToDisplay);
         if (postToDisplay) {
-          // We found a sibling o the post. Redirecting to him
-          const titleExtracted = parseSlateFormatSimple(postToDisplay.title);
-          router.push(titleExtracted);
+          // We found a sibling of the post. Redirecting to him
+          router.push(`/posts/${postToDisplay.id}`);
           //TODO translate
-          toast.info(<p>Redirection vers le post traduit.</p>);
+          toast.info(<p>Redirection vers le post traduit.</p>, {
+            toastId: "change",
+          });
         } else {
           // Post has sibling but no one in the relevant language
           router.push("/");
@@ -40,19 +45,17 @@ export default function PostLangRefresh({ postParsed }) {
               Le post n'existe pas dans cette langue, redirection vers la home
             </p>,
             {
-              toastId: "change",
+              toastId: "redirectHomeNoRelevantSibling",
             }
           );
         }
       } else {
-        console.log("LAAA");
         // Post has no sibling. Redirection to home.
-
-        // router.push("/");
+        router.push("/");
 
         //TODO translate
         toast.info(<p>Le post n'existe pas, redirection vers la home</p>, {
-          toastId: "change",
+          toastId: "redirectHomeNoSibling",
         });
       }
     }
