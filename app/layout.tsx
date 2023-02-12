@@ -1,8 +1,6 @@
 import { Providers } from "./providers";
 import { headers } from "next/headers";
 
-
-
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
@@ -17,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-test="test">
       <body>
-        <Providers lang={mainHeader}>{children}</Providers>
+        <Providers langHeaders={mainHeader}>{children}</Providers>
       </body>
     </html>
   );

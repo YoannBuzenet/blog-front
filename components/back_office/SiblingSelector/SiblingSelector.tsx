@@ -7,7 +7,6 @@ import { debounce, JSONParseAllProps } from "../../../services/utils";
 import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { ReactSelectObject } from "../../../types/types";
-import { transformValueToReactSelectValue } from "../../../services/utils";
 import SVGButton from "../../generic/Buttons/SVGButton/SVGButtonButton";
 import DeleteIcon from "../../../assets/svg/delete_forever/round.svg";
 import {
@@ -15,9 +14,12 @@ import {
   computeSelectedLang,
 } from "./SibilingSelector.func";
 
+// So :
 // Refacto ce compo !
-// Comment exporter les fonctions avec des setstate ? Dans une classe manager avec des hooks ?
-// Refacto step: nom de la prop languageAvailables pas clair car omet le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
+// Comment exporter les fonctions avec des setstate ? Dans une classe manager avec des hooks ? Ou un reducer peut-être ?
+
+// Second temps :
+// revoir nom de la prop languageAvailables pas clair car omet le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
 
 const SiblingSelector = ({
   languageAvailables,

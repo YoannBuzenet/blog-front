@@ -28,9 +28,9 @@ const PostPeek = ({ post }) => {
           </div>
         </div>
         <DisplayHTML slateText={postDomain.title} />
-        <p>
+        <div>
           <DisplayHTML slateText={postDomain.shortDescription} />
-        </p>
+        </div>
         <p className={style.articleDate}>
           {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
         </p>

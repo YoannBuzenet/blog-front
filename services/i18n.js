@@ -1,6 +1,6 @@
 const { LANGUAGE_SETTINGS_LOCAL_STORAGE } = require("../i18n/consts");
 
-const initializeLang = (langInApp, lang) => {
+const checkLangLocaleStorage = (langInApp, lang) => {
 
   let appInitialLang;
   let langSavedInLocalStorage;
@@ -25,4 +25,4 @@ const initializeLang = (langInApp, lang) => {
   return appInitialLang;
 };
 
-module.exports = { initializeLang };
+module.exports = { checkLangLocaleStorage };

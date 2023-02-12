@@ -36,14 +36,14 @@ import AppCurrentLangContext from "../contexts/appCurrentLang";
 import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
-import { initializeLang } from "../services/i18n";
+import { checkLangLocaleStorage } from "../services/i18n";
 
 import { useSearchParams } from "next/navigation";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 
-export function Providers({ lang, children }) {
+export function Providers({ langHeaders, children }) {
 
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [tags, setTags] = useState([]);
@@ -53,11 +53,10 @@ export function Providers({ lang, children }) {
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   // App Language initialization
-  let appInitialLang = initializeLang(langInApp, lang);
+  // Comparing lang in header VS lang in localStorage
+  let appInitialLocale = checkLangLocaleStorage(langInApp, langHeaders);
 
-  // Booting on next router language, server side
-  // We will adjust client side by watching local storage
-  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[lang]);
+  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[appInitialLocale.locale]);
 
   useEffect(() => {
     // fetch images for gallery
@@ -80,26 +79,13 @@ export function Providers({ lang, children }) {
 
       setTags(tags);
     });
-
-    // Loading saved settings by user
-    if (appInitialLang.locale !== appCurrentLang.locale) {
-      setAppCurrentLang(appInitialLang);
-    }
   }, []);
 
   const handleSetContextCurrentLang = (currentLang) => {
     if (Object.keys(langInApp).includes(currentLang?.locale)) {
       setAppCurrentLang(currentLang);
-      // if (router.pathname === "/") {
-      //   router.push(router.pathname, router.pathname, {
-      //     locale: localeToLangDictionnary[currentLang.locale],
-      //   });
-      // }
     } else {
       setAppCurrentLang(langInApp["en-US"]);
-      // if (router.pathname === "/") {
-      //   router.push(router.pathname, router.pathname, { locale: "en" });
-      // }
     }
   };
 
