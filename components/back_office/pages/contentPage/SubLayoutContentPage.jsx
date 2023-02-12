@@ -75,7 +75,7 @@ const SubLayoutContentPage = ({
 
   usePreventUserFromErasingContent(hasStateChanged);
 
-  const switchLabel = pageState.isVisibleToUser ? "Visible" : "Masquée";
+  const switchLabel = pageState.isPublished ? "Visible" : "Masquée";
 
   return (
     <>
@@ -83,12 +83,12 @@ const SubLayoutContentPage = ({
       <p>Pour vos clients, cette page est actuellement :</p>
       <SwitchWithLabel
         label={switchLabel}
-        isChecked={pageState.isVisibleToUser}
+        isChecked={pageState.isPublished}
         handleChange={(e) => {
           setHasStateChanged(true);
           setPageState({
             ...pageState,
-            isVisibleToUser: !pageState.isVisibleToUser,
+            isPublished: !pageState.isPublished,
           });
         }}
       />

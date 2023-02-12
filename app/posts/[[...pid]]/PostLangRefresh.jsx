@@ -14,15 +14,15 @@ export default function PostLangRefresh({ postParsed }) {
 
   const router = useRouter();
 
-  console.log("post parsed", postParsed);
+  // console.log("post parsed", postParsed);
 
   useEffect(() => {
     if (!appCurrentLang.isDefault && appCurrentLang.locale !== post.language) {
-      console.log("Difference between language settings and language of post");
-      console.log("appCurrentLang", appCurrentLang);
-      console.log("post.language", post.language);
-      console.log("post", post);
-      console.log("post.sibling", post.sibling);
+      // console.log("Difference between language settings and language of post");
+      // console.log("appCurrentLang", appCurrentLang);
+      // console.log("post.language", post.language);
+      // console.log("post", post);
+      // console.log("post.sibling", post.sibling);
 
       if (Array.isArray(post.sibling) && post.sibling.length > 0) {
         const postToDisplay = post.sibling.find(
