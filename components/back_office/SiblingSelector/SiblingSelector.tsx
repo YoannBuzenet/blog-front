@@ -2,7 +2,7 @@
 
 import style from "./SiblingSelector.module.scss";
 import Select from "react-select";
-import { useCallback, useEffect, useState } from "react";
+import { Dispatch, useCallback, useEffect, useState } from "react";
 import { debounce, JSONParseAllProps } from "../../../services/utils";
 import { getOnePostbyTitle } from "../../../services/api/post";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
@@ -13,13 +13,28 @@ import {
   computeSelectedArticle,
   computeSelectedLang,
 } from "./SibilingSelector.func";
-
-// So :
-// Refacto ce compo !
-// Comment exporter les fonctions avec des setstate ? Dans une classe manager avec des hooks ? Ou un reducer peut-être ?
+import { PageState } from "../ManageStateContainer/types";
+import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
 
 // Second temps :
 // revoir nom de la prop languageAvailables pas clair car omet le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
+
+export type NewSibling = {
+  isNewSibling: boolean;
+};
+
+export type ReactSelectSibling = ReactSelectObject & { completeSibling: any };
+
+type SiblingSelectorProps = {
+  languageAvailables: any;
+  pageState: PageState;
+  pageState2: PageState;
+  dispatch: Dispatch<PageStateActions>;
+  sibling: PageState & NewSibling;
+  setPageState: any;
+  setHasStateChanged: any;
+  isPreloaded: boolean;
+};
 
 const SiblingSelector = ({
   languageAvailables,
@@ -28,7 +43,9 @@ const SiblingSelector = ({
   setHasStateChanged,
   isPreloaded = false,
   sibling,
-}) => {
+  pageState2,
+  dispatch,
+}: SiblingSelectorProps) => {
   const [langSibblingSelected, setLangSibblingSelected] = useState(() =>
     computeSelectedLang(sibling, isPreloaded)
   );
@@ -49,7 +66,7 @@ const SiblingSelector = ({
   const [inputSearch, setInputSearch] = useState("");
 
   const languageNotUsed = languageAvailables.filter(
-    (language) => language.value !== pageState.language
+    (language) => language.value !== pageState2.language
   );
 
   const debounceGetPostsByTitle = useCallback(
@@ -72,40 +89,35 @@ const SiblingSelector = ({
     []
   );
 
-  const addSibling = (
-    siblingObject: ReactSelectObject & { completeSibling: any }
-  ) => {
-    const isSiblingAlreadySet = pageState.Sibling.find(
-      (sibling) => sibling.id === siblingObject.value
+  const addSibling = (siblingObject: ReactSelectSibling) => {
+    const isSiblingAlreadySet = pageState2.Sibling.find(
+      (sibling) => sibling.id + "" === siblingObject.value
     );
 
     if (!isSiblingAlreadySet) {
       // new sibling created from scratch
       if (sibling.isNewSibling) {
-        const indexNullObject = pageState.Sibling.findIndex(
+        const indexNullObject = pageState2.Sibling.findIndex(
           (currentSibling) => currentSibling.isNewSibling === true
         );
-        pageState.Sibling[indexNullObject] = siblingObject.completeSibling;
-        setPageState({
-          ...pageState,
-          Sibling: [...pageState.Sibling],
+        dispatch({
+          type: "addNewSiblingReplaceEmpty",
+          indexToReplace: indexNullObject,
+          newSibling: sibling,
         });
       } else {
         if (!selectedArticle) {
           // first value into the select
-          setPageState({
-            ...pageState,
-            Sibling: [...pageState.Sibling, siblingObject.completeSibling],
-          });
+          dispatch({ type: "addNewSibling", sibling: siblingObject });
         } else {
           // update
-          const indexUpdatedObject = pageState.Sibling.findIndex(
+          const indexUpdatedObject = pageState2.Sibling.findIndex(
             (currentSibling) => currentSibling.id === selectedArticle.value
           );
-          pageState.Sibling[indexUpdatedObject] = siblingObject.completeSibling;
-          setPageState({
-            ...pageState,
-            Sibling: [...pageState.Sibling],
+          dispatch({
+            type: "updateExistingSibling",
+            index: indexUpdatedObject,
+            sibling: siblingObject,
           });
         }
       }
@@ -117,13 +129,12 @@ const SiblingSelector = ({
   };
 
   const deleteSibling = (siblingId: number) => {
-    let indexInPageState;
-    const arrayOfSibilingCopy = [...pageState.Sibling];
+    let indexInPageState: number;
 
     // deleting existing sibling
     if (siblingId) {
-      for (let i = 0; i < pageState.Sibling.length; i++) {
-        const sibling = pageState.Sibling[i];
+      for (let i = 0; i < pageState2.Sibling.length; i++) {
+        const sibling = pageState2.Sibling[i];
 
         if (sibling.id && sibling.id === siblingId) {
           indexInPageState = i;
@@ -132,8 +143,8 @@ const SiblingSelector = ({
     }
     // deleting newly created sibling
     else {
-      for (let i = 0; i < pageState.Sibling.length; i++) {
-        const sibling = pageState.Sibling[i];
+      for (let i = 0; i < pageState2.Sibling.length; i++) {
+        const sibling = pageState2.Sibling[i];
 
         if (sibling.isNewSibling) {
           indexInPageState = i;
@@ -141,11 +152,8 @@ const SiblingSelector = ({
       }
     }
 
-    arrayOfSibilingCopy.splice(indexInPageState, 1);
-    setPageState({
-      ...pageState,
-      Sibling: arrayOfSibilingCopy,
-    });
+    dispatch({ type: "delete", index: indexInPageState });
+
     setHasStateChanged(true);
   };
 

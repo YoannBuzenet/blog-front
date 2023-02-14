@@ -24,9 +24,9 @@ const PostWysiwyg = ({
   isCreation,
   pid,
   pageState,
-  setPageState,
   hasStateChanged,
   setHasStateChanged,
+  dispatch,
 }) => {
   let postId;
   if (!isCreation) {
@@ -167,6 +167,8 @@ const PostWysiwyg = ({
                     pageState={pageState}
                     setPageState={setPageState}
                     setHasStateChanged={setHasStateChanged}
+                    pageState2={pageState}
+                    dispatch={dispatch}
                   />
                 );
               })}

@@ -4,12 +4,7 @@ import { getOnePost } from "../../../../services/api/post";
 import BackOfficeLayout from "../../../../components/back_office/layouts/BackOfficeLayout";
 import ManageStateContainer from "../../../../components/back_office/ManageStateContainer/ManageStateContainer";
 
-//TODO : ce compo fait trop de trucs, il faudrait le refacto/décomposer un petit peu
-// Il gère un post en state mais ce n'est jamais défini nulle part. Il faudrait tout typer sur le post, instancier un post
-// Pareil pour la fonction sauvegarde dans SubLayoutContentPage. Il faudrait faire une factory autour pour qu'elle puisse tout sauvegarder, y compris un Post
-
 export default async function PostPage({ params }) {
-  // is creation ?
   const { pid } = params;
 
   let isCreationInit = pid === undefined;
@@ -28,8 +23,6 @@ export default async function PostPage({ params }) {
       isCreationInit = true;
     }
   }
-
-  // Choper les langues ici
 
   // TODO avoir le vrai user ID quand on aura des users !
   page.UserId = 1;
