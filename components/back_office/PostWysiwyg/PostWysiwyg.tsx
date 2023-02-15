@@ -18,6 +18,19 @@ import { arrayLangsInApp } from "../../../i18n/allLang";
 import SiblingSelector from "../SiblingSelector/SiblingSelector";
 import Select from "react-select";
 import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
+import { PageState } from "../ManageStateContainer/types";
+import { Dispatch, SetStateAction } from "react";
+import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
+
+type PostWysiwygProps = {
+  page: any;
+  isCreation: boolean;
+  pid: (number & string)[];
+  pageState: PageState;
+  hasStateChanged: boolean;
+  setHasStateChanged: Dispatch<React.SetStateAction<boolean>>;
+  dispatch: Dispatch<PageStateActions>;
+};
 
 const PostWysiwyg = ({
   page,
@@ -27,24 +40,29 @@ const PostWysiwyg = ({
   hasStateChanged,
   setHasStateChanged,
   dispatch,
-}) => {
-  let postId;
+}: PostWysiwygProps) => {
+  let postId: number;
   if (!isCreation) {
-    // On peut stocker une infinité de paramètres avec cette façon de faire ([[...pid]] donc on ne prends que le premier)
     postId = pid?.[0];
   }
 
   console.log("page state", pageState);
 
-  const handleChangePage = (value, field) => {
-    console.log("jai ete appele", value, field);
+  const handleChangePage = (value, field: string) => {
     setHasStateChanged(true);
-    setPageState({ ...pageState, [field]: value });
+    dispatch({
+      type: "updateField",
+      field,
+      value,
+    });
   };
 
   const handleChangeLanguage = (value) => {
     setHasStateChanged(true);
-    setPageState({ ...pageState, language: value.value });
+    dispatch({
+      type: "updateLanguage",
+      value: value,
+    });
   };
 
   const showError = calculateLengthOfSimpleField(pageState.title) === 0;
@@ -155,8 +173,6 @@ const PostWysiwyg = ({
           {/* TODO : vérifier la cohérence des langues des siblings à la sauvegarde */}
           <div>
             <h3>Siblings</h3>
-            {/* Now : Puis mettre le resultat en option du select
-              Now : Puis handleChange le select pour avoir id et nom de l'article en state + id de l'article en sibling */}
             {Array.isArray(pageState.Sibling) &&
               pageState.Sibling.map((sibling, index) => {
                 return (
@@ -165,9 +181,7 @@ const PostWysiwyg = ({
                     sibling={sibling}
                     languageAvailables={languageoptions}
                     pageState={pageState}
-                    setPageState={setPageState}
                     setHasStateChanged={setHasStateChanged}
-                    pageState2={pageState}
                     dispatch={dispatch}
                   />
                 );
@@ -176,17 +190,9 @@ const PostWysiwyg = ({
               <GenericButton
                 text="Créer un sibling"
                 handleClick={() => {
-                  if (Array.isArray(pageState.Sibling)) {
-                    setPageState({
-                      ...pageState,
-                      Sibling: [...pageState.Sibling, { isNewSibling: true }],
-                    });
-                  } else {
-                    setPageState({
-                      ...pageState,
-                      Sibling: [{ isNewSibling: true }],
-                    });
-                  }
+                  dispatch({
+                    type: "addEmptySibling",
+                  });
                 }}
               />
             </div>

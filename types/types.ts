@@ -6,4 +6,5 @@ export type authenticatedDTO = {
 export type ReactSelectObject = {
   value: string;
   label: string;
-}
+};
+export type AppUsedLanguage = "en-US" | "fr-FR";

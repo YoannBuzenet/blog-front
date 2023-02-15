@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import PlainTextEditor from "../../../generic/wysiwyg/PlainText";
 import style from "../../../../styles/back_office/pages/contentPage/SimpleField.module.css";
+import { ReactSlateElement } from "../../ManageStateContainer/types";
 
 // TODO finish types
 export type SimpleFieldProps = {
-  value: string;
+  value: ReactSlateElement[];
   setValue: any;
-  title: any;
-  field: any;
+  title: string;
+  field: string;
   showError?: boolean;
-  labelCTA?: any;
+  labelCTA?: string;
   handleClickCTA?: any;
   svgCTA?: any;
 };

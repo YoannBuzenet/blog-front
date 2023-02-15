@@ -16,34 +16,29 @@ import {
 import { PageState } from "../ManageStateContainer/types";
 import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
 
-// Second temps :
-// revoir nom de la prop languageAvailables pas clair car omet le fait que c'est une liste d'objet compatible avec les options de react-select -> typer ?
-
 export type NewSibling = {
   isNewSibling: boolean;
 };
 
-export type ReactSelectSibling = ReactSelectObject & { completeSibling: any };
+export type ReactSelectSibling = ReactSelectObject & {
+  completeSibling: PageState;
+};
 
 type SiblingSelectorProps = {
-  languageAvailables: any;
-  pageState: PageState;
-  pageState2: PageState;
-  dispatch: Dispatch<PageStateActions>;
-  sibling: PageState & NewSibling;
-  setPageState: any;
+  languageAvailables: ReactSelectObject[];
+  sibling: PageState | NewSibling;
   setHasStateChanged: any;
   isPreloaded: boolean;
+  pageState: PageState;
+  dispatch: Dispatch<PageStateActions>;
 };
 
 const SiblingSelector = ({
   languageAvailables,
-  pageState,
-  setPageState,
   setHasStateChanged,
   isPreloaded = false,
   sibling,
-  pageState2,
+  pageState,
   dispatch,
 }: SiblingSelectorProps) => {
   const [langSibblingSelected, setLangSibblingSelected] = useState(() =>
@@ -56,17 +51,17 @@ const SiblingSelector = ({
   // Updating local state after pagestate change
   // Else, if you delete the first one, it is still displayed in componenet (even if it's the right one in pageState)
   useEffect(() => {
-    if (selectedArticle.value !== sibling.id) {
+    if ("id" in sibling && selectedArticle.value !== sibling.id) {
       setSelectedArticle(computeSelectedArticle(sibling, isPreloaded));
     }
-  }, [sibling.id]);
+  }, ["id" in sibling && sibling.id]);
 
   const [articleAvailables, setArticleAvailables] = useState([]);
 
   const [inputSearch, setInputSearch] = useState("");
 
   const languageNotUsed = languageAvailables.filter(
-    (language) => language.value !== pageState2.language
+    (language) => language.value !== pageState.language
   );
 
   const debounceGetPostsByTitle = useCallback(
@@ -90,15 +85,15 @@ const SiblingSelector = ({
   );
 
   const addSibling = (siblingObject: ReactSelectSibling) => {
-    const isSiblingAlreadySet = pageState2.Sibling.find(
-      (sibling) => sibling.id + "" === siblingObject.value
+    const isSiblingAlreadySet = pageState.Sibling.find(
+      (sibling: PageState) => sibling.id + "" === siblingObject.value
     );
 
     if (!isSiblingAlreadySet) {
       // new sibling created from scratch
-      if (sibling.isNewSibling) {
-        const indexNullObject = pageState2.Sibling.findIndex(
-          (currentSibling) => currentSibling.isNewSibling === true
+      if ("isNewSibling" in sibling && sibling.isNewSibling) {
+        const indexNullObject = pageState.Sibling.findIndex(
+          (currentSibling: NewSibling) => currentSibling.isNewSibling === true
         );
         dispatch({
           type: "addNewSiblingReplaceEmpty",
@@ -111,8 +106,9 @@ const SiblingSelector = ({
           dispatch({ type: "addNewSibling", sibling: siblingObject });
         } else {
           // update
-          const indexUpdatedObject = pageState2.Sibling.findIndex(
-            (currentSibling) => currentSibling.id === selectedArticle.value
+          const indexUpdatedObject = pageState.Sibling.findIndex(
+            (currentSibling: PageState) =>
+              currentSibling.id === selectedArticle.value
           );
           dispatch({
             type: "updateExistingSibling",
@@ -133,26 +129,26 @@ const SiblingSelector = ({
 
     // deleting existing sibling
     if (siblingId) {
-      for (let i = 0; i < pageState2.Sibling.length; i++) {
-        const sibling = pageState2.Sibling[i];
+      for (let i = 0; i < pageState.Sibling.length; i++) {
+        const sibling = pageState.Sibling[i];
 
-        if (sibling.id && sibling.id === siblingId) {
+        if ("id" in sibling && sibling.id && sibling.id === siblingId) {
           indexInPageState = i;
         }
       }
     }
     // deleting newly created sibling
     else {
-      for (let i = 0; i < pageState2.Sibling.length; i++) {
-        const sibling = pageState2.Sibling[i];
+      for (let i = 0; i < pageState.Sibling.length; i++) {
+        const sibling = pageState.Sibling[i];
 
-        if (sibling.isNewSibling) {
+        if ("isNewSibling" in sibling && sibling.isNewSibling) {
           indexInPageState = i;
         }
       }
     }
 
-    dispatch({ type: "delete", index: indexInPageState });
+    dispatch({ type: "deleteSibling", index: indexInPageState });
 
     setHasStateChanged(true);
   };
@@ -188,7 +184,7 @@ const SiblingSelector = ({
         <SVGButton
           Svg={DeleteIcon}
           svgTitle="Delete Sibling"
-          handleClick={() => deleteSibling(sibling.id)}
+          handleClick={() => deleteSibling("id" in sibling && sibling.id)}
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 
-function usePrevious(value) {
+export function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
     ref.current = value;
@@ -8,7 +8,7 @@ function usePrevious(value) {
   return ref.current;
 }
 
-function usePreventUserFromErasingContent(hasStateChanged) {
+export function usePreventUserFromErasingContent(hasStateChanged) {
   useEffect(() => {
     if (hasStateChanged) {
       // Adding window alert if the shop quits without saving
@@ -57,8 +57,6 @@ export function useLocalStorage(key: string, initialValue) {
   };
   return [storedValue, setValue];
 }
-
-
 
 module.exports = {
   useLocalStorage,

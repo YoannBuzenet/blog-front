@@ -3,7 +3,7 @@
 import axios from "axios";
 import SwitchWithLabel from "../../../generic/Switch/index";
 import BasicButton from "../../../generic/Buttons/GenericButton/GenericButton";
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { routes } from "../../../../routing/routes";
 import {
   JSONParseAllProps,
@@ -13,15 +13,26 @@ import { toast } from "react-toastify";
 import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
 import { calculateLengthOfSimpleField } from "../../../../services/react-slate";
 import { useSession } from "next-auth/react";
+import { PageState } from "../../ManageStateContainer/types";
+import { PageStateActions } from "../../ManageStateContainer/ManageStateContainer.reducer";
+
+type SubLayoutContentPageProps = {
+  hasStateChanged: boolean;
+  setHasStateChanged: Dispatch<React.SetStateAction<boolean>>;
+  pageState: PageState;
+  dispatch: Dispatch<PageStateActions>;
+  isCreation: boolean;
+  setIsCreation: Dispatch<React.SetStateAction<boolean>>;
+};
 
 const SubLayoutContentPage = ({
   hasStateChanged,
   setHasStateChanged,
   pageState,
-  setPageState,
+  dispatch,
   isCreation,
   setIsCreation,
-}) => {
+}: SubLayoutContentPageProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const { data: session, status } = useSession();
 
@@ -32,6 +43,7 @@ const SubLayoutContentPage = ({
   const isErrorName = calculateLengthOfSimpleField(pageState.title) === 0;
 
   // TODO -> Vérifier la cohérence des informations, notamment : les langues des siblings VS la langue du post, aucune ne doit être similaire
+
   const savePage = async () => {
     const url = routes.api.entities.post?.[httpVerb].build(pageState.id);
 
@@ -48,7 +60,10 @@ const SubLayoutContentPage = ({
       console.log("serverResp", serverResp);
       console.log("servRespParsed", servRespParsed);
 
-      setPageState(servRespParsed.data);
+      dispatch({
+        type: "setCompletePageState",
+        value: servRespParsed.data,
+      });
 
       setHasStateChanged(false);
 
@@ -86,9 +101,10 @@ const SubLayoutContentPage = ({
         isChecked={pageState.isPublished}
         handleChange={(e) => {
           setHasStateChanged(true);
-          setPageState({
-            ...pageState,
-            isPublished: !pageState.isPublished,
+          dispatch({
+            type: "updateField",
+            field: "isPublished",
+            value: !pageState.isPublished,
           });
         }}
       />
