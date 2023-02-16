@@ -7,6 +7,7 @@ export type slateContentObject = {
 export class Post {
   private readonly _id: number;
   private readonly _title: slateContentObject[];
+  private readonly _url: string;
   private readonly _shortDescription: slateContentObject[];
   private readonly _metaDescription: slateContentObject[];
   private readonly _mainImageUrl: string;
@@ -21,6 +22,7 @@ export class Post {
   constructor(builder: PostBuilder) {
     this._id = builder.id();
     this._title = builder.title();
+    this._url = builder.url();
     this._shortDescription = builder.shortDescription();
     this._metaDescription = builder.metaDescription();
     this._mainImageUrl = builder.mainImageUrl();
@@ -37,6 +39,9 @@ export class Post {
   }
   get title() {
     return this._title;
+  }
+  get url() {
+    return this._url;
   }
   get metaDescription() {
     return this._metaDescription;
@@ -77,6 +82,7 @@ export class Post {
 class PostBuilder {
   private _id: number;
   private _title: slateContentObject[];
+  private _url: string;
   private _shortDescription: slateContentObject[];
   private _metaDescription: slateContentObject[];
   private _content: slateContentObject[];
@@ -101,6 +107,14 @@ class PostBuilder {
   title(title?: slateContentObject[]) {
     if (!title) return this._title;
     this._title = title;
+    return this;
+  }
+
+  url(): string;
+  url(url: string): this;
+  url(url?: string) {
+    if (!url) return this._url;
+    this._url = url;
     return this;
   }
 

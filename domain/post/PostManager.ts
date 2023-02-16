@@ -6,6 +6,7 @@ export class PostManager {
     const post = Post.builder()
       .id(postParsed.id)
       .title(postParsed.title)
+      .url(postParsed.url)
       .metaDescription(postParsed.metaDescription)
       .shortDescription(postParsed.shortDescription)
       .mainImageUrl(postParsed.mainImageUrl)
