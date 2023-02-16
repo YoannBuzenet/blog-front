@@ -5,11 +5,15 @@ import Link from "next/link";
 import { previewImageUrl } from "../../../services/imageUtils";
 import style from "./HomeSecondPost.module.scss";
 import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
+import { parseSlateFormatSimple } from "../../../services/react-slate";
 
 const HomeSecondPost = ({ post, index }) => {
+  const postTitleParsed = parseSlateFormatSimple(post.title);
+  const titleAsURI = encodeURI(postTitleParsed);
+
   return (
     <div className={style.container}>
-      <Link href={`/posts/${post.id}`} passHref>
+      <Link href={`/posts/${titleAsURI}`} passHref>
         <div>
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />

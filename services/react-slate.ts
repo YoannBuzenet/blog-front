@@ -11,7 +11,7 @@ const slateConstants = {
 };
 
 const serialize = (node) => {
-  if (Text.isText(node)) {
+  if (Text.isText(node) as any) {
     let string = escapeHtml(node.text);
     if (node.bold) {
       string = `<strong>${string}</strong>`;
@@ -100,9 +100,8 @@ const formatSimple = (text) => {
 };
 
 const parseSlateFormatSimple = (slateFormatSimple) => {
-
-  if(typeof slateFormatSimple === "string"){
-    return slateFormatSimple
+  if (typeof slateFormatSimple === "string") {
+    return slateFormatSimple;
   }
 
   const stringIncluded = slateFormatSimple?.[0]?.children?.[0]?.text;

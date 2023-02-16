@@ -17,7 +17,7 @@ export const getAllPosts = async (
   return parsedResp;
 };
 
-export const getOnePost = async (id) => {
+export const getOnePostById = async (id) => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/${id}`,
     getFetchConfig()
@@ -28,9 +28,17 @@ export const getOnePost = async (id) => {
   return respJSON;
 };
 
-export const getOnePostbyTitle = async (title, searchLike = false, language = "fr-FR") => {
+export const getOnePostbyTitle = async (title, searchLike = false, language) => {
+
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/title/${title}?like=${searchLike}`;
+  
+
+  if(language){
+    url+= `&language=${language}`
+  }
+
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/title/${title}?like=${searchLike}&language=${language}`,
+    url,
     getFetchConfig()
   );
 

@@ -1,5 +1,6 @@
 ### next steps short term
 
+- manage/post : les titles sont sauvegardés deux fois ? Une fois pour les afficher, une fois avec des tirets pour les requeter plus proprement
 - responsive navbar
 
 ### features manquantes

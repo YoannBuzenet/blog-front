@@ -1,5 +1,5 @@
 import DisplayHTML from "../../../components/generic/wysiwyg/DisplayHTML";
-import { getOnePost } from "../../../services/api/post";
+import { getOnePost, getOnePostbyTitle } from "../../../services/api/post";
 import { JSONParseAllProps } from "../../../services/utils";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../../domain/post/Post";
@@ -15,18 +15,16 @@ import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../domain/post/PostManager";
 
 export default async function OnePost({ params }) {
-  const { pid } = params;
-  const idPost = pid[0];
+  const { postTitle } = params;
+  const postTitlePost = postTitle[0];
 
-  const jsonPost = await getOnePost(idPost);
+  const jsonPost = await getOnePostbyTitle(postTitlePost);
   const postParsed = JSONParseAllProps(jsonPost);
 
   const post = PostManager.fromJSONToDomain(postParsed);
 
   const answers = await getAllAnswersForPost(post.id);
   const sortedAnswers = AnswerManager.sortAnswers(answers);
-
-  // console.log("sortedAnswers", sortedAnswers);
 
   // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 

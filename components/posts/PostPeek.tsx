@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { previewImageUrl } from "../../services/imageUtils";
 import { Post } from "../../domain/post/Post";
+import { parseSlateFormatSimple } from "../../services/react-slate";
 
 const PostPeek = ({ post }) => {
   const postDomain = Post.builder()
@@ -15,9 +16,12 @@ const PostPeek = ({ post }) => {
     .shortDescription(post.shortDescription)
     .build();
 
+  const postTitleParsed = parseSlateFormatSimple(postDomain.title);
+  const titleAsURI = encodeURI(postTitleParsed);
+
   return (
     <Link
-      href={`/posts/${postDomain.id}`}
+      href={`/posts/${titleAsURI}`}
       passHref
       className={style.postContainer}
     >
