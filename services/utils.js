@@ -126,6 +126,12 @@ function debounce(func, wait, immediate) {
   }
 }
 
+const createURLFromString = (string) => {
+  return string.replace(/\s+/g, '-').toLowerCase();
+  }
+  
+
+
 
 
 module.exports = {
@@ -134,5 +140,6 @@ module.exports = {
   capitalizeFirstLetter,
   isObjectEmpty,
   transformValueToReactSelectValue,
-  debounce
+  debounce,
+  createURLFromString
 };

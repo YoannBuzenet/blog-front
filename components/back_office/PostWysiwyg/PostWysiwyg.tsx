@@ -18,7 +18,7 @@ import { arrayLangsInApp } from "../../../i18n/allLang";
 import SiblingSelector from "../SiblingSelector/SiblingSelector";
 import Select from "react-select";
 import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
-import { PageState } from "../ManageStateContainer/types";
+import { PageState, ReactSlateElement } from "../ManageStateContainer/types";
 import { Dispatch, SetStateAction } from "react";
 import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
 
@@ -57,6 +57,14 @@ const PostWysiwyg = ({
     });
   };
 
+  const handleChangePageTitle = (value: ReactSlateElement[]) => {
+    setHasStateChanged(true);
+    dispatch({
+      type: "updateFieldTitle",
+      value,
+    });
+  };
+
   const handleChangeLanguage = (value) => {
     setHasStateChanged(true);
     dispatch({
@@ -91,7 +99,7 @@ const PostWysiwyg = ({
             <h2 className="h2">Titre</h2>
             <SimpleField
               value={pageState.title}
-              setValue={handleChangePage}
+              setValue={handleChangePageTitle}
               title="Le titre de l'article"
               field="title"
               showError={showError}

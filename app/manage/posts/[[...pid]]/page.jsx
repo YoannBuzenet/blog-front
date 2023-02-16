@@ -1,6 +1,6 @@
 import { JSONParseAllProps } from "../../../../services/utils";
 import { createBlankPage } from "../../../../components/generic/wysiwyg/utils";
-import { getOnePost } from "../../../../services/api/post";
+import { getOnePostById } from "../../../../services/api/post";
 import BackOfficeLayout from "../../../../components/back_office/layouts/BackOfficeLayout";
 import ManageStateContainer from "../../../../components/back_office/ManageStateContainer/ManageStateContainer";
 
@@ -15,7 +15,7 @@ export default async function PostPage({ params }) {
     page = createBlankPage();
   } else {
     try {
-      const jsonPage = await getOnePost(pid);
+      const jsonPage = await getOnePostById(pid);
       page = JSONParseAllProps(jsonPage);
     } catch (e) {
       console.log("Error while loading the post :" + e);

@@ -23,6 +23,7 @@ export type PageState = {
   metaDescription: ReactSlateElement[];
   shortDescription: ReactSlateElement[];
   title: ReactSlateElement[];
+  url: string;
   PostSiblings?: [
     {
       PostId: number;

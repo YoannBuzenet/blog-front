@@ -1,7 +1,9 @@
 import { useReducer } from "react";
+import { parseSlateFormatSimple } from "../../../services/react-slate";
+import { createURLFromString } from "../../../services/utils";
 import { AppUsedLanguage, ReactSelectObject } from "../../../types/types";
 import { ReactSelectSibling } from "../SiblingSelector/SiblingSelector";
-import { PageState } from "./types";
+import { PageState, ReactSlateElement } from "./types";
 
 export type PageStateActions =
   | { type: "addNewSiblingReplaceEmpty"; indexToReplace: number; newSibling }
@@ -14,6 +16,7 @@ export type PageStateActions =
     }
   | { type: "deleteSibling"; index: number }
   | { type: "updateField"; field: string; value: string | boolean }
+  | { type: "updateFieldTitle"; value: ReactSlateElement[] }
   | { type: "updateLanguage"; value: ReactSelectObject }
   | { type: "addEmptySibling" }
   | { type: "setCompletePageState"; value: PageState };
@@ -27,6 +30,14 @@ export function pageStateReducer(
       return {
         ...pageState,
         [action.field]: action.value,
+      };
+    case "updateFieldTitle":
+      const titleAsString = parseSlateFormatSimple(action.value);
+      const titleAsURL = createURLFromString(titleAsString);
+      return {
+        ...pageState,
+        title: action.value,
+        url: titleAsURL,
       };
 
     case "updateLanguage":
