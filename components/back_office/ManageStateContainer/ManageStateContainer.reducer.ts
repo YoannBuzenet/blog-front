@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
-import { createURLFromString } from "../../../services/utils";
+import { slugify } from "../../../services/utils";
 import { AppUsedLanguage, ReactSelectObject } from "../../../types/types";
 import { ReactSelectSibling } from "../SiblingSelector/SiblingSelector";
 import { PageState, ReactSlateElement } from "./types";
@@ -33,7 +33,7 @@ export function pageStateReducer(
       };
     case "updateFieldTitle":
       const titleAsString = parseSlateFormatSimple(action.value);
-      const titleAsURL = createURLFromString(titleAsString);
+      const titleAsURL = slugify(titleAsString);
       return {
         ...pageState,
         title: action.value,

@@ -6,8 +6,14 @@ import { previewImageUrl } from "../../../services/imageUtils";
 import style from "./HomeSecondPost.module.scss";
 import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
+import { Post } from "../../../domain/post/Post";
 
-const HomeSecondPost = ({ post, index }) => {
+type HomeSecondPostProps = {
+  post: Post;
+  index?: number;
+};
+
+const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
   return (
     <div className={style.container}>
       <Link href={`/posts/${post.url}`} passHref>

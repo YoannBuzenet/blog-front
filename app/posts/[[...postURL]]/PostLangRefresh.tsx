@@ -2,7 +2,6 @@
 
 import { useContext, useEffect } from "react";
 import AppCurrentLangContext from "../../../contexts/appCurrentLang";
-import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { PostManager } from "../../../domain/post/PostManager";

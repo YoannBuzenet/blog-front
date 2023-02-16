@@ -1,5 +1,6 @@
 import escapeHtml from "escape-html";
 import { Text } from "slate";
+import { ReactSlateElement } from "../components/back_office/ManageStateContainer/types";
 
 const slateConstants = {
   paragraph: "paragraph",
@@ -99,7 +100,9 @@ const formatSimple = (text) => {
   return `[${createBlock({ type: "paragraph", children: text })}]`;
 };
 
-const parseSlateFormatSimple = (slateFormatSimple) => {
+const parseSlateFormatSimple = (
+  slateFormatSimple: ReactSlateElement[] | string
+): string => {
   if (typeof slateFormatSimple === "string") {
     return slateFormatSimple;
   }
