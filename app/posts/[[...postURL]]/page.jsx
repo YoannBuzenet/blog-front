@@ -1,5 +1,9 @@
 import DisplayHTML from "../../../components/generic/wysiwyg/DisplayHTML";
-import { getOnePost, getOnePostbyTitle } from "../../../services/api/post";
+import {
+  getOnePost,
+  getOnePostbyTitle,
+  getOnePostbyURL,
+} from "../../../services/api/post";
 import { JSONParseAllProps } from "../../../services/utils";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../../domain/post/Post";
@@ -15,10 +19,10 @@ import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../domain/post/PostManager";
 
 export default async function OnePost({ params }) {
-  const { postTitle } = params;
-  const postTitlePost = postTitle[0];
+  const { postURL } = params;
+  const postURLPost = postURL[0];
 
-  const jsonPost = await getOnePostbyTitle(postTitlePost);
+  const jsonPost = await getOnePostbyURL(postURLPost);
   const postParsed = JSONParseAllProps(jsonPost);
 
   const post = PostManager.fromJSONToDomain(postParsed);

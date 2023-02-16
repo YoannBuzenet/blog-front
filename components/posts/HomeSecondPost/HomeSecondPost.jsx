@@ -8,12 +8,9 @@ import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
 import { parseSlateFormatSimple } from "../../../services/react-slate";
 
 const HomeSecondPost = ({ post, index }) => {
-  const postTitleParsed = parseSlateFormatSimple(post.title);
-  const titleAsURI = encodeURI(postTitleParsed);
-
   return (
     <div className={style.container}>
-      <Link href={`/posts/${titleAsURI}`} passHref>
+      <Link href={`/posts/${post.url}`} passHref>
         <div>
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />

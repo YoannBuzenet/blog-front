@@ -10,18 +10,16 @@ import { parseSlateFormatSimple } from "../../services/react-slate";
 const PostPeek = ({ post }) => {
   const postDomain = Post.builder()
     .id(post.id)
+    .url(post.url)
     .mainImageUrl(post.mainImageUrl)
     .title(post.title)
     .createdAt(post.createdAt)
     .shortDescription(post.shortDescription)
     .build();
 
-  const postTitleParsed = parseSlateFormatSimple(postDomain.title);
-  const titleAsURI = encodeURI(postTitleParsed);
-
   return (
     <Link
-      href={`/posts/${titleAsURI}`}
+      href={`/posts/${postDomain.url}`}
       passHref
       className={style.postContainer}
     >

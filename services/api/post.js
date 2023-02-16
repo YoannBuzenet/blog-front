@@ -47,6 +47,18 @@ export const getOnePostbyTitle = async (title, searchLike = false, language) => 
   return respJSON;
 };
 
+export const getOnePostbyURL = async (url) => {
+  
+  const resp = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/url/${url}`,
+    getFetchConfig()
+  );
+
+  const respJSON = await resp.json();
+
+  return respJSON;
+};
+
 export const savePost = async (post) => {
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts`,
