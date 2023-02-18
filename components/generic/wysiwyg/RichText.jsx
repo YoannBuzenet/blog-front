@@ -23,6 +23,7 @@ import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
 import { useImageManager } from "react-image-manager";
+import ImageBlock from "./ImageBlock";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -43,6 +44,7 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
     setMinWidthImageUpload,
     setNewCropAspectRatio,
   } = useImageManager();
+  console.log("editor", editor);
 
   const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
@@ -222,14 +224,9 @@ const Element = ({ attributes, children, element }) => {
       return <ol {...attributes}>{children}</ol>;
     case "image":
       return (
-        <>
-          <div contentEditable={false} style={{ textAlign: "center" }}>
-            {/* eslint-disable */}
-            <img {...attributes} src={element.src} width="500px" />
-            {/* eslint-enable */}
-          </div>
-          <div className="captionImage">{children}</div>
-        </>
+        <ImageBlock attributes={attributes} element={element}>
+          {children}
+        </ImageBlock>
       );
     default:
       return <p {...attributes}>{children}</p>;

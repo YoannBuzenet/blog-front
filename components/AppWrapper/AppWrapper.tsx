@@ -22,7 +22,7 @@ const AppWrapper = ({
         cropAspectRatio={2}
         urlUpload={`${process.env.NEXT_PUBLIC_API_URL}/api/entities/images`}
         minWidthImageUploadInitial={700}
-        enabledModes={["gallery", "upload"]}
+        enabledModes={["upload", "gallery"]}
         imageFields={[
           {
             type: "input",
@@ -37,11 +37,11 @@ const AppWrapper = ({
             type: "dropdown",
             name: "language",
             keys: [
-              { label: "e", value: "1" },
-              { label: "a", value: "2" },
+              { label: "en-US", value: "en-US" },
+              { label: "fr-FR", value: "fr-FR" },
             ],
-            defaultValue: "2",
             isRequired: true,
+            defaultValue: { label: "en-US", value: "en-US" },
           },
         ]}
         onSuccessUpload={() => {

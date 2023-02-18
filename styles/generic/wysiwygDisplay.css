@@ -35,8 +35,7 @@ h1 .wysiwygDisplay p {
 }
 
 .imageDisplay img {
-  max-width: 600px;
-  max-height: 800px;
+  width: 100%
 }
 
 /* On screens that are 768px or less*/
