@@ -1,5 +1,6 @@
 import { Providers } from "./providers";
 import { headers } from "next/headers";
+import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -15,6 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-test="test">
       <body>
+        <ResponsiveMenuContainer />
+
         <Providers langHeaders={mainHeader}>{children}</Providers>
       </body>
     </html>

@@ -151,3 +151,16 @@ div.activeMenu {
 .h3 {
   font-size: 1.8rem;
 }
+
+div.hideWhenDesktop {
+  @media (min-width: 968px) {
+          display:none;
+      }
+
+}
+div.hideWhenTablet {
+  @media (max-width: 968px) {
+          display:none;
+      }
+
+}

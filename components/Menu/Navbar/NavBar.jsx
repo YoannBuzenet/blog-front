@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import AppLangChoice from "../../appSetLang/AppLangChoice";
 import React from "react";
 import LoginIcon from "../../../assets/svg/login/round.svg";
+import BurgerMenu from "../../../assets/svg/menu/baseline.svg";
 import { useTranslation } from "../../../i18n/hooks";
 import { useSession } from "next-auth/react";
 import isUserMenuDisplayedContext from "../../../contexts/userMenu";
@@ -33,14 +34,13 @@ const NavBar = () => {
   const { isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed } =
     useContext(ResponsiveMenuContext);
 
-  //   <button onClick={() => setIsResponsiveMenuDisplayed(true)} id="ttt">
-  //   ddddd
-  // </button>
+  console.log("isResponsiveMenuDisplayed", isResponsiveMenuDisplayed);
+  console.log("setIsResponsiveMenuDisplayed", setIsResponsiveMenuDisplayed);
 
   return (
     <div className={style.navBarContainer}>
       <div className={`${style.navBarDisplay} container`}>
-        <div>
+        <div className={style.leftPart}>
           <Link href="/" passHref>
             <p className={`${style.homeButton} clickable`}>
               <FormattedMessage id="navbar.button.home" defaultMessage="Home" />
@@ -48,28 +48,40 @@ const NavBar = () => {
           </Link>
         </div>
         <div className={style.rightPart}>
-          {!isUserAuthenTicated && (
-            <>
-              <Link href="/login" passHref>
-                <LoginIcon
-                  className="svg"
-                  title={t("navbar.button.login", "Login")}
-                />
-              </Link>
-            </>
-          )}
-          {isUserAuthenTicated && (
-            <div className={`clickable noselect`}>
-              <div
-                className={style.userMenuAccess}
-                onClick={handleDisplayUserMenu}
-              >
-                <p>{data?.user?.firstName}</p>
+          <div className={`${style.rightPartDesktop} hideWhenTablet`}>
+            {!isUserAuthenTicated && (
+              <div>
+                <Link href="/login" passHref>
+                  <LoginIcon
+                    className="svg"
+                    title={t("navbar.button.login", "Login")}
+                  />
+                </Link>
               </div>
-              {isUserMenuDisplayed && <UserMenu />}
-            </div>
-          )}
-          <AppLangChoice top="-6" marginLeft="20" />
+            )}
+            {isUserAuthenTicated && (
+              <div className={`clickable noselect`}>
+                <div
+                  className={style.userMenuAccess}
+                  onClick={handleDisplayUserMenu}
+                >
+                  <p>{data?.user?.firstName}</p>
+                </div>
+                {isUserMenuDisplayed && <UserMenu />}
+              </div>
+            )}
+            <AppLangChoice top="-6" marginLeft="20" />
+          </div>
+
+          <div className={`${style.burgerMenuContainer} hideWhenDesktop`}>
+            <BurgerMenu
+              title="Menu"
+              className={style.burgerMenuSvg}
+              onClick={() =>
+                setIsResponsiveMenuDisplayed(!isResponsiveMenuDisplayed)
+              }
+            />
+          </div>
         </div>
       </div>
     </div>
