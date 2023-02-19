@@ -16,7 +16,7 @@ const ResponsiveMenuContainer = () => {
         nodeRef={nodeRef}
         in={isResponsiveMenuDisplayed}
         timeout={200}
-        classNames="menuResponsiveModern"
+        classNames="responsiveMenuTransition"
         unmountOnExit
       >
         <ResponsiveMenu ref={nodeRef} />
