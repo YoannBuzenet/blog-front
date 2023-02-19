@@ -4,6 +4,7 @@ import { useContext, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import ResponsiveMenu from "./ResponsiveMenu";
 import ResponsiveMenuContext from "../../../contexts/responsiveMenu";
+import style from "./ResponsiveMenuContainer.module.scss";
 
 const ResponsiveMenuContainer = () => {
   const nodeRef = useRef(null);
@@ -11,7 +12,7 @@ const ResponsiveMenuContainer = () => {
     useContext(ResponsiveMenuContext);
 
   return (
-    <>
+    <div className={style.container}>
       <CSSTransition
         nodeRef={nodeRef}
         in={isResponsiveMenuDisplayed}
@@ -21,12 +22,10 @@ const ResponsiveMenuContainer = () => {
       >
         <ResponsiveMenu ref={nodeRef} />
       </CSSTransition>
-      <div style={{ marginTop: "80px" }}>
-        <button onClick={() => setIsResponsiveMenuDisplayed(true)} id="ttt">
-          ddddd
-        </button>
-      </div>
-    </>
+      <button onClick={() => setIsResponsiveMenuDisplayed(true)} id="ttt">
+        ddddd
+      </button>
+    </div>
   );
 };
 
