@@ -2,7 +2,9 @@
   --border-radius: 5px;
   --height-nav-bar: 50px;
   --general-container-width: 80%;
-  --page-container-width: 60%;
+  --home-container-width: 60%;
+  --page-container-width: 35%;
+
 }
 
 html,
@@ -59,7 +61,7 @@ div.activeMenu {
 }
 
 .container {
-  max-width: var(--page-container-width);
+  max-width: var(--home-container-width);
   margin: auto;
 }
 
