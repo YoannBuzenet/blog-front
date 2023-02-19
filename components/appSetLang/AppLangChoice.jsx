@@ -4,7 +4,7 @@ import AreFlagsDisplayedContext from "../../contexts/areFlagsDisplayed";
 import transparentDivContext from "../../contexts/transparentDiv";
 import { arrayLangsInApp, langInApp } from "../../i18n/allLang";
 import { LANGUAGE_SETTINGS_LOCAL_STORAGE } from "../../i18n/consts";
-import styles from "../../styles/components/AppLangChoice.module.css";
+import styles from "./AppLangChoice.module.scss";
 
 const AppLangChoice = ({
   top = "3",

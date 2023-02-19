@@ -22,9 +22,6 @@ const ResponsiveMenuContainer = () => {
       >
         <ResponsiveMenu ref={nodeRef} />
       </CSSTransition>
-      <button onClick={() => setIsResponsiveMenuDisplayed(true)} id="ttt">
-        ddddd
-      </button>
     </div>
   );
 };

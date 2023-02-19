@@ -2,6 +2,7 @@
   --border-radius: 5px;
   --height-nav-bar: 50px;
   --general-container-width: 80%;
+  --70-container-width: 70%;
   --home-container-width: 60%;
   --managePage-container-width: 50%;
   --page-container-width: 35%;
@@ -39,6 +40,14 @@ div.activeMenu {
 .contentPageContainer {
   width: var(--page-container-width);
   margin: 0 auto;
+
+  @media screen and (max-width: 1500px) {
+    width: var(--70-container-width);
+   }
+
+  @media screen and (max-width: 1024px) {
+    width: var(--general-container-width);
+   }
 }
 
 .manageContentPageContainer {

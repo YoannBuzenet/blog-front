@@ -5,10 +5,20 @@ import ResponsiveMenuContext from "../../../contexts/responsiveMenu";
 import style from "./ResponsiveMenu.module.scss";
 import CloseMenu from "../../../assets/svg/close/outline.svg";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import LoginIcon from "../../../assets/svg/login/round.svg";
+import { useTranslation } from "../../../i18n/hooks";
+import AppLangChoice from "../../appSetLang/AppLangChoice";
+import UserMenu from "../Navbar/UserMenu";
 
 const ResponsiveMenu = forwardRef(({ props }, ref) => {
   const { isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed } =
     useContext(ResponsiveMenuContext);
+
+  const { data, status } = useSession();
+  const { t } = useTranslation();
+
+  const isUserAuthenTicated = status === "authenticated";
 
   return (
     <div ref={ref}>
@@ -21,13 +31,35 @@ const ResponsiveMenu = forwardRef(({ props }, ref) => {
               onClick={() => setIsResponsiveMenuDisplayed(false)}
             />
           </div>
-          <Link
-            href={"/"}
-            onClick={() => setIsResponsiveMenuDisplayed(false)}
-            className={style.link}
-          >
-            <span className={style.anchorTag}>{"d"}</span>
-          </Link>
+
+          <div className={style.menuLinkContainer}>
+            {!isUserAuthenTicated && (
+              <div>
+                <Link href="/login" passHref>
+                  <LoginIcon
+                    className="svg"
+                    title={t("navbar.button.login", "Login")}
+                  />
+                </Link>
+              </div>
+            )}
+            {isUserAuthenTicated && (
+              <div className={`clickable noselect`}>
+                <div
+                  className={style.userMenuAccess}
+                  onClick={handleDisplayUserMenu}
+                >
+                  <p>{data?.user?.firstName}</p>
+                </div>
+                {isUserMenuDisplayed && <UserMenu />}
+              </div>
+            )}
+            <div
+              style={{ position: "relative", width: "100%", height: "20px" }}
+            >
+              <AppLangChoice marginLeft="-75" />
+            </div>
+          </div>
         </div>
       )}
     </div>

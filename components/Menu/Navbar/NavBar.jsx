@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import isUserMenuDisplayedContext from "../../../contexts/userMenu";
 import isTransparentDisplayedContext from "../../../contexts/transparentDiv";
 import UserMenu from "./UserMenu";
+import ResponsiveMenuContext from "../../../contexts/responsiveMenu";
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -28,6 +29,13 @@ const NavBar = () => {
     setIsTransparentDivDisplayed(true);
     setIsUserMenuDisplayed(!isUserMenuDisplayed);
   };
+
+  const { isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed } =
+    useContext(ResponsiveMenuContext);
+
+  //   <button onClick={() => setIsResponsiveMenuDisplayed(true)} id="ttt">
+  //   ddddd
+  // </button>
 
   return (
     <div className={style.navBarContainer}>
