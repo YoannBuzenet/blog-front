@@ -1,5 +1,4 @@
 // import { useEffect, useState, useContext } from "react";
-import NavBar from "../../components/Menu/Navbar/NavBar";
 import { getAllImages } from "../../services/api/image";
 import style from "../../styles/pages/Login.module.css";
 // import appCurrentLangContext from "../../contexts/appCurrentLang";
@@ -25,7 +24,6 @@ export default async function LoginPage() {
 
   return (
     <>
-      <NavBar />
       <div className={style.container}>
         <div className={style.doubleDivContainer}>
           <div className={style.leftDiv}>

@@ -43,6 +43,9 @@ import { useSearchParams } from "next/navigation";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
+import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
+import NavBar from "../components/Menu/Navbar/NavBar";
+
 
 export function Providers({ langHeaders, children }) {
 
@@ -129,6 +132,8 @@ export function Providers({ langHeaders, children }) {
                   messages={appCurrentLang.translatedText}
                 >
                   {isTransparentDivDisplayed && <TransparentDiv />}
+                  <ResponsiveMenuContainer />
+                  <NavBar />
                   <AppWrapper
                     appCurrentLang={appCurrentLang}
                     setImagesGallerie={setImagesGallerie}

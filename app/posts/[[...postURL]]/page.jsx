@@ -7,7 +7,6 @@ import {
 import { JSONParseAllProps } from "../../../services/utils";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../../domain/post/Post";
-import NavBar from "../../../components/Menu/Navbar/NavBar";
 import style from "../../../styles/posts/PostPage.module.css";
 import Footer from "../../../components/Footer/Footer";
 import { previewImageUrl } from "../../../services/imageUtils";
@@ -35,7 +34,6 @@ export default async function OnePost({ params }) {
   return (
     <>
       <PostLangRefresh postParsed={postParsed} />
-      <NavBar />
       <div className="contentPageContainer belowNavbar">
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />
