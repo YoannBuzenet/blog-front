@@ -5,7 +5,7 @@ const previewImageUrl = (imageUrl) => {
   if (imageUrlCleaned && imageUrlCleaned.includes("http")) {
     return imageUrlCleaned;
   } else {
-    return `${process.env.NEXT_PUBLIC_API_URL}${parseSlateFormatSimple(
+    return `${process.env.NEXT_PUBLIC_API_URL}/${parseSlateFormatSimple(
       imageUrl
     )}`;
   }

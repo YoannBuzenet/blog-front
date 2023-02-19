@@ -3,6 +3,7 @@
   --height-nav-bar: 50px;
   --general-container-width: 80%;
   --home-container-width: 60%;
+  --managePage-container-width: 50%;
   --page-container-width: 35%;
 
 }
@@ -37,6 +38,11 @@ div.activeMenu {
 // Content in pages
 .contentPageContainer {
   width: var(--page-container-width);
+  margin: 0 auto;
+}
+
+.manageContentPageContainer {
+  width: var(--managePage-container-width);
   margin: 0 auto;
 }
 

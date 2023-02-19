@@ -24,7 +24,7 @@ const ManageStateContainer = ({ pid, isCreationInit, page }) => {
         isCreation={isCreation}
         setIsCreation={setIsCreation}
       >
-        <div className="contentPageContainer">
+        <div className="manageContentPageContainer">
           <PostWysiwyg
             page={page}
             isCreation={isCreation}
