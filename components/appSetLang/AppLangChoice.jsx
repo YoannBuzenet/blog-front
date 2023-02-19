@@ -4,6 +4,7 @@ import AreFlagsDisplayedContext from "../../contexts/areFlagsDisplayed";
 import transparentDivContext from "../../contexts/transparentDiv";
 import { arrayLangsInApp, langInApp } from "../../i18n/allLang";
 import { LANGUAGE_SETTINGS_LOCAL_STORAGE } from "../../i18n/consts";
+import LinkMenu from "../Menu/ResponsiveMenu/LinkMenu/LinkMenu";
 import styles from "./AppLangChoice.module.scss";
 
 const AppLangChoice = ({
@@ -87,10 +88,12 @@ const AppLangChoice = ({
                   key={index}
                   onClick={(event) => handleClick(event, lang)}
                 >
-                  <img
-                    src={"/pictures/flags/" + lang.picture + ".png"}
-                    alt={lang.picture + " flag"}
-                  />
+                  <LinkMenu>
+                    <img
+                      src={"/pictures/flags/" + lang.picture + ".png"}
+                      alt={lang.picture + " flag"}
+                    />
+                  </LinkMenu>
                 </div>
               ))}
             </div>

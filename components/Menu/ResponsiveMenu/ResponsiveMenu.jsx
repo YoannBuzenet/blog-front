@@ -10,6 +10,7 @@ import LoginIcon from "../../../assets/svg/login/round.svg";
 import { useTranslation } from "../../../i18n/hooks";
 import AppLangChoice from "../../appSetLang/AppLangChoice";
 import UserMenu from "../Navbar/UserMenu";
+import LinkMenu from "./LinkMenu/LinkMenu";
 
 const ResponsiveMenu = forwardRef(({ props }, ref) => {
   const { isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed } =
@@ -34,25 +35,29 @@ const ResponsiveMenu = forwardRef(({ props }, ref) => {
 
           <div className={style.menuLinkContainer}>
             {!isUserAuthenTicated && (
-              <div>
-                <Link href="/login" passHref>
-                  <LoginIcon
-                    className="svg"
-                    title={t("navbar.button.login", "Login")}
-                  />
-                </Link>
-              </div>
+              <LinkMenu>
+                <div>
+                  <Link href="/login" passHref>
+                    <LoginIcon
+                      className="svg"
+                      title={t("navbar.button.login", "Login")}
+                    />
+                  </Link>
+                </div>
+              </LinkMenu>
             )}
             {isUserAuthenTicated && (
-              <div className={`clickable noselect`}>
-                <div
-                  className={style.userMenuAccess}
-                  onClick={handleDisplayUserMenu}
-                >
-                  <p>{data?.user?.firstName}</p>
+              <LinkMenu>
+                <div className={`clickable noselect`}>
+                  <div
+                    className={style.userMenuAccess}
+                    onClick={handleDisplayUserMenu}
+                  >
+                    <p>{data?.user?.firstName}</p>
+                  </div>
+                  {isUserMenuDisplayed && <UserMenu />}
                 </div>
-                {isUserMenuDisplayed && <UserMenu />}
-              </div>
+              </LinkMenu>
             )}
             <div
               style={{ position: "relative", width: "100%", height: "20px" }}

@@ -2,5 +2,5 @@ import React from "react";
 
 export default React.createContext({
   isResponsiveMenuDisplayed: false,
-  setIsResponsiveUserMenuDisplayed: (value) => {},
+  setIsResponsiveMenuDisplayed: (value) => {},
 });
