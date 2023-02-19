@@ -7,7 +7,7 @@ import {
 import { JSONParseAllProps } from "../../../services/utils";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
 import { Post } from "../../../domain/post/Post";
-import NavBar from "../../../components/Navbar/NavBar";
+import NavBar from "../../../components/Menu/Navbar/NavBar";
 import style from "../../../styles/posts/PostPage.module.css";
 import Footer from "../../../components/Footer/Footer";
 import { previewImageUrl } from "../../../services/imageUtils";

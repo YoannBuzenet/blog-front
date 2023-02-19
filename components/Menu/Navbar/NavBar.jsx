@@ -1,15 +1,15 @@
 "use client";
 import { useContext } from "react";
 import Link from "next/link";
-import style from "../../styles/components/NavBar/NavBar.module.css";
+import style from "./NavBar.module.css";
 import { FormattedMessage } from "react-intl";
-import AppLangChoice from "../appSetLang/AppLangChoice";
+import AppLangChoice from "../../appSetLang/AppLangChoice";
 import React from "react";
-import LoginIcon from "../../assets/svg/login/round.svg";
-import { useTranslation } from "../../i18n/hooks";
+import LoginIcon from "../../../assets/svg/login/round.svg";
+import { useTranslation } from "../../../i18n/hooks";
 import { useSession } from "next-auth/react";
-import isUserMenuDisplayedContext from "../../contexts/userMenu";
-import isTransparentDisplayedContext from "../../contexts/transparentDiv";
+import isUserMenuDisplayedContext from "../../../contexts/userMenu";
+import isTransparentDisplayedContext from "../../../contexts/transparentDiv";
 import UserMenu from "./UserMenu";
 
 const NavBar = () => {

@@ -1,5 +1,5 @@
 // import { useEffect, useState, useContext } from "react";
-import NavBar from "../../components/Navbar/NavBar";
+import NavBar from "../../components/Menu/Navbar/NavBar";
 import { getAllImages } from "../../services/api/image";
 import style from "../../styles/pages/Login.module.css";
 // import appCurrentLangContext from "../../contexts/appCurrentLang";

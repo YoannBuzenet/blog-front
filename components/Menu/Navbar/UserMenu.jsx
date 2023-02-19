@@ -1,9 +1,9 @@
-import style from "../../styles/components/NavBar/UserMenu.module.css";
+import style from "./UserMenu.module.css";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useContext } from "react";
-import isUserMenuDisplayedContext from "../../contexts/userMenu";
-import transparentDivContext from "../../contexts/transparentDiv";
+import isUserMenuDisplayedContext from "../../../contexts/userMenu";
+import transparentDivContext from "../../../contexts/transparentDiv";
 import { FormattedMessage } from "react-intl";
 
 const UserMenu = () => {

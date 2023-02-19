@@ -36,6 +36,7 @@ import AppCurrentLangContext from "../contexts/appCurrentLang";
 import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
+import ResponsiveMenuContext from "../contexts/responsiveMenu";
 import { checkLangLocaleStorage } from "../services/i18n";
 
 import { useSearchParams } from "next/navigation";
@@ -50,7 +51,10 @@ export function Providers({ langHeaders, children }) {
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
+  const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] = useState(false);
+
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
+  
 
   // App Language initialization
   // Comparing lang in header VS lang in localStorage
@@ -105,11 +109,16 @@ export function Providers({ langHeaders, children }) {
     isUserMenuDisplayed,
     setIsUserMenuDisplayed,
   };
+  const contextResponsiveMenuMenuDisplayed = {
+    isResponsiveMenuDisplayed,
+    setIsResponsiveMenuDisplayed,
+  };
 
   return (
     <ThemeProvider theme={customMUITheme}>
       <SessionProvider>
         <UserMenuContext.Provider value={contextUserMenuDisplayed}>
+         <ResponsiveMenuContext.Provider value={contextResponsiveMenuMenuDisplayed}>
           <AppCurrentLangContext.Provider value={contextCurrentLang}>
             <AreLangFlagsDisplayedContext.Provider
               value={contextFlagsDisplayed}
@@ -135,7 +144,8 @@ export function Providers({ langHeaders, children }) {
                 </IntlProvider>
               </TransparentDivContext.Provider>
             </AreLangFlagsDisplayedContext.Provider>
-          </AppCurrentLangContext.Provider>
+           </AppCurrentLangContext.Provider>
+          </ResponsiveMenuContext.Provider>
         </UserMenuContext.Provider>
       </SessionProvider>
     </ThemeProvider>

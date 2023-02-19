@@ -1,5 +1,5 @@
 @import "/styles/generic/globals.scss";
-@value borderGlobal from "../../generic/genericStyle.module.css";
+@value borderGlobal from "../../../styles/generic/genericStyle.module.css";
 
 .navBarContainer {
   position: fixed;
@@ -22,7 +22,7 @@
   margin: auto;
 }
 
-.navBarDisplay > div {
+.navBarDisplay>div {
   width: 50%;
   display: flex;
   align-items: center;
