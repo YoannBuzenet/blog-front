@@ -26,9 +26,14 @@ const AnswerPost = ({ rawAnswer, level = 0, idPost }: AnswerPostProps) => {
         <AnswerWYSIWYG idPost={idPost} rawAnswer={rawAnswer} />
       </div>
       {Array.isArray(rawAnswer.childrenAnswers) &&
-        rawAnswer.childrenAnswers.map((answer) => {
+        rawAnswer.childrenAnswers.map((answer, index) => {
           return (
-            <AnswerPost rawAnswer={answer} level={level + 1} idPost={idPost} />
+            <AnswerPost
+              rawAnswer={answer}
+              level={level + 1}
+              idPost={idPost}
+              key={index}
+            />
           );
         })}
     </div>
