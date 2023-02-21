@@ -15,7 +15,6 @@ export default function RootLayout({
   return (
     <html lang="en" data-test="test">
       <body>
-        <p>okkk</p>
         <Providers langHeaders={mainHeader}>{children}</Providers>
       </body>
     </html>

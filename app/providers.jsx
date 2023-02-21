@@ -21,9 +21,7 @@ import { SessionProvider } from "next-auth/react";
 import "../styles/generic/normalize.css";
 
 import { IntlProvider } from "react-intl";
-import {
-  langInApp,
-} from "../i18n/allLang";
+import { langInApp } from "../i18n/allLang";
 
 import "react-image-manager/dist/style.css";
 import "react-image-manager/dist/pagination.css";
@@ -39,31 +37,34 @@ import TransparentDivContext from "../contexts/transparentDiv";
 import ResponsiveMenuContext from "../contexts/responsiveMenu";
 import { checkLangLocaleStorage } from "../services/i18n";
 
-import { useSearchParams } from "next/navigation";
 import { getAllTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
 import NavBar from "../components/Menu/Navbar/NavBar";
 
-
 export function Providers({ langHeaders, children }) {
-
   const [imagesGallerie, setImagesGallerie] = useState([]);
   const [tags, setTags] = useState([]);
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
-  const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] = useState(false);
+  const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] =
+    useState(false);
 
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
-  
 
-  // App Language initialization
-  // Comparing lang in header VS lang in localStorage
-  let appInitialLocale = checkLangLocaleStorage(langInApp, langHeaders);
+  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[langHeaders]);
 
-  const [appCurrentLang, setAppCurrentLang] = useState(langInApp[appInitialLocale.locale]);
+  useEffect(() => {
+    // App Language initialization
+    // Comparing lang in header VS lang in localStorage
+    let appInitialLocale = checkLangLocaleStorage(langInApp, langHeaders);
+
+    if (appInitialLocale.locale !== langHeaders) {
+      setAppCurrentLang(langInApp[appInitialLocale.locale]);
+    }
+  }, []);
 
   useEffect(() => {
     // fetch images for gallery
@@ -73,16 +74,17 @@ export function Providers({ langHeaders, children }) {
 
     // fetch tags for gallery
     getAllTags(appCurrentLang.locale).then((resp) => {
-
       // Setting right format to match react-select on react-image-manager
-      const tags = resp.map(tag => {return {
-        createdAt : tag.createdAt,
-        id : tag.id,
-        value : tag.id,
-        language : tag.language,
-        label : tag.name,
-        updatedAt : tag.updatedAt,
-      }})
+      const tags = resp.map((tag) => {
+        return {
+          createdAt: tag.createdAt,
+          id: tag.id,
+          value: tag.id,
+          language: tag.language,
+          label: tag.name,
+          updatedAt: tag.updatedAt,
+        };
+      });
 
       setTags(tags);
     });
@@ -121,35 +123,37 @@ export function Providers({ langHeaders, children }) {
     <ThemeProvider theme={customMUITheme}>
       <SessionProvider>
         <UserMenuContext.Provider value={contextUserMenuDisplayed}>
-         <ResponsiveMenuContext.Provider value={contextResponsiveMenuMenuDisplayed}>
-          <AppCurrentLangContext.Provider value={contextCurrentLang}>
-            <AreLangFlagsDisplayedContext.Provider
-              value={contextFlagsDisplayed}
-            >
-              <TransparentDivContext.Provider value={contextTransparentDiv}>
-                <IntlProvider
-                  locale={appCurrentLang.locale}
-                  messages={appCurrentLang.translatedText}
-                >
-                  {isTransparentDivDisplayed && <TransparentDiv />}
-                  <ResponsiveMenuContainer />
-                  <NavBar />
-                  <AppWrapper
-                    appCurrentLang={appCurrentLang}
-                    setImagesGallerie={setImagesGallerie}
-                    imagesGallerie={imagesGallerie}
-                    tags={tags}
+          <ResponsiveMenuContext.Provider
+            value={contextResponsiveMenuMenuDisplayed}
+          >
+            <AppCurrentLangContext.Provider value={contextCurrentLang}>
+              <AreLangFlagsDisplayedContext.Provider
+                value={contextFlagsDisplayed}
+              >
+                <TransparentDivContext.Provider value={contextTransparentDiv}>
+                  <IntlProvider
+                    locale={appCurrentLang?.locale}
+                    messages={appCurrentLang?.translatedText}
                   >
-                    {children}
-                  </AppWrapper>
-                  <ToastContainer
-                    position={toast.POSITION.TOP_CENTER}
-                    autoClose={10000}
-                  />
-                </IntlProvider>
-              </TransparentDivContext.Provider>
-            </AreLangFlagsDisplayedContext.Provider>
-           </AppCurrentLangContext.Provider>
+                    {isTransparentDivDisplayed && <TransparentDiv />}
+                    <ResponsiveMenuContainer />
+                    <NavBar />
+                    <AppWrapper
+                      appCurrentLang={appCurrentLang}
+                      setImagesGallerie={setImagesGallerie}
+                      imagesGallerie={imagesGallerie}
+                      tags={tags}
+                    >
+                      {children}
+                    </AppWrapper>
+                    <ToastContainer
+                      position={toast.POSITION.TOP_CENTER}
+                      autoClose={10000}
+                    />
+                  </IntlProvider>
+                </TransparentDivContext.Provider>
+              </AreLangFlagsDisplayedContext.Provider>
+            </AppCurrentLangContext.Provider>
           </ResponsiveMenuContext.Provider>
         </UserMenuContext.Provider>
       </SessionProvider>

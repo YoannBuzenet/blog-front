@@ -34,9 +34,6 @@ const NavBar = () => {
   const { isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed } =
     useContext(ResponsiveMenuContext);
 
-  console.log("isResponsiveMenuDisplayed", isResponsiveMenuDisplayed);
-  console.log("setIsResponsiveMenuDisplayed", setIsResponsiveMenuDisplayed);
-
   return (
     <div className={style.navBarContainer}>
       <div className={`${style.navBarDisplay} container`}>
