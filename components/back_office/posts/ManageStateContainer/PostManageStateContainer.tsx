@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import SubLayoutRight from "../layouts/SubLayoutRight";
-import SubLayoutContentPage from "../pages/contentPage/SubLayoutContentPage";
+import SubLayoutRight from "../../layouts/SubLayoutRight";
+import SubLayoutContentPage from "../../pages/contentPage/SubLayoutContentPage";
 import PostWysiwyg from "../PostWysiwyg/PostWysiwyg";
-import { usePageState } from "./ManageStateContainer.reducer";
+import { usePageState } from "./PostManageStateContainer.reducer";
 
 // Ce composant sert à dispatch le state de gestion de la page entre le menu de droite et la page principale
 const ManageStateContainer = ({ pid, isCreationInit, page }) => {

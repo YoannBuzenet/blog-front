@@ -14,7 +14,7 @@ import {
   computeSelectedLang,
 } from "./SibilingSelector.func";
 import { PageState } from "../posts/ManageStateContainer/types";
-import { PageStateActions } from "../posts/ManageStateContainer/ManageStateContainer.reducer";
+import { PageStateActions } from "../posts/ManageStateContainer/PostManageStateContainer.reducer";
 
 export type NewSibling = {
   isNewSibling: boolean;

@@ -2,7 +2,7 @@
 
 import SimpleField from "../../pages/contentPage/SimpleField";
 import RichTextExample from "../../../generic/wysiwyg/RichText";
-import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
+import MessageIcon from "../../../../assets/svg/add_a_photo/round.svg";
 import { previewImageUrl } from "../../../../services/imageUtils";
 import {
   capitalizeFirstLetter,
@@ -20,7 +20,7 @@ import Select from "react-select";
 import GenericButton from "../../../generic/Buttons/GenericButton/GenericButton";
 import { PageState, ReactSlateElement } from "../ManageStateContainer/types";
 import { Dispatch, SetStateAction } from "react";
-import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
+import { PageStateActions } from "../ManageStateContainer/PostManageStateContainer.reducer";
 
 type PostWysiwygProps = {
   page: any;

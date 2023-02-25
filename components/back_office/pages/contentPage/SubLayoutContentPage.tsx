@@ -14,7 +14,7 @@ import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
 import { calculateLengthOfSimpleField } from "../../../../services/react-slate";
 import { useSession } from "next-auth/react";
 import { PageState } from "../../posts/ManageStateContainer/types";
-import { PageStateActions } from "../../posts/ManageStateContainer/ManageStateContainer.reducer";
+import { PageStateActions } from "../../posts/ManageStateContainer/PostManageStateContainer.reducer";
 
 type SubLayoutContentPageProps = {
   hasStateChanged: boolean;
