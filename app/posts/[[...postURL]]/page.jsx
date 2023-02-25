@@ -15,7 +15,7 @@ import AnswerPost from "../../../components/posts/AnswerPost/AnswerPost";
 import { AnswerManager } from "../../../domain/answer/AnswerManager";
 import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../domain/post/PostManager";
-import Tag from "../../../components/tag/Tag";
+import TagInPost from "../../../components/posts/Tag/TagInPost/TagInPost";
 
 export default async function OnePost({ params }) {
   const { postURL } = params;
@@ -45,7 +45,7 @@ export default async function OnePost({ params }) {
         <p>{format(new Date(post.createdAt), "dd/MM/yyyy")}</p>
         <div className={style.tagContainer}>
           {Array.isArray(postParsed.Tags) &&
-            postParsed.Tags.map((rawTag) => <Tag tagRaw={rawTag} />)}
+            postParsed.Tags.map((rawTag) => <TagInPost tagRaw={rawTag} />)}
         </div>
         <div className={style.imageContainer}>
           <img src={previewImageUrl(post?.mainImageUrl)} />

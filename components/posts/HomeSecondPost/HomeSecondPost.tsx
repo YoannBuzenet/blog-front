@@ -5,8 +5,8 @@ import Link from "next/link";
 import { previewImageUrl } from "../../../services/imageUtils";
 import style from "./HomeSecondPost.module.scss";
 import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
-import { parseSlateFormatSimple } from "../../../services/react-slate";
 import { Post } from "../../../domain/post/Post";
+import TagHomePage from "../Tag/TagHomePage/TagHomePage";
 
 type HomeSecondPostProps = {
   post: Post;
@@ -27,6 +27,10 @@ const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
           <p className={style.articleDate}>
             {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
           </p>
+        </div>
+        <div className={style.tagContainer}>
+          {Array.isArray(post.tags) &&
+            post.tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
         </div>
       </Link>
     </div>

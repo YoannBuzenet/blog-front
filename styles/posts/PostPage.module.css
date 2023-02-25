@@ -12,4 +12,7 @@
   margin-top: 3rem;
 }
 
-.tagContainer {}
+.tagContainer {
+  display: flex;
+  justify-content: flex-start;
+}

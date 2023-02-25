@@ -5,7 +5,7 @@ import Link from "next/link";
 import { previewImageUrl } from "../../../services/imageUtils";
 import style from "./HomeMainPost.module.scss";
 import DisplayHTML from "../../generic/wysiwyg/DisplayHTML";
-import { parseSlateFormatSimple } from "../../../services/react-slate";
+import TagHomePage from "../Tag/TagHomePage/TagHomePage";
 
 const HomeMainPost = ({ post }) => {
   return (
@@ -21,6 +21,10 @@ const HomeMainPost = ({ post }) => {
           <p className={style.articleDate}>
             {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
           </p>
+        </div>
+        <div className={style.tagContainer}>
+          {Array.isArray(post.Tags) &&
+            post.Tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
         </div>
       </Link>
     </div>
