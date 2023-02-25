@@ -24,12 +24,16 @@ export default async function OnePost({ params }) {
   const jsonPost = await getOnePostbyURL(postURLPost);
   const postParsed = JSONParseAllProps(jsonPost);
 
+  console.log("postParsed", postParsed);
+
   const post = PostManager.fromJSONToDomain(postParsed);
 
   const answers = await getAllAnswersForPost(post.id);
   const sortedAnswers = AnswerManager.sortAnswers(answers);
 
   // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
+
+  console.log("post", post);
 
   return (
     <>

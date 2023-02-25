@@ -1,3 +1,5 @@
+import { Tag } from "../tag/Tag";
+
 export type slateContentObject = {
   type?: string;
   align?: string;
@@ -15,6 +17,7 @@ export class Post {
   private readonly _content: slateContentObject[];
   private readonly _userId: number;
   private readonly _sibling: Post[];
+  private readonly _tags: Tag[];
   private readonly _isScoop: boolean;
   private readonly _createdAt: string;
   private readonly _updatedAt: string;
@@ -29,6 +32,7 @@ export class Post {
     this._language = builder.language();
     this._content = builder.content();
     this._sibling = builder.sibling();
+    this._tags = builder.tags();
     this._userId = builder.userId();
     this._createdAt = builder.createdAt();
     this._updatedAt = builder.updatedAt();
@@ -67,6 +71,9 @@ export class Post {
   get sibling() {
     return this._sibling;
   }
+  get tags() {
+    return this._tags;
+  }
   get createdAt() {
     return this._createdAt;
   }
@@ -91,6 +98,7 @@ class PostBuilder {
   private _userId: number;
   private _isScoop: boolean;
   private _sibling: Post[];
+  private _tags: Tag[];
   private _createdAt: string;
   private _updatedAt: string;
 
@@ -160,6 +168,14 @@ class PostBuilder {
   sibling(sibling?: Post[]) {
     if (!sibling) return this._sibling;
     this._sibling = sibling;
+    return this;
+  }
+
+  tags(): Tag[];
+  tags(tags: Tag[]): this;
+  tags(tags?: Tag[]) {
+    if (!tags) return this._tags;
+    this._tags = tags;
     return this;
   }
 

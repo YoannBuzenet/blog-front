@@ -1,11 +1,14 @@
 ### next steps short term
 
-- manage/post : les titles sont sauvegardés deux fois ? Une fois pour les afficher, une fois avec des tirets pour les requeter plus proprement
-- responsive navbar
+### Tags
 
-### features manquantes
+1. front
 
-- sibling management for articles in the back office (use react select + get post by title after X characters)
+- Affichage des tags dans la page d'un post
+- Affichage des tags sur la home dans les 3 displays possible
+
+1. Page de recherche par tags
+1. Crud des tags!!
 
 #### bugs
 

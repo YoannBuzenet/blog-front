@@ -1,3 +1,4 @@
+import { TagManager } from "../tag/TagManager";
 import { Post } from "./Post";
 
 export class PostManager {
@@ -16,6 +17,7 @@ export class PostManager {
       .createdAt(postParsed.createdAt)
       .userId(postParsed.UserId)
       .sibling(postParsed.Sibling)
+      .tags(postParsed.Tags.map((tag) => TagManager.fromJSONToDomain(tag)))
       .updatedAt(postParsed.updatedAt)
       .build();
 
