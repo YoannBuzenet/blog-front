@@ -1,5 +1,5 @@
-import { AppUsedLanguage } from "../../../types/types";
-import { NewSibling } from "../SiblingSelector/SiblingSelector";
+import { AppUsedLanguage } from "../../../../types/types";
+import { NewSibling } from "../../SiblingSelector/SiblingSelector";
 
 export type ReactSlateElement = {
   type: "paragraph" | "block-quote";

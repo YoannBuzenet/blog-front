@@ -1,7 +1,7 @@
 import {
   PageState,
   ReactSlateElement,
-} from "../../back_office/ManageStateContainer/types";
+} from "../../back_office/posts/ManageStateContainer/types";
 
 export const createEmptyField = (): ReactSlateElement[] => {
   return [
@@ -15,6 +15,7 @@ export const createEmptyField = (): ReactSlateElement[] => {
 
 export const createBlankPage = (): PageState => ({
   id: null,
+  url: "",
   content: createEmptyField(),
   title: createEmptyField(),
   metaDescription: createEmptyField(),

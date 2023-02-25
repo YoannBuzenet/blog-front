@@ -1,8 +1,8 @@
 import { useReducer } from "react";
-import { parseSlateFormatSimple } from "../../../services/react-slate";
-import { slugify } from "../../../services/utils";
-import { AppUsedLanguage, ReactSelectObject } from "../../../types/types";
-import { ReactSelectSibling } from "../SiblingSelector/SiblingSelector";
+import { parseSlateFormatSimple } from "../../../../services/react-slate";
+import { slugify } from "../../../../services/utils";
+import { AppUsedLanguage, ReactSelectObject } from "../../../../types/types";
+import { ReactSelectSibling } from "../../SiblingSelector/SiblingSelector";
 import { PageState, ReactSlateElement } from "./types";
 
 export type PageStateActions =

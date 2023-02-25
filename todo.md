@@ -4,11 +4,8 @@
 
 1. front
 
-- Affichage des tags dans la page d'un post
-- Affichage des tags sur la home dans les 3 displays possible
-
-1. Page de recherche par tags
-1. Crud des tags!!
+1. Crud des tags trop stylé dans le back-office !!
+1. Page de recherche par tags -> 1. Back endpoint 2. Front qui le call
 
 #### bugs
 

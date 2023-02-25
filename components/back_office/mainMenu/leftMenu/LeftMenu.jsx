@@ -1,18 +1,14 @@
 import MenuElement from "./MenuElement";
 import leftMenuStyle from "../../../../styles/back_office/menu/leftMenu/LeftMenu.module.css";
 import MessageIcon from "../../../../assets/svg/message/round.svg";
+import TagIcon from "../../../../assets/svg/tag/round.svg";
 
 const LeftMenu = () => {
   return (
     <div className={leftMenuStyle.leftMenuBackground}>
       <div className={leftMenuStyle.logoTop}></div>
-      <MenuElement SvgIcon={MessageIcon} url="/gestion" name="Général" />
-      <MenuElement
-        SvgIcon={MessageIcon}
-        url="/gestion/pages"
-        name="Les pages"
-      />
-      <MenuElement SvgIcon={MessageIcon} url="/gestion/design" name="Design" />
+      <MenuElement SvgIcon={MessageIcon} url="/manage/posts" name="Les posts" />
+      <MenuElement SvgIcon={TagIcon} url="/manage/tags" name="Tags" />
     </div>
   );
 };

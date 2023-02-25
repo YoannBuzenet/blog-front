@@ -12,7 +12,7 @@ const TagHomePage = ({ tagRaw }) => {
         }
       `}</style>
       <div className={`${style.container} tag${tag.id}`}>
-        <p>{tag.name}</p>
+        <p className={`${style.textParagraph}`}>{tag.name}</p>
       </div>
     </>
   );

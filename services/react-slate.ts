@@ -1,6 +1,6 @@
 import escapeHtml from "escape-html";
 import { Text } from "slate";
-import { ReactSlateElement } from "../components/back_office/ManageStateContainer/types";
+import { ReactSlateElement } from "../components/back_office/posts/ManageStateContainer/types";
 
 const slateConstants = {
   paragraph: "paragraph",

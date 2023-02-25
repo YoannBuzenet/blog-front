@@ -13,8 +13,8 @@ import {
   computeSelectedArticle,
   computeSelectedLang,
 } from "./SibilingSelector.func";
-import { PageState } from "../ManageStateContainer/types";
-import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
+import { PageState } from "../posts/ManageStateContainer/types";
+import { PageStateActions } from "../posts/ManageStateContainer/ManageStateContainer.reducer";
 
 export type NewSibling = {
   isNewSibling: boolean;

@@ -13,8 +13,8 @@ import { toast } from "react-toastify";
 import { usePreventUserFromErasingContent } from "../../../../hooks/hooks";
 import { calculateLengthOfSimpleField } from "../../../../services/react-slate";
 import { useSession } from "next-auth/react";
-import { PageState } from "../../ManageStateContainer/types";
-import { PageStateActions } from "../../ManageStateContainer/ManageStateContainer.reducer";
+import { PageState } from "../../posts/ManageStateContainer/types";
+import { PageStateActions } from "../../posts/ManageStateContainer/ManageStateContainer.reducer";
 
 type SubLayoutContentPageProps = {
   hasStateChanged: boolean;

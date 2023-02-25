@@ -23,9 +23,6 @@ const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />
           </div>
-          <div className={style.articleDescription}>
-            <DisplayHTML slateText={post?.title} />
-          </div>
           <p className={style.articleDate}>
             {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
           </p>
@@ -33,6 +30,9 @@ const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
         <div className={style.tagContainer}>
           {Array.isArray(post.Tags) &&
             post.Tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
+        </div>
+        <div className={style.articleDescription}>
+          <DisplayHTML slateText={post?.title} />
         </div>
       </Link>
     </div>

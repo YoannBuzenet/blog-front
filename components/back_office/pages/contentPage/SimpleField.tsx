@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PlainTextEditor from "../../../generic/wysiwyg/PlainText";
 import style from "../../../../styles/back_office/pages/contentPage/SimpleField.module.css";
-import { ReactSlateElement } from "../../ManageStateContainer/types";
+import { ReactSlateElement } from "../../posts/ManageStateContainer/types";
 
 // TODO finish types
 export type SimpleFieldProps = {

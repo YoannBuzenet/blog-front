@@ -15,9 +15,6 @@ const HomeMainPost = ({ post }) => {
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />
           </div>
-          <div className={style.articleTitle}>
-            <DisplayHTML slateText={post?.title} />
-          </div>
           <p className={style.articleDate}>
             {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
           </p>
@@ -25,6 +22,9 @@ const HomeMainPost = ({ post }) => {
         <div className={style.tagContainer}>
           {Array.isArray(post.Tags) &&
             post.Tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
+        </div>
+        <div className={style.articleTitle}>
+          <DisplayHTML slateText={post?.title} />
         </div>
       </Link>
     </div>

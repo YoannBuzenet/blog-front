@@ -2,3 +2,7 @@
   height: 100%;
   background-color: var(--main-bg-color70);
 }
+
+.logoTop {
+  margin-top: var(--height-nav-bar);
+}

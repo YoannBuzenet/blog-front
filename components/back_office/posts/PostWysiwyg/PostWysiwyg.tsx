@@ -1,23 +1,23 @@
 "use client";
 
-import SimpleField from "../pages/contentPage/SimpleField";
-import RichTextExample from "../../generic/wysiwyg/RichText";
+import SimpleField from "../../pages/contentPage/SimpleField";
+import RichTextExample from "../../../generic/wysiwyg/RichText";
 import MessageIcon from "../../../assets/svg/add_a_photo/round.svg";
-import { previewImageUrl } from "../../../services/imageUtils";
+import { previewImageUrl } from "../../../../services/imageUtils";
 import {
   capitalizeFirstLetter,
   transformValueToReactSelectValue,
-} from "../../../services/utils";
+} from "../../../../services/utils";
 import style from "./PostWysiwyg.module.scss";
 import { useImageManager } from "react-image-manager";
 import {
   calculateLengthOfSimpleField,
   formatSimple,
-} from "../../../services/react-slate";
-import { arrayLangsInApp } from "../../../i18n/allLang";
-import SiblingSelector from "../SiblingSelector/SiblingSelector";
+} from "../../../../services/react-slate";
+import { arrayLangsInApp } from "../../../../i18n/allLang";
+import SiblingSelector from "../../SiblingSelector/SiblingSelector";
 import Select from "react-select";
-import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
+import GenericButton from "../../../generic/Buttons/GenericButton/GenericButton";
 import { PageState, ReactSlateElement } from "../ManageStateContainer/types";
 import { Dispatch, SetStateAction } from "react";
 import { PageStateActions } from "../ManageStateContainer/ManageStateContainer.reducer";
