@@ -1,11 +1,10 @@
 import DisplayHTML from "../generic/wysiwyg/DisplayHTML";
 import { format } from "date-fns";
-import style from "../../styles/posts/PostPeek.module.scss";
+import style from "./PostPeek.module.scss";
 import Link from "next/link";
-
 import { previewImageUrl } from "../../services/imageUtils";
 import { Post } from "../../domain/post/Post";
-import { parseSlateFormatSimple } from "../../services/react-slate";
+import TagHomePage from "./Tag/TagHomePage/TagHomePage";
 
 const PostPeek = ({ post }) => {
   const postDomain = Post.builder()
@@ -15,6 +14,7 @@ const PostPeek = ({ post }) => {
     .title(post.title)
     .createdAt(post.createdAt)
     .shortDescription(post.shortDescription)
+    .tags(post.Tags)
     .build();
 
   return (
@@ -36,6 +36,10 @@ const PostPeek = ({ post }) => {
         <p className={style.articleDate}>
           {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
         </p>
+      </div>
+      <div className={style.tagContainer}>
+        {Array.isArray(post.Tags) &&
+          post.Tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
       </div>
     </Link>
   );

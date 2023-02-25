@@ -9,11 +9,13 @@ import { Post } from "../../../domain/post/Post";
 import TagHomePage from "../Tag/TagHomePage/TagHomePage";
 
 type HomeSecondPostProps = {
-  post: Post;
+  post: any;
   index?: number;
 };
 
 const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
+  console.log("post reçu", post);
+
   return (
     <div className={style.container}>
       <Link href={`/posts/${post.url}`} passHref>
@@ -29,8 +31,8 @@ const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
           </p>
         </div>
         <div className={style.tagContainer}>
-          {Array.isArray(post.tags) &&
-            post.tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
+          {Array.isArray(post.Tags) &&
+            post.Tags.map((rawTag) => <TagHomePage tagRaw={rawTag} />)}
         </div>
       </Link>
     </div>
