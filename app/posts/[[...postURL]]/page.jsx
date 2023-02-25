@@ -6,7 +6,6 @@ import {
 } from "../../../services/api/post";
 import { JSONParseAllProps } from "../../../services/utils";
 import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
-import { Post } from "../../../domain/post/Post";
 import style from "../../../styles/posts/PostPage.module.css";
 import Footer from "../../../components/Footer/Footer";
 import { previewImageUrl } from "../../../services/imageUtils";
@@ -16,6 +15,7 @@ import AnswerPost from "../../../components/posts/AnswerPost/AnswerPost";
 import { AnswerManager } from "../../../domain/answer/AnswerManager";
 import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../domain/post/PostManager";
+import Tag from "../../../components/tag/Tag";
 
 export default async function OnePost({ params }) {
   const { postURL } = params;
@@ -42,7 +42,11 @@ export default async function OnePost({ params }) {
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />
         </h1>
-        <p>{format(new Date(post.createdAt), "dd/MM/yyyy")} </p>
+        <p>{format(new Date(post.createdAt), "dd/MM/yyyy")}</p>
+        <div className={style.tagContainer}>
+          {Array.isArray(postParsed.Tags) &&
+            postParsed.Tags.map((rawTag) => <Tag tagRaw={rawTag} />)}
+        </div>
         <div className={style.imageContainer}>
           <img src={previewImageUrl(post?.mainImageUrl)} />
         </div>
