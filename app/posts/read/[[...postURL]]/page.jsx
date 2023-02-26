@@ -1,21 +1,21 @@
-import DisplayHTML from "../../../components/generic/wysiwyg/DisplayHTML";
+import DisplayHTML from "../../../../components/generic/wysiwyg/DisplayHTML";
 import {
   getOnePost,
   getOnePostbyTitle,
   getOnePostbyURL,
-} from "../../../services/api/post";
-import { JSONParseAllProps } from "../../../services/utils";
-import genericTextStyle from "../../../styles/generic/genericTextStyle.module.css";
-import style from "../../../styles/posts/PostPage.module.css";
-import Footer from "../../../components/Footer/Footer";
-import { previewImageUrl } from "../../../services/imageUtils";
+} from "../../../../services/api/post";
+import { JSONParseAllProps } from "../../../../services/utils";
+import genericTextStyle from "../../../../styles/generic/genericTextStyle.module.css";
+import style from "../../../../styles/posts/PostPage.module.css";
+import Footer from "../../../../components/Footer/Footer";
+import { previewImageUrl } from "../../../../services/imageUtils";
 import { format } from "date-fns";
-import { getAllAnswersForPost } from "../../../services/api/answer";
-import AnswerPost from "../../../components/posts/AnswerPost/AnswerPost";
-import { AnswerManager } from "../../../domain/answer/AnswerManager";
+import { getAllAnswersForPost } from "../../../../services/api/answer";
+import AnswerPost from "../../../../components/posts/AnswerPost/AnswerPost";
+import { AnswerManager } from "../../../../domain/answer/AnswerManager";
 import PostLangRefresh from "./PostLangRefresh";
-import { PostManager } from "../../../domain/post/PostManager";
-import TagInPost from "../../../components/posts/Tag/TagInPost/TagInPost";
+import { PostManager } from "../../../../domain/post/PostManager";
+import TagInPost from "../../../../components/posts/Tag/TagInPost/TagInPost";
 
 export default async function OnePost({ params }) {
   const { postURL } = params;

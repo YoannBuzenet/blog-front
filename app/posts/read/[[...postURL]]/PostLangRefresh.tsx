@@ -1,10 +1,10 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import AppCurrentLangContext from "../../../contexts/appCurrentLang";
+import AppCurrentLangContext from "../../../../contexts/appCurrentLang";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { PostManager } from "../../../domain/post/PostManager";
+import { PostManager } from "../../../../domain/post/PostManager";
 
 export default function PostLangRefresh({ postParsed }) {
   const post = PostManager.fromJSONToDomain(postParsed);

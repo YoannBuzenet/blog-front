@@ -18,7 +18,7 @@ const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
 
   return (
     <div className={style.container}>
-      <Link href={`/posts/${post.url}`} passHref>
+      <Link href={`/posts/read/${post.url}`} passHref>
         <div>
           <div className={style.imageContainer}>
             <img src={previewImageUrl(post.mainImageUrl)} />
