@@ -5,22 +5,27 @@ import style from "./TagEditor.module.scss";
 const TagEditor = ({ tag, setTagStateName, setTagColor }) => {
   return (
     <div className={style.container}>
-      <p>{tag.name}</p>
-      <InputField
-        handleChange={setTagStateName}
-        propToAffect={tag.id}
-        id={tag.id + ``}
-        value={tag.name}
-      />
-
-      <p>
-        <input
-          type="color"
-          value={tag.color_hexcode}
-          onChange={(e) => setTagColor(e.target.value, tag.id)}
+      <div className={style.inputNameContainer}>
+        <InputField
+          handleChange={setTagStateName}
+          propToAffect={tag.id}
+          id={tag.id + ``}
+          value={tag.name}
         />
-      </p>
-      <p>{tag.language}</p>
+      </div>
+      <div className={style.inputColorContainer}>
+        <p>
+          <input
+            className={style.inputColor}
+            type="color"
+            value={tag.color_hexcode}
+            onChange={(e) => setTagColor(e.target.value, tag.id)}
+          />
+        </p>
+      </div>
+      <div className={style.inputLanguageContainer}>
+        <p>{tag.language}</p>
+      </div>
     </div>
   );
 };

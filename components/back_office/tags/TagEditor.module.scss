@@ -1,2 +1,11 @@
 .container {
+    display: flex;
+}
+
+.inputNameContainer, .inputColorContainer, .inputLanguageContainer {
+    margin-right: 20px;
+}
+
+.inputColor {
+    cursor: pointer;
 }

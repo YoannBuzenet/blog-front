@@ -45,15 +45,17 @@ const TagStateContainer = ({ tags }) => {
   return (
     <>
       <SubLayoutRight CompoToRender={TagSaver}>
-        <p className={style.title}>LES TAAAAGS</p>
-        <div className={style.tagsContainer}>
-          {tagsState.map((tag) => (
-            <TagEditor
-              tag={tag}
-              setTagStateName={handleSetTagStateName}
-              setTagColor={handleSetTagStateColor}
-            />
-          ))}
+        <div className={style.container}>
+          <h1 className={`${style.title} h1`}>LES TAAAAGS</h1>
+          <div className={style.tagsContainer}>
+            {tagsState.map((tag) => (
+              <TagEditor
+                tag={tag}
+                setTagStateName={handleSetTagStateName}
+                setTagColor={handleSetTagStateColor}
+              />
+            ))}
+          </div>
         </div>
       </SubLayoutRight>
     </>
