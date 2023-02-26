@@ -2,6 +2,8 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import style from "../../../styles/generic/InputField/InputField.module.css";
 
+// Use for regular field input.
+// For react-slate content (in JSON, see type ReactSlateElement), use PlainTextEditor or RichTextEditor
 export default function InputField({
   id,
   label,

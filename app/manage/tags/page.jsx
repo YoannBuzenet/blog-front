@@ -1,5 +1,6 @@
 import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
 import TagEditor from "../../../components/back_office/tags/TagEditor";
+import TagStateContainer from "../../../components/back_office/tags/TagStateContainer";
 import { getAllTags } from "../../../services/api/tag";
 import style from "./tags.module.scss";
 
@@ -12,12 +13,7 @@ export default async function AllTagsPage({ params }) {
   return (
     <BackOfficeLayout>
       <div className={style.container}>
-        <p className={style.title}>LES TAAAAGS</p>
-        <div className={style.tagsContainer}>
-          {tags.map((tag) => (
-            <TagEditor tag={tag} />
-          ))}
-        </div>
+        <TagStateContainer tags={tags} />
       </div>
     </BackOfficeLayout>
   );
