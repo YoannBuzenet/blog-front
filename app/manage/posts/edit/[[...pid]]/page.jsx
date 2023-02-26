@@ -1,8 +1,8 @@
-import { JSONParseAllProps } from "../../../../services/utils";
-import { createBlankPage } from "../../../../components/generic/wysiwyg/utils";
-import { getOnePostById } from "../../../../services/api/post";
-import BackOfficeLayout from "../../../../components/back_office/layouts/BackOfficeLayout";
-import ManageStateContainer from "../../../../components/back_office/posts/ManageStateContainer/PostManageStateContainer";
+import { JSONParseAllProps } from "../../../../../services/utils";
+import { createBlankPage } from "../../../../../components/generic/wysiwyg/utils";
+import { getOnePostById } from "../../../../../services/api/post";
+import BackOfficeLayout from "../../../../../components/back_office/layouts/BackOfficeLayout";
+import ManageStateContainer from "../../../../../components/back_office/posts/ManageStateContainer/PostManageStateContainer";
 
 export default async function PostPage({ params }) {
   const { pid } = params;

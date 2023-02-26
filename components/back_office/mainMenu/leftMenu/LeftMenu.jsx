@@ -7,7 +7,11 @@ const LeftMenu = () => {
   return (
     <div className={leftMenuStyle.leftMenuBackground}>
       <div className={leftMenuStyle.logoTop}></div>
-      <MenuElement SvgIcon={MessageIcon} url="/manage/posts" name="Les posts" />
+      <MenuElement
+        SvgIcon={MessageIcon}
+        url="/manage/posts/list"
+        name="Les posts"
+      />
       <MenuElement SvgIcon={TagIcon} url="/manage/tags" name="Tags" />
     </div>
   );
