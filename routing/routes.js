@@ -22,6 +22,15 @@ export const routes = {
           build: () => buildCompleteURL(`/api/entities/answers`),
         },
       },
+      tag: {
+        put: {
+          build: (igTag) =>
+            buildCompleteURL(`/api/entities/tags/${igTag}`),
+        },
+        post: {
+          build: () => buildCompleteURL(`/api/entities/tags`),
+        },
+      },
     },
     auth: {
       login: {

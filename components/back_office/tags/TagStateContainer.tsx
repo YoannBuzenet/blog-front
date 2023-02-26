@@ -44,7 +44,13 @@ const TagStateContainer = ({ tags }) => {
 
   return (
     <>
-      <SubLayoutRight CompoToRender={TagSaver}>
+      <SubLayoutRight
+        CompoToRender={TagSaver}
+        hasStateChanged={hasStateChanged}
+        setHasStateChanged={setHasStateChanged}
+        tagsState={tagsState}
+        setTagState={setTagState}
+      >
         <div className={style.container}>
           <h1 className={`${style.title} h1`}>LES TAAAAGS</h1>
           <div className={style.tagsContainer}>
