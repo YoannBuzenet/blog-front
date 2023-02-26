@@ -2,12 +2,21 @@ import { getFetchConfig } from "../http";
 import { JSONParseAllProps } from "../utils";
 
 export const getAllPosts = async (
-  language = "en-us",
-  limit = 10,
+  language,
+  limit,
   sortBy = "createdAt"
 ) => {
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?sortBy=${sortBy}`;
+
+  if(language){
+    url += `&language=${language}`
+  }
+  if(limit){
+    url += `&limit=${limit}`
+  }
+
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?language=${language}&limit=${limit}&sortBy=${sortBy}`,getFetchConfig()
+    url,getFetchConfig()
   );
   const respJSON = await resp.json();
 

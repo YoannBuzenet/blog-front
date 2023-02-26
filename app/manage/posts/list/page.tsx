@@ -24,10 +24,8 @@ export default async function PostList({ params }) {
         <p>Liste de posts</p>
         {postedParsed.map((post) => (
           <Link href={`manage/posts/edit/${post.id}`}>
-            <div>
-              <p>
-                <DisplayHTML slateText={post.title} />
-              </p>
+            <div className="paragraphSize">
+              <DisplayHTML slateText={post.title} />
             </div>
           </Link>
         ))}
