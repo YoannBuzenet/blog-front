@@ -1,19 +1,20 @@
 "use client";
-import { useState } from "react";
+import InputField from "../../generic/InputField/InputField";
 import style from "./TagEditor.module.scss";
 
-const TagEditor = ({ tag }) => {
-  const [tagState, setTagState] = useState({
-    name: tag.name,
-    color_hexcode: tag.color_hexcode,
-    language: tag.language,
-  });
-
+const TagEditor = ({ tag, setTagState }) => {
   return (
     <div className={style.container}>
-      <p>{tagState.name}</p>
-      <p>{tagState.color_hexcode}</p>
-      <p>{tagState.language}</p>
+      <p>{tag.name}</p>
+      <InputField
+        handleChange={setTagState}
+        propToAffect={tag.id}
+        id={tag.id + ``}
+        value={tag.name}
+      />
+
+      <p>{tag.color_hexcode}</p>
+      <p>{tag.language}</p>
     </div>
   );
 };
