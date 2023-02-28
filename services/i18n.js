@@ -25,4 +25,17 @@ const checkLangLocaleStorage = (langInApp, lang) => {
   return appInitialLang;
 };
 
-module.exports = { checkLangLocaleStorage };
+const getLangFromHeaders = (headers) => {
+  const headersList = headers();
+  const acceptLanguageHeader = headersList.get("accept-language");
+  let localeBrowser = "en-US";
+
+  if (acceptLanguageHeader !== undefined) {
+    const allLanguages = acceptLanguageHeader.split(";");
+    const mainLanguageLocaleAndLanguage = allLanguages[0];
+    const [locale, language] = mainLanguageLocaleAndLanguage.split(",");
+    localeBrowser = locale;
+  }
+}
+
+module.exports = { checkLangLocaleStorage, getLangFromHeaders };

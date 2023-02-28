@@ -2,18 +2,10 @@ import Footer from "../components/Footer/Footer";
 import HomePostsDisplay from "../components/posts/HomePostsDisplay";
 import { getAllPosts } from "../services/api/post";
 import { headers } from "next/headers";
+import { getLangFromHeaders } from "../services/i18n";
 
 export default async function Page() {
-  const headersList = headers();
-  const acceptLanguageHeader = headersList.get("accept-language");
-  let localeBrowser = "en-US";
-
-  if (acceptLanguageHeader !== undefined) {
-    const allLanguages = acceptLanguageHeader.split(";");
-    const mainLanguageLocaleAndLanguage = allLanguages[0];
-    const [locale, language] = mainLanguageLocaleAndLanguage.split(",");
-    localeBrowser = locale;
-  }
+  const localeBrowser = getLangFromHeaders(headers);
 
   const posts = await getAllPosts(localeBrowser);
 

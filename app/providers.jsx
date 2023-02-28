@@ -37,7 +37,7 @@ import TransparentDivContext from "../contexts/transparentDiv";
 import ResponsiveMenuContext from "../contexts/responsiveMenu";
 import { checkLangLocaleStorage } from "../services/i18n";
 
-import { getAllTags } from "../services/api/tag";
+import { getAllImageTags } from "../services/api/tag";
 import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
@@ -73,7 +73,7 @@ export function Providers({ langHeaders, children }) {
     });
 
     // fetch tags for gallery
-    getAllTags(appCurrentLang.locale).then((resp) => {
+    getAllImageTags(appCurrentLang.locale).then((resp) => {
       // Setting right format to match react-select on react-image-manager
       const tags = resp.map((tag) => {
         return {
