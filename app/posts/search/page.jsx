@@ -9,7 +9,7 @@ export default async function PostSearch({ params }) {
 
   return (
     <>
-      <SearchPost initialTags={tagsLangBrower} />
+      <SearchPost initialTags={tagsLangBrower} localeBrowser={localeBrowser} />
     </>
   );
 }
