@@ -54,6 +54,19 @@ div.activeMenu {
    }
 }
 
+.largePageContainer {
+  width: var(--home-container-width);
+  margin: 0 auto;
+
+  @media screen and (max-width: 1500px) {
+    width: var(--70-container-width);
+   }
+
+  @media screen and (max-width: 1024px) {
+    width: var(--general-container-width);
+   }
+}
+
 .manageContentPageContainer {
   width: var(--managePage-container-width);
   margin: 0 auto;

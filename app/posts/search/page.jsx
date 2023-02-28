@@ -1,11 +1,9 @@
-export default async function PostSearch({ params }) {
-  // Gets all tags
-  // Multi select
-  // CTA Rechercher
+import SearchPost from "../../../components/posts/Search/SearchPost";
 
+export default async function PostSearch({ params }) {
   return (
     <>
-      <p>Search</p>
+      <SearchPost />
     </>
   );
 }
