@@ -8,15 +8,15 @@ export const getAllPosts = async (
 ) => {
   let url = `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts?sortBy=${sortBy}`;
 
-  if(language){
+  if (language) {
     url += `&language=${language}`
   }
-  if(limit){
+  if (limit) {
     url += `&limit=${limit}`
   }
 
   const resp = await fetch(
-    url,getFetchConfig()
+    url, getFetchConfig()
   );
   const respJSON = await resp.json();
 
@@ -40,10 +40,10 @@ export const getOnePostById = async (id) => {
 export const getOnePostbyTitle = async (title, searchLike = false, language) => {
 
   let url = `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/title/${title}?like=${searchLike}`;
-  
 
-  if(language){
-    url+= `&language=${language}`
+
+  if (language) {
+    url += `&language=${language}`
   }
 
   const resp = await fetch(
@@ -57,7 +57,7 @@ export const getOnePostbyTitle = async (title, searchLike = false, language) => 
 };
 
 export const getOnePostbyURL = async (url) => {
-  
+
   const resp = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/url/${url}`,
     getFetchConfig()
@@ -76,3 +76,22 @@ export const savePost = async (post) => {
 
   return resp.data;
 };
+
+export const getPostByTags = async (tags, language) => {
+
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/api/entities/posts/tags?tags=${tags}`;
+
+  if (language) {
+    url += `&language=${language}`
+  }
+
+  const resp = await fetch(
+    url,
+    getFetchConfig(),
+  );
+
+  const respJSON = await resp.json();
+
+  return respJSON;
+
+}

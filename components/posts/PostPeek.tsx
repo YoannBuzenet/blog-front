@@ -19,7 +19,7 @@ const PostPeek = ({ post }) => {
 
   return (
     <Link
-      href={`/posts/${postDomain.url}`}
+      href={`/posts/read/${postDomain.url}`}
       passHref
       className={style.postContainer}
     >
