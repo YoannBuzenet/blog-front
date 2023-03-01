@@ -8,6 +8,9 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 
+// TODO : difficulté à passer en typescript car MenuItem veut un string en value
+// Et les elements sont des Tags
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -19,30 +22,28 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
+function getStyles(name, tags, theme) {
+  const isTagSelected = tags.filter((tag) => tag.name === name).length > 0;
+
   return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    fontWeight: isTagSelected
+      ? theme.typography.fontWeightRegular
+      : theme.typography.fontWeightMedium,
   };
 }
 
-export default function MultipleSelectChip({
-  initialListElements,
+export default function MultipleSelectChipTags({
+  totalListElements,
   selectedElements,
   setSelectedElements,
 }) {
   const theme = useTheme();
 
-  const handleChange = (event: SelectChangeEvent<typeof selectedElements>) => {
-    const {
-      target: { value },
-    } = event;
-    setSelectedElements(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+  const handleChange = (event) => {
+    const { target } = event;
+    const value = target.value;
+
+    setSelectedElements(value);
   };
 
   return (
@@ -59,19 +60,19 @@ export default function MultipleSelectChip({
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip key={value.id} label={value.name} />
               ))}
             </Box>
           )}
           MenuProps={MenuProps}
         >
-          {initialListElements.map((name) => (
+          {totalListElements.map((tag) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, selectedElements, theme)}
+              key={tag.id}
+              value={tag}
+              style={getStyles(tag.language, selectedElements, theme)}
             >
-              {name}
+              {tag.name}
             </MenuItem>
           ))}
         </Select>

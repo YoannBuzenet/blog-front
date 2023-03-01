@@ -24,10 +24,10 @@ export const getAllTags = async (usedFor, language, sortBy = "createdAt") => {
 };
 
 export const getAllImageTags = async (language, sortBy) => {
-  return getAllTags("image", language, sortBy)
+  return await getAllTags("image", language, sortBy)
 }
 
 
 export const getAllPostTags = async (language, sortBy) => {
-  return getAllTags("posts", language, sortBy)
+  return await getAllTags("post", language, sortBy)
 }
