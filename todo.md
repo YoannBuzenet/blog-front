@@ -4,7 +4,6 @@
 
 1. front
 
-1. Crud des tags trop stylé dans le back-office !!
 1. Page de recherche par tags -> 1. Back endpoint 2. Front qui le call
 
 #### bugs
@@ -24,9 +23,8 @@
 - Login page affiche un slider des images et pas une image figée (et apparait en fondu)
 - Checker qu'il y ait bien une width min parametrable sur le crop de RIM
 - Mettre la fonction de ratio de crop definissable par appel dans RIM
-- back office : pouvoir indiquer quel article est lié au current (gestion sibling)
 - Créer une fonction de gestion des erreurs et message d'erreur (à la isValid de courtage) qui renvoie le bon string à afficher en fonction du type d'erreur (pour appliquer où ?)
-- Remplir le footer
+- Retirer Axios de la codebase pour full fetch
 
 ### next steps later
 

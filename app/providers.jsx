@@ -13,6 +13,7 @@ import "../styles/generic/colors.scss";
 import "../styles/generic/buttons.scss";
 import "../styles/generic/loaders.css";
 import "../styles/generic/transparentDiv.scss";
+import "../styles/generic/muiOverride.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@mui/material/styles";
 import { customMUITheme } from "../styles/Mui/theme";

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import AppLangContext from "../../../contexts/appCurrentLang";
 import { Tag } from "../../../domain/tag/Tag";
 import { getAllPostTags } from "../../../services/api/tag";
+import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
 import MultipleSelectChip from "../../generic/MultiSelect/MultiSelectTags";
 
 const SearchPost = ({ initialTags, localeBrowser }) => {
@@ -29,6 +30,13 @@ const SearchPost = ({ initialTags, localeBrowser }) => {
         totalListElements={tagsAppLanguage}
         selectedElements={selectedTags}
         setSelectedElements={setSelectedTags}
+      />
+
+      {/* Bouton Rechercher
+      Lister les posts reçus */}
+      <GenericButton
+        handleClick={() => console.log("clické")}
+        text="Rechercher"
       />
     </div>
   );
