@@ -27,7 +27,7 @@ const HomePostsDisplay = ({ posts }) => {
   }, [appCurrentLang.locale]);
 
   return (
-    <>
+    <div className="homePage">
       <div className={style.firstLine}>
         <div className={style.firstPart}>
           <HomeMainPost post={postsDisplayed[0]} />
@@ -41,14 +41,14 @@ const HomePostsDisplay = ({ posts }) => {
           </div>
         </div>
       </div>
-      <div className={style.secondLine}>
+      <div className={`${style.secondLine}`}>
         {postsDisplayed.map((post, index) => {
           if (index > 2) {
             return <PostPeek post={post} key={index} />;
           }
         })}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -16,7 +16,6 @@ export default async function Page() {
           <HomePostsDisplay posts={posts} />
         </main>
       </div>
-      <Footer />
     </>
   );
 }

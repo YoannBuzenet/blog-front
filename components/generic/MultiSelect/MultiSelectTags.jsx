@@ -36,6 +36,7 @@ export default function MultipleSelectChipTags({
   totalListElements,
   selectedElements,
   setSelectedElements,
+  labelSelect,
 }) {
   const theme = useTheme();
 
@@ -49,14 +50,16 @@ export default function MultipleSelectChipTags({
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">{labelSelect}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
           value={selectedElements}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+          input={
+            <OutlinedInput id="select-multiple-chip" label={labelSelect} />
+          }
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
               {selected.map((value) => (

@@ -9,6 +9,7 @@ import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
 import MultipleSelectChip from "../../generic/MultiSelect/MultiSelectTags";
 import style from "./SearchPost.module.scss";
 import PostPeek from "../PostPeek";
+import { JSONParseAllProps } from "../../../services/utils";
 
 const SearchPost = ({ initialTags, localeBrowser }) => {
   const { appCurrentLang } = useContext(AppLangContext);
@@ -47,8 +48,8 @@ const SearchPost = ({ initialTags, localeBrowser }) => {
   const getSearchedPosts = async () => {
     const tagQueryParam = buildTagQueryParam(selectedTags);
     const posts = await getPostByTags(tagQueryParam, appCurrentLang.locale);
-    console.log("posts reçus : ", posts);
-    setSearchedPosts(posts);
+    const parsedPosts = posts.map((post) => JSONParseAllProps(post));
+    setSearchedPosts(parsedPosts);
   };
 
   return (
@@ -59,6 +60,7 @@ const SearchPost = ({ initialTags, localeBrowser }) => {
           totalListElements={tagsAppLanguage}
           selectedElements={selectedTags}
           setSelectedElements={setSelectedTags}
+          labelSelect="Tags"
         />
 
         <GenericButton handleClick={getSearchedPosts} text="Rechercher" />

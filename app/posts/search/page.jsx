@@ -9,8 +9,8 @@ export default async function PostSearch({ params }) {
   const tagsLangBrower = await getAllPostTags(localeBrowser);
 
   return (
-    <>
+    <div className="searchPage">
       <SearchPost initialTags={tagsLangBrower} localeBrowser={localeBrowser} />
-    </>
+    </div>
   );
 }

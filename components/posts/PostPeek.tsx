@@ -7,6 +7,8 @@ import { Post } from "../../domain/post/Post";
 import TagHomePage from "./Tag/TagHomePage/TagHomePage";
 
 const PostPeek = ({ post }) => {
+  console.log("post reçu", post);
+
   const postDomain = Post.builder()
     .id(post.id)
     .url(post.url)

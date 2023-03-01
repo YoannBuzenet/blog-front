@@ -43,6 +43,7 @@ import TransparentDiv from "../components/TransparentDiv";
 import AppWrapper from "../components/AppWrapper/AppWrapper";
 import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
 import NavBar from "../components/Menu/Navbar/NavBar";
+import Footer from "../components/Footer/Footer";
 
 export function Providers({ langHeaders, children }) {
   const [imagesGallerie, setImagesGallerie] = useState([]);
@@ -147,6 +148,7 @@ export function Providers({ langHeaders, children }) {
                     >
                       {children}
                     </AppWrapper>
+                    <Footer />
                     <ToastContainer
                       position={toast.POSITION.TOP_CENTER}
                       autoClose={10000}
