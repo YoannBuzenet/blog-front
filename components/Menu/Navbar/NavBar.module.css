@@ -36,6 +36,10 @@
   justify-content: flex-end;
 }
 
+.rightPartDesktop>div {
+  margin-left: 10px
+}
+
 .navbarFlags {
   position: relative;
 }

@@ -67,7 +67,7 @@ const SearchPost = ({ initialTags, localeBrowser }) => {
       </div>
       <div className={style.searchContainer}>
         {searchedPosts.map((post) => (
-          <PostPeek post={post} />
+          <PostPeek post={post} shouldAdaptPadding={false} />
         ))}
       </div>
     </div>

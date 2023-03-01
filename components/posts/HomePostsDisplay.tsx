@@ -1,6 +1,6 @@
 "use client";
 import PostPeek from "./PostPeek";
-import style from "../../styles/posts/HomePostsDisplay.module.css";
+import style from "../../styles/posts/HomePostsDisplay.module.scss";
 import HomeMainPost from "./HomeMainPost/HomeMainPost";
 import HomeSecondPost from "./HomeSecondPost/HomeSecondPost";
 import { useContext, useEffect, useState } from "react";
@@ -44,7 +44,7 @@ const HomePostsDisplay = ({ posts }) => {
       <div className={`${style.secondLine}`}>
         {postsDisplayed.map((post, index) => {
           if (index > 2) {
-            return <PostPeek post={post} key={index} />;
+            return <PostPeek post={post} key={index} shouldAdaptPadding />;
           }
         })}
       </div>

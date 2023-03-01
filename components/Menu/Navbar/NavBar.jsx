@@ -7,6 +7,7 @@ import AppLangChoice from "../../appSetLang/AppLangChoice";
 import React from "react";
 import LoginIcon from "../../../assets/svg/login/round.svg";
 import BurgerMenu from "../../../assets/svg/menu/baseline.svg";
+import Search from "../../../assets/svg/search/baseline.svg";
 import { useTranslation } from "../../../i18n/hooks";
 import { useSession } from "next-auth/react";
 import isUserMenuDisplayedContext from "../../../contexts/userMenu";
@@ -67,6 +68,11 @@ const NavBar = () => {
                 {isUserMenuDisplayed && <UserMenu />}
               </div>
             )}
+            <div>
+              <Link href={"/posts/search"}>
+                <Search title="Search" />
+              </Link>
+            </div>
             <AppLangChoice top="-6" marginLeft="20" />
           </div>
 

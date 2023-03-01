@@ -6,7 +6,7 @@ import { previewImageUrl } from "../../services/imageUtils";
 import { Post } from "../../domain/post/Post";
 import TagHomePage from "./Tag/TagHomePage/TagHomePage";
 
-const PostPeek = ({ post }) => {
+const PostPeek = ({ post, shouldAdaptPadding }) => {
   console.log("post reçu", post);
 
   const postDomain = Post.builder()
@@ -23,7 +23,11 @@ const PostPeek = ({ post }) => {
     <Link
       href={`/posts/read/${postDomain.url}`}
       passHref
-      className={style.postContainer}
+      className={`${
+        shouldAdaptPadding
+          ? style.postContainerAdaptPadding
+          : style.postContainer
+      }`}
     >
       <div className={style.post}>
         <div>
@@ -36,7 +40,7 @@ const PostPeek = ({ post }) => {
           <DisplayHTML slateText={postDomain.shortDescription} />
         </div>
         <p className={style.articleDate}>
-          {format(new Date(post.createdAt), "dd/MM/yyyy")}{" "}
+          {format(new Date(post.createdAt), "dd/MM/yyyy")}
         </p>
       </div>
       <div className={style.tagContainer}>
