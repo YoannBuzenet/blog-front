@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import style from "./Footer.module.scss";
 
 const Footer = () => {
@@ -23,7 +24,9 @@ const Footer = () => {
         <div className={`h3 ${style.footerContent__section}`}>
           <h3>Resources</h3>
           <div className={`h3 ${style.footerContent__section__content}`}>
-            <p>General</p>
+            <Link href={"/posts/search"}>
+              <p>Recherche</p>
+            </Link>
             <p>Rights</p>
           </div>
         </div>

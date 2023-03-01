@@ -59,6 +59,11 @@ const ResponsiveMenu = forwardRef(({ props }, ref) => {
                 </div>
               </LinkMenu>
             )}
+            <div onClick={() => setIsResponsiveMenuDisplayed(false)}>
+              <Link href={"/posts/search"}>
+                <p>Recherche</p>
+              </Link>
+            </div>
             <div
               style={{ position: "relative", width: "100%", height: "20px" }}
             >
