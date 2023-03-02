@@ -1,18 +1,23 @@
+import { FC, ReactElement } from "react";
+import style from "./PopUp.module.scss";
+
 type PopupProps = {
   index: number;
+  CompoToRender: FC;
 };
 
-const Popup = ({ index }: PopupProps) => {
+const Popup = ({ index, CompoToRender }: PopupProps) => {
   const idPopUp = `popup-${index}`;
 
   return (
-    <div className={`${idPopUp}`}>
+    <div className={`${idPopUp} ${style.popUpContainer}`}>
       <style jsx>{`
         .${idPopUp} {
-          background-color: red;
+          z-index: ${100 + index};
         }
       `}</style>
-      Je suis un pop up
+      <p>Je suis un pop up</p>
+      {CompoToRender && <CompoToRender />}
     </div>
   );
 };

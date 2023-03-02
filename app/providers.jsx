@@ -149,7 +149,10 @@ export function Providers({ langHeaders, children }) {
                       {isTransparentDivDisplayed && <TransparentDiv />}
                       {Array.isArray(popUpsDisplayed) &&
                         popUpsDisplayed.map((popUp, index) => (
-                          <Popup index={index} />
+                          <Popup
+                            index={index}
+                            CompoToRender={popUp.CompoToRender}
+                          />
                         ))}
                       <ResponsiveMenuContainer />
                       <NavBar />
