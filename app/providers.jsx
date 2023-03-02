@@ -36,6 +36,7 @@ import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import ResponsiveMenuContext from "../contexts/responsiveMenu";
+import PopUpsDisplayContext from "../contexts/popUpsDisplay";
 import { checkLangLocaleStorage } from "../services/i18n";
 
 import { getAllImageTags } from "../services/api/tag";
@@ -44,6 +45,7 @@ import AppWrapper from "../components/AppWrapper/AppWrapper";
 import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
 import NavBar from "../components/Menu/Navbar/NavBar";
 import Footer from "../components/Footer/Footer";
+import Popup from "../components/popup/Popup";
 
 export function Providers({ langHeaders, children }) {
   const [imagesGallerie, setImagesGallerie] = useState([]);
@@ -51,6 +53,8 @@ export function Providers({ langHeaders, children }) {
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
+  const [popUpsDisplayed, setPopUpsDisplayed] = useState(["a"]);
+
   const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] =
     useState(false);
 
@@ -120,6 +124,10 @@ export function Providers({ langHeaders, children }) {
     isResponsiveMenuDisplayed,
     setIsResponsiveMenuDisplayed,
   };
+  const contextPopUpsDisplayed = {
+    popUpsDisplayed,
+    setPopUpsDisplayed,
+  };
 
   return (
     <ThemeProvider theme={customMUITheme}>
@@ -133,27 +141,33 @@ export function Providers({ langHeaders, children }) {
                 value={contextFlagsDisplayed}
               >
                 <TransparentDivContext.Provider value={contextTransparentDiv}>
-                  <IntlProvider
-                    locale={appCurrentLang?.locale}
-                    messages={appCurrentLang?.translatedText}
-                  >
-                    {isTransparentDivDisplayed && <TransparentDiv />}
-                    <ResponsiveMenuContainer />
-                    <NavBar />
-                    <AppWrapper
-                      appCurrentLang={appCurrentLang}
-                      setImagesGallerie={setImagesGallerie}
-                      imagesGallerie={imagesGallerie}
-                      tags={tags}
+                  <PopUpsDisplayContext.Provider value={contextPopUpsDisplayed}>
+                    <IntlProvider
+                      locale={appCurrentLang?.locale}
+                      messages={appCurrentLang?.translatedText}
                     >
-                      {children}
-                    </AppWrapper>
-                    <Footer />
-                    <ToastContainer
-                      position={toast.POSITION.TOP_CENTER}
-                      autoClose={10000}
-                    />
-                  </IntlProvider>
+                      {isTransparentDivDisplayed && <TransparentDiv />}
+                      {Array.isArray(popUpsDisplayed) &&
+                        popUpsDisplayed.map((popUp, index) => (
+                          <Popup index={index} />
+                        ))}
+                      <ResponsiveMenuContainer />
+                      <NavBar />
+                      <AppWrapper
+                        appCurrentLang={appCurrentLang}
+                        setImagesGallerie={setImagesGallerie}
+                        imagesGallerie={imagesGallerie}
+                        tags={tags}
+                      >
+                        {children}
+                      </AppWrapper>
+                      <Footer />
+                      <ToastContainer
+                        position={toast.POSITION.TOP_CENTER}
+                        autoClose={10000}
+                      />
+                    </IntlProvider>
+                  </PopUpsDisplayContext.Provider>
                 </TransparentDivContext.Provider>
               </AreLangFlagsDisplayedContext.Provider>
             </AppCurrentLangContext.Provider>

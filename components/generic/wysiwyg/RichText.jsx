@@ -44,7 +44,6 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
     setMinWidthImageUpload,
     setNewCropAspectRatio,
   } = useImageManager();
-  console.log("editor", editor);
 
   const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
