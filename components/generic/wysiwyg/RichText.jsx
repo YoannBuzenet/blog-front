@@ -28,6 +28,7 @@ import ImageBlock from "./ImageBlock";
 import PopUpAddYoutubeURL from "../../Popups/PopUpAddYoutubeURL/PopUpAddYoutubeURL";
 import PopUpsDisplayedContext from "../../../contexts/popUpsDisplay";
 import WysiwygContext from "../../../contexts/wysiwygContext";
+import YoutubeEmbed from "./YoutubeEmbed/YoutubeEmbed";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -79,8 +80,7 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const handleAddYoutubeVideo = (editor) => {
     addPopUp({
       CompoToRender: PopUpAddYoutubeURL,
-      test: (valueUrlYoutube) =>
-        toggleBlock(editor, "youtube", { l: valueUrlYoutube }),
+      test: (urlYoutube) => toggleBlock(editor, "youtube", { urlYoutube }),
     });
   };
 
@@ -245,7 +245,7 @@ const Element = ({ attributes, children, element }) => {
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
     case "youtube":
-      return <p {...attributes}>BRO</p>;
+      return <YoutubeEmbed url={element.urlYoutube} {...attributes} />;
     case "image":
       return (
         <ImageBlock attributes={attributes} element={element}>
