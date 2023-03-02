@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate, ReactEditor } from "slate-react";
 import {
@@ -20,10 +26,13 @@ import Format_quote from "../../../assets/svg/format_quote/baseline.svg";
 import Format_list_numbered from "../../../assets/svg/format_list_numbered/baseline.svg";
 import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/baseline.svg";
 import Image_SVG from "../../../assets/svg/image/baseline.svg";
+import Youtube_SVG from "../../../assets/svg/youtube/youtube.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
 import { useImageManager } from "react-image-manager";
 import ImageBlock from "./ImageBlock";
+import PopUpAddYoutubeURL from "../../Popups/PopUpAddYoutubeURL/PopUpAddYoutubeURL";
+import PopUpsDisplayedContext from "../../../contexts/popUpsDisplay";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -44,6 +53,10 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
     setMinWidthImageUpload,
     setNewCropAspectRatio,
   } = useImageManager();
+
+  // Youtube handling
+  const { addPopUp } = useContext(PopUpsDisplayedContext);
+  const [urlYoutube, setUrlYoutube] = useState("");
 
   const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
@@ -66,6 +79,17 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
     setNewCropAspectRatio(undefined);
     setOnValidationCallBack(updateImageRichtext);
     setIsDisplayedImageManager(true);
+  };
+
+  const handleAddYoutubeVideo = (editor) => {
+    addPopUp({
+      CompoToRender: PopUpAddYoutubeURL,
+      urlYoutube: urlYoutube,
+      setUrlYoutube: setUrlYoutube,
+    });
+    // setState dans le compo
+    // then : passer callback au compo pour que son OK lance la fonction avec editor
+    // cancel ferme le popup
   };
 
   return (
@@ -123,6 +147,12 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
             format="bulleted-list"
             SvgIcon={Format_list_bulleted}
             title="Créer une liste à puce"
+          />
+          <CustomButton
+            handleClick={() => handleAddYoutubeVideo(editor)}
+            format="youtube"
+            SvgIcon={Youtube_SVG}
+            title="Ajouter Video Youtube"
           />
           {displayImagePicker && (
             <CustomButton

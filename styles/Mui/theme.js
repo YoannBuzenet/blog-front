@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { green, purple, blue } from "@mui/material/colors";
 
-const customMUITheme = createTheme({
+export const customMUITheme = createTheme({
   palette: {
     primary: {
       main: purple[500],
@@ -12,4 +12,3 @@ const customMUITheme = createTheme({
   },
 });
 
-module.exports = { customMUITheme };

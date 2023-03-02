@@ -36,7 +36,7 @@ import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import ResponsiveMenuContext from "../contexts/responsiveMenu";
-import PopUpsDisplayContext from "../contexts/popUpsDisplay";
+import PopUpsDisplayContext, { PopUp } from "../contexts/popUpsDisplay";
 import { checkLangLocaleStorage } from "../services/i18n";
 
 import { getAllImageTags } from "../services/api/tag";
@@ -45,7 +45,7 @@ import AppWrapper from "../components/AppWrapper/AppWrapper";
 import ResponsiveMenuContainer from "../components/Menu/ResponsiveMenu/ResponsiveMenuContainer";
 import NavBar from "../components/Menu/Navbar/NavBar";
 import Footer from "../components/Footer/Footer";
-import Popup from "../components/popup/Popup";
+import Popup from "../components/Popups/PopupContainer";
 
 export function Providers({ langHeaders, children }) {
   const [imagesGallerie, setImagesGallerie] = useState([]);
@@ -53,7 +53,7 @@ export function Providers({ langHeaders, children }) {
   const [isTransparentDivDisplayed, setIsTransparentDivDisplayed] =
     useState(false);
   const [isUserMenuDisplayed, setIsUserMenuDisplayed] = useState(false);
-  const [popUpsDisplayed, setPopUpsDisplayed] = useState(["a"]);
+  const [popUpsDisplayed, setPopUpsDisplayed] = useState<PopUp[]>([]);
 
   const [isResponsiveMenuDisplayed, setIsResponsiveMenuDisplayed] =
     useState(false);
@@ -127,6 +127,12 @@ export function Providers({ langHeaders, children }) {
   const contextPopUpsDisplayed = {
     popUpsDisplayed,
     setPopUpsDisplayed,
+    addPopUp: (popUp: PopUp) => setPopUpsDisplayed([...popUpsDisplayed, popUp]),
+    removeSpecificPopUp: (index: number) => {
+      const arrayPopUpCopy = [...popUpsDisplayed];
+      arrayPopUpCopy.splice(index, 1);
+      setPopUpsDisplayed(arrayPopUpCopy);
+    },
   };
 
   return (
@@ -152,6 +158,7 @@ export function Providers({ langHeaders, children }) {
                           <Popup
                             index={index}
                             CompoToRender={popUp.CompoToRender}
+                            {...popUp}
                           />
                         ))}
                       <ResponsiveMenuContainer />

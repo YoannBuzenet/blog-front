@@ -1,23 +1,20 @@
 import { FC, useContext } from "react";
-import style from "./PopUp.module.scss";
+import style from "./PopUpContainer.module.scss";
 import PopUpsDisplayedContext from "../../contexts/popUpsDisplay";
 import CloseMenu from "../../assets/svg/close/outline.svg";
 
 type PopupProps = {
   index: number;
-  CompoToRender: FC;
+  CompoToRender?: FC;
 };
 
-const Popup = ({ index, CompoToRender }: PopupProps) => {
+const Popup = ({ index, CompoToRender, ...props }: PopupProps) => {
   const idPopUp = `popup-${index}`;
-  const { popUpsDisplayed, setPopUpsDisplayed } = useContext(
-    PopUpsDisplayedContext
-  );
+  const { popUpsDisplayed, setPopUpsDisplayed, removeSpecificPopUp } =
+    useContext(PopUpsDisplayedContext);
 
   const handleClosePopUp = () => {
-    const arrayPopUpCopy = [...popUpsDisplayed];
-    arrayPopUpCopy.splice(index, 1);
-    setPopUpsDisplayed(arrayPopUpCopy);
+    removeSpecificPopUp(index);
   };
 
   return (
@@ -40,7 +37,7 @@ const Popup = ({ index, CompoToRender }: PopupProps) => {
         </div>
         <div className={`${style.mainPart}`}>
           <p>Je suis un pop up</p>
-          {CompoToRender && <CompoToRender />}
+          {CompoToRender && <CompoToRender {...props} />}
         </div>
       </div>
     </div>

@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { FC } from "react";
 
 export type PopUp = {
-  index: number;
-  CompoToRender: ReactElement;
+  CompoToRender?: FC;
 };
 
 export default React.createContext({
   popUpsDisplayed: [],
   setPopUpsDisplayed: (value) => {},
+  addPopUp: (value) => {},
+  removeSpecificPopUp: (value) => {},
 });
