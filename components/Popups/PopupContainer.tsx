@@ -37,7 +37,9 @@ const Popup = ({ index, CompoToRender, ...props }: PopupProps) => {
         </div>
         <div className={`${style.mainPart}`}>
           <p>Je suis un pop up</p>
-          {CompoToRender && <CompoToRender {...props} />}
+          {CompoToRender && (
+            <CompoToRender {...props} handleClosePopUp={handleClosePopUp} />
+          )}
         </div>
       </div>
     </div>

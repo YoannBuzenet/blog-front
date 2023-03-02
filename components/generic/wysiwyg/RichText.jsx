@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, useSlate, Slate, ReactEditor } from "slate-react";
 import {
@@ -33,6 +27,7 @@ import { useImageManager } from "react-image-manager";
 import ImageBlock from "./ImageBlock";
 import PopUpAddYoutubeURL from "../../Popups/PopUpAddYoutubeURL/PopUpAddYoutubeURL";
 import PopUpsDisplayedContext from "../../../contexts/popUpsDisplay";
+import WysiwygContext from "../../../contexts/wysiwygContext";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -54,9 +49,9 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
     setNewCropAspectRatio,
   } = useImageManager();
 
-  // Youtube handling
+  // Pop Up Management
   const { addPopUp } = useContext(PopUpsDisplayedContext);
-  const [urlYoutube, setUrlYoutube] = useState("");
+  const { wysiwygContext } = useContext(WysiwygContext);
 
   const handleClickImageModule = (editor) => {
     const updateImageRichtext = (arrayOfImages) => {
@@ -84,12 +79,9 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const handleAddYoutubeVideo = (editor) => {
     addPopUp({
       CompoToRender: PopUpAddYoutubeURL,
-      urlYoutube: urlYoutube,
-      setUrlYoutube: setUrlYoutube,
+      test: (valueUrlYoutube) =>
+        toggleBlock(editor, "youtube", { l: valueUrlYoutube }),
     });
-    // setState dans le compo
-    // then : passer callback au compo pour que son OK lance la fonction avec editor
-    // cancel ferme le popup
   };
 
   return (
@@ -200,6 +192,7 @@ const toggleBlock = (editor, format, otherProps) => {
   if (otherProps) {
     newProperties = { ...newProperties, ...otherProps };
   }
+  console.log("--- newProperties", newProperties);
   Transforms.setNodes(editor, newProperties);
 
   if (!isActive && isList) {
@@ -251,6 +244,8 @@ const Element = ({ attributes, children, element }) => {
       return <li {...attributes}>{children}</li>;
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
+    case "youtube":
+      return <p {...attributes}>BRO</p>;
     case "image":
       return (
         <ImageBlock attributes={attributes} element={element}>

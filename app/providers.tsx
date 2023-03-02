@@ -36,6 +36,7 @@ import UserMenuContext from "../contexts/userMenu";
 import AreLangFlagsDisplayedContext from "../contexts/areFlagsDisplayed";
 import TransparentDivContext from "../contexts/transparentDiv";
 import ResponsiveMenuContext from "../contexts/responsiveMenu";
+import WysiwygContext from "../contexts/wysiwygContext";
 import PopUpsDisplayContext, { PopUp } from "../contexts/popUpsDisplay";
 import { checkLangLocaleStorage } from "../services/i18n";
 
@@ -61,6 +62,8 @@ export function Providers({ langHeaders, children }) {
   const [areFlagsDisplayed, setAreFlagsDisplayed] = useState(false);
 
   const [appCurrentLang, setAppCurrentLang] = useState(langInApp[langHeaders]);
+
+  const [wysiwygContext, setWysiwygContext] = useState({ urlYoutube: "" });
 
   useEffect(() => {
     // App Language initialization
@@ -124,6 +127,12 @@ export function Providers({ langHeaders, children }) {
     isResponsiveMenuDisplayed,
     setIsResponsiveMenuDisplayed,
   };
+  const contextWysiwyg = {
+    wysiwygContext,
+    setWysiwygContext,
+    resetUrlYoutube: () =>
+      setWysiwygContext({ ...wysiwygContext, urlYoutube: "" }),
+  };
   const contextPopUpsDisplayed = {
     popUpsDisplayed,
     setPopUpsDisplayed,
@@ -148,35 +157,37 @@ export function Providers({ langHeaders, children }) {
               >
                 <TransparentDivContext.Provider value={contextTransparentDiv}>
                   <PopUpsDisplayContext.Provider value={contextPopUpsDisplayed}>
-                    <IntlProvider
-                      locale={appCurrentLang?.locale}
-                      messages={appCurrentLang?.translatedText}
-                    >
-                      {isTransparentDivDisplayed && <TransparentDiv />}
-                      {Array.isArray(popUpsDisplayed) &&
-                        popUpsDisplayed.map((popUp, index) => (
-                          <Popup
-                            index={index}
-                            CompoToRender={popUp.CompoToRender}
-                            {...popUp}
-                          />
-                        ))}
-                      <ResponsiveMenuContainer />
-                      <NavBar />
-                      <AppWrapper
-                        appCurrentLang={appCurrentLang}
-                        setImagesGallerie={setImagesGallerie}
-                        imagesGallerie={imagesGallerie}
-                        tags={tags}
+                    <WysiwygContext.Provider value={contextWysiwyg}>
+                      <IntlProvider
+                        locale={appCurrentLang?.locale}
+                        messages={appCurrentLang?.translatedText}
                       >
-                        {children}
-                      </AppWrapper>
-                      <Footer />
-                      <ToastContainer
-                        position={toast.POSITION.TOP_CENTER}
-                        autoClose={10000}
-                      />
-                    </IntlProvider>
+                        {isTransparentDivDisplayed && <TransparentDiv />}
+                        {Array.isArray(popUpsDisplayed) &&
+                          popUpsDisplayed.map((popUp, index) => (
+                            <Popup
+                              index={index}
+                              CompoToRender={popUp.CompoToRender}
+                              {...popUp}
+                            />
+                          ))}
+                        <ResponsiveMenuContainer />
+                        <NavBar />
+                        <AppWrapper
+                          appCurrentLang={appCurrentLang}
+                          setImagesGallerie={setImagesGallerie}
+                          imagesGallerie={imagesGallerie}
+                          tags={tags}
+                        >
+                          {children}
+                        </AppWrapper>
+                        <Footer />
+                        <ToastContainer
+                          position={toast.POSITION.TOP_CENTER}
+                          autoClose={10000}
+                        />
+                      </IntlProvider>
+                    </WysiwygContext.Provider>
                   </PopUpsDisplayContext.Provider>
                 </TransparentDivContext.Provider>
               </AreLangFlagsDisplayedContext.Provider>

@@ -1,5 +1,4 @@
 import BackOfficeLayout from "../../../components/back_office/layouts/BackOfficeLayout";
-import TagEditor from "../../../components/back_office/tags/TagEditor";
 import TagStateContainer from "../../../components/back_office/tags/TagStateContainer";
 import { getAllTags } from "../../../services/api/tag";
 import style from "./tags.module.scss";
