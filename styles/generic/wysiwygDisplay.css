@@ -29,6 +29,13 @@ h1 .wysiwygDisplay p {
   border-radius: var(--border-radius);
 }
 
+.wysiwygDisplay .iframeContainer {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+
+}
+
 .imageDisplay {
   margin: 2rem 0;
   text-align: center;

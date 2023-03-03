@@ -50,6 +50,10 @@ const serialize = (node) => {
       return `<li>${children}</li>`;
     case "link":
       return `<a href="${escapeHtml(node.url)}">${children}</a>`;
+    case "youtube":
+      return `<div class="iframeContainer"><iframe width="800" height="450" src="https://www.youtube.com/embed/${escapeHtml(
+        node.urlYoutube
+      )}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
     case "image":
       return `<div class="imageDisplay" data-lang=${node.language}>
                 <img src="${escapeHtml(node.src)}">

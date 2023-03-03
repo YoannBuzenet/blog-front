@@ -4,6 +4,7 @@ import style from "./PopUpAddYoutubeURL.module.scss";
 import WysiwygContext from "../../../contexts/wysiwygContext";
 import { useContext } from "react";
 import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
+import { parseYoutubeUrl } from "../../generic/wysiwyg/YoutubeEmbed/YoutubeEmbed.func";
 
 const PopUpAddYoutubeURL = ({ ...props }) => {
   const { wysiwygContext, setWysiwygContext, resetUrlYoutube } =
@@ -39,7 +40,7 @@ const PopUpAddYoutubeURL = ({ ...props }) => {
         <div className={style.buttonContainer__ValidateButton}>
           <GenericButton
             handleClick={() => {
-              insertVideo(wysiwygContext.urlYoutube);
+              insertVideo(parseYoutubeUrl(wysiwygContext.urlYoutube));
               handleClosePopUp();
               resetUrlYoutube();
             }}
