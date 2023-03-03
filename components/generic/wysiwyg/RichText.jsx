@@ -80,7 +80,8 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
   const handleAddYoutubeVideo = (editor) => {
     addPopUp({
       CompoToRender: PopUpAddYoutubeURL,
-      test: (urlYoutube) => toggleBlock(editor, "youtube", { urlYoutube }),
+      insertVideo: (urlYoutube) =>
+        toggleBlock(editor, "youtube", { urlYoutube }),
     });
   };
 

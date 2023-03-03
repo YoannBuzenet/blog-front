@@ -1,3 +1,8 @@
+/**
+ * Makes sure youtube Iframe receives the right part of the url
+ * @param url
+ * @returns url at Youtube Iframe Format
+ */
 export const parseYoutubeUrl = (url: string) => {
   let finalUrl = url;
 

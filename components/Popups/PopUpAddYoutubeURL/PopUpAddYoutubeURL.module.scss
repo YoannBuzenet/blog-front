@@ -1,3 +1,17 @@
 .container {
-    background-color: red;
+    min-width: 500px;
+}
+
+.buttonContainer {
+    margin-top : 3rem;
+    display: flex;
+    justify-content: flex-end;
+
+    &__CancelButton {
+        margin-right : 20px;
+    }
+
+    &__ValidateButton {
+        margin-right : 20px;
+    }
 }

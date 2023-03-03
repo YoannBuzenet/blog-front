@@ -13,6 +13,7 @@ type InputFieldProps = {
   type?: any;
   triggerOnEnterKey?: boolean;
   actionToDoOnEnter?: () => void;
+  fullWidth?: boolean;
 };
 
 // Use for regular field input.
@@ -28,6 +29,7 @@ export default function InputField({
   size = "small",
   type = "text",
   triggerOnEnterKey = false,
+  fullWidth = false,
   actionToDoOnEnter,
 }: InputFieldProps) {
   const handleKeyDown = (e) => {
@@ -50,6 +52,7 @@ export default function InputField({
         size={size}
         type={type}
         onKeyDown={handleKeyDown}
+        fullWidth={fullWidth}
       />
     </div>
   );

@@ -3,45 +3,51 @@ import InputField from "../../generic/InputField/InputField";
 import style from "./PopUpAddYoutubeURL.module.scss";
 import WysiwygContext from "../../../contexts/wysiwygContext";
 import { useContext } from "react";
+import GenericButton from "../../generic/Buttons/GenericButton/GenericButton";
 
 const PopUpAddYoutubeURL = ({ ...props }) => {
   const { wysiwygContext, setWysiwygContext, resetUrlYoutube } =
     useContext(WysiwygContext);
 
-  console.log("props", props);
+  const { insertVideo, handleClosePopUp } = props;
 
   const handleChange = (e) => {
-    console.log("e.target.value", e.target.value);
     setWysiwygContext({ ...wysiwygContext, urlYoutube: e.target.value });
   };
 
   return (
     <div className={style.container}>
+      <p>Youtube URL</p>
       <InputField
         handleChange={handleChange}
         value={wysiwygContext.urlYoutube}
         id="YoutubePopUp"
         propToAffect="None"
+        label="Youtube URL"
+        fullWidth
       />
-      <button
-        onClick={() => {
-          resetUrlYoutube();
-          props.handleClosePopUp();
-        }}
-      >
-        Annuler
-      </button>
-      <button
-        onClick={() => {
-          props.test(wysiwygContext.urlYoutube);
-          props.handleClosePopUp();
-          resetUrlYoutube();
-        }}
-        disabled={wysiwygContext.urlYoutube.length === 0}
-      >
-        test
-      </button>
-      OK OK
+      <div className={style.buttonContainer}>
+        <div className={style.buttonContainer__CancelButton}>
+          <GenericButton
+            handleClick={() => {
+              resetUrlYoutube();
+              handleClosePopUp();
+            }}
+            text="Cancel"
+          />
+        </div>
+        <div className={style.buttonContainer__ValidateButton}>
+          <GenericButton
+            handleClick={() => {
+              insertVideo(wysiwygContext.urlYoutube);
+              handleClosePopUp();
+              resetUrlYoutube();
+            }}
+            text="Valider"
+            isDisabled={wysiwygContext.urlYoutube.length === 0}
+          />
+        </div>
+      </div>
     </div>
   );
 };
