@@ -15,6 +15,7 @@ import { AnswerManager } from "../../../../domain/answer/AnswerManager";
 import PostLangRefresh from "./PostLangRefresh";
 import { PostManager } from "../../../../domain/post/PostManager";
 import TagInPost from "../../../../components/posts/Tag/TagInPost/TagInPost";
+import PostTwitterDisplay from "./PostTwitterDisplay";
 
 export default async function OnePost({ params }) {
   const { postURL } = params;
@@ -37,6 +38,7 @@ export default async function OnePost({ params }) {
   return (
     <>
       <PostLangRefresh postParsed={postParsed} />
+      <PostTwitterDisplay />
       <div className="contentPageContainer belowNavbar">
         <h1 className={genericTextStyle.title}>
           <DisplayHTML slateText={post?.title} />

@@ -16,6 +16,8 @@ const AppWrapper = ({
   const { data: session, status } = useSession();
   //console.log("wrapper SESSION là: contenu session", session);
 
+  // Preloading Twitter widget so we can access it directly
+  // If not preloaded, we can't load tweets client side.
   React.useEffect(() => {
     const s = document.createElement("script");
     s.setAttribute("src", "https://platform.twitter.com/widgets.js");

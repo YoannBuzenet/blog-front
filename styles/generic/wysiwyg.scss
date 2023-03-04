@@ -106,6 +106,12 @@
     left: -1px;
     background-color: blue;
   }
+
+  .tweetDisplay {
+    display: flex;
+    justify-content: center;
+    margin : 4rem 0;
+  }
 }
 
 .wysiwyg_container.plainText {

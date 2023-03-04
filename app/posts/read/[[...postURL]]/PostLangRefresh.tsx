@@ -15,11 +15,6 @@ export default function PostLangRefresh({ postParsed }) {
 
   console.log("post parsed", postParsed);
 
-  // Without this, the tweet can't load client-side
-  useEffect(() => {
-    window.twttr.widgets.load();
-  }, []);
-
   // useEffect(() => {
   //   if (!appCurrentLang.isDefault && appCurrentLang.locale !== post.language) {
   //     // console.log("Difference between language settings and language of post");

@@ -250,7 +250,11 @@ const Element = ({ attributes, children, element }) => {
   console.log("element reçu", element);
   switch (element.type) {
     case "block-quote":
-      return <blockquote {...attributes}>{children}</blockquote>;
+      return (
+        <blockquote className="blockquote" {...attributes}>
+          {children}
+        </blockquote>
+      );
     case "bulleted-list":
       return <ul {...attributes}>{children}</ul>;
     case "heading-one":
@@ -264,7 +268,12 @@ const Element = ({ attributes, children, element }) => {
     case "youtube":
       return <YoutubeEmbed url={element.urlYoutube} {...attributes} />;
     case "twitter":
-      return <p>Tweet</p>;
+      return (
+        <div
+          className="tweetDisplay"
+          dangerouslySetInnerHTML={{ __html: element.snippetTweet }}
+        ></div>
+      );
     case "image":
       return (
         <ImageBlock attributes={attributes} element={element}>
