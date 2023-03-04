@@ -16,6 +16,13 @@ const AppWrapper = ({
   const { data: session, status } = useSession();
   //console.log("wrapper SESSION là: contenu session", session);
 
+  React.useEffect(() => {
+    const s = document.createElement("script");
+    s.setAttribute("src", "https://platform.twitter.com/widgets.js");
+    s.setAttribute("async", "true");
+    document.head.appendChild(s);
+  }, []);
+
   return (
     <>
       <ImageManagerContainer

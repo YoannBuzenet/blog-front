@@ -14,7 +14,7 @@ type HomeSecondPostProps = {
 };
 
 const HomeSecondPost = ({ post, index }: HomeSecondPostProps) => {
-  console.log("post reçu", post);
+  // console.log("post reçu", post);
 
   return (
     <div className={style.container}>

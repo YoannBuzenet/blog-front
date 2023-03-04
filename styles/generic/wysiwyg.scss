@@ -45,7 +45,7 @@
     max-width: 100%;
   }
 
-  blockquote {
+  .blockquote {
     border-left: 2px solid #ddd;
     margin-left: 0;
     margin-right: 0;
@@ -54,7 +54,7 @@
     font-style: italic;
   }
 
-  blockquote[dir="rtl"] {
+  .blockquote[dir="rtl"] {
     border-left: none;
     padding-left: 0;
     padding-right: 10px;
@@ -116,13 +116,19 @@
 }
 
 .wysiwygDisplay {
-  blockquote {
+  .blockquote {
     border-left: 2px solid #ddd;
     margin-left: 0;
     margin-right: 0;
     padding-left: 10px;
     color: #aaa;
     font-style: italic;
+  }
+
+  .tweetDisplay {
+    display: flex;
+    justify-content: center;
+    margin : 4rem 0;
   }
 }
 

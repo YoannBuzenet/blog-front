@@ -77,7 +77,7 @@ function isObjectEmpty(object = {}) {
   return Object.keys(object).length === 0;
 }
 
-function transformValueToReactSelectValue(value, label){
+function transformValueToReactSelectValue(value, label) {
   return {
     value, label
   }
@@ -90,7 +90,7 @@ function debounce(func, wait, immediate) {
   var timeout;
 
   // Calling debounce returns a new anonymous function
-  return function() {
+  return function () {
     // reference the context and args for the setTimeout function
     var context = this,
       args = arguments;
@@ -106,7 +106,7 @@ function debounce(func, wait, immediate) {
     clearTimeout(timeout);
 
     // Set the new timeout
-    timeout = setTimeout(function() {
+    timeout = setTimeout(function () {
 
       // Inside the timeout function, clear the timeout variable
       // which will let the next execution run when in 'immediate' mode
@@ -129,23 +129,19 @@ function debounce(func, wait, immediate) {
 const slugify = (...args) => {
   const value = args.join(' ')
 
-  let slug =  value
-      .normalize('NFD') // split an accented letter in the base letter and the acent
-      .replace(/[\u0300-\u036f]/g, '') // remove all previously split accents
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9 ]/g, '') // remove all chars not letters, numbers and spaces (to be replaced)
-      .replace(/\s+/g, '-') // separator
+  let slug = value
+    .normalize('NFD') // split an accented letter in the base letter and the acent
+    .replace(/[\u0300-\u036f]/g, '') // remove all previously split accents
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9 ]/g, '') // remove all chars not letters, numbers and spaces (to be replaced)
+    .replace(/\s+/g, '-') // separator
 
-  if(slug.endsWith("-")){
-      slug = slug.substring(0, slug.length - 1)
-  }    
+  if (slug.endsWith("-")) {
+    slug = slug.substring(0, slug.length - 1)
+  }
 
   return slug;
-}
-  
-module.exports = {
-  slugify
 }
 
 

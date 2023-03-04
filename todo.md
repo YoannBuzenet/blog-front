@@ -1,13 +1,11 @@
 ### next steps short term
 
-### Tags
-
-1. front
-
-1. Page de recherche par tags -> 1. Back endpoint 2. Front qui le call
+- twitter snippet !
 
 #### bugs
 
+- les langues sont pétées ? refresh sur un post, il part sur la mauvaise langue
+- redirection en cas de mauvaise langue emmene sur mauvais url
 - MyAccount doit filtrer si on n'est pas connecté
 - Dans un article, la redirection ne marche pas si on change de langue depuis la navbar, ça ne charge rien
 - Dans un article, le toast dure bien trop longtemps

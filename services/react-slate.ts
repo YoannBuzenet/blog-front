@@ -35,7 +35,7 @@ const serialize = (node) => {
 
   switch (node.type) {
     case "block-quote":
-      return `<blockquote>${children}</blockquote>`;
+      return `<blockquote class="blockquote">${children}</blockquote>`;
     case "heading-one":
       return `<h1>${children}</h1>`;
     case "heading-two":
@@ -59,6 +59,8 @@ const serialize = (node) => {
                 <img src="${escapeHtml(node.src)}">
                 <p>${children}</p>
               </div>`;
+    case "twitter":
+      return `<div class="tweetDisplay">${node.snippetTweet}</div>`;
     default:
       return children;
   }

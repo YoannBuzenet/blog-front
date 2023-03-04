@@ -63,7 +63,10 @@ export function Providers({ langHeaders, children }) {
 
   const [appCurrentLang, setAppCurrentLang] = useState(langInApp[langHeaders]);
 
-  const [wysiwygContext, setWysiwygContext] = useState({ urlYoutube: "" });
+  const [wysiwygContext, setWysiwygContext] = useState({
+    urlYoutube: "",
+    currentTweet: "",
+  });
 
   useEffect(() => {
     // App Language initialization
@@ -132,6 +135,8 @@ export function Providers({ langHeaders, children }) {
     setWysiwygContext,
     resetUrlYoutube: () =>
       setWysiwygContext({ ...wysiwygContext, urlYoutube: "" }),
+    resetCurrentTweet: () =>
+      setWysiwygContext({ ...wysiwygContext, currentTweet: "" }),
   };
   const contextPopUpsDisplayed = {
     popUpsDisplayed,

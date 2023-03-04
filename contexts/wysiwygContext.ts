@@ -1,7 +1,8 @@
 import React from "react";
 
 export default React.createContext({
-  wysiwygContext: { urlYoutube: "" },
+  wysiwygContext: { urlYoutube: "", currentTweet: "" },
   setWysiwygContext: (value) => {},
   resetUrlYoutube: () => {},
+  resetCurrentTweet: () => {},
 });

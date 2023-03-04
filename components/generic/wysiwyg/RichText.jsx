@@ -21,11 +21,13 @@ import Format_list_numbered from "../../../assets/svg/format_list_numbered/basel
 import Format_list_bulleted from "../../../assets/svg/format_list_bulleted/baseline.svg";
 import Image_SVG from "../../../assets/svg/image/baseline.svg";
 import Youtube_SVG from "../../../assets/svg/youtube/youtube.svg";
+import Twitter_SVG from "../../../assets/svg/twitter/icon.svg";
 import { Button, Toolbar } from "./components/components";
 import colorsVariable from "../../../styles/generic/colors.module.scss";
 import { useImageManager } from "react-image-manager";
 import ImageBlock from "./ImageBlock";
 import PopUpAddYoutubeURL from "../../Popups/PopUpAddYoutubeURL/PopUpAddYoutubeURL";
+import PopUpAddTweet from "../../Popups/PopUpAddTweet/PopUpAddTweet";
 import PopUpsDisplayedContext from "../../../contexts/popUpsDisplay";
 import WysiwygContext from "../../../contexts/wysiwygContext";
 import YoutubeEmbed from "./YoutubeEmbed/YoutubeEmbed";
@@ -82,6 +84,14 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
       CompoToRender: PopUpAddYoutubeURL,
       insertVideo: (urlYoutube) =>
         toggleBlock(editor, "youtube", { urlYoutube }),
+    });
+  };
+
+  const handleAddTweet = (editor) => {
+    addPopUp({
+      CompoToRender: PopUpAddTweet,
+      insertTweet: (snippetTweet) =>
+        toggleBlock(editor, "twitter", { snippetTweet }),
     });
   };
 
@@ -146,6 +156,12 @@ const RichText = ({ value, setValue, field, displayImagePicker = true }) => {
             format="youtube"
             SvgIcon={Youtube_SVG}
             title="Ajouter Video Youtube"
+          />
+          <CustomButton
+            handleClick={() => handleAddTweet(editor)}
+            format="twitter"
+            SvgIcon={Twitter_SVG}
+            title="Ajouter un Tweet"
           />
           {displayImagePicker && (
             <CustomButton
@@ -247,6 +263,8 @@ const Element = ({ attributes, children, element }) => {
       return <ol {...attributes}>{children}</ol>;
     case "youtube":
       return <YoutubeEmbed url={element.urlYoutube} {...attributes} />;
+    case "twitter":
+      return <p>Tweet</p>;
     case "image":
       return (
         <ImageBlock attributes={attributes} element={element}>

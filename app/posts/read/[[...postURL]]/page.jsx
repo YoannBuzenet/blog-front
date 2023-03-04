@@ -32,7 +32,7 @@ export default async function OnePost({ params }) {
 
   // TODO SI post.createdAt !== post.updatedAt : afficher "Mis à jour le X"
 
-  console.log("post", post);
+  // console.log("post", post);
 
   return (
     <>
